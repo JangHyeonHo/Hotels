@@ -11,8 +11,8 @@ import java.util.Date;
  * <b>contMatKind</b> 주 납품 자재종류<br>
  * <b>관계 테이블</b><br>
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
- * <b>★distributor.disName</b> 유통업체(distributor)테이블 <b>Foreign Key</b><br>
- * @version 1.0
+ * <b>★distributor.disNo</b> 유통업체(distributor)테이블 <b>Foreign Key</b><br>
+ * @version 1.01
  * */
 public class ContractDTO {
 	private int contNo;
