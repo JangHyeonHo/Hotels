@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hotels.peregrine.service.fb.BanqeutRegisterService;
+import com.hotels.peregrine.service.fb.BanquetRegisterService;
 
 @Controller
-@RequestMapping("/fb/bregister")
-public class BanqeutRegisterController {
+@RequestMapping("/fb/banquet/register")
+public class BanquetRegisterController {
 	
 	@Autowired
-	BanqeutRegisterService service ;
+	BanquetRegisterService service ;
 	
 	
 	
