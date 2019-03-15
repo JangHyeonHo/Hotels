@@ -14,9 +14,9 @@ public class ContractController {
 	@Autowired
 	private ContractListService service;
 	
-	@RequestMapping(value="/comp/contract", method = RequestMethod.GET)
+	@RequestMapping(value="/comp/logistics/contract", method = RequestMethod.GET)
 	public String regist(Model model) {
 		service.ContractList();
-		return "logistics/contract/distriRegist";
+		return "logistics/contract/contractlist";
 	}
 }
