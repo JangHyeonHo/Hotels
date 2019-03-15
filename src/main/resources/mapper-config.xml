@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<!-- 기본정보 셋팅 -->
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="defaultStatementTimeout" value="300" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- select 결과값이 null라도 key생성 -->
+		<setting name="callSettersOnNulls" value="true" />
+	</settings>
+	
+	<!-- Model(DTO) 담기 -->
+	<typeAliases>
+		<typeAlias type="com.hotels.peregrine.model.BanquetDTO" alias="Banquet"/>
+		<typeAlias type="com.hotels.peregrine.model.BanquetRentalDTO" alias="BanquetRental"/>
+		<typeAlias type="com.hotels.peregrine.model.BreakfastDTO" alias="Breakfast"/>
+		<typeAlias type="com.hotels.peregrine.model.CardPayDTO" alias="CardPay"/>
+		<typeAlias type="com.hotels.peregrine.model.CashPayDTO" alias="CashPay"/>
+		<typeAlias type="com.hotels.peregrine.model.CheckInDTO" alias="CheckIn"/>
+		<typeAlias type="com.hotels.peregrine.model.ContractDTO" alias="Contract"/>
+		<typeAlias type="com.hotels.peregrine.model.ContractWorksDTO" alias="ContractWorks"/>
+		<typeAlias type="com.hotels.peregrine.model.CustomerDTO" alias="Customer"/>
+		<typeAlias type="com.hotels.peregrine.model.DistributorDTO" alias="Distributor"/>
+		<typeAlias type="com.hotels.peregrine.model.EmployeeDTO" alias="Employee"/>
+		<typeAlias type="com.hotels.peregrine.model.EmployeeHolidayDTO" alias="EmployeeHoliday"/>
+		<typeAlias type="com.hotels.peregrine.model.FoodDTO" alias="Food"/>
+		<typeAlias type="com.hotels.peregrine.model.GuestRoomDTO" alias="GuestRoom"/>
+		<typeAlias type="com.hotels.peregrine.model.LostDTO" alias="Lost"/>
+		<typeAlias type="com.hotels.peregrine.model.MaterialDTO" alias="Material"/>
+		<typeAlias type="com.hotels.peregrine.model.MaterialInboundDTO" alias="MaterialInbound"/>
+		<typeAlias type="com.hotels.peregrine.model.MaterialOutboundDTO" alias="MaterialOutbound"/>
+		<typeAlias type="com.hotels.peregrine.model.OrdersDTO" alias="Orders"/>
+		<typeAlias type="com.hotels.peregrine.model.OrderListDTO" alias="OrderList"/>
+		<typeAlias type="com.hotels.peregrine.model.PaymentDTO" alias="Payment"/>
+		<typeAlias type="com.hotels.peregrine.model.RecipeFoodDTO" alias="RecipeFood"/>
+		<typeAlias type="com.hotels.peregrine.model.RestaurantDTO" alias="Restaurant"/>
+		<typeAlias type="com.hotels.peregrine.model.RestaurantReservationDTO" alias="RestaurantReservation"/>
+		<typeAlias type="com.hotels.peregrine.model.RoomDTO" alias="Room"/>
+		<typeAlias type="com.hotels.peregrine.model.RoomServiceDTO" alias="RoomService"/>
+		<typeAlias type="com.hotels.peregrine.model.ScheduleDTO" alias="Schedule"/>
+		<typeAlias type="com.hotels.peregrine.model.ToolRentalDTO" alias="ToolRental"/>
+	</typeAliases>
+
+
+
+</configuration>
