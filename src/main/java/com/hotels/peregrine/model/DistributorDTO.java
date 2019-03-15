@@ -6,6 +6,7 @@ import java.util.Date;
  * 유통업체(distributor) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
  * <b>변수</b><br>
+ * <b>★disNo</b> 사업장 등록 번호 <b>Primary Key</b><br>
  * <b>★disName</b> 사업장명<br>
  * <b>★disPhone</b> 사업장 전화번호<br>
  * <b>disAddr</b> 사업장 구 주소<br>
@@ -13,9 +14,10 @@ import java.util.Date;
  * <b>disNAddr</b> 사업장 신 주소<br>
  * <b>disNZipCode</b> 사업장 신 우편번호<br>
  * <b>disRegDate</b> 사업장 허가일자<br>
- * @version 1.0
+ * @version 1.01
  * */
 public class DistributorDTO {
+	private int disNo;
 	private String disName;
 	private String disPhone;
 	private String disAddr;
@@ -23,6 +25,13 @@ public class DistributorDTO {
 	private String disNAddr;
 	private int disNZipCode;
 	private Date disRegDate;
+	
+	public int getDisNo() {
+		return disNo;
+	}
+	public void setDisNo(int disNo) {
+		this.disNo = disNo;
+	}
 	public String getDisName() {
 		return disName;
 	}
