@@ -3,13 +3,13 @@ package com.hotels.peregrine.service.fb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotels.peregrine.repository.fb.BanqeutRegisterRepository;
+import com.hotels.peregrine.repository.BanquetRepository;
 
 @Service
-public class BanqeutRegisterService {
+public class BanquetRegisterService {
 
 	@Autowired
-	BanqeutRegisterRepository repository;
+	BanquetRepository repository;
 	
 	
 	public void action() {
