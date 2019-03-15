@@ -12,13 +12,13 @@ import java.util.Date;
  * <b>banTime</b> 연회장 기본 이용 시간<br>
  * <b>banMaxPeople</b> 연회장 최대 수용수<br>
  * <b>banStoreFileName</b> 연회장 저장 사진<br>
- * @version 1.0
+ * @version 1.01
  * */
 public class BanquetDTO {
 	private String banName;
 	private int banPoundation;
 	private String banDescription;
-	private Date banTime;
+	private int banTime;
 	private int banMaxPeople;
 	private String banStoreFileName;
 	public String getBanName() {
@@ -42,10 +42,10 @@ public class BanquetDTO {
 		this.banDescription = banDescription;
 		return this;
 	}
-	public Date getBanTime() {
+	public int getBanTime() {
 		return banTime;
 	}
-	public BanquetDTO setBanTime(Date banTime) {
+	public BanquetDTO setBanTime(int banTime) {
 		this.banTime = banTime;
 		return this;
 	}
