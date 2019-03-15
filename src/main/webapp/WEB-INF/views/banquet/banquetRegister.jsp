@@ -37,13 +37,16 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+	
+	<h1>연회장 등록</h1>
+	
 	<form:form enctype="multipart/form-data">
-연회장 명	<input type="text" name="banName">
-연회장 연회장 기본금 <input type="text" name="banFoundation">
-연회장 설명 <input type="text" name="banDesctiption">	
-연회장 기본 이용 시간 <input type="text" name="banTime">
-연회장 최대 수용수 <input type="test" name="banMasPeople">
-연회장 사진 <input type="file" name="banStoreFileName">	
+연회장 명	<input type="text" name="banName"> <br>
+연회장 연회장 기본금 <input type="text" name="banFoundation"><br>
+연회장 설명 <input type="text" name="banDesctiption">	<br>
+연회장 기본 이용 시간 <input type="text" name="banTime"><br>
+연회장 최대 수용수 <input type="test" name="banMasPeople"><br>
+연회장 사진 <input type="file" name="banStoreFileName">	<br>
 	 <input type="submit" value="등록">
 	</form:form>
 	</div>
