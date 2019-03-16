@@ -34,6 +34,6 @@ public class BanquetRegisterController {
 		
 		
 		
-		return "...";
+		return "banquet/banquetRegister";
 	}
 }

@@ -46,7 +46,7 @@
 연회장 설명 <input type="text" name="banDesctiption">	<br>
 연회장 기본 이용 시간 <input type="text" name="banTime"><br>
 연회장 최대 수용수 <input type="test" name="banMasPeople"><br>
-연회장 사진 <input type="file" name="banStoreFileName">	<br>
+<!-- 연회장 사진 <input type="file" name="banStoreFileName">	<br> -->
 	 <input type="submit" value="등록">
 	</form:form>
 	</div>

@@ -14,7 +14,7 @@ public class DistributorRepository {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	private String namespace = "distributor";
+	private String namespace = "sample1";
 	
 	//유통업체 리스트 호출
 	public List<DistributorDTO> disList() {
