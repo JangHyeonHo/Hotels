@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sample">
+<mapper namespace="sample1">
 	<cache />
 	<sql id="AlldisColumn">
 		DIS_NO, DIS_NAME, DIS_PHONE, DIS_REG_DATE, DIS_ZIP_CODE, DIS_N_ZIP_CODE, DIS_N_ADDR, DIS_ADDR
