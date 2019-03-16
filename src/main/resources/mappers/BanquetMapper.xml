@@ -3,7 +3,7 @@
 <mapper namespace="banquet">
 	<cache />
 	<insert id="Binsert" parameterType="Banquet">
-		inser into BANQUET(BAN_NAME) values(#{banName})
+		insert into BANQUET(BAN_NAME,BAN_FOUNDATION,BAN_DESCRIPTION,BAN_TIME,BAN_MAX_PEOPLE) values(#{banName}, #{banPoundation} , #{banDescription}, #{banTime}, #{banMaxPeople})
 	</insert>
 	
 	

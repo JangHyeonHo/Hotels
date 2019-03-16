@@ -15,6 +15,7 @@ public class BanquetRepository {
 	// 연회장 등록 
 	 public void binsert(BanquetDTO dto) {
 		 
+		 System.out.println(dto.getBanTime());
 		 template.insert("banquet.Binsert",dto);
 		 
 	 }
