@@ -6,12 +6,12 @@
 		DIS_NO, DIS_NAME, DIS_PHONE, DIS_REG_DATE, DIS_ZIP_CODE, DIS_N_ZIP_CODE, DIS_ADDR, DIS_N_ADDR
 	</sql>
 	<!-- disList() -->
- 	<select id="disList" resultMap="Distributor">
+<!--  	<select id="disList" resultMap="Distributor">
 		SELECT
 		 	${AlldisColumn} 
 		 FROM 
 		 	distributor
-	</select> 
+	</select>  -->
 	<insert id="svcRegist">
 		INSERT INTO
 			 distributor(${AlldisColumn}) 

@@ -6,5 +6,8 @@
 		insert into BANQUET(BAN_NAME,BAN_FOUNDATION,BAN_DESCRIPTION,BAN_TIME,BAN_MAX_PEOPLE) values(#{banName}, #{banPoundation} , #{banDescription}, #{banTime}, #{banMaxPeople})
 	</insert>
 	
+	<insert id="Brinsert" parameterType="BanquetRental">
+		insert into BANQUET_RENTAL(BR_NO,ban_name) values(br.nextval,#{brPurpose})
+	</insert>
 	
 </mapper>
