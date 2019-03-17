@@ -34,11 +34,11 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<header><h1>연회장 등록</h1></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	
-	<h1>연회장 등록</h1>
+	
 	
 	<form:form enctype="multipart/form-data">
 연회장 명	<input type="text" name="banName"> <br>
