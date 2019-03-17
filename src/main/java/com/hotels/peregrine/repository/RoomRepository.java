@@ -16,7 +16,7 @@ public class RoomRepository {
 	
 	//객실을 만들기위해 있는 메소드~
 	public void insert(RoomDTO rooms) {
-		sql.insert(namespace);
+		sql.insert(namespace+".insert",rooms);
 	}
 
 	
