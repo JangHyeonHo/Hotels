@@ -48,10 +48,10 @@
 이용 고객수 <input type="text" name="banConsumer"></br>	
 이용 날짜 <input type="date" name="banUseTime"></br> -->
 이용 목적 <input type="text" name="brPurpose"></br>
-<!-- 이용 금액 <input type="text" name="banPrice"></br>
-식사 여부 <input type="text" name="banEating"></br>
-연장 추가비용 <input type="text" name="banExPay"></br>
-대여 시간 <input type="date" name="banRanTime"></br> -->
+<!-- 이용 금액 <input type="text" name="banPrice"></br> -->
+식사 여부 <input type="text" name="brEating"></br>
+<!-- 연장 추가비용 <input type="text" name="banExPay"></br>
+대여 시간 <input type="date" name="banRanTime"></br>  -->
 	<input type="submit" value="등록">
 	</form:form>
 	</div>
