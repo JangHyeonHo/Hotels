@@ -3,14 +3,14 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>유통업체 리스트</title>
+<title>계약 등록</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,8 +37,9 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<input type = "button" value = "<spring:message code="cont.regist" />">
-		<input type = "button" value = "<spring:message code="cont.delete" />">
+		<form:form>
+			<input type = "hidden" id = "disNo" name = "disNo" value = "${no} ">
+		</form:form>
 	</div>
 	<footer></footer>
 </body>

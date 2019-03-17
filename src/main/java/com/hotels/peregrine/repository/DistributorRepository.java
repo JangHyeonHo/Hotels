@@ -14,12 +14,17 @@ public class DistributorRepository {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	private String namespace = "sample1";
+	private String namespace = "distributor";
 	
 	//유통업체 리스트 호출
 	public List<DistributorDTO> disList() {
 		// TODO Auto-generated method stub
-		
-		return null;
+		return template.selectList(namespace + ".disList");
+	}
+	
+	//유통업체 csv 대량 등록(미완)
+	public int disListRegist() {
+		// TODO Auto-generated method stub
+		return template.insert(namespace + ".svcRegist");
 	}
 }
