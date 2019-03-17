@@ -7,7 +7,7 @@
 	</insert>
 	
 	<insert id="Brinsert" parameterType="BanquetRental">
-		insert into BANQUET_RENTAL(BR_NO,ban_name) values(br.nextval,#{brPurpose})
+		insert into BANQUET_RENTAL(BR_NO,BR_PURPOSE) values(br.nextval,#{brPurpose})
 	</insert>
 	
 </mapper>

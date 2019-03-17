@@ -23,10 +23,10 @@ public class BanquetReservationController {
 		System.out.println("연회장 예약 등록 오픈");
 		return "banquet/banquetReservation";
 	}
-	
+	@RequestMapping(method= RequestMethod.POST)
 	public String postform(@ModelAttribute BanquetRentalDTO dto ) {
 		System.out.println("연회장 예약 포스트 작동");
-		AutoTest.ModelBlackTest(dto);
+	
 		service.action(dto);
 		
 		return "banquet/banquetReservation";

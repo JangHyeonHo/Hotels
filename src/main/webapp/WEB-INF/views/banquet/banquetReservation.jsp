@@ -36,24 +36,26 @@
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
 	<header><h1>연회장 예약</h1></header>
 	<!-- 실제 작성 구간 -->
-	<form:form>
+
 	<div id = "contents">
-연회장명	<select name=""banName>
+		<form:form>
+<!-- 연회장명	<select name="banName">
 	<option value="BH1">BH1</option>
 	<option value="BH1">BH2</option>
 	</select></br>
-개최 시간	<input type="date" name="banOpen"></br>
+ 개최 시간	<input type="date" name="banOpen"></br>
 폐회 시간 <input type="date" name="banClose"></br>
 이용 고객수 <input type="text" name="banConsumer"></br>	
-이용 날짜 <input type="date" name="banUseTime"></br>
-이용 목적 <input type="text" name="banPirpose"></br>
-이용 금액 <input type="text" name="banPrice"></br>
+이용 날짜 <input type="date" name="banUseTime"></br> -->
+이용 목적 <input type="text" name="brPurpose"></br>
+<!-- 이용 금액 <input type="text" name="banPrice"></br>
 식사 여부 <input type="text" name="banEating"></br>
 연장 추가비용 <input type="text" name="banExPay"></br>
-대여 시간 <input type="date" name="banRanTime"></br>
+대여 시간 <input type="date" name="banRanTime"></br> -->
 	<input type="submit" value="등록">
-	</div>
 	</form:form>
+	</div>
+	
 	<footer></footer>
 </body>
 </html>
