@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 카드결제(cash_pay) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -9,7 +12,7 @@ package com.hotels.peregrine.model;
  * <b>★payment.payNo</b> 결제(Payment) 테이블<b>Primary Key, Foreign Key</b><br>
  * @version 1.0
  * */
-public class CashPayDTO {
+public class CashPayDTO implements Serializable {
 	private String cashReceipt;
 	private String cashCeoReceipt;
 	private PaymentDTO payment;

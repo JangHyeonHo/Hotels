@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 음식 레시피 재료(recipe_food) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -9,7 +12,7 @@ package com.hotels.peregrine.model;
  * <b>★food.foodNo</b> 음식(food)테이블 <b>Primary Key, Foreign Key</b><br>
  * <b>material.matNo</b> 자재(material)테이블 <b>Foreign Key</b><br>
  * */
-public class RecipeFoodDTO {
+public class RecipeFoodDTO implements Serializable {
 	private int rfNo;
 	private FoodDTO food;
 	private MaterialDTO material;

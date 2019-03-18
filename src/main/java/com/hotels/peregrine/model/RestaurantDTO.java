@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 레스토랑/라운지(restaurant) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -10,7 +13,7 @@ package com.hotels.peregrine.model;
  * <b>resStoreFileName</b> 레스토랑 라운지 저장 사진<br>
  * @version 1.0
  * */
-public class RestaurantDTO {
+public class RestaurantDTO implements Serializable {
 	private String resName;
 	private int resChair;
 	private int resTableCount;

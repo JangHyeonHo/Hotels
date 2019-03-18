@@ -1,6 +1,6 @@
 package com.hotels.peregrine.model;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * 연회장(banquet) 테이블에 관한 것<br>
@@ -14,7 +14,7 @@ import java.util.Date;
  * <b>banStoreFileName</b> 연회장 저장 사진<br>
  * @version 1.01
  * */
-public class BanquetDTO {
+public class BanquetDTO implements Serializable {
 	private String banName;
 	private int banPoundation;
 	private String banDescription;

@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,7 +21,7 @@ import java.util.Date;
  * <b>★room.roomName</b> 객실(room)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class CheckInDTO {
+public class CheckInDTO implements Serializable {
 	
 	private int cheNo;
 	private Date cheInTime;

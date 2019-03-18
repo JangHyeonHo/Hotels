@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 주문(orders) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -12,7 +15,7 @@ package com.hotels.peregrine.model;
  * <b>restaurantReservation.rrNo<br>restaurantReservation.customer.cosNo</b> 레스토랑 예약(restaurant_reservation)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class OrdersDTO {
+public class OrdersDTO implements Serializable {
 	private int ordNo;
 	private int ordTableNum;
 	private int ordSumPrice;

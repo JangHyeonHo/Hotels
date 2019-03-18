@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  * <b>★material.matNo</b> 자재(material)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class MaterialInboundDTO {
+public class MaterialInboundDTO implements Serializable {
 	private Date miInbDate;
 	private int miPrice;
 	private int miInContent;

@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * <b>lostLoc</b> 분실 위치<br>
  * @version 1.0
  * */
-public class LostDTO {
+public class LostDTO implements Serializable {
 	private int lostNo;
 	private String lostName;
 	private Date lostDate;
