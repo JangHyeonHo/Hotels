@@ -51,25 +51,25 @@
 	
 	</select>
 	
-	<update id="refresh1"  parameterType="long">
+	<update id="refresh1"  parameterType="Long">
 	
 	update BANQUET_RENTAL set BR_OPEN = sysdate 
 	
 	<where>
 	
-	BR_NO = #{brNo}
+	BR_NO = #{num}
 	
 	</where>
 	
 	</update>
 	
-	<update id="refresh2" parameterType="long">
+	<update id="refresh2" parameterType="Long">
 	
 		update BANQUET_RENTAL set BR_CLOSE = sysdate 
 	
 	<where>
 	
-	BR_NO = #{brNo}
+	BR_NO = #{num}
 	
 	</where>
 	
