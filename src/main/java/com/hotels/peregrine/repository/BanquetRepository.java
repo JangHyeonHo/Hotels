@@ -38,4 +38,18 @@ public class BanquetRepository {
 		 return template.selectList("banquet.Blist");
 	 }
 	 
+	 public BanquetRentalDTO Bdetail(long num) {
+		 
+		 return template.selectOne("banquet.bDetail",num);
+	 }
+	 
+	 public Integer dateRefresh1(long num) {
+		 
+		 return template.update("banquet.refresh1",num);
+	 }
+	 public Integer dateRefresh2(long num) {
+		 
+		 return template.update("banquet.refresh2",num);
+	 }
+	 
 }
