@@ -21,6 +21,8 @@ public class BanquetOpenRefreshController {
 		System.out.println("연회장 개최시간 수정");
 			
 		service.refresh(num);
+				
+			
 		
 		
 		return "banquet/banquetDetail";
