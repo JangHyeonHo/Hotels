@@ -27,4 +27,10 @@ public class DistributorRepository {
 		// TODO Auto-generated method stub
 		return template.insert(namespace + ".svcRegist");
 	}
+	
+	//유통업체 하나만 호출
+	public DistributorDTO disOne(int no) {
+		// TODO Auto-generated method stub
+		return template.selectOne(namespace + ".disOne", no);
+	}
 }
