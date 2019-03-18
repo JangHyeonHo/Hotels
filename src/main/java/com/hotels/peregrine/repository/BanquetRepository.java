@@ -1,5 +1,7 @@
 package com.hotels.peregrine.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,4 +26,16 @@ public class BanquetRepository {
 		 
 		 template.insert("banquet.Brinsert",dto);
 	 }
+	 
+	 
+	 public List<String> bnamelist() {
+		 
+		 return template.selectList("banquet.Bnamelist");
+	 }
+	 
+	 public List<BanquetRentalDTO> banquetList(){
+		 
+		 return template.selectList("banquet.Blist");
+	 }
+	 
 }

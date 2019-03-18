@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 연회장 대여(banquet_rental) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -30,16 +32,19 @@ public class BanquetRentalDTO implements Serializable {
 	private Date brOpen;
 	private Date brClose;
 	private int brConsumer;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date brUseTime;
 	private String brPurpose;
 	private int brPrice;
 	private String brEating;
 	private int brExPay;
-	private Date brRantalTime;
+	private int brRantalTime;
 	private Date brRegDate;
 	private BanquetDTO banquet;
 	private PaymentDTO payment;
 	private CustomerDTO customer;
+	
+	
 	public int getBrNo() {
 		return brNo;
 	}
@@ -103,10 +108,10 @@ public class BanquetRentalDTO implements Serializable {
 		this.brExPay = brExPay;
 		return this;
 	}
-	public Date getBrRantalTime() {
+	public int getBrRantalTime() {
 		return brRantalTime;
 	}
-	public BanquetRentalDTO setBrRantalTime(Date brRantalTime) {
+	public BanquetRentalDTO setBrRantalTime(int brRantalTime) {
 		this.brRantalTime = brRantalTime;
 		return this;
 	}

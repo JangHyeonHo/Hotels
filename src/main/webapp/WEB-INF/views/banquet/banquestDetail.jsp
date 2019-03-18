@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.*, com.hotels.peregrine.model.*" %>
-
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>연회장 예약</title>
+<title>타이틀명</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -36,31 +34,11 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header><h1>연회장 예약</h1></header>
+	<header><h1>연회장 예약 정보</h1></header>
 	<!-- 실제 작성 구간 -->
-
 	<div id = "contents">
-		<form:form>
-		
-연회장명<select name="banquet.banName">
-	<c:forEach items="${name}" var="ban">
-	<option value="${ban }">${ban }</option>
-	</c:forEach>
-	</select></br>
-
-이용 고객수 <input type="text" name="brConsumer"></br>
-이용 날짜 <input type="date" name="brUseTime"></br>
-이용 목적 <input type="text" name="brPurpose"></br>
-이용 금액 <input type="text" name="brPrice"></br>
-식사 여부 <select name="brEating">
-		<option value="유">유</option>
-		<option value="무">무</option>
-		</select></br>
-대여 시간 <input type="text" name="brRantalTime">시간</br>
-	<input type="submit" value="등록">
-	</form:form>
-	</div>
 	
+	</div>
 	<footer></footer>
 </body>
 </html>
