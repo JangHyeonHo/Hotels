@@ -3,15 +3,41 @@
 <mapper namespace="contract">
 	<cache />
 	<sql id="allColumn">
-		cont_no, cont_reg_date, cont_mat_kind, dis_no
+		CONT_NO, CONT_REG_DATE, CONT_MAT_KIND
 	</sql>
-	<select id="iscontract" resultType="Contract" parameterType="Integer">
-		SELECT 
-			${allColumn} 
+	<select id="iscontract" resultType="INTEGER" >
+		SELECT
+			CONT_NO
 		FROM 
 			contract 
 		WHERE
 			dis_no = #{no}
 	</select>
+	
+	<insert id="insertContract" parameterType="Contract">
+		INSERT INTO 
+			contract(
+				<include refid="allColumn"></include>, DIS_NO
+			)
+			VALUES(sq_cont_no.nextval,SYSDATE,#{contMatKind},#{distributor.disNo})
+	</insert>
+	
+	<select id="contractList" resultMap="contDis">
+		SELECT
+			D.DIS_NAME, <include refid="allColumn"></include>, d.DIS_NO
+		FROM
+			contract c left outer join distributor d
+		ON(c.DIS_NO = d.DIS_NO)
+	</select>
+	
+	<resultMap type="Contract" id="contDis">
+		<id column="CONT_NO" jdbcType="INTEGER" property="contNo"/>
+		<result column="CONT_REG_DATE" jdbcType="TIMESTAMP" property="contRegDate"/>
+		<result column="CONT_MAT_KIND" jdbcType="VARCHAR" property="contMatKind"/>
+		<association property="distributor" column="DIS_NO" javaType="Distributor">
+			<id column="DIS_NO" jdbcType="INTEGER" property="disNo"/>
+			<result column="DIS_NAME" jdbcType="VARCHAR" property="disName"/>
+		</association>
+	</resultMap>
 	
 </mapper>

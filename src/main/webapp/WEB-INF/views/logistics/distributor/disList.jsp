@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,16 @@
 		})
 		$("#contBtn").on("click",function(){
 			var no = $("input:radio[name = 'disNo']:checked").val();
-			location.href="../contract/regist?disNo="+no;
+			console.log(no);
+			if(no == null){
+				alert("계약할 유통업체를 선택하여 주십시오")
+				return false;
+			} else{
+				location.href="./contract/regist?disNo="+no;
+			}
+		})
+		$("#listBtn").on("click",function(){
+			location.href="./contract"
 		})
 	})
 
@@ -57,23 +67,23 @@
 				<th class = "zipcode"><spring:message code="dis.zipcode" /></th>
 				<th class = "address"><spring:message code="dis.address" /></th>
 				<th class = "regdate"><spring:message code="dis.regdate" /></th>
-				<th class = "checkbox"><spring:message code="checkbox" /></th>
+				<th class = "checkbox"><spring:message code="radio" /></th>
 			</tr>
-			<c:forEach items="distributorList" var="dis">
+			<c:forEach items="${distributorList }" var="dis">
 				<tr>
-					<th class = "no">${dis.disNo}</th>
-					<th class = "name">${dis.disName}</th>
-					<th class = "phone">${dis.disPhone}</th>
-					<th class = "zipcode">${dis.disZipCode}/${dis.disNZipCode}</th>
-					<th class = "address">${dis.disAddr}/${dis.disNAddr}</th>
-					<th class = "regdate">${dis.disRegDate}</th>
-					<th class = "checkbox"><input type = "radio" name = "disNo" value = "${dis.disNo}"></th>
+					<td class = "no">${dis.disNo}</td>
+					<td class = "name">${dis.disName}</td>
+					<td class = "phone">${dis.disPhone}</td>
+					<td class = "zipcode">${dis.disZipCode}/${dis.disNZipCode}</td>
+					<td class = "address">${dis.disAddr}/${dis.disNAddr}</td>
+					<td class = "regdate"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dis.disRegDate}"/></td>
+					<td class = "checkbox"><input type = "radio" name = "disNo" value = "${dis.disNo}"></td>
 				</tr>
 			</c:forEach>
 		</table>
 		<input type = "button" value = "<spring:message code="dist.oneRegist" />" id ="oneRegBtn">
 		<input type = "button" value = "<spring:message code="cont.regist" />" id = "contBtn">
-		<input type = "button" value = "<spring:message code="cont.delete" />" id = "delBtn">
+		<input type = "button" value = "<spring:message code="cont.list" />" id = "listBtn">
 	</c:if>
 	<c:if test="${empty distributorList}">
 		<spring:message code="dis.nothing" /><br>
