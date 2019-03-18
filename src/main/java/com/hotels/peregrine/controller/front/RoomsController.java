@@ -29,7 +29,7 @@ public class RoomsController {
 	public String reservation(@ModelAttribute RoomDTO rooms, Model model) {
 		AutoTest.ModelBlackTest(rooms);
 		service.action(rooms);
-		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "등록되었습니다.", "./front");
+		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "등록되었습니다.", "../front");
 	}
 	
 }

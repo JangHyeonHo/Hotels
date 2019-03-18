@@ -142,15 +142,15 @@ $(function(){
 	<div id = "contents">
 	
 	<form:form>
-	<div class = "infobox">고객 성</div> <input type="text" id = "fname" name = "fname">
-    <div class = "infobox">고객 이름</div> <input type="text" id = "lname" name = "lname">
-    <div class = "infobox">고객 전화번호</div> <input type="text" id = "phone" name = "phone">
-    <div class = "infobox">이메일</div> <input type="text" id = "email" name = "email">
+	<div class = "infobox">고객 성</div> <input type="text" id = "fname" name = "cosFName">
+    <div class = "infobox">고객 이름</div> <input type="text" id = "lname" name = "cosLName">
+    <div class = "infobox">고객 전화번호</div> <input type="text" id = "phone" name = "cosTelno">
+    <div class = "infobox">이메일</div> <input type="text" id = "email" name = "cosEmail">
     <div class = "infobox">알레르기 유무</div>
-    <input type = "radio" class = "allergy1" name="allergy" value="있음">있음
-    <input type = "radio" class = "allergy1" name="allergy" value="없음" checked = "checked">없음
+    <input type = "radio" class = "allergy1" name="cosAllergy" value="있음">있음
+    <input type = "radio" class = "allergy1" name="cosAllergy" value="없음" checked = "checked">없음
     <div id = "allergyinfo"  style = "display:none;">
-    <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "allergykind">
+    <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "cosAllergy">
     </div>
     
     <div class = "infobox">입실 예정일</div>
@@ -190,7 +190,7 @@ $(function(){
 					<option value="11">11</option>
 					<option value="12">12</option>
 				</select>월
-				<select name="day" id="day">
+				<select name="day" class="day">
 				</select>일			
 		
 	
@@ -315,8 +315,7 @@ $(function(){
     </select>
     </div>
     
-    <div class = "infobox">담당 직원번호</div> <input type="text" id = "empNo" name = "empNo">
-    <br>
+  <%--  <input type="hidden" id = "cosNo" name = "customer.cosNo" value = "${customer.cosNo }"> --%>
     
 
     <input type = "submit" value = "체크인">

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hotels.peregrine.model.CheckInDTO;
+import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckinService;
@@ -32,10 +33,11 @@ public class CheckinController {
 	
 	
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
-	public String checkin(@ModelAttribute CheckInDTO checkin, Model model) {
+	public String checkin(@ModelAttribute CheckInDTO checkin, CustomerDTO customer, Model model) {
 		AutoTest.ModelBlackTest(checkin);
+		AutoTest.ModelBlackTest(customer);
 		service.action(checkin);
 		
-		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "./front");
+		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");
 	}	
 }
