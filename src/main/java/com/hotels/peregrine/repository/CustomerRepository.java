@@ -13,12 +13,14 @@ public class CustomerRepository {
 	@Autowired
 	private SqlSessionTemplate sql;
 	
-	private String namespace = "customer";
+/*	private String namespace = "customer";
 	
 	//고객등록될때 사용
 	public void insert(CustomerDTO customers) {
-		sql.insert(namespace+".insert",customers);
-	}
+		sql.insert(namespace+".insert", customers);
+	}*/
+
+
 
 
 
