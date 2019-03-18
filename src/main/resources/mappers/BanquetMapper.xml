@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="banquet">
 	<cache />
+	
+	<sql id="selectsql">
+	BR_NO,
+	BAN_NAME,
+	COS_NO,
+	PAY_NO,
+	BR_OPEN,
+	BR_CLOSE,
+	BR_CONSUMER,
+	BR_USE_TIME,
+	BR_PURPOSE,
+	BR_PRICE,
+	BR_EATING,
+	BR_EX_PAY,
+	BR_RANTAL_TIME,
+	BR_REG_DATE
+	</sql>
+	
+	
 	<insert id="Binsert" parameterType="Banquet">
 		insert into BANQUET(BAN_NAME,BAN_FOUNDATION,BAN_DESCRIPTION,BAN_TIME,BAN_MAX_PEOPLE) values(#{banName}, #{banPoundation} , #{banDescription}, #{banTime}, #{banMaxPeople})
 	</insert>
@@ -21,6 +40,42 @@
 	
 	</select>
 	
+	<select id="bDetail" resultMap="detailbase">
+	SELECT 
+	<include refid="selectsql" />
+	FROM  BANQUET_RENTAL
+	
+	<where>
+	BR_NO = #{brNo}
+	</where>
+	
+	</select>
+	
+	<update id="refresh1"  parameterType="long">
+	
+	update BANQUET_RENTAL set BR_OPEN = sysdate 
+	
+	<where>
+	
+	BR_NO = #{brNo}
+	
+	</where>
+	
+	</update>
+	
+	<update id="refresh2" parameterType="long">
+	
+		update BANQUET_RENTAL set BR_CLOSE = sysdate 
+	
+	<where>
+	
+	BR_NO = #{brNo}
+	
+	</where>
+	
+	</update> 
+	
+	
 	<resultMap type="BanquetRental" id="banren">
 	<id column="BR_NO" jdbcType="BIGINT" property="brNo"/>
 	<result column="BAN_NAME" jdbcType="NVARCHAR" property="banquet.banName"/>
@@ -33,6 +88,28 @@
 	<result column="BR_REG_DATE" jdbcType="DATE" property="brRegDate"/>
 	
 	</resultMap>
+	
+	
+		<resultMap type="BanquetRental" id="detailbase">
+	<id column="BR_NO" jdbcType="BIGINT" property="brNo"/>
+	<result column="BAN_NAME" jdbcType="NVARCHAR" property="banquet.banName"/>
+	<result column="COS_NO" jdbcType="BIGINT" property="customer.cosNo"/>
+	<result column="PAY_NO" jdbcType="BIGINT" property="payment.payNo"/>
+	<result column="BR_OPEN" jdbcType="DATE" property="brOpen"/>
+	<result column="BR_CLOSE" jdbcType="DATE" property="brClose"/>
+	<result column="BR_EX_PAY" jdbcType="BIGINT" property="brExPay"/>
+	<result column="BR_CONSUMER" jdbcType="BIGINT" property="brConsumer"/>
+	<result column="BR_USE_TIME" jdbcType="DATE" property="brUseTime"/>
+	<result column="BR_PURPOSE" jdbcType="NVARCHAR" property="brPurpose"/>
+	<result column="BR_PRICE" jdbcType="BIGINT" property="brPrice"/>
+	<result column="BR_EATING" jdbcType="NVARCHAR" property="brEating"/>
+	<result column="BR_RANTAL_TIME" jdbcType="BIGINT" property="brRantalTime"/>
+	<result column="BR_REG_DATE" jdbcType="DATE" property="brRegDate"/>
+	
+	</resultMap>
+	
+	
+	
 	
 	
 
