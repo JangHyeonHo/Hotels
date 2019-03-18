@@ -7,7 +7,33 @@
 	</insert>
 	
 	<insert id="Brinsert" parameterType="BanquetRental">
-		insert into BANQUET_RENTAL(BR_NO,BR_PURPOSE,BR_EATING,BR_RANTAL_TIME,BR_REG_DATE) values(br_no.nextval,#{brPurpose},#{brEating},sysdate,sysdate)
+		insert into BANQUET_RENTAL(BR_NO,BAN_NAME,BR_PURPOSE,BR_EATING,BR_PRICE,BR_CONSUMER,BR_RANTAL_TIME,BR_REG_DATE,BR_USE_TIME) 
+									values(br_no.nextval,#{banquet.banName},#{brPurpose},#{brEating},#{brPrice},#{brConsumer},#{brRantalTime},sysdate,#{brUseTime})
 	</insert>
 	
+	<select id="Bnamelist" resultType="String">
+		SELECT BAN_NAME FROM banquet
+	</select>
+	
+	<select id="Blist" resultMap="banren">
+	
+	SELECT BR_NO,BAN_NAME,BR_CONSUMER,BR_USE_TIME,BR_PURPOSE,BR_PRICE,BR_EATING,BR_RANTAL_TIME,BR_REG_DATE FROM BANQUET_RENTAL
+	
+	</select>
+	
+	<resultMap type="BanquetRental" id="banren">
+	<id column="BR_NO" jdbcType="BIGINT" property="brNo"/>
+	<result column="BAN_NAME" jdbcType="NVARCHAR" property="banquet.banName"/>
+	<result column="BR_CONSUMER" jdbcType="BIGINT" property="brConsumer"/>
+	<result column="BR_USE_TIME" jdbcType="DATE" property="brUseTime"/>
+	<result column="BR_PURPOSE" jdbcType="NVARCHAR" property="brPurpose"/>
+	<result column="BR_PRICE" jdbcType="BIGINT" property="brPrice"/>
+	<result column="BR_EATING" jdbcType="NVARCHAR" property="brEating"/>
+	<result column="BR_RANTAL_TIME" jdbcType="BIGINT" property="brRantalTime"/>
+	<result column="BR_REG_DATE" jdbcType="DATE" property="brRegDate"/>
+	
+	</resultMap>
+	
+	
+
 </mapper>
