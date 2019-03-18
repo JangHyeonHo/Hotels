@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 룸 서비스(r_service) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -14,7 +17,7 @@ package com.hotels.peregrine.model;
  * <b>employee.empNo</b> 직원(employee)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class RoomServiceDTO {
+public class RoomServiceDTO implements Serializable {
 	private int rserNo;
 	private String rserDepart;
 	private String rserContents;

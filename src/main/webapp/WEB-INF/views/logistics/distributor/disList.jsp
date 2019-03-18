@@ -32,7 +32,7 @@
 <script>
 	$(function(){
 		$("#disRegBtn").on("click",function(){
-			location.href="./regist"
+			location.href="./distributor/regist"
 		})
 		$("#contBtn").on("click",function(){
 			var no = $("input:radio[name = 'disNo']:checked").val();
@@ -76,7 +76,7 @@
 		<input type = "button" value = "<spring:message code="cont.delete" />" id = "delBtn">
 	</c:if>
 	<c:if test="${empty distributorList}">
-		<spring:message code="dis.nothing" />
+		<spring:message code="dis.nothing" /><br>
 		<input type = "button" value = "<spring:message code="dist.regist" />" id ="disRegBtn">
 	</c:if>
 	</div>

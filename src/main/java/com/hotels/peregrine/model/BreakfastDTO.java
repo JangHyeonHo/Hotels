@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 조식(breakfast) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -12,7 +15,7 @@ package com.hotels.peregrine.model;
  * <b>★guestRoom.grNo<br>★guestRoom.cheNo</b> 사용중인 객실(GuestRoom) 테이블 <b>Primary Key, Foreign Key</b><br>
  * @version 1.0
  * */
-public class BreakfastDTO {
+public class BreakfastDTO implements Serializable {
 	private int breakCoupon;
 	private String breakKind;
 	private int breakAdult;

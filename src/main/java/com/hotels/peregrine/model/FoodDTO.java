@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 음식(food) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -13,7 +16,7 @@ package com.hotels.peregrine.model;
  * <b>foodStoreFileName</b> 음식 저장 사진<br>
  * @version 1.0
  * */
-public class FoodDTO {
+public class FoodDTO implements Serializable {
 	private int foodNo;
 	private String foodName;
 	private int foodPrice;

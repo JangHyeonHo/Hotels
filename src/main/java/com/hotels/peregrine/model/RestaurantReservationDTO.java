@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
  * <b>restaurant.res_name<br>restaurant.res_chair</b> 레스토랑/라운지(restaurant)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class RestaurantReservationDTO {
+public class RestaurantReservationDTO implements Serializable {
 	private int rrNo;
 	private int rrAdult;
 	private int rrChild;
