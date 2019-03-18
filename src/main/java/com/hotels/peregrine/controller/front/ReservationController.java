@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ReservationController {
 
-	@RequestMapping(value = "/comp/checkin", method = RequestMethod.GET)
+	@RequestMapping(value = "/comp/reservation", method = RequestMethod.GET)
 	public String reservation() {
 		
 		
 		
-		return "front/checkin";
+		return "front/reservation";
 	}
 }

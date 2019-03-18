@@ -18,7 +18,7 @@ public class RoomsController {
 	@Autowired
 	RoomsService service;
 	
-	@RequestMapping(value = "/comp/rooms", method = RequestMethod.GET)
+	@RequestMapping(value = "/comp/front/add", method = RequestMethod.GET)
 	public String reservation() {
 		
 		return "front/rooms";
@@ -29,7 +29,7 @@ public class RoomsController {
 	public String reservation(@ModelAttribute RoomDTO rooms, Model model) {
 		AutoTest.ModelBlackTest(rooms);
 		service.action(rooms);
-		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "등록되었습니다.", "./rooms");
+		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "등록되었습니다.", "./front");
 	}
 	
 }

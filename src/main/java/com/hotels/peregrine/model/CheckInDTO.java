@@ -2,6 +2,7 @@ package com.hotels.peregrine.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 수속(checkin) 테이블에 관한 것<br>
@@ -33,6 +34,7 @@ public class CheckInDTO implements Serializable {
 	private CustomerDTO customer;
 	private PaymentDTO payment;
 	private RoomDTO room;
+	private List<RoomDTO> rooms;
 	public int getCheNo() {
 		return cheNo;
 	}
@@ -103,5 +105,12 @@ public class CheckInDTO implements Serializable {
 		this.room = room;
 		return this;
 	}
+	public List<RoomDTO> getRooms() {
+		return rooms;
+	}
+	public void setRooms(List<RoomDTO> rooms) {
+		this.rooms = rooms;
+	}
+	
 	
 }
