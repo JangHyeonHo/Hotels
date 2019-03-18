@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  * <b>★distributor.disNo</b> 유통업체(distributor)테이블 <b>Foreign Key</b><br>
  * @version 1.01
  * */
-public class ContractDTO {
+public class ContractDTO implements Serializable {
 	private int contNo;
 	private Date contRegDate;
 	private String contMatKind;

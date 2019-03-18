@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 자재(material) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -11,7 +14,7 @@ package com.hotels.peregrine.model;
  * <b>★contract.consNo</b> 계약 업체(contract)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class MaterialDTO {
+public class MaterialDTO implements Serializable {
 	private int matNo;
 	private String matName;
 	private String matKind;

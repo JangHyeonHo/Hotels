@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 사용 객실(guest_room) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -12,7 +15,7 @@ package com.hotels.peregrine.model;
  * <b>★checkIn.cheNo</b> 수속(checkin)테이블 <b>Primary Key, Foreign Key</b><br>
  * @version 1.0
  * */
-public class GuestRoomDTO {
+public class GuestRoomDTO implements Serializable {
 	private int grNo;
 	private int grDiAdult;
 	private int grDiChild;

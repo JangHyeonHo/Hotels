@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 결제(payment) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -7,7 +10,7 @@ package com.hotels.peregrine.model;
  * <b>paySum</b> 결제 총 금액<br>
  * @version 1.0
  * */
-public class PaymentDTO {
+public class PaymentDTO implements Serializable {
 	private int payNo;
 	private int paySum;
 	public int getPayNo() {

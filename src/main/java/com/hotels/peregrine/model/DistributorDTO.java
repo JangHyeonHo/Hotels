@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
  * <b>disRegDate</b> 사업장 허가일자<br>
  * @version 1.01
  * */
-public class DistributorDTO {
+public class DistributorDTO implements Serializable {
 	private int disNo;
 	private String disName;
 	private String disPhone;

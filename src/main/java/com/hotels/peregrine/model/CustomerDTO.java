@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 고객(customer) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -11,7 +14,7 @@ package com.hotels.peregrine.model;
  * <b>cosAllergy</b> 고객 알러지 유무<br>
  * @version 1.0
  * */
-public class CustomerDTO {
+public class CustomerDTO implements Serializable {
 	private int cosNo;
 	private String cosTelno;
 	private String cosLName;

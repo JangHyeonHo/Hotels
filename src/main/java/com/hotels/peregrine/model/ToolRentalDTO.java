@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 자재 대여(tool_rental) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -11,7 +14,7 @@ package com.hotels.peregrine.model;
  * <b>material.matNo</b> 자재(material)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class ToolRentalDTO {
+public class ToolRentalDTO implements Serializable {
 	private int trNo;
 	private int trPrice;
 	private BanquetRentalDTO banquetRental;

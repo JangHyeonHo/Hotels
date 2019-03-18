@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Date;
  * <b>customer.cosNo </b> 고객(customer)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
-public class BanquetRentalDTO {
+public class BanquetRentalDTO implements Serializable {
 	private int brNo;
 	private Date brOpen;
 	private Date brClose;

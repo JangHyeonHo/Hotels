@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  * <b>★payment.payNo</b> 결제(Payment) 테이블 <b>Primary Key, Foreign Key</b><br>
  * @version 1.0
  * */
-public class CardPayDTO {
+public class CardPayDTO implements Serializable {
 	private Date cpDate;
 	private int cpInsMonth;
 	private String cpCname;

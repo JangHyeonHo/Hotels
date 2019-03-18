@@ -1,4 +1,7 @@
 package com.hotels.peregrine.model;
+
+import java.io.Serializable;
+
 /**
  * 객실(room) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -9,7 +12,7 @@ package com.hotels.peregrine.model;
  * <b>roomStoreFileName</b> 객실 저장 사진<br>
  * @version 1.0
  * */
-public class RoomDTO {
+public class RoomDTO implements Serializable {
 	private String roomName;
 	private int roomPrice;
 	private int roomCount;

@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * <b>orders</b> 주문(orders)테이블 <b>Primary Key, Foreign key</b><br>
  * <b>food</b> 음식(food)테이블 <b>Primary Key, Foreign key</b><br>
  * */
-public class OrderListDTO {
+public class OrderListDTO implements Serializable {
 	private int olCount;
 	private Date olTime;
 	private OrdersDTO orders;
