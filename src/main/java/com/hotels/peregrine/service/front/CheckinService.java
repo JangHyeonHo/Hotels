@@ -9,9 +9,10 @@ import com.hotels.peregrine.repository.CheckinRepository;
 @Service
 public class CheckinService {
 	
+	@Autowired
 	private CheckinRepository checkin;
 
-	@Autowired
+	
 	public void action(CheckInDTO checkins) {
 		checkin.insert(checkins);
 	}

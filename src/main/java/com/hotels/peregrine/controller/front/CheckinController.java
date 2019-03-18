@@ -31,7 +31,7 @@ public class CheckinController {
 	}	
 	
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
 	public String checkin(@ModelAttribute CheckInDTO checkin, Model model) {
 		AutoTest.ModelBlackTest(checkin);
 		service.action(checkin);
