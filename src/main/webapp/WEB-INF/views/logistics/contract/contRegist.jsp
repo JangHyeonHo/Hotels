@@ -38,7 +38,13 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 		<form:form>
-			<input type = "hidden" id = "disNo" name = "disNo" value = "${no} ">
+			<spring:message code="dis.name"/> : ${distributor.disName}<br>
+			<spring:message code="dis.phone"/> : ${distributor.disPhone}<br>
+			<spring:message code="dis.address"/> : ${distributor.disAddr} / ${distributor.disNAddr}<br>
+			<input type = "hidden" id = "disNo" name = "distributor.disNo" value = "${distributor.disNo} ">
+			<spring:message code="cont.kind"/>
+			<input type = "text" id = "contMatKind" name = "contMatKind"><br>
+			<input type = "submit" value="<spring:message code="regist"/>">
 		</form:form>
 	</div>
 	<footer></footer>

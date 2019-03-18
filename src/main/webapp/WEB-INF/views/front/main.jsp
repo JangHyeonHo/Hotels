@@ -39,7 +39,7 @@
 	<div id = "contents">
 	    프론트 관리 <br>
     <input type="button" id="btn-A" value="reservation">
-    <input type="button" id="btn-B" value="checkin">
+    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
     <input type="button" id="btn-C" value="checkout">
     <input type="button" id="btn-C" value="rooms">
     <br> <br>

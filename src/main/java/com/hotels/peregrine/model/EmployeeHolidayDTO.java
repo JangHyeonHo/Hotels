@@ -1,5 +1,6 @@
 package com.hotels.peregrine.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * <b>★ContractWorks.cwNo<br>★ContractWorks.Employee.empNo</b> 직원 출근 계약(contract_works)테이블 <b>Primary Key, Foreign Key</b><br>
  * @version 1.0
  * */
-public class EmployeeHolidayDTO {
+public class EmployeeHolidayDTO implements Serializable {
 	private Date holiDate;
 	private String holiContent;
 	private ContractWorksDTO contractWorks;
