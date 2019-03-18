@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="checkin">
 	<cache />
-	<insert id="insert" parameterType="checkin">
+	<!-- <insert id="insert" parameterType="checkin">
 		insert into 
-	</insert>
+	</insert> -->
 </mapper>
