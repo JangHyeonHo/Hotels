@@ -4,14 +4,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>유통업체 리스트</title>
+<title><spring:message code="material.list"/></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -30,21 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script>
-	$(function(){
-		$("#contBtn").on("click",function(){
-			var no = $("input:radio[name = 'disNo']:checked").val();
-			console.log(no);
-			if(no == null){
-				alert("계약할 유통업체를 선택하여 주십시오")
-				return false;
-			} else{
-				location.href="./contract/regist?disNo="+no;
-			}
-		})
-	})
 
-</script>
 
 </head>
 <body>
@@ -52,39 +37,23 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<c:if test="${!empty distributorList}">
+		<h3><spring:message code="material.list"/></h3>
 		<table>
 			<tr>
-				<th class = "no"><spring:message code="dis.no" /></th>
-				<th class = "name"><spring:message code="dis.name" /></th>
-				<th class = "phone"><spring:message code="dis.phone" /></th>
-				<th class = "zipcode"><spring:message code="dis.zipcode" /></th>
-				<th class = "address"><spring:message code="dis.address" /></th>
-				<th class = "regdate"><spring:message code="dis.regdate" /></th>
-				<th class = "checkbox"><spring:message code="radio" /></th>
+				<th></th>
+			
 			</tr>
-			<c:forEach items="${distributorList }" var="dis">
-				<tr>
-					<td class = "no">${dis.disNo}</td>
-					<td class = "name">${dis.disName}</td>
-					<td class = "phone">${dis.disPhone}</td>
-					<td class = "zipcode">${dis.disZipCode}/${dis.disNZipCode}</td>
-					<td class = "address">${dis.disAddr}/${dis.disNAddr}</td>
-					<td class = "regdate"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dis.disRegDate}"/></td>
-					<td class = "checkbox"><input type = "radio" name = "disNo" value = "${dis.disNo}"></td>
-				</tr>
-			</c:forEach>
+			
 		</table>
-		<input type = "button" value = "<spring:message code="dist.oneRegist" />" id ="oneRegBtn">
-		<input type = "button" value = "<spring:message code="cont.regist" />" id = "contBtn">
-		<input type = "button" value = "<spring:message code="cont.list" />" onclick = "location.href = './contract'">
-	</c:if>
-	<c:if test="${empty distributorList}">
-		<spring:message code="dis.nothing" /><br>
-		<input type = "button" value = "<spring:message code="dist.regist" />" onclick = "location.href = './distributor/regist'">
+		
+		
+	</div>
+	<c:if test="${empty materialList}">
+		<spring:message code="material.nothing" /><br>
+		<input type = "button" value = "<spring:message code="material.regist" />" onclick = "location.href = './contract'">
 	</c:if>
 	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = './'"/>
-	</div>
+	
 	<footer></footer>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="material">
+	<cache />
+	<sql id="AllColumn">
+		MAT_NO, MAT_NAME, MAT_KIND
+	</sql>
+	<select id="materialList" resultMap="ListCall">
+		SELECT
+			<include refid="AllColumn"/>, CONT_NO
+		FROM
+			material
+	</select>
+	<resultMap type="Material" id="ListCall">
+		<id column="MAT_NO" jdbcType="INTEGER" property="matNo"/>
+		<result column="MAT_NAME" jdbcType="VARCHAR" property="matName"/>
+		<result column="MAT_KIND" jdbcType="VARCHAR" property="matKind"/>
+		<result column="CONT_NO" jdbcType="VARCHAR" property="contract.contNo"/>
+	</resultMap>
+	
+</mapper>

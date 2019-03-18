@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.ContractDTO;
+import com.hotels.peregrine.model.DistributorDTO;
 
 @Repository
 public class ContractRepository {
@@ -37,7 +38,17 @@ public class ContractRepository {
 		// TODO Auto-generated method stub
 		return template.selectList(namespace + ".contractList");
 	}
-
 	
+	//해당 유통업체와의 계약 해지
+	public int deleteContract(int no) {
+		// TODO Auto-generated method stub
+		return template.delete(namespace + ".deleteContract", no);
+	}
+	
+	//해당 계약이 존재하는지
+	public Integer isContractContNo(int no) {
+		// TODO Auto-generated method stub
+		return template.selectOne(namespace + ".iscontractContno", no);
+	}
 
 }

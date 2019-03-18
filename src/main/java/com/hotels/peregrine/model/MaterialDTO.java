@@ -11,7 +11,7 @@ import java.io.Serializable;
  * <b>★matKind</b> 자재 종류<br>
  * <b>관계 테이블</b><br>
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
- * <b>★contract.consNo</b> 계약 업체(contract)테이블 <b>Foreign Key</b><br>
+ * <b>★contract.contNo</b> 계약 업체(contract)테이블 <b>Foreign Key</b><br>
  * @version 1.0
  * */
 public class MaterialDTO implements Serializable {

@@ -40,9 +40,6 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script>
 	$(function() {
-		$("#disListBtn").on("click", function() {
-			location.href = "./distributor"
-		})
 		$("#contDelBtn").on("click",function(){
 			var no = $("input:radio[name = 'contNo']:checked").val();
 			console.log(no);
@@ -55,11 +52,20 @@
 				}
 				location.href="./contract/delete?contNo="+no;
 			}
-			$("#disBtn").on("click", function() {
-				location.href = "./distributor"
-			})
 		})
+		$("#matRegBtn").on("click",function(){
+			var no = $("input:radio[name = 'contNo']:checked").val();
+			console.log(no);
+			if(no == null){
+				alert("자재를 등록하기 위하여 어떤 유통업체에서 받는 자재인지 선택해 주십시오.")
+				return false;
+			} else{
+				location.href="./material/regist?contNo="+no;
+			}
+		})
+		
 	});
+	
 </script>
 
 </head>
@@ -91,15 +97,16 @@
 				</c:forEach>
 			</table>
 			<input type = "button" value="<spring:message code="cont.delete" />" id="contDelBtn"/>
+			<input type = "button" value="<spring:message code="dist.list" /> 보기" onclick = "location.href = './distributor'"/>
+			<input type = "button" value="해당 <spring:message code="dist" /> 의 <spring:message code="material.regist" />" id = "matRegBtn"/>
 		</c:if>
 		<c:if test="${empty ContractList}">
 			<spring:message code="cont.nothing" />
 			<br>
 			<input type="button" value="<spring:message code="dist.list" />로"
-				id="disListBtn">
+				onclick = "location.href = './distributor'">
 		</c:if>
-		<input type = "button" value="<spring:message code="back" />" id="backBtn"/>
-		<input type = "button" value="<spring:message code="dist.list" /> 보기" id="disBtn"/>
+		<input type = "button" value="<spring:message code="back" />" onclick = "location.href = './'"/>
 	</div>
 	<footer></footer>
 </body>

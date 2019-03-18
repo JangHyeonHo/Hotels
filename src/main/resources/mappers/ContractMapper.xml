@@ -13,6 +13,14 @@
 		WHERE
 			dis_no = #{no}
 	</select>
+	<select id="iscontractContno" resultType="INTEGER" >
+		SELECT
+			DIS_NO
+		FROM 
+			contract 
+		WHERE
+			CONT_NO = #{no}
+	</select>
 	
 	<insert id="insertContract" parameterType="Contract">
 		INSERT INTO 
@@ -40,4 +48,10 @@
 		</association>
 	</resultMap>
 	
+	<delete id = "deleteContract" parameterType="Integer">
+		DELETE FROM 
+			contract 
+		WHERE
+			CONT_NO = #{no}
+	</delete>
 </mapper>
