@@ -43,7 +43,7 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<c:forEach items="${list }" var="blist">
-	예약 번호 <a href="list/detail?brNo=${blist.brNo }"> ${blist.brNo } </a>,
+	예약 번호 <a href="detail?brNo=${blist.brNo }"> ${blist.brNo } </a>,
 	연회장명 ${blist.banquet.banName } ,
 	고객수 ${blist.brConsumer } ,
 	이용 목적 ${blist.brPurpose } ,

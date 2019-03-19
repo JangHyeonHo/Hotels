@@ -51,7 +51,7 @@
 	
 	</select>
 	
-	<update id="refresh1"  parameterType="Long">
+	<update id="refreshOne"  parameterType="Long">
 	
 	update BANQUET_RENTAL set BR_OPEN = sysdate 
 	
@@ -63,9 +63,9 @@
 	
 	</update>
 	
-	<update id="refresh2" parameterType="Long">
+	<update id="refreshTwo" parameterType="Long">
 	
-		update BANQUET_RENTAL set BR_CLOSE = sysdate 
+	update BANQUET_RENTAL set BR_CLOSE = sysdate 
 	
 	<where>
 	
@@ -95,8 +95,8 @@
 	<result column="BAN_NAME" jdbcType="NVARCHAR" property="banquet.banName"/>
 	<result column="COS_NO" jdbcType="BIGINT" property="customer.cosNo"/>
 	<result column="PAY_NO" jdbcType="BIGINT" property="payment.payNo"/>
-	<result column="BR_OPEN" jdbcType="DATE" property="brOpen"/>
-	<result column="BR_CLOSE" jdbcType="DATE" property="brClose"/>
+	<result column="BR_OPEN" jdbcType="TIMESTAMP" property="brOpen"/>
+	<result column="BR_CLOSE" jdbcType="TIMESTAMP" property="brClose"/>
 	<result column="BR_EX_PAY" jdbcType="BIGINT" property="brExPay"/>
 	<result column="BR_CONSUMER" jdbcType="BIGINT" property="brConsumer"/>
 	<result column="BR_USE_TIME" jdbcType="DATE" property="brUseTime"/>
