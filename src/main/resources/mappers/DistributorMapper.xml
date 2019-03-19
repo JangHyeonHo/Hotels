@@ -6,11 +6,24 @@
 		DIS_NO, DIS_NAME, DIS_PHONE, DIS_REG_DATE, DIS_ZIP_CODE, DIS_N_ZIP_CODE, DIS_ADDR, DIS_N_ADDR
 	</sql>
 	
- 	<select id="disList" resultMap="selectAll">
-		SELECT
+ 	<select id="disList" resultMap="selectAll" parameterType="HashMap">
+ 		SELECT 
+ 			rnum, <include refid="AlldisColumn"/>
+ 		FROM
+ 		(SELECT
+ 			rownum as rnum, <include refid="AlldisColumn"/>
+ 		FROM
+		(SELECT
 			<include refid="AlldisColumn"/>
 		 FROM 
 		 	distributor
+		 ORDER BY 
+		 dis_no asc
+		 ) WHERE 
+		 	rownum &lt;= #{maxNum}
+		 )
+		 WHERE
+		 	rnum &gt;= #{minNum}	 
 	</select>
 	<resultMap type="Distributor" id="selectAll">
 		<id column="DIS_NO" jdbcType="INTEGER" property="disNo"/>
@@ -23,10 +36,13 @@
 		<result column="DIS_N_ADDR" jdbcType="VARCHAR" property="disNAddr"/>
 	</resultMap>
 	
-	<insert id="svcRegist">
+	<insert id="svcRegist" parameterType="Distributor">
 		INSERT INTO
-			 distributor(${AlldisColumn}) 
-			VALUES(#{disNo},#{disName},#{disPhone},#{disRegDate},#{disZipCode},#{disNZipCode},#{disAddr},#{disNAddr})
+			 distributor(
+			 <include refid="AlldisColumn"/>
+			 ) 
+			VALUES
+			(sq_dis_no.nextval,#{disName},#{disPhone},#{disRegDate},#{disZipCode},#{disNZipCode},#{disAddr},#{disNAddr})
 	</insert>
 	
 	<select id="disOne" resultType="Distributor">
@@ -36,6 +52,13 @@
 		 	distributor
 		 WHERE
 		 	dis_no = #{no}
+	</select>
+	
+	<select id="countOne" resultType="Integer">
+		SELECT 
+		count(*) 
+		FROM 
+		distributor
 	</select>
 	
 </mapper>
