@@ -43,7 +43,8 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<c:forEach items="${list }" var="blist">
-	예약 번호 <a href="detail?brNo=${blist.brNo }"> ${blist.brNo } </a>,
+	
+	예약 번호 <a href="list/detail?brNo=${blist.brNo }"> ${blist.brNo } </a>,
 	연회장명 ${blist.banquet.banName } ,
 	고객수 ${blist.brConsumer } ,
 	이용 목적 ${blist.brPurpose } ,
@@ -51,13 +52,11 @@
 	이용할 시간 ${blist.brRantalTime },
 	이용 날짜  <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${blist.brUseTime }"/> ,
 	이용 요금 ${blist.brPrice },
-	예약 등록일 <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${blist.brRegDate}"/>
-	
-	
+	예약 등록일 <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${blist.brRegDate}"/>	
 	<br>
 	
 	</c:forEach>
-	
+		<button onclick="location.href='reservation'">예약 등록</button>
 	
 	
 	</div>

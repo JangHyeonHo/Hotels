@@ -22,6 +22,9 @@ public class AutoFileClassfication {
 		String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 		fileNaming.setFileStoreName(UUID.randomUUID().toString().replaceAll("-", "") + extension);
 		fileNaming.setFileSize(file.getSize());
+		
+		File filing = new File(directory + extension);
+		filing.mkdirs();
 		try {
 			file.transferTo(new File(directory+fileNaming.getFileStoreName()));
 		} catch (IllegalStateException | IOException e) {

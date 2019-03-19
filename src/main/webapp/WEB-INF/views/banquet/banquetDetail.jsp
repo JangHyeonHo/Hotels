@@ -59,7 +59,7 @@ function refreshTwo(){
  	연회장 명 ${dto.banquet.banName }<br>
  	이용 목적 ${dto.brPurpose}<br>
  	이용 시간 ${dto.brRantalTime}시간<br>
- 	개최 시간 <fmt:formatDate pattern="HH시mm분" type="time" value="${dto.brOpen }"/> <button type=button onclick="refreshOne()"> 갱신 </button><br><br><br>
+ 	개최 시간 <fmt:formatDate pattern="HH시mm분" type="time" value="${dto.brOpen }"/> <button type=button onclick="refreshOne()"> 갱신 </button><br>
  	폐회 시간  <fmt:formatDate pattern="HH시mm분" type="time"  value="${dto.brClose }"/><button type=button onclick="refreshTwo()"> 갱신 </button><br>  
  	이용 고객수 ${dto.brConsumer }<br>
  	이용 날짜 <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dto.brUseTime}"/><br>
@@ -68,7 +68,8 @@ function refreshTwo(){
  	추가 요금 ${dto.brExPay }<br>
  	예약 등록일 <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dto.brRegDate}"/><br>
  	
- 	<button onclick="location.href='/peregrine/comp/fb/banquet/list/'">돌아가기</button>
+ 	<button onclick="location.href='detail/delete?brNo=${dto.brNo}'"">삭제</button>
+ 	<button onclick="location.href='../list'">돌아가기</button>
  	
  	
 	</div>

@@ -24,7 +24,6 @@ public class RoomsController {
 		return "front/rooms";
 	}
 	
-	
 	@RequestMapping(value = "/comp/front/add", method = RequestMethod.POST)
 	public String reservation(@ModelAttribute RoomDTO rooms, Model model) {
 		AutoTest.ModelBlackTest(rooms);

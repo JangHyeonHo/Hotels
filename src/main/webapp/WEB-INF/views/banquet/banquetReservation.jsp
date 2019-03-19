@@ -58,6 +58,7 @@
 		</select></br>
 대여 시간 <input type="text" name="brRantalTime">시간</br>
 	<input type="submit" value="등록">
+	<button type="button" onclick="location.href='list'"> 리스트로</button>
 	</form:form>
 	</div>
 	
