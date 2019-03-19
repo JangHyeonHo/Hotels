@@ -2,7 +2,8 @@ package com.hotels.peregrine.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 수속(checkin) 테이블에 관한 것<br>
@@ -27,14 +28,16 @@ public class CheckInDTO implements Serializable {
 	private int cheNo;
 	private Date cheInTime;
 	private Date cheOutTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheInDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheOutDate;
 	private String cheDetail;
 	private Date cheRegDate;
 	private CustomerDTO customer;
 	private PaymentDTO payment;
 	private RoomDTO room;
-	private List<RoomDTO> rooms;
+	private RoomDTO[] rooms;
 	public int getCheNo() {
 		return cheNo;
 	}
@@ -105,10 +108,10 @@ public class CheckInDTO implements Serializable {
 		this.room = room;
 		return this;
 	}
-	public List<RoomDTO> getRooms() {
+	public RoomDTO[] getRooms() {
 		return rooms;
 	}
-	public void setRooms(List<RoomDTO> rooms) {
+	public void setRooms(RoomDTO[] rooms) {
 		this.rooms = rooms;
 	}
 	

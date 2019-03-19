@@ -56,11 +56,12 @@ $(function(){
 	
 	//year박스와 mouth와 day박스에 넣어줌
 	$(".year").html(nextYears);
-	$(".month").html(nextMonth);
+	$(".inmonth").html(nextMonth);
+	$(".outmonth").html(nextMonth);
 	$(".day").html(nextDay);
 
 	//month를 change->바꿨을 때 즉 month박스의 값을 바꿨을 때 실행함
-	$(".month").on("change",function(){
+	$("#cheInmonth").on("change",function(){
 		var monthval = $(this).val();
 		var daysStack;
 		var nextDays = "";
@@ -85,8 +86,38 @@ $(function(){
 		for(var i = 1; i <= daysStack; i++){
 			nextDays += "<option value="+ i +">" + i + "</option>"
 		}
-		$(".day").html(nextDays);
+		$("#cheInday").html(nextDays);
 	})
+	
+	
+		$("#cheOutmonth").on("change",function(){
+		var monthval = $(this).val();
+		var daysStack;
+		var nextDays = "";
+		
+		switch(monthval){
+		case "1":
+		case "3":
+		case "5":
+		case "7":
+		case "8":
+		case "10":
+		case "12":
+			daysStack = 31;
+			break;
+		case "2":
+			daysStack = 29;
+			break;
+		default:
+			daysStack = 30;
+		break;
+		}
+		for(var i = 1; i <= daysStack; i++){
+			nextDays += "<option value="+ i +">" + i + "</option>"
+		}
+		$("#cheOutday").html(nextDays);
+	})
+	
 
 	$(".allergy1").on("click",function(){
 		var value = $(this).val();
@@ -99,7 +130,7 @@ $(function(){
 
 	})
 	
-	var innerHtmlValue = "<select class = 'stay_num'>";
+ 	var innerHtmlValue = "<select class = 'stay_num' name = 'grStaySum'>";
 	for(var i = 0; i <= 10 ; i++){
 		if(i == 0){
 			innerHtmlValue += "<option value = '"+i+"'>객실 숙박인원</option>"
@@ -111,7 +142,7 @@ $(function(){
 	
 	$(".stay_num").html(innerHtmlValue);
 	
-	var selectValue = "<select class = 'roomskind'>";
+/* 	var selectValue = "<select class = 'roomskind'>";
 	for(var k = 1; k <= 1 ; k++){
 		if(k != 0){
 			selectValue += "<option value = '"+i+"'>비즈니스 룸</option>"
@@ -123,13 +154,13 @@ $(function(){
 	}
 	selectValue += "</select>";
 	
-	$(".roomskind").html(selectValue);
+	$(".roomskind").html(selectValue); */
 	
 	
 	var guestNo = "";
 	for(var w = 1; w <= 1; w++){
 		if(w != 0){
-			guestNo += "객실번호<input type='text'>";
+			guestNo += "객실번호<input type='text' name='grNo'>";
 		}
 		
 	}
@@ -140,33 +171,30 @@ $(function(){
 		var value = $(this).val();
 		var AllRooms = "";
 		for(var i = 0; i < value ; i++){
-			AllRooms += selectValue;
+			/* AllRooms += selectValue; */
 			AllRooms += innerHtmlValue;
 			AllRooms += guestNo;
 			AllRooms += "<br>"
 		}
-		
+		$("#stayhidden").html(AllRooms)
 		
 		console.log(AllRooms);
 		
 	})
 
 	
-	
+	var inputHidden = "<input type = 'hidden' name="
 	
 	$("#submitBtn").on("click",function(e){
 		var checkInDate = $("#cheInyear").val() + "-" + $("#cheInmonth").val() +"-"+ $("#cheInday").val() 
-		console.log(checkInDate);
-		 e.preventDefault();
+		var checkInHiddenHtml = inputHidden + "'cheInDate' value='"+ checkInDate +"'>"
+		var checkOutDate = $("#cheOutyear").val() + "-" + $("#cheOutmonth").val() +"-"+ $("#cheOutday").val() 
+		var checkOutHiddenHtml = inputHidden + "'cheOutDate' value='"+ checkOutDate +"'>"
+		var innerHtmlValue = checkInHiddenHtml + checkOutHiddenHtml
+		$("#hiddenBox").html(innerHtmlValue);
+		 /* e.preventDefault(); */
 		 this.form.submit();
-		$("#cheInDate").html(checkInDate);
-	})
-	$("#submitBtn").on("click",function(e){
-	var checkOutDate = $("#cheOutyear").val() + "-" + $("#cheOutmonth").val() +"-"+ $("#cheOutday").val() 
-	console.log(checkOutDate);
-		e.preventDefault();
-		this.form.submit();
-		$("#cheOutDate").html(checkOutDate);
+		 
 	})
 	
 });
@@ -193,28 +221,28 @@ $(function(){
     <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "customer.cosAllergy">
     </div>
     
-     <input type="hidden" id = "cheInDate" name = "cheInDate">
+    
     <div class = "infobox">입실 예정일</div>
 				<select id="cheInyear" class="year">
 				</select>년
-				<select id = "cheInmonth" class = "month">
+				<select id = "cheInmonth" class = "inmonth">
 				</select>월
 				<select id="cheInday" class="day">
 				</select>일
 				
-	<input type="hidden" id = "cheOutDate" name = "cheOutDate">
+	
 	 <div class = "infobox">퇴실 예정일</div>
 				<select id="cheOutyear" class="year">
 				</select>년
-				<select id="cheOutmonth" class = "month">
+				<select id="cheOutmonth" class = "outmonth">
 				</select>월
 				<select id="cheOutday" class="day">
 				</select>일			
 		
-	
+
     
-    <div id = "roomnum">객실수
-     <select id = "roomscount" name = "roomCount">
+     <div id = "roomnum">객실수
+     <select id = "roomscount" name = "room.roomCount">
     <option class = "rcount" value = "1">1개</option>
     <option class = "rcount" value = "2">2개</option>
     <option class = "rcount" value = "3">3개</option>
@@ -228,17 +256,18 @@ $(function(){
     
 
     
-    <div id = "stayhidden">
+  
     
-    <select class = "roomskind" name = "roomName">
-    <option value = "1">비즈니스 룸</option>
-    <option value = "2">슈페리어 룸</option>
-    <option value = "3">디럭스 룸</option>
-    <option value = "4">스위트 룸</option>
-    <option value = "5">코너 룸</option>
+    <select class = "roomskind" name = "room.roomName">
+    <option value = "비즈니스 룸">비즈니스 룸</option>
+    <option value = "슈페리어 룸">슈페리어 룸</option>
+    <option value = "디럭스 룸">디럭스 룸</option>
+    <option value = "스위트 룸">스위트 룸</option>
+    <option value = "코너 룸">코너 룸</option>
     </select>
-    
-     <select class = "stay_num">
+
+    <div id = "stayhidden">
+     <select class = "stay_num" name = "grStaySum">
     <option value = "0">객실 숙박인원</option>
     <option value = "1">1명</option>
     <option value = "2">2명</option>
@@ -250,14 +279,16 @@ $(function(){
     <option value = "8">8명</option>
     <option value = "9">9명</option>
     <option value = "10">10명</option>
+    
     </select>
-        객실번호<input type="text" class = "grNo" name = "">      
+        객실번호<input type="text" class = "grNo" name = "grNo">      
      
-    </div>
+    </div> 
     
     <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "cheDetail">
-
-   <input type="hidden" id = "cosNo" name = "customer.cosNo" value = "${customer.cosNo }">
+	<div id = "hiddenBox">
+	
+	</div>
     
 	<div id = "sub">
     <input type = "submit" value = "체크인" id = "submitBtn">

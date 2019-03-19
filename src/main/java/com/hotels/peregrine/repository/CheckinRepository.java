@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.CheckInDTO;
-import com.hotels.peregrine.model.CustomerDTO;
+import com.hotels.peregrine.model.RoomDTO;
 
 @Repository
 public class CheckinRepository {
@@ -17,8 +17,11 @@ public class CheckinRepository {
 
 	//체크인 메소드~
 	public void insert(CheckInDTO check) {
+		
+		
 		sql.insert("checkin.insert", check);
 		
 	}
+
 
 }

@@ -12,5 +12,16 @@
 		
 	</insert>
  
+ 	<select id="select" parameterType="Customer" resultType="Integer">
+ 	
+ 		select 
+ 		COS_NO 
+ 		from 
+ 		CUSTOMER
+ 		where
+ 		COS_L_NAME = #{cosLName} and COS_F_NAME = #{cosFName} and COS_TELNO = #{cosTelno}
+ 		
+ 	
+ 	</select>
 </mapper>
 	
