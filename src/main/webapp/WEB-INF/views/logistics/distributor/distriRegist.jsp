@@ -37,8 +37,8 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<form:form>
-		<spring:message code="dist.regist" /> : <input type = "file"><br>
+		<form:form enctype="multipart/form-data">
+		<spring:message code="dist.regist" /> : <input type = "file" name = "csvFile"><br>
 		<input type = "submit" value = "<spring:message code="regist" />">
 		</form:form>
 	</div>

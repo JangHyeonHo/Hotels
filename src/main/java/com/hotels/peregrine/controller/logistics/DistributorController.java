@@ -2,6 +2,8 @@ package com.hotels.peregrine.controller.logistics;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hotels.peregrine.model.DistributorDTO;
+import com.hotels.peregrine.other.AutoFileClassfication;
+import com.hotels.peregrine.other.CSVFileUploader;
 import com.hotels.peregrine.service.logistics.DistributorListService;
 import com.hotels.peregrine.service.logistics.DistributorRegistService;
 
@@ -30,8 +34,9 @@ public class DistributorController {
 		return "logistics/distributor/distriRegist";
 	}
 	@RequestMapping(value="/comp/logistics/distributor/regist", method = RequestMethod.POST)
-	public String postRegist(@RequestParam("csvFile") MultipartFile file) {
-		registService.listRegist();
+	public String postRegist(@RequestParam("csvFile") MultipartFile file, HttpServletRequest request) {
+		CSVFileUploader.csvFileReader(AutoFileClassfication.CSVFiling(file, request.getSession().getServletContext().getRealPath("/") + "/csvBackUp/"));
+		/*registService.listRegist();*/
 		return "redirect:../";
 	}
 	

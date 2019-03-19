@@ -17,8 +17,8 @@
 		<result column="DIS_NAME" jdbcType="VARCHAR" property="disName"/>
 		<result column="DIS_PHONE" jdbcType="VARCHAR" property="disPhone"/>
 		<result column="DIS_REG_DATE" jdbcType="TIMESTAMP" property="disRegDate"/>
-		<result column="DIS_ZIP_CODE" jdbcType="INTEGER" property="disZipCode"/>
-		<result column="DIS_N_ZIP_CODE" jdbcType="INTEGER" property="disNZipCode"/>
+		<result column="DIS_ZIP_CODE" jdbcType="VARCHAR" property="disZipCode"/>
+		<result column="DIS_N_ZIP_CODE" jdbcType="VARCHAR" property="disNZipCode"/>
 		<result column="DIS_ADDR" jdbcType="VARCHAR" property="disAddr"/>
 		<result column="DIS_N_ADDR" jdbcType="VARCHAR" property="disNAddr"/>
 	</resultMap>
