@@ -40,25 +40,32 @@ $(function(){
 	console.log(thisYears);
 	var nextYears = "";
 	var nextMonth = "";
-	//현재 날로부터 -1년씩 감소해서 <option>을 만듬
-	for(var i = 0; i < 80; i++){
-		nextYears += "<option value="+ (thisYears-i) +">" + (thisYears-i) + "</option>"
+	var nextDay = "";
+	//현재 날로부터 +1년씩 증가해서 <option>을 만듬
+	for(var i = 0; i < 12; i++){
+		nextYears += "<option value="+ (thisYears+i) +">" + (thisYears+i) + "</option>"
+	}
+	//1월부터 12월까지 1일씩 올려서  <option>날짜를 만듬
+	for(var i = 1; i <= 12; i++){
+		nextMonth += "<option value="+ i +">" + i + "</option>"
 	}
 	//1일부터 31일까지 1씩 올려서 <option>날짜를 만듬
 	for(var i = 1; i <= 31; i++){
-		nextMonth += "<option value="+ i +">" + i + "</option>"
+		nextDay += "<option value="+ i +">" + i + "</option>"
 	}
-	console.log(nextYears);
-	//year박스와 day박스에 넣어줌
+	
+	//year박스와 mouth와 day박스에 넣어줌
 	$(".year").html(nextYears);
-	$(".day").html(nextMonth);
+	$(".inmonth").html(nextMonth);
+	$(".outmonth").html(nextMonth);
+	$(".day").html(nextDay);
 
 	//month를 change->바꿨을 때 즉 month박스의 값을 바꿨을 때 실행함
-	$(".month").on("change",function(){
+	$("#cheInmonth").on("change",function(){
 		var monthval = $(this).val();
 		var daysStack;
 		var nextDays = "";
-		console.log(monthval);
+		
 		switch(monthval){
 		case "1":
 		case "3":
@@ -79,8 +86,38 @@ $(function(){
 		for(var i = 1; i <= daysStack; i++){
 			nextDays += "<option value="+ i +">" + i + "</option>"
 		}
-		$(".day").html(nextDays);
+		$("#cheInday").html(nextDays);
 	})
+	
+	
+		$("#cheOutmonth").on("change",function(){
+		var monthval = $(this).val();
+		var daysStack;
+		var nextDays = "";
+		
+		switch(monthval){
+		case "1":
+		case "3":
+		case "5":
+		case "7":
+		case "8":
+		case "10":
+		case "12":
+			daysStack = 31;
+			break;
+		case "2":
+			daysStack = 29;
+			break;
+		default:
+			daysStack = 30;
+		break;
+		}
+		for(var i = 1; i <= daysStack; i++){
+			nextDays += "<option value="+ i +">" + i + "</option>"
+		}
+		$("#cheOutday").html(nextDays);
+	})
+	
 
 	$(".allergy1").on("click",function(){
 		var value = $(this).val();
@@ -93,7 +130,7 @@ $(function(){
 
 	})
 	
-	var innerHtmlValue = "<select class = 'stay_num'>";
+ 	var innerHtmlValue = "<select class = 'stay_num' name = 'grStaySum'>";
 	for(var i = 0; i <= 10 ; i++){
 		if(i == 0){
 			innerHtmlValue += "<option value = '"+i+"'>객실 숙박인원</option>"
@@ -103,7 +140,9 @@ $(function(){
 	}
 	innerHtmlValue += "</select>";	 
 	
-	var selectValue = "<select class = 'roomskind'>";
+	$(".stay_num").html(innerHtmlValue);
+	
+/* 	var selectValue = "<select class = 'roomskind'>";
 	for(var k = 1; k <= 1 ; k++){
 		if(k != 0){
 			selectValue += "<option value = '"+i+"'>비즈니스 룸</option>"
@@ -115,18 +154,47 @@ $(function(){
 	}
 	selectValue += "</select>";
 	
+	$(".roomskind").html(selectValue); */
+	
+	
+	var guestNo = "";
+	for(var w = 1; w <= 1; w++){
+		if(w != 0){
+			guestNo += "객실번호<input type='text' name='grNo'>";
+		}
+		
+	}
+	
+	$(".grNo").html(guestNo);
+	
 	$("#roomscount").on("change",function(){
 		var value = $(this).val();
 		var AllRooms = "";
 		for(var i = 0; i < value ; i++){
-			AllRooms += selectValue;
+			/* AllRooms += selectValue; */
 			AllRooms += innerHtmlValue;
+			AllRooms += guestNo;
 			AllRooms += "<br>"
 		}
-		$("#stayhidden").html(AllRooms);
+		$("#stayhidden").html(AllRooms)
 		
-		console.log(value);
+		console.log(AllRooms);
 		
+	})
+
+	
+	var inputHidden = "<input type = 'hidden' name="
+	
+	$("#submitBtn").on("click",function(e){
+		var checkInDate = $("#cheInyear").val() + "-" + $("#cheInmonth").val() +"-"+ $("#cheInday").val() 
+		var checkInHiddenHtml = inputHidden + "'cheInDate' value='"+ checkInDate +"'>"
+		var checkOutDate = $("#cheOutyear").val() + "-" + $("#cheOutmonth").val() +"-"+ $("#cheOutday").val() 
+		var checkOutHiddenHtml = inputHidden + "'cheOutDate' value='"+ checkOutDate +"'>"
+		var innerHtmlValue = checkInHiddenHtml + checkOutHiddenHtml
+		$("#hiddenBox").html(innerHtmlValue);
+		 /* e.preventDefault(); */
+		 this.form.submit();
+		 
 	})
 	
 });
@@ -142,61 +210,39 @@ $(function(){
 	<div id = "contents">
 	
 	<form:form>
-	<div class = "infobox">고객 성</div> <input type="text" id = "fname" name = "cosFName">
-    <div class = "infobox">고객 이름</div> <input type="text" id = "lname" name = "cosLName">
-    <div class = "infobox">고객 전화번호</div> <input type="text" id = "phone" name = "cosTelno">
-    <div class = "infobox">이메일</div> <input type="text" id = "email" name = "cosEmail">
+	<div class = "infobox">고객 성</div> <input type="text" id = "fname" name = "customer.cosLName">
+    <div class = "infobox">고객 이름</div> <input type="text" id = "lname" name = "customer.cosFName">
+    <div class = "infobox">고객 전화번호</div> <input type="text" id = "phone" name = "customer.cosTelno">
+    <div class = "infobox">이메일</div> <input type="text" id = "email" name = "customer.cosEmail">
     <div class = "infobox">알레르기 유무</div>
-    <input type = "radio" class = "allergy1" name="cosAllergy" value="있음">있음
-    <input type = "radio" class = "allergy1" name="cosAllergy" value="없음" checked = "checked">없음
+    <input type = "radio" class = "allergy1" name = "allergy" value="있음">있음
+    <input type = "radio" class = "allergy1" name = "allergy" value="없음" checked="checked">없음
     <div id = "allergyinfo"  style = "display:none;">
-    <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "cosAllergy">
+    <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "customer.cosAllergy">
     </div>
     
+    
     <div class = "infobox">입실 예정일</div>
-				<select name="cheInDate" class="year">
+				<select id="cheInyear" class="year">
 				</select>년
-				<select name="cheInDate" class = "month">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
+				<select id = "cheInmonth" class = "inmonth">
 				</select>월
-				<select name="cheInDate" class="day">
+				<select id="cheInday" class="day">
 				</select>일
 				
+	
 	 <div class = "infobox">퇴실 예정일</div>
-				<select name="cheOutDate" class="year">
+				<select id="cheOutyear" class="year">
 				</select>년
-				<select name="cheOutDate" class = "month">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
+				<select id="cheOutmonth" class = "outmonth">
 				</select>월
-				<select name="cheOutDate" class="day">
+				<select id="cheOutday" class="day">
 				</select>일			
 		
-	
+
     
-    <div id = "roomnum">객실수
-     <select id = "roomscount" name = "roomCount">
+     <div id = "roomnum">객실수
+     <select id = "roomscount" name = "room.roomCount">
     <option class = "rcount" value = "1">1개</option>
     <option class = "rcount" value = "2">2개</option>
     <option class = "rcount" value = "3">3개</option>
@@ -210,17 +256,18 @@ $(function(){
     
 
     
-    <div id = "stayhidden">
+  
     
-    <select id = "roomskind" name = "roomName">
-    <option value = "1">비즈니스 룸</option>
-    <option value = "2">슈페리어 룸</option>
-    <option value = "3">디럭스 룸</option>
-    <option value = "4">스위트 룸</option>
-    <option value = "5">코너 룸</option>
+    <select class = "roomskind" name = "room.roomName">
+    <option value = "비즈니스 룸">비즈니스 룸</option>
+    <option value = "슈페리어 룸">슈페리어 룸</option>
+    <option value = "디럭스 룸">디럭스 룸</option>
+    <option value = "스위트 룸">스위트 룸</option>
+    <option value = "코너 룸">코너 룸</option>
     </select>
-    
-    <select class = "stay_num">
+
+    <div id = "stayhidden">
+     <select class = "stay_num" name = "grStaySum">
     <option value = "0">객실 숙박인원</option>
     <option value = "1">1명</option>
     <option value = "2">2명</option>
@@ -232,96 +279,22 @@ $(function(){
     <option value = "8">8명</option>
     <option value = "9">9명</option>
     <option value = "10">10명</option>
+    
     </select>
-           
-    </div>
+        객실번호<input type="text" class = "grNo" name = "grNo">      
+     
+    </div> 
     
     <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "cheDetail">
-    <div id = "che_meal">
-    <select class = "che_pre" name = "breakAdult">
-    <option value = "0">조식 성인 인원</option>
-    <option value = "1">조식 성인 1명</option>
-    <option value = "2">조식 성인 2명</option>
-    <option value = "3">조식 성인 3명</option>
-    <option value = "4">조식 성인 4명</option>
-    <option value = "5">조식 성인 5명</option>
-    <option value = "6">조식 성인 6명</option>
-    <option value = "7">조식 성인 7명</option>
-    <option value = "8">조식 성인 8명</option>
-    <option value = "9">조식 성인 9명</option>
-    <option value = "10">조식 성인 10명</option>
-    <option value = "11">조식 성인 11명</option>
-    <option value = "12">조식 성인 12명</option>
-    <option value = "13">조식 성인 13명</option>
-    <option value = "14">조식 성인 14명</option>
-    <option value = "15">조식 성인 15명</option>
-    <option value = "16">조식 성인 16명</option>
-    <option value = "17">조식 성인 17명</option>
-    <option value = "18">조식 성인 18명</option>
-    <option value = "19">조식 성인 19명</option>
-    <option value = "20">조식 성인 20명</option>
-    </select>
+	<div id = "hiddenBox">
+	
+	</div>
     
-    <select class = "che_pre" name = "breakChild">
-    <option value = "0">조식 어린이 인원</option>
-    <option value = "1">조식 어린이 1명</option>
-    <option value = "2">조식 어린이 2명</option>
-    <option value = "3">조식 어린이 3명</option>
-    <option value = "4">조식 어린이 4명</option>
-    <option value = "5">조식 어린이 5명</option>
-    <option value = "6">조식 어린이 6명</option>
-    <option value = "7">조식 어린이 7명</option>
-    <option value = "8">조식 어린이 8명</option>
-    <option value = "9">조식 어린이 9명</option>
-    <option value = "10">조식 어린이 10명</option>
-    </select>
-    
-    <select class = "che_pre" name = "dinAdult">
-    <option value = "0">석식 성인 인원</option>
-    <option value = "1">석식 성인 1명</option>
-    <option value = "2">석식 성인 2명</option>
-    <option value = "3">석식 성인 3명</option>
-    <option value = "4">석식 성인 4명</option>
-    <option value = "5">석식 성인 5명</option>
-    <option value = "6">석식 성인 6명</option>
-    <option value = "7">석식 성인 7명</option>
-    <option value = "8">석식 성인 8명</option>
-    <option value = "9">석식 성인 9명</option>
-    <option value = "10">석식 성인 10명</option>
-    <option value = "11">석식 성인 11명</option>
-    <option value = "12">석식 성인 12명</option>
-    <option value = "13">석식 성인 13명</option>
-    <option value = "14">석식 성인 14명</option>
-    <option value = "15">석식 성인 15명</option>
-    <option value = "16">석식 성인 16명</option>
-    <option value = "17">석식 성인 17명</option>
-    <option value = "18">석식 성인 18명</option>
-    <option value = "19">석식 성인 19명</option>
-    <option value = "20">석식 성인 20명</option>
-    </select>
-    
-    <select class = "che_pre" name = "dinChild">
-    <option value = "0">석식 어린이 인원</option>
-    <option value = "1">석식 어린이 1명</option>
-    <option value = "2">석식 어린이 2명</option>
-    <option value = "3">석식 어린이 3명</option>
-    <option value = "4">석식 어린이 4명</option>
-    <option value = "5">석식 어린이 5명</option>
-    <option value = "6">석식 어린이 6명</option>
-    <option value = "7">석식 어린이 7명</option>
-    <option value = "8">석식 어린이 8명</option>
-    <option value = "9">석식 어린이 9명</option>
-    <option value = "10">석식 어린이 10명</option>
-    </select>
-    </div>
-    
-  <%--  <input type="hidden" id = "cosNo" name = "customer.cosNo" value = "${customer.cosNo }"> --%>
-    
-
-    <input type = "submit" value = "체크인">
+	<div id = "sub">
+    <input type = "submit" value = "체크인" id = "submitBtn">
     <input type = "reset" value = "재작성">
     <input type = "button" onclick="location.href='../front'" value = "메인으로">
-    
+    </div>
     </form:form>
 	</div>
 	<footer></footer>

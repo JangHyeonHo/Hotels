@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.command.CheckinCommend;
 import com.hotels.peregrine.model.CheckInDTO;
-import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckinService;
@@ -17,10 +17,7 @@ import com.hotels.peregrine.service.front.CheckinService;
 public class CheckinController {
 
 	@Autowired
-	CheckinService service;
-	
-
-	
+	private CheckinService service;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -28,19 +25,16 @@ public class CheckinController {
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.GET)
 	public String checkin() {
 		
-		
-		
 		return "front/checkin";
 	}	
 	
+
 	
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
-	public String checkin(@ModelAttribute CheckInDTO check, CustomerDTO customer, Model model) {
+	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute CheckinCommend command, Model model) {
 		System.out.println("체크인 post");
-		AutoTest.ModelBlackTest(check);
-		AutoTest.ModelBlackTest(customer);
+		System.out.println("다나와 :"+command.getGrStaySum()[0]+command.getGrStaySum()[1]);
 		service.action(check);
-		
 		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");
 	}	
 }

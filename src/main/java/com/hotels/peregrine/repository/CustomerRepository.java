@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.model.CustomerDTO;
+import com.hotels.peregrine.model.RoomDTO;
 
 @Repository
 public class CustomerRepository {
@@ -13,15 +14,19 @@ public class CustomerRepository {
 	@Autowired
 	private SqlSessionTemplate sql;
 	
-/*	private String namespace = "customer";
-	
-	//고객등록될때 사용
+	private String namespace = "custom";
+
 	public void insert(CustomerDTO customers) {
-		sql.insert(namespace+".insert", customers);
-	}*/
+		sql.insert("custom.insert",customers);
+		
+	}
 
+	public Integer select(CustomerDTO customers) {
 
+		
+		return sql.selectOne("custom.select",customers);
+	}
 
-
+	
 
 }

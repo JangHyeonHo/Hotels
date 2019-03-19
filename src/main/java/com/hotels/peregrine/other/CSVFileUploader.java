@@ -23,19 +23,24 @@ public class CSVFileUploader {
 			String msg;
 			List<DistributorDTO> msgList = new ArrayList<DistributorDTO>();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			int result = 0;
 			while ((msg = br.readLine()) != null) {
-				String[] arrayMsg = msg.replaceAll("\"", "").split(",");
-				if(arrayMsg[0].equals("번호")) {
+				if(result==2500) {
+					break;
+				}
+				String[] arrayMsg = msg.split(",");
+				if(arrayMsg[0].equals("\"번호\"")) {
 					continue;
 				}
 				msgList.add(new DistributorDTO()
-						.setDisPhone(arrayMsg[15])
-						.setDisName(arrayMsg[21])
-						.setDisZipCode(arrayMsg[17])
-						.setDisNZipCode(arrayMsg[20])
-						.setDisAddr(arrayMsg[18])
-						.setDisNAddr(arrayMsg[19])
-						.setDisRegDate(format.parse(arrayMsg[5])));
+						.setDisPhone(arrayMsg[15].replaceAll("\"", ""))
+						.setDisName(arrayMsg[21].replaceAll("\"", ""))
+						.setDisZipCode(arrayMsg[17].replaceAll("\"", ""))
+						.setDisNZipCode(arrayMsg[20].replaceAll("\"", ""))
+						.setDisAddr(arrayMsg[18].replaceAll("\"", ""))
+						.setDisNAddr(arrayMsg[19].replaceAll("\"", ""))
+						.setDisRegDate(format.parse(arrayMsg[5].replaceAll("\"", ""))));
+				result++;
 			}
 			return msgList;
 		} catch (IOException ioe) {

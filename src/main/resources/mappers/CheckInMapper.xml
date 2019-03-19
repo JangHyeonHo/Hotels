@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="checkins">
+<mapper namespace="checkin">
 	<cache />
+	
+ 	<insert id="insert" parameterType="CheckIn">
+
+		insert into CHECKIN(CHE_NO, COS_NO, CHE_IN_TIME, CHE_IN_DATE,
+		 CHE_OUT_DATE, CHE_DETAIL, room_name)
+	
+		 values (sq_che_no.nextval, #{customer.cosNo}, 
+		  sysdate, #{cheInDate}, #{cheOutDate}, #{cheDetail}, ${room.roomName});
+		  
+	</insert>
+
 
 </mapper>
