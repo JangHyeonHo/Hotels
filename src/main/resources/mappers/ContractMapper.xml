@@ -54,4 +54,5 @@
 		WHERE
 			CONT_NO = #{no}
 	</delete>
+	
 </mapper>
