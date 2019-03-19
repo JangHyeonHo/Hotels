@@ -45,11 +45,18 @@ public class BanquetRepository {
 	 
 	 public Integer dateRefresh1(long num) {
 		 
-		 return template.update("banquet.refresh1",num);
+		 return template.update("banquet.refreshOne",num);
 	 }
+	 
 	 public Integer dateRefresh2(long num) {
 		 
-		 return template.update("banquet.refresh2",num);
+		 return template.update("banquet.refreshTwo",num);
+	 }
+	 
+	 public void bdelete(long num) {
+
+		 template.delete("banquet.bdelete",num);
+		 
 	 }
 	 
 }

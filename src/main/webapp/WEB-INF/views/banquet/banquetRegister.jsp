@@ -38,17 +38,16 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	
-	
-	
 	<form:form enctype="multipart/form-data">
 연회장 명	<input type="text" name="banName"> <br>
 연회장 연회장 기본금 <input type="text" name="banPoundation"><br>
 연회장 설명 <input type="text" name="banDescription">	<br>
 연회장 기본 이용 시간 <input type="text" name="banTime"><br>
 연회장 최대 수용수 <input type="test" name="banMaxPeople"><br>
-<!-- 연회장 사진 <input type="file" name="banStoreFileName">	<br> -->
+연회장 사진 <input type="file" name="banStoreFileNameOne">	<br>
 	 <input type="submit" value="등록">
 	</form:form>
+	
 	</div>
 	<footer></footer>
 </body>

@@ -41,7 +41,7 @@
 		<h3><spring:message code="material.regist" /></h3>
 		<spring:message code="mat.name" /> : <input type = "text" id = "matName" name = "matName"><br>
 		<spring:message code="mat.kind" /> : <input type = "text" id = "matKind" name = "matKind"><br>
-		<spring:message code="material.regist" /> <spring:message code="dis.name" /> : ${distributor.disName} <input type = "hidden" id = "dis.no"><br>
+		<spring:message code="material.regist" /> <spring:message code="dis.name" /> : ${distributor.disName} <input type = "hidden" id = "cont.no"><br>
 		<input type = "submit" value = "<spring:message code="regist" />">
 		</form:form>
 	</div>

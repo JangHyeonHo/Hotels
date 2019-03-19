@@ -22,9 +22,9 @@ public class DistributorDTO implements Serializable {
 	private String disName;
 	private String disPhone;
 	private String disAddr;
-	private int disZipCode;
+	private String disZipCode;
 	private String disNAddr;
-	private int disNZipCode;
+	private String disNZipCode;
 	private Date disRegDate;
 	
 	public int getDisNo() {
@@ -54,10 +54,10 @@ public class DistributorDTO implements Serializable {
 		this.disAddr = disAddr;
 		return this;
 	}
-	public int getDisZipCode() {
+	public String getDisZipCode() {
 		return disZipCode;
 	}
-	public DistributorDTO setDisZipCode(int disZipCode) {
+	public DistributorDTO setDisZipCode(String disZipCode) {
 		this.disZipCode = disZipCode;
 		return this;
 	}
@@ -68,10 +68,10 @@ public class DistributorDTO implements Serializable {
 		this.disNAddr = disNAddr;
 		return this;
 	}
-	public int getDisNZipCode() {
+	public String getDisNZipCode() {
 		return disNZipCode;
 	}
-	public DistributorDTO setDisNZipCode(int disNZipCode) {
+	public DistributorDTO setDisNZipCode(String disNZipCode) {
 		this.disNZipCode = disNZipCode;
 		return this;
 	}

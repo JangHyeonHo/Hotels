@@ -29,7 +29,9 @@ import org.springframework.format.annotation.DateTimeFormat;
  * */
 public class BanquetRentalDTO implements Serializable {
 	private int brNo;
+	@DateTimeFormat(pattern="HH:mm:SS")
 	private Date brOpen;
+	@DateTimeFormat(pattern="HH:mm:SS")
 	private Date brClose;
 	private int brConsumer;
 	@DateTimeFormat(pattern="yyyy-MM-dd")

@@ -18,13 +18,13 @@ public class BanquetDetailService {
 		return repository.Bdetail(num);
 	}
 	
-	public Integer refresh(long num) {
+	public Integer refreshOne(long num) {
 		
 		return repository.dateRefresh1(num);
 	}
 	
 	
-	public Integer refresh2(long num) {
+	public Integer refreshTwo(long num) {
 		
 		return repository.dateRefresh2(num);
 	}
