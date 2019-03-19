@@ -154,9 +154,9 @@ $(function(){
     </div>
     
     <div class = "infobox">입실 예정일</div>
-				<select name="year" class="year">
+				<select name="cheInDate" class="year">
 				</select>년
-				<select name="month" class = "month">
+				<select name="cheInDate" class = "month">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -170,13 +170,13 @@ $(function(){
 					<option value="11">11</option>
 					<option value="12">12</option>
 				</select>월
-				<select name="day" class="day">
+				<select name="cheInDate" class="day">
 				</select>일
 				
 	 <div class = "infobox">퇴실 예정일</div>
-				<select name="year" class="year">
+				<select name="cheOutDate" class="year">
 				</select>년
-				<select name="month" class = "month">
+				<select name="cheOutDate" class = "month">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -190,13 +190,13 @@ $(function(){
 					<option value="11">11</option>
 					<option value="12">12</option>
 				</select>월
-				<select name="day" class="day">
+				<select name="cheOutDate" class="day">
 				</select>일			
 		
 	
     
     <div id = "roomnum">객실수
-     <select id = "roomscount">
+     <select id = "roomscount" name = "roomCount">
     <option class = "rcount" value = "1">1개</option>
     <option class = "rcount" value = "2">2개</option>
     <option class = "rcount" value = "3">3개</option>
@@ -212,7 +212,7 @@ $(function(){
     
     <div id = "stayhidden">
     
-    <select id = "roomskind">
+    <select id = "roomskind" name = "roomName">
     <option value = "1">비즈니스 룸</option>
     <option value = "2">슈페리어 룸</option>
     <option value = "3">디럭스 룸</option>
@@ -236,9 +236,9 @@ $(function(){
            
     </div>
     
-    <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "che_pre">
+    <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "cheDetail">
     <div id = "che_meal">
-    <select class = "che_pre" name = "che_mor_adult">
+    <select class = "che_pre" name = "breakAdult">
     <option value = "0">조식 성인 인원</option>
     <option value = "1">조식 성인 1명</option>
     <option value = "2">조식 성인 2명</option>
@@ -262,7 +262,7 @@ $(function(){
     <option value = "20">조식 성인 20명</option>
     </select>
     
-    <select class = "che_pre" name = "che_mor_child">
+    <select class = "che_pre" name = "breakChild">
     <option value = "0">조식 어린이 인원</option>
     <option value = "1">조식 어린이 1명</option>
     <option value = "2">조식 어린이 2명</option>
@@ -276,7 +276,7 @@ $(function(){
     <option value = "10">조식 어린이 10명</option>
     </select>
     
-    <select class = "che_pre" name = "che_din_adult">
+    <select class = "che_pre" name = "dinAdult">
     <option value = "0">석식 성인 인원</option>
     <option value = "1">석식 성인 1명</option>
     <option value = "2">석식 성인 2명</option>
@@ -300,7 +300,7 @@ $(function(){
     <option value = "20">석식 성인 20명</option>
     </select>
     
-    <select class = "che_pre" name = "che_din_child">
+    <select class = "che_pre" name = "dinChild">
     <option value = "0">석식 어린이 인원</option>
     <option value = "1">석식 어린이 1명</option>
     <option value = "2">석식 어린이 2명</option>

@@ -6,23 +6,23 @@ import org.springframework.stereotype.Service;
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.repository.CheckinRepository;
-import com.hotels.peregrine.repository.CustomerRepository;
 
 @Service
 public class CheckinService {
 	
 	@Autowired
-	private CheckinRepository checkin;
+	private CheckinRepository checkins;
 
-	@Autowired
-	private CustomerRepository customer;
 	
-	public void action(CheckInDTO checkins) {
-		CustomerDTO customers = checkins.getCustomer();
+	
+	public void action(CheckInDTO Check) {
+		CustomerDTO customers = Check.getCustomer();
 		
-		customer.insert(customers);
-		
-		/*checkin.insert(checkins);*/
+		checkins.insert(customers);
+	
 	}
+
+
+
 
 }

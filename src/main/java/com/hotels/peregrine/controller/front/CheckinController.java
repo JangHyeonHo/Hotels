@@ -20,6 +20,8 @@ public class CheckinController {
 	CheckinService service;
 	
 
+	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -33,10 +35,11 @@ public class CheckinController {
 	
 	
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
-	public String checkin(@ModelAttribute CheckInDTO checkin, CustomerDTO customer, Model model) {
-		AutoTest.ModelBlackTest(checkin);
+	public String checkin(@ModelAttribute CheckInDTO check, CustomerDTO customer, Model model) {
+		System.out.println("체크인 post");
+		AutoTest.ModelBlackTest(check);
 		AutoTest.ModelBlackTest(customer);
-		service.action(checkin);
+		service.action(check);
 		
 		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");
 	}	
