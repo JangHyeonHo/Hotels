@@ -22,7 +22,7 @@
 	
 	
 	<insert id="Binsert" parameterType="Banquet">
-		insert into BANQUET(BAN_NAME,BAN_FOUNDATION,BAN_DESCRIPTION,BAN_TIME,BAN_MAX_PEOPLE) values(#{banName}, #{banPoundation} , #{banDescription}, #{banTime}, #{banMaxPeople})
+		insert into BANQUET(BAN_NAME,BAN_FOUNDATION,BAN_DESCRIPTION,BAN_TIME,BAN_MAX_PEOPLE,BAN_STORE_FILE_NAME) values(#{banName}, #{banPoundation} , #{banDescription}, #{banTime}, #{banMaxPeople},#{banStoreFileName})
 	</insert>
 	
 	<insert id="Brinsert" parameterType="BanquetRental">
@@ -74,6 +74,20 @@
 	</where>
 	
 	</update> 
+	
+	
+	<delete id="bdelete" parameterType="Long">
+	
+	DELETE FROM BANQUET_RENTAL
+	
+	<where>
+	
+	br_no = #{num}
+	
+	</where>
+	
+	</delete>
+	
 	
 	
 	<resultMap type="BanquetRental" id="banren">

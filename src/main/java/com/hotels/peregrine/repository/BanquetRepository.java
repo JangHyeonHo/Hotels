@@ -53,4 +53,10 @@ public class BanquetRepository {
 		 return template.update("banquet.refreshTwo",num);
 	 }
 	 
+	 public void bdelete(long num) {
+
+		 template.delete("banquet.bdelete",num);
+		 
+	 }
+	 
 }
