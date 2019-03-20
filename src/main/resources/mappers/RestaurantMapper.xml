@@ -57,13 +57,13 @@
 
 	</insert>
 
-	<select id="reslist" resultMap="listbase">
+	<!--<select id="reslist" resultMap="listbase">
 
 		SELECT r.RR_NO AS rrno,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) ORDER BY RRNO desc;
 
 	</select>
 
-	<!-- <resultMap type="RestaurantReservation" id="listbase">
+	 <resultMap type="RestaurantReservation" id="listbase">
 	 
 	   <id column="COS_TELNO" jdbcType="NVARCHAR" property=""/>
 	   <result column="RR_NO" jdbcType="BIGINT" property=""/>

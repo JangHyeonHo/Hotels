@@ -18,6 +18,7 @@ public class HomeRepository {
 	
 	public void insertTest() {
 		System.out.println("테스트중 입니다 2222");
+		String[] test = {"비즈니스","테스트"};
 		GuestRoomDTO lost = new GuestRoomDTO().setCheckIn(new CheckInDTO().setCheNo(1)).setGrDiAdult(1).setGrDiChild(1).setGrNo(1).setGrStaySum(1);
 		AutoTest.ModelBlackTest(lost);
 		/*template.insert(namespace + ".insertTest", lost);*/

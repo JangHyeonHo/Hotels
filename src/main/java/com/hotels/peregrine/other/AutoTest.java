@@ -13,13 +13,14 @@ public class AutoTest {
 	 * <hr>
 	 * 패치(재귀 기능 추가 -> 모델 안의 모델까지 확인)<br>
 	 * null pointer 에러 방지 기능 추가<br>
+	 * 배열get으로 받는 기능 추가.
 	 * <hr>
 	 * @exception IllegalArgumentException 잘못된 값을 받았을 경우;
 	 * @exception IllegalAccessException 제대로된 클래스를 넣지 않았을 때;
 	 * @exception InvocationTargetException 타겟이 잘못되었을 때;
 	 * @author JangHyeonHo
 	 * @param clazz 테스트 할 클래스의 객체를 주입한다. 
-	 * @version 1.17
+	 * @version 1.20
 	* */
 	public static void ModelBlackTest(Object clazz) {
 		if(clazz != null) {
@@ -36,6 +37,17 @@ public class AutoTest {
 								System.out.println(method.getName().substring(3) + " : null");
 							}
 						} else {
+							try {
+								if(method.invoke(clazz).getClass().isArray()) {
+									String[] array = (String[]) method.invoke(clazz);
+									for(int a = 0 ; a < array.length ; a++) {
+										System.out.println(method.getName().substring(3)+"["+a+"] : " + array[a]);
+									}
+								}
+							} catch(NullPointerException e) {
+								System.out.println(method.getName().substring(3) + " : "+ null);
+								continue;
+							}
 							System.out.println(method.getName().substring(3) + " : "+ method.invoke(clazz));
 						}
 					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
