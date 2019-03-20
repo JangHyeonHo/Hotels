@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="restaurant">
+<cache/>
+<insert id="rinsert" parameterType="Restaurant">
+
+ INSERT INTO RESTAURANT(RES_NAME,RES_CHAIR,RES_TABLE_COUNT,RES_DESCRIPTION,RES_STORE_FILE_NAME) 
+ VALUES(#{resName},#{resChair},#{resTableCount},#{resDescription},#{resStoreFileName})
+
+</insert>
+
+
+
+
+</mapper>
+
