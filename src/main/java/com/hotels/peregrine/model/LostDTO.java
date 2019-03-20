@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 분실물(lost) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -16,6 +18,7 @@ import java.util.Date;
 public class LostDTO implements Serializable {
 	private int lostNo;
 	private String lostName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date lostDate;
 	private String lostLoc;
 	public int getLostNo() {

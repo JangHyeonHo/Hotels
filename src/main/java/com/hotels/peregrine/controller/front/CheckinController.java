@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hotels.peregrine.command.CheckinCommend;
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
-import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckinService;
 
 @Controller
