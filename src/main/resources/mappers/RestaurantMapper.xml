@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="restaurant">
+	<cache />
+	<insert id="rinsert" parameterType="Restaurant">
+
+		INSERT INTO
+		RESTAURANT(RES_NAME,RES_CHAIR,RES_TABLE_COUNT,RES_DESCRIPTION,RES_STORE_FILE_NAME)
+		VALUES(#{resName},#{resChair},#{resTableCount},#{resDescription},#{resStoreFileName})
+
+	</insert>
+
+	<insert id="resercusinsert"
+		parameterType="RestaurantReservation">
+
+		INSERT INTO CUSTOMER(COS_NO,
+		COS_TELNO,
+		COS_L_NAME,
+		COS_F_NAME,
+		COS_EMAIL,
+		COS_ALLERGY)
+		VALUES(COS_NO.nextval,#{customer.cosTelno},#{customer.cosLName},#{customer.cosFName},#{customer.cosEmail},#{customer.cosAllergy})
+
+	</insert>
+
+	<select id="resercusnosearch" resultMap="cossearch">
+
+		SELECT COS_NO FROM CUSTOMER
+
+		<where>
+			rownum=1 ORDER BY cos_no DESC
+		</where>
+
+
+	</select>
+
+	<select id="namelist" resultMap="resnamebase">
+
+		SELECT res_name,res_chair FROM
+		RESTAURANT
+
+	</select>
+
+
+	<insert id="resinsert" parameterType="RestaurantReservation">
+
+		INSERT INTO
+		RESTAURANT_RESERVATION(
+		RR_NO,
+		COS_NO,
+		RES_NAME,
+		RES_CHAIR,
+		RR_ADULT,
+		RR_CHILD,
+		RR_REG_DATE)
+		VALUES(RR_NO.nextval,#{customer.cosNo},#{restaurant.resName},#{restaurant.resChair},#{rrAdult},#{rrChild},sysdate)
+
+	</insert>
+
+	<select id="reslist" resultMap="listbase">
+
+		SELECT r.RR_NO AS rrno,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) ORDER BY RRNO desc;
+
+	</select>
+
+	<!-- <resultMap type="RestaurantReservation" id="listbase">
+	 
+	   <id column="COS_TELNO" jdbcType="NVARCHAR" property=""/>
+	   <result column="RR_NO" jdbcType="BIGINT" property=""/>
+	   <result column="COS_L_NAME" jdbcType="NVARCHAR" property=""/>
+	   <result column="COS_F_NAME" jdbcType="NVARCHAR" property=""/>
+	   <result column="COS_EMAIL" jdbcType="NVARCHAR" property=""/>
+	   <result column="COS_ALLERGY" jdbcType="NVARCHAR" property=""/>
+
+
+	</resultMap> -->
+
+
+
+	<resultMap type="RestaurantReservation" id="cossearch">
+		<id column="COS_NO" jdbcType="BIGINT" property="customer.cosNo" />
+	</resultMap>
+
+	<resultMap type="RestaurantReservation" id="resnamebase">
+		<id column="RES_NAME" jdbcType="NVARCHAR"
+			property="restaurant.resName" />
+		<result column="RES_CHAIR" jdbcType="BIGINT"
+			property="restaurant.resChair" />
+	</resultMap>
+
+
+</mapper>
+

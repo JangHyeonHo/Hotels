@@ -3,15 +3,14 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>레스토랑 예약</title>
+<title>레스토랑 예약 고객정보</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -30,31 +29,86 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+
+<script type="text/javascript">
+
+	
+function exist(){
+	
+	var a = document.getElementById("al").value; 
+	
+	var b = "Y";
+	console.log(a);
+	
+	if(a==b){
+		$("#albox").css("display","block");
+	}else{
+		$("#albox").css("display","none");
+	}
+
+}
+
+
+$(function(){
+	
+	var inputHidden = "<input type = 'hidden' name="
+		
+		$("#submitBtn").on("click",function(e){
+			var al = $("#al").val()+ "(" + $("#albox").val()+") 알러지 보유중" 
+			var checkInHiddenHtml = inputHidden + "'customer.cosAllergy' value='"+ al +"'>"
+
+			console.log(checkInHiddenHtml);
+			
+			$("#hiddenBox").html(checkInHiddenHtml);
+	
+		 this.form.submit(); 
+			 
+		})
+		
+		
+/* 	     $("#submitBtn").click(function() {
+	        var options = {
+	              type:"GET",
+	              url :"./reservation",
+	              dataType:"html", 
+	              success:function(result){ 
+	                 $('#contents').html(result) 
+	              }
+	        };
+	        $('#frm').ajaxSubmit(options);
+	        return false;
+	     });  */
+	
+	
+		
+	
+});
+
+
+
+
+</script>
+
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header><h1>레스토랑 예약</h1></header>
+	<header><h1>고객 정보</h1></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<form:form>
-	<input type="hidden" name="customer.cosNo" value="${cosone.customer.cosNo }">
-	레스토랑 명 :<select name="restaurant.resName">
-	<c:forEach items="${resinfo }" var="rlist">
-	<option value="${rlist.restaurant.resName }">${rlist.restaurant.resName }</option>
-	</c:forEach>
-	</select><br>
-	남은 좌석:
-	
-	<c:forEach items="${resinfo }" var="rlist">
-
-	<input type="hidden" name="restaurant.resChair" value="${rlist.restaurant.resChair }"> ${rlist.restaurant.resChair }
-
-	</c:forEach><br>
-	
-	성인 수:<input type="text" name="rrAdult"><br>
-	어린이 수:<input type="text" name="rrChild"><br>
-	<input type="submit" value="예약"><br>
-	</form:form>
+	 <form:form id="frm">
+	 성  <input type="text" name="customer.cosLName"><br>
+	 이름 <input type="text" name="customer.cosFName"><br>
+	 전화번호 <input type="text" name="customer.cosTelno"><br>
+	 이메일 주소 <input type="email" name="customer.cosEmail"><br>
+	 알러지 유무 <select name="Allergy" id="al" onclick="exist()"><br>
+	 	 <option value="N">N</option>
+	 	 <option value="Y">Y</option>
+	 	</select><br>
+	 	<input type="text" name="customeral" id="albox" style = "display:none;" placeholder="알러지 상세">
+	 	<div id = "hiddenBox">	
+		</div>
+	 <button type="button" id="submitBtn">다음</button>
+	 </form:form>
 	</div>
 	<footer></footer>
 </body>
