@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="losts">
+	<cache />
+	
+	<insert id="insert" parameterType="Lost">
+	insert into LOST(lost_no, LOST_NAME, LOST_DATE, LOST_LOC)
+	values(sq_lost_no.nextval, #{lostName}, #{lostDate}, ${lostLoc})
+	</insert>
+	
+	<select id="inquiry" parameterType="Lost" resultMap="lostList">
+	select lost_no, LOST_NAME, LOST_DATE, LOST_LOC
+	from lost
+	</select>
+	
+	<delete id="delete" parameterType = "Integer">
+	delete from lost
+	where
+	LOST_NO = #{no}
+	
+	</delete>
+	
+	
+	
+	
+	
+	<resultMap type="Lost" id="lostList">
+	<id column="lost_no" jdbcType="BIGINT" property="lostNo"/>
+	<result column="LOST_NAME" jdbcType="NVARCHAR" property="lostName" />
+	<result column="LOST_DATE" jdbcType="TIMESTAMP" property="lostDate" />
+	<result column="LOST_LOC" jdbcType="NVARCHAR" property="lostLoc" />
+	
+	
+	</resultMap>
+	
+	
+	
+</mapper>

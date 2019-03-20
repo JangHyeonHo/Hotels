@@ -240,7 +240,7 @@ $(function(){
 				</select>일			
 		
 
-    
+      
      <div id = "roomnum">객실수
      <select id = "roomscount" name = "room.roomCount">
     <option class = "rcount" value = "1">1개</option>
@@ -283,7 +283,7 @@ $(function(){
     </select>
         객실번호<input type="text" class = "grNo" name = "grNo">      
      
-    </div> 
+    </div>
     
     <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "cheDetail">
 	<div id = "hiddenBox">
