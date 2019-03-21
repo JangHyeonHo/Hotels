@@ -4,21 +4,21 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hotels.peregrine.model.GuestRoomDTO;
+import com.hotels.peregrine.model.BreakfastDTO;
 
 @Repository
-public class GuestRoomRepository {
+public class BreakfastRepository {
 
 	@Autowired
 	private SqlSessionTemplate sql;
 	
-	private String namespace = "guest";
+	private String namespace = "break";
 
-	public void insert(GuestRoomDTO guestRoom) {
+	public void insert(BreakfastDTO breakfast) {
 		
-		sql.insert("guest.insert", guestRoom);
+		sql.insert("break.insert", breakfast);
+		
 	}
-
 	
-
+	
 }

@@ -5,14 +5,20 @@
 	
  	<insert id="insert" parameterType="CheckIn">
 
-		insert into CHECKIN(CHE_NO, COS_NO, CHE_IN_TIME, CHE_IN_DATE,
-		 CHE_OUT_DATE, CHE_DETAIL, room_name)
-	
-		 values (sq_che_no.nextval, #{customer.cosNo}, 
-		  sysdate, #{cheInDate}, #{cheOutDate}, #{cheDetail}, ${room.roomName});
-		  
+	insert into CHECKIN(
+	CHE_NO, COS_NO, ROOM_NAME, CHE_IN_TIME, CHE_IN_DATE, CHE_OUT_DATE, CHE_DETAIL)
+	VALUES(sq_CHE_NO.nextval,#{customer.cosNo},#{room.roomName},sysdate,#{cheInDate},#{cheOutDate},#{cheDetail})
 	</insert>
 
+	<select id="select" parameterType="CheckIn" resultType="Integer">
+		select CHE_NO
+		from
+		CHECKIN
+		where
+		rownum = 1 order by che_no desc
+	
+	
+	</select>
 
 
 </mapper>

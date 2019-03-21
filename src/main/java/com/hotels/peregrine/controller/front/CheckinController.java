@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hotels.peregrine.command.CheckinCommend;
+import com.hotels.peregrine.model.BreakfastDTO;
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
+import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckinService;
 
 @Controller
@@ -30,10 +32,11 @@ public class CheckinController {
 
 	
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
-	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute CheckinCommend command, Model model) {
+	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute BreakfastDTO breakfast, Model model) {
 		System.out.println("체크인 post");
-		System.out.println("다나와 :"+command.getGrStaySum()[0]+command.getGrStaySum()[1]);
-		service.action(check);
+		AutoTest.ModelBlackTest(breakfast);
+		service.action(check, breakfast);
+		
 		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");
 	}	
 }

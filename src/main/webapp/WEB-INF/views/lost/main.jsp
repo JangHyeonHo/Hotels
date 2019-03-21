@@ -39,8 +39,8 @@
 	<div id = "contents">
 	
   <input type="button" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
-    <input type="button" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
-    <input type="button" onclick="location.href='lost/delete'" id="btn-C" value="분실물 삭제">
+  <input type="button" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
+   
 
 	
 	

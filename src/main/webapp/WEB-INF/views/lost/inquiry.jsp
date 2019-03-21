@@ -46,15 +46,17 @@
 	<th>분실물 명</th>
 	<th>분실 등록 날짜</th>
 	<th>상세 내용</th>
+	<th></th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "lost">
 
 	<tr>
-	<td><a href = "inquiry/delete?lostNo=${lost.lostNo }">${lost.lostNo }</a></td>
+	<td>${lost.lostNo }</td>
 	<td>${lost.lostName }</td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${lost.lostDate }"/></td>
 	<td>${lost.lostLoc }</td>
+	<td><a href = "inquiry/delete?lostNo=${lost.lostNo }">삭제</a></td>
 	</tr>
 	
 	</c:forEach>

@@ -10,7 +10,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>예약</title>
+<title>체크인</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -130,12 +130,13 @@ $(function(){
 
 	})
 	
- 	var innerHtmlValue = "<select class = 'stay_num' name = 'grStaySum'>";
+	//객실 숙박인원을 1부터 10까지 받음
+ 	var innerHtmlValue = "<select class = 'stay_num' name = 'guestRoom.grStaySum'>";
 	for(var i = 0; i <= 10 ; i++){
 		if(i == 0){
 			innerHtmlValue += "<option value = '"+i+"'>객실 숙박인원</option>"
 		} else{
-			innerHtmlValue += "<option value = '"+i+"'>"+i+"명</option>"
+			innerHtmlValue += "<option value = '"+i+"'>숙박인원 : "+i+"명</option>"
 		}
 	}
 	innerHtmlValue += "</select>";	 
@@ -160,12 +161,70 @@ $(function(){
 	var guestNo = "";
 	for(var w = 1; w <= 1; w++){
 		if(w != 0){
-			guestNo += "객실번호<input type='text' name='grNo'>";
+			guestNo += "객실번호<input type='text' name='guestRoom.grNo'>";
 		}
 		
 	}
-	
 	$(".grNo").html(guestNo);
+	
+	
+	
+	var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
+	//식사 인원수 1부터 20까지 증가시킴
+	for(var i = 0; i <= 10; i++){
+		if(i == 0 ){
+			breakAdult += "<option value="+ i +">조식 성인 인원</option>";
+		}
+		
+		breakAdult += "<option value="+ i +">조식성인 : " + i + "명</option>";
+	}
+	breakAdult += "</select>";
+	//che_pre에 넣어줌
+	$(".che_pre1").html(breakAdult);
+	
+	
+	var breakChild = "<select class = 'che_pre2' name = 'breakChild'>";
+	//식사 인원수 1부터 20까지 증가시킴
+	for(var i = 0; i <= 10; i++){
+		if(i == 0 ){
+			breakChild += "<option value="+ i +">조식 어린이 인원</option>";
+		}
+		
+		breakChild += "<option value="+ i +">조식 어린이 : " + i + "명</option>";
+	}
+	breakChild += "</select>";
+	//che_pre에 넣어줌
+	$(".che_pre2").html(breakChild);
+	
+	
+	var dinAdult = "<select class = 'che_pre3' name = 'guestRoom.grDiAdult'>";
+	//식사 인원수 1부터 20까지 증가시킴
+	for(var i = 0; i <= 10; i++){
+		if(i == 0 ){
+			dinAdult += "<option value="+ i +">석식 성인 인원</option>";
+		}
+		
+		dinAdult += "<option value="+ i +">석식성인 : " + i + "명</option>";
+	}
+	dinAdult += "</select>";
+	//che_pre에 넣어줌
+	$(".che_pre3").html(dinAdult);
+	
+	var dinChild = "<select class = 'che_pre3' name = 'guestRoom.grDiChild'>";
+	//식사 인원수 1부터 20까지 증가시킴
+	for(var i = 0; i <= 10; i++){
+		if(i == 0 ){
+			dinChild += "<option value="+ i +">석식 어린이 인원</option>";
+		}
+		
+		dinChild += "<option value="+ i +">석식 어린이 : " + i + "명</option>";
+	}
+	dinChild += "</select>";
+	//che_pre에 넣어줌
+	$(".che_pre4").html(dinChild);
+	
+	
+	
 	
 	$("#roomscount").on("change",function(){
 		var value = $(this).val();
@@ -174,6 +233,11 @@ $(function(){
 			/* AllRooms += selectValue; */
 			AllRooms += innerHtmlValue;
 			AllRooms += guestNo;
+			AllRooms += breakAdult;
+			AllRooms += breakChild;
+			AllRooms += dinAdult;
+			AllRooms += dinChild;
+		
 			AllRooms += "<br>"
 		}
 		$("#stayhidden").html(AllRooms)
@@ -267,22 +331,27 @@ $(function(){
     </select>
 
     <div id = "stayhidden">
-     <select class = "stay_num" name = "grStaySum">
-    <option value = "0">객실 숙박인원</option>
-    <option value = "1">1명</option>
-    <option value = "2">2명</option>
-    <option value = "3">3명</option>
-    <option value = "4">4명</option>
-    <option value = "5">5명</option>
-    <option value = "6">6명</option>
-    <option value = "7">7명</option>
-    <option value = "8">8명</option>
-    <option value = "9">9명</option>
-    <option value = "10">10명</option>
+
+      <select class = "stay_num" name = "guestRoom.grStaySum">
     
-    </select>
-        객실번호<input type="text" class = "grNo" name = "grNo">      
+      </select> 
+
+        객실번호<input type="text" class = "grNo" name = "guestRoom.grNo">      
      
+     
+     <select class="che_pre1" name="breakAdult">
+		
+	 </select> 
+	 <select class="che_pre2" name="breakChild">
+		
+	</select> 
+	<select class="che_pre3" name="guestRoom.grDiAdult">
+		
+	</select>
+	<select class="che_pre4" name="guestRoom.grDiChild">
+		
+	</select>
+			
     </div>
     
     <div id = "che_pre">객실 선호사항</div> <input type="text" id = "che_pre" name = "cheDetail">
