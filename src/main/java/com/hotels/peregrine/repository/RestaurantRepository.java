@@ -49,4 +49,9 @@ public class RestaurantRepository {
 		return template.selectList("restaurant.reslist");
 	}
 	
+	public List<RestaurantReservationDTO> reserDetail(long num){
+		
+		return template.selectList("restaurant.resdetail",num);
+	}
+	
 }

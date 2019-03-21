@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,13 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<h1>레스토랑 예약자 명단</h1>
-	
+	<c:forEach items="${list }" var="reslist">
+	예약 번호 <a href=list/detail?rrno=${reslist.rrNo }>${reslist.rrNo }</a> ----
+	고객 성명 ${reslist.customer. cosLName} ${reslist.customer. cosFName } ---- 
+	전화번호 ${reslist.customer. cosTelno } -----
+	이메일 ${reslist.customer.cosEmail } 
+	<br>
+	</c:forEach>
 	</div>
 	<footer></footer>
 </body>

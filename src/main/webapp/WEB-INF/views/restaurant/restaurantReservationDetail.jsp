@@ -3,14 +3,14 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>레스토랑 예약 고객정보</title>
+<title>레스토랑 예약 상세정보</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -30,87 +30,26 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 
-<script type="text/javascript">
-
-	
-function exist(){
-	
-	var a = document.getElementById("al").value; 
-	
-	var b = "Y";
-	console.log(a);
-	
-	if(a==b){
-		$("#albox").css("display","block");
-	}else{
-		$("#albox").css("display","none");
-	}
-
-}
-
-
-$(function(){
-	
-	var inputHidden = "<input type = 'hidden' name="
-		
-		$("#submitBtn").on("click",function(e){
-			var al = $("#al").val()+ "(" + $("#albox").val()+") 알러지 보유중" 
-			var checkInHiddenHtml = inputHidden + "'customer.cosAllergy' value='"+ al +"'>"
-
-			console.log(checkInHiddenHtml);
-			
-			$("#hiddenBox").html(checkInHiddenHtml);
-	
-		 this.form.submit(); 
-			 
-		})
-		
-		
-		
-		
-/* 	     $("#submitBtn").click(function() {
-	        var options = {
-	              type:"GET",
-	              url :"./reservation",
-	              dataType:"html", 
-	              success:function(result){ 
-	                 $('#contents').html(result) 
-	              }
-	        };
-	        $('#frm').ajaxSubmit(options);
-	        return false;
-	     });  */
-	
-	
-		
-	
-});
-
-
-
-
-</script>
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header><h1>고객 정보</h1></header>
+	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	 <form:form id="frm">
-	 성  <input type="text" name="customer.cosLName"><br>
-	 이름 <input type="text" name="customer.cosFName"><br>
-	 전화번호 <input type="text" name="customer.cosTelno"><br>
-	 이메일 주소 <input type="email" name="customer.cosEmail"><br>
-	 알러지 유무 <select name="Allergy" id="al" onclick="exist()"><br>
-	 	 <option value="N">N</option>
-	 	 <option value="Y">Y</option>
-	 	</select><br>
-	 	<input type="text" name="customeral" id="albox" style = "display:none;" placeholder="알러지 상세">
-	 	<div id = "hiddenBox">	
-		</div>
-	 <button type="button" id="submitBtn">다음</button>
-	 </form:form>
+	<h1>레스토랑 예약 상세정보</h1>
+	<c:forEach items="${list }" var="rlist">
+	예약 번호 ${rlist.rrNo }<br>
+	고객 성명 ${rlist.customer. cosLName} ${rlist.customer.cosFName } <br>
+	전화번호 ${rlist.customer. cosTelno } <br>
+	이메일 ${rlist.customer.cosEmail } <br>
+	 성인수 ${rlist.rrAdult } <br>
+	어린이수 ${rlist.rrChild } <br>
+	알러지 유무 ${rlist.customer.cosAllergy }
+	
+	</c:forEach>
+	<br>
+	<button onclick="location.href='../list'">리스트로</button>
 	</div>
 	<footer></footer>
 </body>
