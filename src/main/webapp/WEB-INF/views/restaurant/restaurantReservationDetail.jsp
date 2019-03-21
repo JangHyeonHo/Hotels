@@ -40,16 +40,17 @@
 	<h1>레스토랑 예약 상세정보</h1>
 	<c:forEach items="${list }" var="rlist">
 	예약 번호 ${rlist.rrNo }<br>
-	고객 성명 ${rlist.customer. cosLName} ${rlist.customer.cosFName } <br>
-	전화번호 ${rlist.customer. cosTelno } <br>
+	고객 성명 ${rlist.customer.cosLName} ${rlist.customer.cosFName } <br>
+	전화번호 ${rlist.customer.cosTelno } <br>
 	이메일 ${rlist.customer.cosEmail } <br>
 	 성인수 ${rlist.rrAdult } <br>
 	어린이수 ${rlist.rrChild } <br>
-	알러지 유무 ${rlist.customer.cosAllergy }
-	
+	알러지 유무 ${rlist.customer.cosAllergy }<br>
+	<button onclick="location.href='../list'">리스트로</button>
+	<button onclick="location.href='/peregrine/comp/restaurant/reservation/list/detail/delete?cosno=${rlist.customer.cosNo}'">삭제</button>
 	</c:forEach>
 	<br>
-	<button onclick="location.href='../list'">리스트로</button>
+	
 	</div>
 	<footer></footer>
 </body>
