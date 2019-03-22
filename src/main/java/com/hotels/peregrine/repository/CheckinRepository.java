@@ -20,10 +20,10 @@ public class CheckinRepository {
 		sql.insert("checkin.insert", check);
 	}
 
-	public Integer select(CheckInDTO check) {
+	public Integer select() {
 		
 		
-		return  sql.selectOne("checkin.select", check);
+		return  sql.selectOne("checkin.select");
 	}
 
 
