@@ -8,7 +8,7 @@
 	values(sq_lost_no.nextval, #{lostName}, #{lostDate}, ${lostLoc})
 	</insert>
 	
-	<select id="inquiry" parameterType="Lost" resultMap="lostList">
+	<select id="inquiry" resultMap="lostList">
 	select lost_no, LOST_NAME, LOST_DATE, LOST_LOC
 	from lost
 	</select>

@@ -40,17 +40,34 @@
 <script type="text/javascript">
 
 
-var mealNum = "";
-
+var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
 //식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 20; i++){
-	if(i == 0){
-		mealNum += "<option value = '"+i+"'>객실 숙박인원</option>"
+for(var i = 0; i <= 10; i++){
+	if(i == 0 ){
+		breakAdult += "<option value="+ i +">조식 성인 인원</option>";
 	}
-	mealNum += "<option value="+ i +">" + i + "</option>"
+	
+	breakAdult += "<option value="+ i +">조식성인 : " + i + "명</option>";
 }
+breakAdult += "</select>";
 //che_pre에 넣어줌
-$(".che_pre").html(mealNum);
+$(".che_pre1").html(breakAdult);
+
+
+var breakChild = "<select class = 'che_pre2' name = 'breakChild'>";
+//식사 인원수 1부터 20까지 증가시킴
+for(var i = 0; i <= 10; i++){
+	if(i == 0 ){
+		breakChild += "<option value="+ i +">조식 어린이 인원</option>";
+	}
+	
+	breakChild += "<option value="+ i +">조식 어린이 : " + i + "명</option>";
+}
+breakChild += "</select>";
+//che_pre에 넣어줌
+$(".che_pre2").html(breakChild);
+
+
 </script>
 
 </head>
@@ -60,18 +77,12 @@ $(".che_pre").html(mealNum);
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 
-		<div id="che_meal">
-			<select class="che_pre" name="breakAdult">
-				<option value="0">조식 성인 인원</option>
-
-			</select> <select class="che_pre" name="breakChild">
-				<option value="0">조식 어린이 인원</option>
-			</select> <select class="che_pre" name="dinAdult">
-				<option value="0">석식 성인 인원</option>
-			</select> <select class="che_pre" name="dinChild">
-				<option value="0">석식 어린이 인원</option>
-			</select>
-		</div>
+     <select class="che_pre1" name="breakAdult">
+		
+	 </select> 
+	 <select class="che_pre2" name="breakChild">
+		
+	</select> 
 
 	</div>
 	<footer></footer>
