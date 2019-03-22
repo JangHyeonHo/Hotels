@@ -25,6 +25,8 @@ public class RestaurantReservationDetailContorller {
 		
 		List<RestaurantReservationDTO> list= service.action(num);
 		
+		System.out.println(list.get(0).getCustomer().getCosNo());
+		System.out.println(list.get(0).getRrNo());
 		model.addAttribute("list",list);
 		
 		return "restaurant/restaurantReservationDetail";

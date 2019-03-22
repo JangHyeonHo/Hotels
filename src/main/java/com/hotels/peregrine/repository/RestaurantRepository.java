@@ -54,4 +54,9 @@ public class RestaurantRepository {
 		return template.selectList("restaurant.resdetail",num);
 	}
 	
+	public void resdelete(long num) {
+		
+		template.delete("restaurant.resdelete",num);
+	}
+	
 }

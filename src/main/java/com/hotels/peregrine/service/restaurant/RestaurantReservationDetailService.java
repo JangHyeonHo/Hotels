@@ -18,4 +18,10 @@ public class RestaurantReservationDetailService {
 		
 		return repository.reserDetail(num); 
 	}
+	
+	public void deleteaction(long num) {
+		
+		repository.resdelete(num);
+		
+	}
 }

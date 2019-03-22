@@ -65,11 +65,11 @@
 	
 	<select id="resdetail" resultMap="resdetailbase">
 	
-	SELECT r.RR_NO AS rrno,r.RR_ADULT as rrad,RR_CHILD as rrch,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) 
+	SELECT r.RR_NO AS rrno,r.RR_ADULT as rrad,RR_CHILD as rrch,r.COS_NO,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) 
 	
 	<where>
 	
-	r.RR_NO = #{num} ORDER BY RRNO desc
+	r.RR_NO = #{num}
 	
 	</where>
 	
@@ -77,11 +77,25 @@
 	
 	</select>
 	
+	<delete id="resdelete" parameterType="Long">
+	
+	DELETE FROM RESTAURANT_RESERVATION
+	
+	<where>
+	
+	COS_NO = ${num}
+	
+	</where> 
+	
+	
+	
+	</delete>
 	
 	<resultMap type="RestaurantReservation" id="resdetailbase">
 	<id column="RR_NO" jdbcType="BIGINT" property="rrNo"/>
 	<result column="RR_ADULT" jdbcType="BIGINT" property="rrAdult"/>
 	<result column="RR_CHILD" jdbcType="BIGINT" property="rrChild"/>
+	<result column="COS_NO" jdbcType="BIGINT" property="customer.cosNo"/>
 	<result column="COS_TELNO" jdbcType="NVARCHAR" property="customer.cosTelno"/>
 	<result column="COS_L_NAME" jdbcType="NVARCHAR" property="customer.cosLName"/>
 	<result column="COS_F_NAME" jdbcType="NVARCHAR" property="customer.cosFName"/>
