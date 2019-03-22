@@ -10,7 +10,7 @@ import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.service.restaurant.RestaurantReservationDetailService;
 
 @Controller
-@RequestMapping("comp/restaurant/reservation/list/detail/delete")
+@RequestMapping("restaurant/reservation/list/detail/delete")
 public class RestaurantReservationDeleteContorller {
 
 	@Autowired
@@ -23,6 +23,6 @@ public class RestaurantReservationDeleteContorller {
 		service.deleteaction(no);
 		service.deleteactionTwo(no);
 		
-		return "redirect:reservation/list";
+		return "redirect:../../list";
 	}
 }

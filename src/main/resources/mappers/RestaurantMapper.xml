@@ -10,20 +10,6 @@
 
 	</insert>
 
-	<insert id="resercusinsert"
-		parameterType="RestaurantReservation">
-
-		INSERT INTO CUSTOMER(COS_NO,
-		COS_TELNO,
-		COS_L_NAME,
-		COS_F_NAME,
-		COS_EMAIL,
-		COS_ALLERGY)
-		VALUES(COS_NO.nextval,#{customer.cosTelno},#{customer.cosLName},#{customer.cosFName},#{customer.cosEmail},#{customer.cosAllergy})
-
-	</insert>
-
-
 
 	<select id="namelist" resultMap="resnamebase">
 
@@ -44,7 +30,7 @@
 		RR_ADULT,
 		RR_CHILD,
 		RR_REG_DATE)
-		VALUES(RR_NO.nextval,rr_cos_no.nextval,#{restaurant.resName},#{restaurant.resChair},#{rrAdult},#{rrChild},sysdate)
+		VALUES(RR_NO.nextval,#{customer.cosNo},#{restaurant.resName},#{restaurant.resChair},#{rrAdult},#{rrChild},sysdate)
 
 	</insert>
 

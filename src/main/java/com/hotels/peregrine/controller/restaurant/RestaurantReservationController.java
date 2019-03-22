@@ -22,7 +22,7 @@ public class RestaurantReservationController {
 	@Autowired
 	RestaurantReservationService service;
 
-	@RequestMapping(value="/comp/restaurant/reservation/cusinfo",method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant/reservation/cusinfo",method=RequestMethod.GET)
 	public String getformOne() {
 		System.out.println("레스토랑 예약 고객정보 오픈");
 		
@@ -41,7 +41,7 @@ public class RestaurantReservationController {
 	
 	
 	
-	@RequestMapping(value="/comp/restaurant/reservation",method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.GET)
 	public String getformTow(@ModelAttribute RestaurantReservationDTO dto , Model model) {
 		System.out.println("레스토랑 예약 오픈");
 		
@@ -51,11 +51,11 @@ public class RestaurantReservationController {
 		return "restaurant/restaurantReservation";
 	}
 	
-	@RequestMapping(value="/comp/restaurant/reservation",method=RequestMethod.POST)
+	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.POST)
 	public String postform(@ModelAttribute RestaurantReservationDTO dto ) {
 		System.out.println("레스토랑 예약 작동");
 		AutoTest.ModelBlackTest(dto);
-		service.cusaction(dto);
+		dto = service.cusaction(dto);
 		service.mainaction(dto);
 		
 		return "redirect:./reservation/list";
