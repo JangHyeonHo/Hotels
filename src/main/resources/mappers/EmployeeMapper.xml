@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee">
+
+	<insert id="einsert" parameterType="Employee">
+
+		INSERT INTO EMPLOYEE(EMP_NO,
+		EMP_NAME,
+		EMP_EMAIL,
+		EMP_PHONE,
+		EMP_B_DATE,
+		EMP_B_GENDER,
+		EMP_SALARY,
+		EMP_ADDR,
+		EMP_ACC_NUM,
+		EMP_ACC_BANK,
+		EMP_TOP_SIZE,
+		EMP_BOT_SIZE,
+		EMP_MANAGE_NAME,
+		EMP_DEPART_NAME)
+
+		VALUES(emp_no.nextval,#{empName},#{empEmail},#{empPhone},#{empBDate},#{empGender},#{empSalary},#{empAddr},#{empAccNum},#{empAccBank},#{empTopSize},#{empBotSize},#{empManageName},#{empDepartName})
+
+
+	</insert>
+
+
+
+</mapper>

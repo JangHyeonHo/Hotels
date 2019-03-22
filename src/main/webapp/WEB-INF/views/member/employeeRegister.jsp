@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
 <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
@@ -38,21 +38,23 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<h1>직원등록</h1>
-	직원 성명 <input type="text" name="empName"> 
-	이메일 <input type="email" name="empEmail">
-	전화 번호 <input type="text" name="empPhone"> 
-	생년월일 <input type="date" name="empBDate"> 
-	성별  남 <input type="radio" name="empGender" vlaue="M">
-	       여<input type="radio" name="empGender" value="F">
-	급여 <input type="text" name="empSalary"> 
-	주소 <input type="text" name="empAddr"> 
-	통장 계좌번호 <input type="text" name="empAccNum"> 
-	통장 은행명 <input type="text" name="empAccBank"> 
-	상의 사이즈 <input type="text" name="empTopSize"> 
-	하의 사이즈 <input type="text" name="empBotSize"> 
-	부서명 <input type="text" name="empDepartName"> 
-	직급명 <input type="text" name="empManageName"> 
-	
+	<form:form>
+	직원 성명 <input type="text" name="empName"> <br>
+	이메일 <input type="email" name="empEmail"> <br>
+	전화 번호 <input type="text" name="empPhone"> <br>
+	생년월일 <input type="date" name="empBDate"> <br>
+	성별  남 <input type="radio" name="empGender" value="M"> 
+	       여<input type="radio" name="empGender" value="F"> <br>
+	급여 <input type="text" name="empSalary"> <br>
+	주소 <input type="text" name="empAddr"> <br>
+	통장 계좌번호 <input type="text" name="empAccNum"> <br> 
+	통장 은행명 <input type="text" name="empAccBank"> <br>
+	상의 사이즈 <input type="text" name="empTopSize"> <br>
+	하의 사이즈 <input type="text" name="empBotSize"> <br>
+	부서명 <input type="text" name="empDepartName"> <br>
+	직급명 <input type="text" name="empManageName"> <br>
+	<input type="submit" value="등록">
+	</form:form>
 	</div>
 	<footer></footer>
 </body>
