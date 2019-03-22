@@ -29,7 +29,7 @@ public class DistributorRepository {
 		return template.selectList(namespace + ".disList", mapping);
 	}
 	
-	//유통업체 csv 대량 등록(미완)
+	//유통업체 csv 대량 등록(완)
 	public int disListRegist(List<DistributorDTO> list) {
 		// TODO Auto-generated method stub
 		int result = 0;

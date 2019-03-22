@@ -50,7 +50,7 @@
 				if(!confirm("정말로 해당 유통업체와의 계약을 해지하시겠습니까?\n해지하면 다시 되돌릴 수 없습니다.")){
 					return false;
 				}
-				location.href="./contract/delete?contNo="+no;
+				location.href="./termination?contNo="+no;
 			}
 		})
 		$("#matRegBtn").on("click",function(){
@@ -106,7 +106,7 @@
 			<input type="button" value="<spring:message code="dist.list" />로"
 				onclick = "location.href = './distributor'">
 		</c:if>
-		<input type = "button" value="<spring:message code="back" />" onclick = "location.href = './'"/>
+		<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
 	</div>
 	<footer></footer>
 </body>
