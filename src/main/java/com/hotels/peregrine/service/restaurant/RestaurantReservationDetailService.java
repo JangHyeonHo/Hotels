@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.repository.RestaurantRepository;
 
@@ -19,9 +20,14 @@ public class RestaurantReservationDetailService {
 		return repository.reserDetail(num); 
 	}
 	
-	public void deleteaction(long num) {
+	public void deleteaction(long no) {
 		
-		repository.resdelete(num);
+		repository.resdelete(no);
 		
+	}
+	
+	public void deleteactionTwo(long no) {
+		
+		repository.resdeleteTwo(no);
 	}
 }

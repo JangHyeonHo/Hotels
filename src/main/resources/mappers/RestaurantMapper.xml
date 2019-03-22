@@ -10,29 +10,6 @@
 
 	</insert>
 
-	<insert id="resercusinsert"
-		parameterType="RestaurantReservation">
-
-		INSERT INTO CUSTOMER(COS_NO,
-		COS_TELNO,
-		COS_L_NAME,
-		COS_F_NAME,
-		COS_EMAIL,
-		COS_ALLERGY)
-		VALUES(COS_NO.nextval,#{customer.cosTelno},#{customer.cosLName},#{customer.cosFName},#{customer.cosEmail},#{customer.cosAllergy})
-
-	</insert>
-
-	<select id="resercusnosearch" resultMap="cossearch">
-
-		SELECT COS_NO FROM CUSTOMER
-
-		<where>
-			rownum=1 ORDER BY cos_no DESC
-		</where>
-
-
-	</select>
 
 	<select id="namelist" resultMap="resnamebase">
 
@@ -65,7 +42,7 @@
 	
 	<select id="resdetail" resultMap="resdetailbase">
 	
-	SELECT r.RR_NO AS rrno,r.RR_ADULT as rrad,RR_CHILD as rrch,r.COS_NO,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) 
+	SELECT r.RR_NO AS rrno, r.RR_ADULT ,r.RR_CHILD , r.COS_NO,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) 
 	
 	<where>
 	
@@ -77,13 +54,25 @@
 	
 	</select>
 	
-	<delete id="resdelete" parameterType="Long">
+	<delete id="resdelete" parameterType="hashmap">
 	
 	DELETE FROM RESTAURANT_RESERVATION
 	
 	<where>
 	
-	COS_NO = ${num}
+	COS_NO = ${no}
+	
+	</where> 
+	
+	</delete>
+	
+	<delete id="resdeleteTwo" parameterType="hashmap">
+	
+	DELETE FROM CUSTOMER
+	
+	<where>
+	
+	COS_NO = ${no}
 	
 	</where> 
 	
@@ -119,9 +108,9 @@
 
 
 
-	<resultMap type="RestaurantReservation" id="cossearch">
+<!-- 	<resultMap type="RestaurantReservation" id="cossearch">
 		<id column="COS_NO" jdbcType="BIGINT" property="customer.cosNo" />
-	</resultMap>
+	</resultMap> -->
 
 	<resultMap type="RestaurantReservation" id="resnamebase">
 		<id column="RES_NAME" jdbcType="NVARCHAR"

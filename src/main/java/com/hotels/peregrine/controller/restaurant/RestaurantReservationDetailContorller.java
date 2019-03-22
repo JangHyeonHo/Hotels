@@ -13,7 +13,7 @@ import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.service.restaurant.RestaurantReservationDetailService;
 
 @Controller
-@RequestMapping("/comp/restaurant/reservation/list/detail")
+@RequestMapping("/restaurant/reservation/list/detail")
 public class RestaurantReservationDetailContorller {
 
 	@Autowired
@@ -25,8 +25,8 @@ public class RestaurantReservationDetailContorller {
 		
 		List<RestaurantReservationDTO> list= service.action(num);
 		
-		System.out.println(list.get(0).getCustomer().getCosNo());
-		System.out.println(list.get(0).getRrNo());
+		System.out.println(list.get(0).getRrAdult());
+		System.out.println(list.get(0).getRrChild());
 		model.addAttribute("list",list);
 		
 		return "restaurant/restaurantReservationDetail";

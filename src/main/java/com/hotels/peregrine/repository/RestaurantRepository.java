@@ -1,5 +1,6 @@
 package com.hotels.peregrine.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,11 +28,6 @@ public class RestaurantRepository {
 		
 	}
 	
-	public RestaurantReservationDTO resercusnosearch() {
-		
-	return	template.selectOne("restaurant.resercusnosearch");
-		
-	}
 	
 	public List<RestaurantReservationDTO> resnamesearch() {
 		
@@ -54,9 +50,18 @@ public class RestaurantRepository {
 		return template.selectList("restaurant.resdetail",num);
 	}
 	
-	public void resdelete(long num) {
+	public void resdelete(long no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
 		
-		template.delete("restaurant.resdelete",num);
+		template.delete("restaurant.resdelete",map);
+	}
+	
+	public void resdeleteTwo(long no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
+		
+		template.delete("restaurant.resdeleteTwo",map);
 	}
 	
 }

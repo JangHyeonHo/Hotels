@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 자재 입고(material_in) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -10,15 +12,19 @@ import java.util.Date;
  * <b>★miInbDate</b> 자재 입고일 <b>Primary Key</b><br>
  * <b>miPrice</b> 자재 가격<br>
  * <b>miInContent</b> 자재 입고 내용<br>
+ * <b>★miInNum</b> 자재 입고 수<br>
  * <b>관계 테이블</b><br>
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
  * <b>★material.matNo</b> 자재(material)테이블 <b>Foreign Key</b><br>
- * @version 1.0
+ * @version 1.4
  * */
 public class MaterialInboundDTO implements Serializable {
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date miInbDate;
 	private int miPrice;
-	private int miInContent;
+	private String miInContent;
+	private int miInNum;
 	private MaterialDTO material;
 	public Date getMiInbDate() {
 		return miInbDate;
@@ -34,11 +40,18 @@ public class MaterialInboundDTO implements Serializable {
 		this.miPrice = miPrice;
 		return this;
 	}
-	public int getMiInContent() {
+	public String getMiInContent() {
 		return miInContent;
 	}
-	public MaterialInboundDTO setMiInContent(int miInContent) {
+	public MaterialInboundDTO setMiInContent(String miInContent) {
 		this.miInContent = miInContent;
+		return this;
+	}
+	public int getMiInNum() {
+		return miInNum;
+	}
+	public MaterialInboundDTO setMiInNum(int miInNum) {
+		this.miInNum = miInNum;
 		return this;
 	}
 	public MaterialDTO getMaterial() {

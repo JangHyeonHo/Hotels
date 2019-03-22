@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,11 @@
 		<form:form>
 		<h3><spring:message code="material.regist" /></h3>
 		<spring:message code="mat.name" /> : <input type = "text" id = "matName" name = "matName"><br>
-		<spring:message code="mat.kind" /> : <input type = "text" id = "matKind" name = "matKind"><br>
+		<spring:message code="mat.kind" /> : <select name="matKind">
+		<c:forEach begin="1" end="${materialLv}" step="1" var="i">
+			<option value = "<spring:message code="material.lv${i}" />"><spring:message code="material.lv${i}" /></option>
+		</c:forEach>
+		</select><br>
 		<spring:message code="material.regist" /> <spring:message code="dis.name" /> : ${distributor.disName} <input type = "hidden" name = "contract.contNo" value = "${contNo}">
 		<input type = "hidden" name = "contract.distributor.disNo" value = "${distributor.disNo}"><br>
 		<input type = "submit" value = "<spring:message code="regist" />">
