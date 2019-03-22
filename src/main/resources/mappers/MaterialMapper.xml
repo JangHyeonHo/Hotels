@@ -104,4 +104,23 @@
 		</association>
 	</resultMap>
 	
+	<select id="searchList" parameterType="HashMap" resultMap="searchMap">
+		SELECT 
+		<include refid="AllColumn"/> 
+		FROM 
+		material
+		<where>
+			MAT_NAME like #{query} 
+			<if test="search!=null">
+				and MAT_KIND = #{search}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap type="Material" id="searchMap">
+		<id column="MAT_NO" jdbcType="INTEGER" property="matNo"/>
+		<result column="MAT_NAME" jdbcType="VARCHAR" property="matName"/>
+		<result column="MAT_KIND" jdbcType="VARCHAR" property="matKind"/>
+	</resultMap>
+	
 </mapper>

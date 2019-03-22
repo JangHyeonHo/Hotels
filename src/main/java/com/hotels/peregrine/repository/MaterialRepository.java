@@ -54,5 +54,11 @@ public class MaterialRepository {
 		return template.selectOne(namespace + ".oneMaterial", no);
 	}
 	
+	//재료 검색할 때
+	public List<MaterialDTO> searchMaterialList(HashMap<String, String> mapping) {
+		// TODO Auto-generated method stub
+		return template.selectList(namespace + ".searchList", mapping);
+	}
+	
 	
 }

@@ -83,7 +83,7 @@
 				<th><spring:message code="mat.kind" /></th>
 				<th><spring:message code="dis.name" /></th>
 				<th><spring:message code="mat.val" /></th>
-				<th><spring:message code="radio" /></th>
+				<th><spring:message code="regist" /></th>
 			</tr>
 			<c:forEach items="${materialList}" var="mat">
 			<tr>
