@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="outbound">
+	<cache />
+	<sql id="AllColumns">
+	MO_OUTB_DATE, MO_OUT_NUM, MO_OUT_CONTENT
+	</sql>
+	<select id="allList" resultMap="AllInbMap">
+		SELECT 
+		<include refid="AllColumns" />, o.EMP_NO, m.MAT_NAME
+		FROM
+		material_out o
+		LEFT OUTER JOIN
+		 material m 
+		ON(i.mat_no = m.mat_no)
+		ORDER BY
+		MO_OUTB_DATE desc
+	</select>
+	
+	<resultMap type="MaterialOutbound" id="AllInbMap">
+		<id column="MO_OUTB_DATE" jdbcType="TIMESTAMP" property="moOutbDate"/>
+		<result column="MO_OUT_NUM" jdbcType="INTEGER" property="moOutNum"/>
+		<result column="MO_OUT_CONTENT" jdbcType="VARCHAR" property="moOutContent"/>
+		<association property="material" javaType="Material">
+			<result column="MAT_NAME" jdbcType="VARCHAR" property="matName"/>
+		</association>
+		<association property="employee" javaType="Employee">
+			<result column="EMP_NO" jdbcType="VARCHAR" property="empNo"/>
+		</association>
+	</resultMap>
+	
+</mapper>

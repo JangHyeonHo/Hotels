@@ -2,20 +2,106 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="material">
 	<cache />
+	
 	<sql id="AllColumn">
 		MAT_NO, MAT_NAME, MAT_KIND
 	</sql>
-	<select id="materialList" resultMap="ListCall">
-		SELECT
-			<include refid="AllColumn"/>, CONT_NO
-		FROM
-			material
+	
+	<select id="materialList" resultMap="ListCall" parameterType="HashMap">
+		SELECT 
+ 			rnum, <include refid="AllColumn"/>, CONT_NO, DIS_NAME, COUNTING
+ 		FROM
+ 		(SELECT
+ 			rownum as rnum, <include refid="AllColumn"/>, CONT_NO, DIS_NAME, COUNTING
+ 		FROM
+		(SELECT
+			m.MAT_NO, m.MAT_NAME, m.MAT_KIND, c.CONT_NO, d.DIS_NAME, (sum(nvl(i.mi_in_num,0))-sum(nvl(o.mo_out_num,0))) as COUNTING
+		 FROM 
+		 			MATERIAL m 
+		 	LEFT OUTER JOIN 
+		 			CONTRACT c 
+		 		ON(c.cont_no = m.CONT_NO) 
+		 	LEFT OUTER JOIN 
+		 			DISTRIBUTOR d 
+		 		ON(c.DIS_NO = d.DIS_NO) 
+		 	LEFT OUTER JOIN 
+		 			MATERIAL_IN i 
+		 		ON(m.mat_no = i.MAT_NO) 
+		 	LEFT OUTER JOIN 
+		 			MATERIAL_OUT o 
+		 		ON(m.MAT_NO = o.MAT_NO) 
+		 	GROUP BY 
+		 		m.mat_no, m.mat_name, m.mat_kind, c.cont_no, d.DIS_NAME
+		 ORDER BY 
+		 MAT_NO asc
+		 ) WHERE 
+		 	rownum &lt;= #{maxNum}
+		 )
+		 WHERE
+		 	rnum &gt;= #{minNum}
 	</select>
-	<resultMap type="Material" id="ListCall">
+	
+	<resultMap
+	type="MaterialCountCommand" id="ListCall">
+	<id column="MAT_NO" jdbcType="INTEGER" property="matNo" />
+	<result column="MAT_NAME" jdbcType="VARCHAR" property="matName" />
+	<result column="COUNTING" jdbcType="INTEGER" property="counting" />
+	<result column="MAT_KIND" jdbcType="VARCHAR" property="matKind" />
+	<association property="contract" javaType="Contract">
+		<id column="CONT_NO" jdbcType="INTEGER" property="contNo" />
+		<association property="distributor"
+			javaType="Distributor">
+				<result column="DIS_NAME" jdbcType="VARCHAR"
+				property="disName" />
+			</association>
+		</association>
+	</resultMap>
+	
+	<insert id="insertMaterial" parameterType="Material">
+		INSERT INTO 
+			material(<include refid="AllColumn"/>, CONT_NO)
+		VALUES
+			(sq_mat_no.nextval, #{matName}, #{matKind}, #{contract.contNo})
+	</insert>
+	
+	<select id="listCnt" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM
+			material	
+	</select>
+	
+	<delete id="deleteMaterial" parameterType="Integer">
+		DELETE FROM 
+			material
+		WHERE
+			mat_no = #{no}
+	</delete>
+	
+	<select id="oneMaterial" resultMap="OneCall" parameterType="Integer">
+		SELECT 
+		<include refid="AllColumn"/>, c.CONT_NO, d.DIS_NAME
+		FROM 
+			(material m 
+		LEFT OUTER JOIN
+		 	contract c ON(c.CONT_NO = m.CONT_NO))
+		 LEFT OUTER JOIN
+		 	distributor d
+		 ON(c.DIS_NO = d.DIS_NO)
+		 WHERE
+		 	mat_no = #{no}
+	</select>
+	
+	<resultMap type="Material" id="OneCall">
 		<id column="MAT_NO" jdbcType="INTEGER" property="matNo"/>
 		<result column="MAT_NAME" jdbcType="VARCHAR" property="matName"/>
 		<result column="MAT_KIND" jdbcType="VARCHAR" property="matKind"/>
-		<result column="CONT_NO" jdbcType="VARCHAR" property="contract.contNo"/>
+		<association property="contract" javaType="Contract">
+			<id column="CONT_NO" jdbcType="INTEGER" property="contNo"/>
+			<association property="distributor" javaType="Distributor">
+				<result column="DIS_NAME" jdbcType="VARCHAR" property="disName"/>
+			</association>
+		</association>
 	</resultMap>
 	
 </mapper>

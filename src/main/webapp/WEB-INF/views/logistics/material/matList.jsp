@@ -29,7 +29,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<script>
+	$(function(){
+		$("#delBtn").on("click",function(){
+			var no = $("input:radio[name = 'matNo']:checked").val();
+			console.log(no);
+			if(no == null){
+				alert("삭제할 자재를 선택하여 주십시오.")
+				return false;
+			} else{
+				if(!confirm("정말로 자재를 등록을 삭제하시겠습니까?\n삭제하면 해당 자재의 재고는 초기화됩니다. ")){
+					return false;
+				}
+				location.href="./material/delete?matNo="+no;
+			}
+		})
+		
+		$("#inboundBtn").on("click",function(){
+			var no = $("input:radio[name = 'matNo']:checked").val();
+			console.log(no);
+			if(no == null){
+				alert("입고할 자재를 선택하여 주십시오..")
+				return false;
+			} else{
+				location.href="./material/inbound?matNo="+no;
+			}
+		})
+		$("#outboundBtn").on("click",function(){
+			var no = $("input:radio[name = 'matNo']:checked").val();
+			console.log(no);
+			if(no == null){
+				alert("출고할 자재를 선택하여 주십시오..")
+				return false;
+			} else{
+				location.href="./material/outbound?matNo="+no;
+			}
+		})
+	})
 
+</script>
 
 </head>
 <body>
@@ -40,19 +78,50 @@
 		<h3><spring:message code="material.list"/></h3>
 		<table>
 			<tr>
-				<th></th>
-			
+				<th><spring:message code="mat.no" /></th>
+				<th><spring:message code="mat.name" /></th>
+				<th><spring:message code="mat.kind" /></th>
+				<th><spring:message code="dis.name" /></th>
+				<th><spring:message code="mat.val" /></th>
+				<th><spring:message code="radio" /></th>
 			</tr>
+			<c:forEach items="${materialList}" var="mat">
+			<tr>
+				<td>${mat.matNo}</td>
+				<td>${mat.matName}</td>
+				<td>${mat.matKind}</td>
+				<td>${mat.contract.distributor.disName}</td>
+				<td>${mat.counting}</td>
+				<td><input type="radio" name="matNo" value="${mat.matNo}"></td>
+			</tr>
+			</c:forEach>
 			
 		</table>
-		
+		<div id = "paging">
+		<c:set var="page" value="${paging.page}"/>
+			<c:if test="${paging.prev}"><a href="?page=1">◀◀</a><a href="?page=${paging.startPage-1}">◀</a></c:if>
+			<c:forEach step="1" begin="${paging.startPage}" end="${paging.endPage}" var="i">
+				<c:if test="${i == page}">
+				<a style = "font-weight : bold">${i}</a>
+				</c:if>
+				<c:if test="${i != page}">
+				<a href="?page=${i}">${i}</a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
+		</div>
 		
 	</div>
 	<c:if test="${empty materialList}">
 		<spring:message code="material.nothing" /><br>
-		<input type = "button" value = "<spring:message code="material.regist" />" onclick = "location.href = './contract'">
 	</c:if>
-	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = './'"/>
+	<input type = "button" value = "<spring:message code="material.regist" />" onclick = "location.href = './contract'">
+	<input type = "button" value = "<spring:message code="material.delete" />" id = "delBtn">
+	<input type = "button" value = "해당 <spring:message code="mat.in" />" id = "inboundBtn">
+	<input type = "button" value = "해당 <spring:message code="mat.out" />" id = "outboundBtn">
+	<input type = "button" value = "전체 <spring:message code="in.out" />" onclick = "location.href = './material/list'">
+	<input type = "button" value = "해당 <spring:message code="in.out" />" id = "inOutBtn">
+	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
 	
 	<footer></footer>
 </body>

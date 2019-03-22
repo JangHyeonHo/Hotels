@@ -13,6 +13,7 @@ import java.io.Serializable;
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
  * <b>★contract.contNo</b> 계약 업체(contract)테이블 <b>Foreign Key</b><br>
  * @version 1.0
+ * @see ContractDTO
  * */
 public class MaterialDTO implements Serializable {
 	private int matNo;

@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 자재 출고(material_out) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -17,6 +19,8 @@ import java.util.Date;
  * @version 1.0
  * */
 public class MaterialOutboundDTO implements Serializable {
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moOutbDate;
 	private int moOutNum;
 	private String moOutContent;

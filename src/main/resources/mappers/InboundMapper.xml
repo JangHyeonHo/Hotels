@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inbound">
+	<cache />
+	<sql id="AllColumns">
+	MI_INB_DATE, MI_PRICE, MI_IN_NUM, MI_IN_CONTENT
+	</sql>
+	<insert id="insertInbound" parameterType="MaterialInbound">
+		INSERT INTO
+		 material_in
+		 (<include refid="AllColumns" />, MAT_NO) 
+		 VALUES(#{miInbDate}, #{miPrice}, #{miInNum}, #{miInContent}, #{material.matNo})
+	</insert>
+	
+	<select id="allList" resultMap="AllInbMap">
+		SELECT 
+		<include refid="AllColumns" />, m.MAT_NAME
+		FROM
+		material_in i 
+		LEFT OUTER JOIN
+		 material m 
+		ON(i.mat_no = m.mat_no)
+		ORDER BY
+		MI_INB_DATE desc
+	</select>
+	
+	<resultMap type="MaterialInbound" id="AllInbMap">
+		<id column="MI_INB_DATE" jdbcType="TIMESTAMP" property="miInbDate"/>
+		<result column="MI_PRICE" jdbcType="INTEGER" property="miPrice"/>
+		<result column="MI_IN_NUM" jdbcType="INTEGER" property="miInNum"/>
+		<result column="MI_IN_CONTENT" jdbcType="VARCHAR" property="miInContent"/>
+		<association property="material" javaType="Material">
+			<result column="MAT_NAME" jdbcType="VARCHAR" property="matName"/>
+		</association>
+	</resultMap>
+	
+</mapper>

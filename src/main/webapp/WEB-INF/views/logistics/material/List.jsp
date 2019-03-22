@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title><spring:message code="logistics"/></title>
+<title><spring:message code="in.out"/>목록</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -29,9 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script>
 
-</script>
 
 </head>
 <body>
@@ -39,11 +37,49 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<h3><spring:message code="logistics"/></h3>
-		<input type = "button" value = "<spring:message code="dist.list"/> 확인" onclick = "location.href = './logistics/distributor'"><br>
-		<input type = "button" value = "<spring:message code="cont.list"/> 확인" onclick = "location.href = './logistics/contract'"><br>
-		<input type = "button" value = "<spring:message code="material.list"/> 확인" onclick = "location.href = './logistics/material'"><br>
-		<input type = "button" value = "<spring:message code="in.out"/> 확인" onclick = "location.href = './logistics/material/list'"><br>
+		<h3><spring:message code="${bound}bound"/> 목록</h3>
+		<table>
+			<c:if test="${bound eq 'in' }">
+			<tr>
+				<th><spring:message code="mat.name"/></th>
+				<th><spring:message code="in.out.val"/></th>
+				<th><spring:message code="in.out.content"/></th>
+				<th><spring:message code="in.price"/></th>
+				<th><spring:message code="in.out.date"/></th>
+			</tr>
+			<c:forEach items="${boundlist }" var="bat">
+			<tr>
+				<td>${bat.material.matName }</td>
+				<td>${bat.miInNum }</td>
+				<td>${bat.miInContent }</td>
+				<td>${bat.miPrice }</td>
+				<td>${bat.miInbDate }</td>
+			</tr>
+			</c:forEach>
+			</c:if>
+			
+			<c:if test="${bound eq 'out' }">
+			<tr>
+				<th><spring:message code="mat.name"/></th>
+				<th><spring:message code="in.out.val"/></th>
+				<th><spring:message code="in.out.content"/></th>
+				<th><spring:message code="out.empNo"/></th>
+				<th><spring:message code="in.out.date"/></th>
+			</tr>
+			<c:forEach items="${boundlist }" var="bat">
+			<tr>
+				<td>${bat.material.matName }</td>
+				<td>${bat.moOutNum }</td>
+				<td>${bat.moOutContent }</td>
+				<td>${bat.employee.empNo }</td>
+				<td>${bat.moOutbDate }</td>
+			</tr>
+			</c:forEach>
+			</c:if>
+			<c:if test="${empty boundlist }">
+				<spring:message code="in.out.nothing"/>
+			</c:if>
+		</table>
 	</div>
 	<footer></footer>
 </body>

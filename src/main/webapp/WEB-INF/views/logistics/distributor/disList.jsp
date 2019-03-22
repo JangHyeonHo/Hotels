@@ -96,7 +96,7 @@
 		<spring:message code="dis.nothing" /><br>
 		<input type = "button" value = "<spring:message code="dist.regist" />" onclick = "location.href = './distributor/regist'">
 	</c:if>
-	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = './'"/>
+	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
 	</div>
 	<footer></footer>
 </body>

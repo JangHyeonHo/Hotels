@@ -70,13 +70,13 @@ public class ContractController {
 		return AutoAlertProcess.alertAfterRedirect(model, "계약 완료", "해당 유통업체와의 계약이 성공적으로 끝났습니다.", "../distributor");
 	}
 	
-	@RequestMapping(value="/comp/logistics/contract/delete", method=RequestMethod.GET)
+	@RequestMapping(value="/comp/logistics/termination", method=RequestMethod.GET)
 	public String deleteContract(Model model, @RequestParam("contNo") int no){
 		int delete = deleteService.contractDelete(no);
 		if(delete==0) {
-			return AutoAlertProcess.alertAfterRedirect(model, "해지 실패", "해지를 다시 시도해 주시기 바랍니다.", "../contract");
+			return AutoAlertProcess.alertAfterRedirect(model, "해지 실패", "해지를 다시 시도해 주시기 바랍니다.", "./contract");
 		}
-		return AutoAlertProcess.alertAfterRedirect(model, "계약 해지 완료", "해당 유통업체와의 계약이 성공적으로 해지하였습니다.", "../contract");
+		return AutoAlertProcess.alertAfterRedirect(model, "계약 해지 완료", "해당 유통업체와의 계약이 성공적으로 해지하였습니다.", "./contract");
 	}
 	
 }
