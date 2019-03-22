@@ -54,7 +54,7 @@ $(function(){
 	var inputHidden = "<input type = 'hidden' name="
 		
 		$("#submitBtn").on("click",function(e){
-			var al = $("#al").val()+ "(" + $("#albox").val()+") 알러지 보유중" 
+			var al = $("#al").val()+ "(" + $("#albox").val()+") " 
 			var checkInHiddenHtml = inputHidden + "'customer.cosAllergy' value='"+ al +"'>"
 
 			console.log(checkInHiddenHtml);

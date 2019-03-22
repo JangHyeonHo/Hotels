@@ -21,12 +21,6 @@ public class RestaurantReservationService {
 		
 	}
 	
-	public RestaurantReservationDTO reseraction() {
-		
-	return	repository.resercusnosearch();
-		
-		
-	}
 	
 	public List<RestaurantReservationDTO> resname() {
 		
