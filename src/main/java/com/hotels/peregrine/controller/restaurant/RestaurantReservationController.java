@@ -2,6 +2,8 @@ package com.hotels.peregrine.controller.restaurant;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,7 @@ public class RestaurantReservationController {
 	@Autowired
 	RestaurantReservationService service;
 
-	@RequestMapping(value="/comp/restaurant/reservation/cusinfo",method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant/reservation/cusinfo",method=RequestMethod.GET)
 	public String getformOne() {
 		System.out.println("레스토랑 예약 고객정보 오픈");
 		
@@ -28,32 +30,35 @@ public class RestaurantReservationController {
 	}
 	
 	@RequestMapping(value="/comp/restaurant/reservation/cusinfo",method=RequestMethod.POST)
-	public String postformOne(@ModelAttribute RestaurantReservationDTO dto) {
+	public String postformOne(@ModelAttribute RestaurantReservationDTO dto,HttpSession session) {
 		System.out.println("레스토랑 예약 고객정보 포스트 작동");
-		service.cusaction(dto);
+		
+		session.setAttribute("ses",dto);
+		System.out.println(dto.getCustomer().getCosNo());
 			
 		return "redirect:../reservation";
 	}
 	
 	
 	
-	@RequestMapping(value="/comp/restaurant/reservation",method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.GET)
 	public String getformTow(@ModelAttribute RestaurantReservationDTO dto , Model model) {
-		System.out.println("뭔가 오픈");
-		RestaurantReservationDTO cosone = service.reseraction();
+		System.out.println("레스토랑 예약 오픈");
+		
 		List<RestaurantReservationDTO> resinfo = service.resname();
-		model.addAttribute("cosone",cosone);
+	
 		model.addAttribute("resinfo",resinfo);
 		return "restaurant/restaurantReservation";
 	}
 	
-	@RequestMapping(value="/comp/restaurant/reservation",method=RequestMethod.POST)
+	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.POST)
 	public String postform(@ModelAttribute RestaurantReservationDTO dto ) {
 		System.out.println("레스토랑 예약 작동");
 		AutoTest.ModelBlackTest(dto);
+		dto = service.cusaction(dto);
 		service.mainaction(dto);
 		
-		return "..";
+		return "redirect:./reservation/list";
 	}
 	
 }

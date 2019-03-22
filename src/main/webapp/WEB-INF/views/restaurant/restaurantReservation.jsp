@@ -37,10 +37,19 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<form:form>
-	<input type="hidden" name="customer.cosNo" value="${cosone.customer.cosNo }">
+	
+	<input type="hidden" name ="customer.cosLName" value="${ses.customer.cosLName }">
+	<input type="hidden" name ="customer.cosFName" value="${ses.customer.cosFName }">
+	<input type="hidden" name ="customer.cosTelno" value="${ses.customer.cosTelno }">
+	<input type="hidden" name ="customer.cosEmail" value="${ses.customer.cosEmail }">
+	<input type="hidden" name ="customer.cosAllergy" value="${ses.customer.cosAllergy }">
+<%-- 	<input type="hidden" name="customer.cosNo" value="${cosone.customer.cosNo }"> --%>
+	${ses.customer.cosLName }
+	${ses.customer.cosFName }<br>
 	레스토랑 명 :<select name="restaurant.resName">
 	<c:forEach items="${resinfo }" var="rlist">
 	<option value="${rlist.restaurant.resName }">${rlist.restaurant.resName }</option>
+	
 	</c:forEach>
 	</select><br>
 	남은 좌석:

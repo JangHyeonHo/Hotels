@@ -5,38 +5,38 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
+import com.hotels.peregrine.repository.CustomerRepository;
 import com.hotels.peregrine.repository.RestaurantRepository;
 
 @Service
 public class RestaurantReservationService {
 
 	@Autowired
-	RestaurantRepository repository;
+	private CustomerRepository cusRepository;
+	
+	@Autowired
+	private RestaurantRepository reRepository;
 	
 	
-	public void cusaction(RestaurantReservationDTO dto) {
-		
-		repository.resercusinsert(dto);
-		
+	public RestaurantReservationDTO cusaction(RestaurantReservationDTO dto) {
+		CustomerDTO customers = dto.getCustomer();
+		cusRepository.insert(customers);
+		dto.getCustomer().setCosNo(cusRepository.select(customers));
+		return dto;
 	}
 	
-	public RestaurantReservationDTO reseraction() {
-		
-	return	repository.resercusnosearch();
-		
-		
-	}
 	
 	public List<RestaurantReservationDTO> resname() {
 		
 		
 		
-		return	repository.resnamesearch();
+		return	reRepository.resnamesearch();
 	}
 	
 	public void mainaction(RestaurantReservationDTO dto) {
 		
-		 repository.resinsert(dto);
+		reRepository.resinsert(dto);
 	}
 }
