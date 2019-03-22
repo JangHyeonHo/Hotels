@@ -29,7 +29,7 @@ public class RestaurantReservationController {
 		return "restaurant/restaurantReservationCusInfo";
 	}
 	
-	@RequestMapping(value="/comp/restaurant/reservation/cusinfo",method=RequestMethod.POST)
+	@RequestMapping(value="/restaurant/reservation/cusinfo",method=RequestMethod.POST)
 	public String postformOne(@ModelAttribute RestaurantReservationDTO dto,HttpSession session) {
 		System.out.println("레스토랑 예약 고객정보 포스트 작동");
 		
