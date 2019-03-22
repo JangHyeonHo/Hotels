@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>프론트</title>
+<title></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,15 +37,25 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="rooms">
-    <br> <br>
-    <input type="button" id="btn-C" value="payment">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" id="btn-C" value="history">
+		<c:if test="${empty list }">
+			<spring:message code="search.nothing" />
+		</c:if>
+		<c:if test="${!empty list }">
+			<table>
+				<tr>
+					<th><spring:message code="mat.no" /></th>
+					<th><spring:message code="mat.name" /></th>
+					<th><spring:message code="regist" /></th>
+				</tr>
+				<c:forEach items="${list}" var="material">
+				<tr>
+					<td>${material.matNo }</td>
+					<td>${material.matName }</td>
+					<td><input type="button" onclick="regist(${material.matNo})" value="<spring:message code="regist"/>"></td>
+				</tr>
+				</c:forEach>
+			</table>
+		</c:if>
 	</div>
 	<footer></footer>
 </body>

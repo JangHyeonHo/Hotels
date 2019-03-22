@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>프론트</title>
+<title><spring:message code="food.material" /></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -29,7 +29,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<script>
+	$(function(){
+		$("#subBtn").on("click",function(){
+			var query = $("#query").val()
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/food/searchMaterial",
+				method:'post',
+				data:"query=" + query,
+				dataType:'html',
+				success:function(data){
+					$("#resultList").html(data);
+				}
+			})
+		})
+		
+	})
 
+</script>
 
 </head>
 <body>
@@ -37,15 +54,10 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="rooms">
-    <br> <br>
-    <input type="button" id="btn-C" value="payment">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" id="btn-C" value="history">
+		<h4><spring:message code="food.mat.search" /></h4>
+		<input type="text" name = "query" id="query">
+		<input type="button" value="<spring:message code="search" />" id="subBtn">
+		<div id ="resultList"></div>
 	</div>
 	<footer></footer>
 </body>

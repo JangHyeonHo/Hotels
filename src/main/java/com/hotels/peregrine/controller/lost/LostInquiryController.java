@@ -22,6 +22,7 @@ public class LostInquiryController {
 	
 		List<LostDTO> list = service.action();
 		model.addAttribute("list", list);
+		
 		return "lost/inquiry";
 	}
 }

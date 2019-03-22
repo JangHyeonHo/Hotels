@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<title>타이틀명</title>
+<title><spring:message code="food.regist" /></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,7 +37,13 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-
+<script>
+	$(function() {
+		$("#matRegBtn").on("click", function() {
+			window.open("http://localhost/peregrine/comp/fb/restaurant/food/searchMaterial","음식 등록", "height=400px, width=300px, resizable=no, scrollbars=no",true)
+		})
+	})
+</script>
 
 </head>
 <body>
@@ -79,6 +85,8 @@
 			<spring:message code="food.image" />
 			<input type="file">
 			<br>
+			<input type="button" value="<spring:message code="food.material"/>"
+				id="matRegBtn"><br>
 			<input type="submit" value="<spring:message code="regist"/>">
 		</form:form>
 	</div>
