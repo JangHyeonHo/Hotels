@@ -3,14 +3,15 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>프론트</title>
+<title>분실물 조회</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,15 +38,38 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="rooms">
-    <br> <br>
-    <input type="button" id="btn-C" value="payment">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" id="btn-C" value="history">
+	<h2>사용객실 정보</h2>
+	
+	<table>
+	<tr>
+	<th>수속 번호</th>
+	<th>고객 성/이름</th>
+	<th>고객 전화번호</th>
+	<th>객실 번호</th>
+	<th>객실명</th>
+	<th>객실 숙박 인원</th>
+	<th>체크인 날짜</th>
+	<th>체크아웃 예정일</th>
+	<th>석식 성인/어린이 인원</th>
+	</tr>
+	
+	<c:forEach items="${list }" var = "roomlist">
+
+	<tr>
+	<td>${roomlist.checkIn.cheNo }</td>
+	<td>${roomlist.checkIn.customer.cosLName } ${roomlist.checkIn.customer.cosFName }</td>
+	<td>${roomlist.checkIn.customer.cosTelno }</td>
+	<td>${roomlist.grNo }</td>
+	<td>${roomlist.checkIn.room.roomName }</td>
+	<td>${roomlist.grStaySum } 명</td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInDate }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
+	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
+	</tr>
+	
+	</c:forEach>
+	</table>
+	
 	</div>
 	<footer></footer>
 </body>

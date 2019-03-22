@@ -1,5 +1,7 @@
 package com.hotels.peregrine.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,11 +16,18 @@ public class GuestRoomRepository {
 	
 	private String namespace = "guest";
 
-	public void insert(GuestRoomDTO guestRoom) {
+	public int insert(List<GuestRoomDTO> grList) {
+		int result = 0 ;
+		for(GuestRoomDTO groom : grList) {
+			result++ ;
+			sql.insert("guest.insert", groom);
+		}
 		
-		sql.insert("guest.insert", guestRoom);
+		return result;
 	}
 
-	
-
+	public List<GuestRoomDTO> roomlist() {
+		
+		return sql.selectList("guest.roomlist");
+	}
 }

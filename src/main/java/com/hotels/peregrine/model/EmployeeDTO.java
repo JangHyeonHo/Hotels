@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 
  * 직원(employee) 테이블에 관한 것<br>
@@ -29,6 +31,7 @@ public class EmployeeDTO implements Serializable {
 	private String empName;
 	private String empEmail;
 	private String empPhone;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date empBDate;
 	private String empGender;
 	private int empSalary;

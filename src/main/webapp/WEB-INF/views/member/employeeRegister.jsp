@@ -10,7 +10,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>프론트</title>
+<title>직원 등록</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,15 +37,22 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="rooms">
-    <br> <br>
-    <input type="button" id="btn-C" value="payment">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" id="btn-C" value="history">
+	<h1>직원등록</h1>
+	직원 성명 <input type="text" name="empName"> 
+	이메일 <input type="email" name="empEmail">
+	전화 번호 <input type="text" name="empPhone"> 
+	생년월일 <input type="date" name="empBDate"> 
+	성별  남 <input type="radio" name="empGender" vlaue="M">
+	       여<input type="radio" name="empGender" value="F">
+	급여 <input type="text" name="empSalary"> 
+	주소 <input type="text" name="empAddr"> 
+	통장 계좌번호 <input type="text" name="empAccNum"> 
+	통장 은행명 <input type="text" name="empAccBank"> 
+	상의 사이즈 <input type="text" name="empTopSize"> 
+	하의 사이즈 <input type="text" name="empBotSize"> 
+	부서명 <input type="text" name="empDepartName"> 
+	직급명 <input type="text" name="empManageName"> 
+	
 	</div>
 	<footer></footer>
 </body>
