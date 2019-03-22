@@ -34,7 +34,7 @@ public class CheckinController {
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
 	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute BreakfastDTO breakfast, Model model) {
 		System.out.println("체크인 post");
-		AutoTest.ModelBlackTest(breakfast);
+
 		service.action(check, breakfast);
 		
 		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");

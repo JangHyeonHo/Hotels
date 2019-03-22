@@ -7,7 +7,7 @@
 		insert into BREAKFAST
 		(BREAK_COUPON, GR_NO, CHE_NO, BREAK_ADULT, BREAK_CHILD)
 		values
-		(sq_BREAK_COUPON.nextval, #{guestRoom.grNo}, #{guestRoom.checkIn.CHE_NO},
+		(sq_BREAK_COUPON.nextval, #{guestRoom.grNo}, #{guestRoom.checkIn.cheNo},
 		#{breakAdult}, #{breakChild})
 	
 	</insert> 
