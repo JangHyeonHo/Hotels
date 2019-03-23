@@ -51,39 +51,36 @@ function exist(){
 
 $(function(){
 	
-	var inputHidden = "<input type = 'hidden' name="
+	var inputHidden = "<input   type = 'hidden' id = 'ale' name="
 		
 		$("#submitBtn").on("click",function(e){
-			var al = $("#al").val()+ "(" + $("#albox").val()+") " 
+			var al = $("#al").val() + $("#albox").val()
 			var checkInHiddenHtml = inputHidden + "'customer.cosAllergy' value='"+ al +"'>"
 
 			console.log(checkInHiddenHtml);
 			
 			$("#hiddenBox").html(checkInHiddenHtml);
 	
-		 this.form.submit(); 
+			var lname = $("#ln").val()
+			var nnane = $("#nl").val()
+			var phone = $("#ph").val()
+			var email = $("#em").val()
+			var allergy = $("#ale").val()
+			
+			$.ajax({
+				url:"http://localhost/peregrine/restaurant/reservation",
+				method:'get',
+				data:"cosLName=" + lname + "&cosFName=" + nnane + "&cosTelno=" + phone + "&cosEmail=" + email + "&cosAllergy=" + allergy,
+				dataType:'html',
+				success:function(data){
+					$("#contents").html(data);
+				}
+			})
+	
 			 
 		})
 		
 		
-		
-		
-/* 	     $("#submitBtn").click(function() {
-	        var options = {
-	              type:"GET",
-	              url :"./reservation",
-	              dataType:"html", 
-	              success:function(result){ 
-	                 $('#contents').html(result) 
-	              }
-	        };
-	        $('#frm').ajaxSubmit(options);
-	        return false;
-	     });  */
-	
-	
-		
-	
 });
 
 
@@ -94,14 +91,15 @@ $(function(){
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header><h1>고객 정보</h1></header>
+	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+	<h1>고객 정보</h1>
 	 <form:form id="frm">
-	 성  <input type="text" name="customer.cosLName"><br>
-	 이름 <input type="text" name="customer.cosFName"><br>
-	 전화번호 <input type="text" name="customer.cosTelno"><br>
-	 이메일 주소 <input type="email" name="customer.cosEmail"><br>
+	 성  <input type="text" name="customer.cosLName" id="ln"><br>
+	 이름 <input type="text" name="customer.cosFName" id="nl"><br>
+	 전화번호 <input type="text" name="customer.cosTelno" id="ph"><br>
+	 이메일 주소 <input type="email" name="customer.cosEmail" id="em"><br>
 	 알러지 유무 <select name="Allergy" id="al" onclick="exist()"><br>
 	 	 <option value="N">N</option>
 	 	 <option value="Y">Y</option>
