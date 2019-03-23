@@ -69,20 +69,6 @@ public class CheckinService {
 //		breakf.insert(Breakfast);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-
-		
-//		AutoTest.ModelBlackTest(Breakfast);
-//		AutoTest.ModelBlackTest(check);
-	
-
-		
 	}
 
 

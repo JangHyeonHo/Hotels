@@ -39,13 +39,15 @@
 	<div id = "contents">
 	    프론트 관리 <br>
     <input type="button" id="btn-A" value="reservation">
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" id="btn-C" value="checkout">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="rooms">
     <br> <br>
-    <input type="button" id="btn-C" value="payment">
+    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
+    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="room in use">
     <input type="button" id="btn-C" value="checkout">
-    <input type="button" id="btn-C" value="history">
+    <br> <br>
+    <input type="button" onclick="location.href='front/breakfast'" id="btn-D" value="breakfast">
+    <input type="button" id="btn-E" value="payment">
+    <input type="button" id="btn-G" value="history">
+    <input type="button" id="btn-H" onclick="location.href='front/add'" value="room add">
 	</div>
 	<footer></footer>
 </body>

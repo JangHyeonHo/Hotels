@@ -16,17 +16,18 @@ public class LostRepository {
 	
 	private String namespace = "losts";
 
+	//분실물 등록
 	public void insert(LostDTO lost) {
 		sql.insert(namespace+".insert", lost);
 		
 	}
-
+	//분실물 리스트
 	public List<LostDTO> inquiry() {
 		
 		
 		return sql.selectList(namespace+".inquiry");
 	}
-
+	//분실물 삭제
 	public void delete(int no) {
 		
 		sql.delete(namespace+".delete",no);

@@ -14,12 +14,41 @@
 
 	<select id="roomlist" resultMap="roomList">
 		select gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO,cu.COS_F_NAME, cu.COS_TELNO,
+		ci.CHE_IN_time, ci.CHE_IN_DATE, ci.CHE_OUT_DATE,
 		ci.ROOM_NAME, gr.GR_DI_ADULT, gr.GR_DI_CHILD, gr.GR_STAY_SUM
 		from
 		GUEST_ROOM gr join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
 		join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
 
 	</select>
+	
+	<select id="roomDetail" resultMap="roomdetail">
+		select gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO,cu.COS_F_NAME, cu.COS_TELNO,
+		ci.CHE_IN_time, ci.CHE_IN_DATE, ci.CHE_OUT_DATE,
+		ci.ROOM_NAME, gr.GR_DI_ADULT, gr.GR_DI_CHILD, gr.GR_STAY_SUM
+		from
+		GUEST_ROOM gr join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
+		join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
+		where
+		gr.GR_NO = #{grNo}
+		
+	</select>
+	
+		<update id="update" parameterType="HashMap">
+		
+		update GUEST_ROOM
+		set
+		GR_NO = #{baseGrNo},
+		
+		GR_STAY_SUM = #{groom.grStaySum},
+		GR_DI_ADULT = #{groom.grDiAdult},
+		GR_DI_CHILD = #{groom.grDiChild}
+		where
+		GR_NO = #{groom.grNo}
+	
+	
+		</update>
+
 
 
 	<resultMap type="GuestRoom" id="roomList">
@@ -35,6 +64,12 @@
 			<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
 			<result column="ROOM_NAME" jdbcType="VARCHAR"
 				property="room.roomName" />
+			<result column="CHE_IN_time" jdbcType="TIMESTAMP"
+				property="cheInTime" />
+			<result column="CHE_IN_DATE" jdbcType="TIMESTAMP"
+				property="cheInDate" />
+			<result column="CHE_OUT_DATE" jdbcType="TIMESTAMP"
+				property="cheOutDate" />
 			<association property="customer" javaType="Customer">
 				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
 				<result column="COS_L_NAME" jdbcType="VARCHAR"
@@ -45,8 +80,37 @@
 					property="cosTelno" />
 			</association>
 		</association>
+	</resultMap>
 
+	<resultMap type="GuestRoom" id="roomdetail">
+		<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
+		<result column="GR_DI_ADULT" jdbcType="INTEGER"
+			property="grDiAdult" />
+		<result column="GR_DI_CHILD" jdbcType="INTEGER"
+			property="grDiChild" />
+		<result column="GR_STAY_SUM" jdbcType="INTEGER"
+			property="grStaySum" />
 
+		<association property="checkIn" javaType="CheckIn">
+			<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
+			<result column="ROOM_NAME" jdbcType="VARCHAR"
+				property="room.roomName" />
+			<result column="CHE_IN_time" jdbcType="TIMESTAMP"
+				property="cheInTime" />
+			<result column="CHE_IN_DATE" jdbcType="TIMESTAMP"
+				property="cheInDate" />
+			<result column="CHE_OUT_DATE" jdbcType="TIMESTAMP"
+				property="cheOutDate" />
+			<association property="customer" javaType="Customer">
+				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
+				<result column="COS_L_NAME" jdbcType="VARCHAR"
+					property="cosLName" />
+				<result column="COS_F_NAME" jdbcType="VARCHAR"
+					property="cosFName" />
+				<result column="COS_TELNO" jdbcType="VARCHAR"
+					property="cosTelno" />
+			</association>
+		</association>
 
 	</resultMap>
 

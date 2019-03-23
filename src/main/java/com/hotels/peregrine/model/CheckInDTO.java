@@ -26,13 +26,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class CheckInDTO implements Serializable {
 	
 	private int cheNo;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheInTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheOutTime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheInDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheOutDate;
 	private String cheDetail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheRegDate;
 	private CustomerDTO customer;
 	private PaymentDTO payment;
