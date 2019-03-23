@@ -32,18 +32,20 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script type="text/javascript">
 $(function(){
-	$("#rrn").on("change",function(){
-
+	  $("#rrn").on("change",function(){
+		 var rn = $(this).val();
+		 console.log(rn);
  		$.ajax({
-			url:"",
-			method:'post',
-			data:
+			url:"http://localhost/peregrine/restaurant/reservation/table",
+			method:'get',
+			data: "resname=" + rn,
 			dataType:'html',
 			success:function(data){
-				$("").html(data);
+				$("#tablecount").html(data);
 			}
 		}) 
-	})
+	})  
+	
 	
 	
 });
@@ -67,12 +69,10 @@ $(function(){
 	
 	</c:forEach>
 	</select><br>
-	남은 좌석:
-	
-	<c:forEach items="${resinfo }" var="rlist">
-	 ${rlist.resTableCount }
+	남은 테이블:
+	<div id=tablecount>
 
-	</c:forEach><br>
+	</div><br>
 	
 	성인 수:<input type="text" name="rrAdult"><br>
 	어린이 수:<input type="text" name="rrChild"><br>

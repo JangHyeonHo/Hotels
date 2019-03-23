@@ -16,7 +16,9 @@
 		SELECT res_name,sum(res_table_count) as tc FROM
 		RESTAURANT 
 		<where>
-			res_name = #{resName}
+			<if test="value != null">
+			res_name = #{value}
+			</if>
 		</where>
 		group by res_name
 	</select>
@@ -79,9 +81,17 @@
 	
 	</where> 
 	
-	
-	
 	</delete>
+	
+	
+	<select id="chairsCall" parameterType="String" resultType="Restaurant">
+		SELECT 
+		RES_CHAIR, res_table_count 
+		FROM
+		restaurant
+		WHERE res_name=#{resName}
+		ORDER BY RES_CHAIR desc
+	</select>
 	
 	<resultMap type="RestaurantReservation" id="resdetailbase">
 	<id column="RR_NO" jdbcType="BIGINT" property="rrNo"/>
@@ -115,11 +125,11 @@
 		<id column="COS_NO" jdbcType="BIGINT" property="customer.cosNo" />
 	</resultMap> -->
 
-	<resultMap type="RestaurantReservation" id="resnamebase">
+	<resultMap type="RestaurantCommand" id="resnamebase">
 		<id column="RES_NAME" jdbcType="NVARCHAR"
-			property="restaurant.resName" />
+			property="resName" />
 		<result column="tc" jdbcType="BIGINT"
-			property="restaurant.resChair" />
+			property="resTableCount" />
 	</resultMap>
 
 

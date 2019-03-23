@@ -44,7 +44,7 @@ public class RestaurantReservationController {
 	
 	
 	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.GET)
-	public String getformTow(@ModelAttribute CustomerDTO dto ,   Model model, HttpSession session) {
+	public String getformTow(@ModelAttribute CustomerDTO dto ,@ModelAttribute RestaurantCommand command,   Model model, HttpSession session) {
 		System.out.println("레스토랑 예약 오픈");
 		AutoTest.ModelBlackTest(dto);
 		session.setAttribute("ses", dto);
@@ -62,11 +62,19 @@ public class RestaurantReservationController {
 		dto.setCustomer((CustomerDTO) session.getAttribute("ses"));
 		AutoTest.ModelBlackTest(dto);
 		
-		
 		dto = service.cusaction(dto);
 		service.mainaction(dto);
 		
 		return "redirect:./reservation/list";
+	}
+	
+	@RequestMapping(value="/restaurant/reservation/table",method=RequestMethod.GET)
+	public String getformTow(@ModelAttribute("resname") String resname, Model model) {
+
+		System.out.println(resname);
+		model.addAttribute("result",service.resTableSearch(resname).getResTableCount());
+		
+		return "restaurant/restaurantTableCount";
 	}
 	
 }

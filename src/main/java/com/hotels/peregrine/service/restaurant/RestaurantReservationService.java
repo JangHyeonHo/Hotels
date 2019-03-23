@@ -1,5 +1,6 @@
 package com.hotels.peregrine.service.restaurant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.CustomerDTO;
+import com.hotels.peregrine.model.OrdersDTO;
+import com.hotels.peregrine.model.RestaurantDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
+import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.repository.CustomerRepository;
 import com.hotels.peregrine.repository.RestaurantRepository;
 
@@ -16,28 +20,61 @@ public class RestaurantReservationService {
 
 	@Autowired
 	private CustomerRepository cusRepository;
-	
+
 	@Autowired
 	private RestaurantRepository reRepository;
-	
-	
+
+
 	public RestaurantReservationDTO cusaction(RestaurantReservationDTO dto) {
 		CustomerDTO customers = dto.getCustomer();
 		cusRepository.insert(customers);
 		dto.getCustomer().setCosNo(cusRepository.select(customers));
 		return dto;
 	}
-	
-	
+
+
 	public List<RestaurantCommand> resname() {
-		
-		
-		
-		return	reRepository.resnamesearch();
+
+
+
+		return	reRepository.resnamesearch(null);
 	}
-	
+
 	public void mainaction(RestaurantReservationDTO dto) {
-		
-		reRepository.resinsert(dto);
+		List<RestaurantDTO> chairList = reRepository.AllChairs(dto.getRestaurant().getResName());
+		List<RestaurantReservationDTO> resList = new ArrayList<RestaurantReservationDTO>();
+		int people = dto.getRrAdult() + dto.getRrChild(); //10
+		for(int i = 0; i< chairList.size(); i++) {
+			if(people == 0) {
+				break;
+			}
+			int maxChair = chairList.get(i).getResChair(); //6 4 2
+			int Tablecount = chairList.get(i).getResTableCount();// 1 3 4
+			while(Tablecount!=0) {
+				RestaurantReservationDTO test = new RestaurantReservationDTO()
+				.setCustomer(dto.getCustomer())
+				.setRestaurant(dto.getRestaurant().setResChair(maxChair))
+				.setRrAdult(dto.getRrAdult())
+				.setRrChild(dto.getRrChild());
+				
+//				resList.add();
+				AutoTest.ModelBlackTest(test);
+				if(people-maxChair > 0) {
+					people -= maxChair;
+					Tablecount--;
+				} else {
+					people = 0;
+					Tablecount--;
+					break;
+				}
+			}
+		}
+//		reRepository.resinsert(resList);
+	}
+
+
+	public RestaurantCommand resTableSearch(String resName) {
+
+		return	reRepository.resname(resName);
 	}
 }

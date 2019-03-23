@@ -30,14 +30,20 @@ public class RestaurantRepository {
 	}
 	
 	
-	public List<RestaurantCommand> resnamesearch() {
+	public List<RestaurantCommand> resnamesearch(String value) {
 		
-		return template.selectList("restaurant.namelist");
+		return template.selectList("restaurant.namelist",value);
 	}
 	
-	public void resinsert(RestaurantReservationDTO dto) {
+	public RestaurantCommand resname(String value) {
 		
-		template.insert("restaurant.resinsert",dto);
+		return template.selectOne("restaurant.namelist",value);
+	}
+	
+	
+	public void resinsert(List<RestaurantReservationDTO> resList) {
+		
+		template.insert("restaurant.resinsert",resList);
 	}
 	
 	
@@ -63,6 +69,11 @@ public class RestaurantRepository {
 		map.put("no", no);
 		
 		template.delete("restaurant.resdeleteTwo",map);
+	}
+
+	public List<RestaurantDTO> AllChairs(String resName) {
+		// TODO Auto-generated method stub
+		return template.selectList("restaurant.chairsCall", resName);
 	}
 	
 }

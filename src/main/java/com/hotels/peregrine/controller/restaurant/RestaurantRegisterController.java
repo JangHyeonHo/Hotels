@@ -16,7 +16,7 @@ import com.hotels.peregrine.other.ClassifiedFile;
 import com.hotels.peregrine.service.restaurant.RestaurantRegisterService;
 
 @Controller
-@RequestMapping("/comp/restaurant/register")
+@RequestMapping("/comp/fb/restaurant/register")
 public class RestaurantRegisterController {
 
 	@Autowired

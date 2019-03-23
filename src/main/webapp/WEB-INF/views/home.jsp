@@ -13,6 +13,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<img src = "img/abc.jpg">
+
 </body>
 </html>
