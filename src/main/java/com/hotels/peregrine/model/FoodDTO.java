@@ -14,9 +14,11 @@ import java.io.Serializable;
  * <b>foodKind</b> 음식 종류<br>
  * <b>foodOriFileName</b> 음식 실제 사진<br>
  * <b>foodStoreFileName</b> 음식 저장 사진<br>
- * @version 1.0
+ * @version 1.3
  * */
 public class FoodDTO implements Serializable {
+	public static final String[] FOODREGISTKIND = {"등록중","대기중"};
+	
 	private int foodNo;
 	private String foodName;
 	private int foodPrice;
@@ -25,6 +27,7 @@ public class FoodDTO implements Serializable {
 	private String foodKind;
 	private String foodOriFileName;
 	private String foodStoreFileName;
+
 	public int getFoodNo() {
 		return foodNo;
 	}

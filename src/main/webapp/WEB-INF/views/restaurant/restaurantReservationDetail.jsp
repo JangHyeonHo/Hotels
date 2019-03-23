@@ -47,7 +47,7 @@
 	어린이수 ${rlist.rrChild } <br>
 	알러지 유무 ${rlist.customer.cosAllergy }<br>
 	<button onclick="location.href='../list'">리스트로</button>
-	<button onclick="location.href='/peregrine/comp/restaurant/reservation/list/detail/delete?cosno=${rlist.customer.cosNo}'">삭제</button>
+	<button onclick="location.href='/peregrine/restaurant/reservation/list/detail/delete?cosno=${rlist.customer.cosNo}'">삭제</button>
 	</c:forEach>
 	<br>
 	
