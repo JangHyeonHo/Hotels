@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="food">
+	<cache />
+	<sql id="AllColumns">
+		FOOD_NO, FOOD_NAME, FOOD_PRICE, FOOD_RECIPE, FOOD_REGIST, FOOD_KIND, FOOD_ORI_FILE_NAME, FOOD_STORE_FILE_NAME
+	</sql>
+	<insert id="registFood" parameterType="Food">
+		INSERT INTO
+		food
+		(<trim suffixOverrides=",">FOOD_NO, FOOD_NAME, FOOD_PRICE, FOOD_RECIPE, FOOD_REGIST, FOOD_KIND, 
+		<if test="foodOriFileName!=null">
+		FOOD_ORI_FILE_NAME, FOOD_STORE_FILE_NAME
+		</if>
+		</trim>)
+		VALUES
+		(<trim suffixOverrides=",">sq_food_no.nextval ,#{foodName}, #{foodPrice}, #{foodRecipe}, #{foodRegist}, #{foodKind}, 
+		<if test="foodOriFileName!=null">
+		#{foodOriFileName}, #{foodStoreFileName}
+		</if>
+		</trim>)
+	</insert>
+	<select id="foodNoSelect" parameterType="Food" resultType="Integer">
+		SELECT 
+			max(FOOD_NO)
+		FROM
+			food
+		WHERE
+			FOOD_NAME = #{foodName} and FOOD_STORE_FILE_NAME = #{foodStoreFileName}
+	</select>
+	
+</mapper>

@@ -11,7 +11,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>분실물 조회</title>
+<title>객실 조회</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -47,10 +47,11 @@
 	<th>고객 전화번호</th>
 	<th>객실 번호</th>
 	<th>객실명</th>
-	<th>객실 숙박 인원</th>
+	<th>숙박 인원</th>
 	<th>체크인 날짜</th>
 	<th>체크아웃 예정일</th>
 	<th>석식 성인/어린이 인원</th>
+	<th>조식 성인/어린이 인원</th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "roomlist">
@@ -59,17 +60,18 @@
 	<td>${roomlist.checkIn.cheNo }</td>
 	<td>${roomlist.checkIn.customer.cosLName } ${roomlist.checkIn.customer.cosFName }</td>
 	<td>${roomlist.checkIn.customer.cosTelno }</td>
-	<td>${roomlist.grNo }</td>
+	<td><a href = "rooms/detail?grNo=${roomlist.grNo }">${roomlist.grNo }</a></td>
 	<td>${roomlist.checkIn.room.roomName }</td>
 	<td>${roomlist.grStaySum } 명</td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInDate }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInTime }"/></td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
 	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
+	<td><a href = "rooms/mealinfo?grNo=${roomlist.grNo }">조식성인${roomlist.grDiAdult }명/조식어린이${roomlist.grDiChild }명</a></td>
 	</tr>
 	
 	</c:forEach>
 	</table>
-	
+	<input type = "button" onclick="location.href='../front'" value = "메인으로">
 	</div>
 	<footer></footer>
 </body>

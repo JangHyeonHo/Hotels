@@ -32,7 +32,7 @@ public class CheckinController {
 
 	
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.POST)
-	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute CheckinCommend  command /*@ModelAttribute BreakfastDTO breakfast*/, Model model) {
+	public String checkin(@ModelAttribute CheckInDTO check, @ModelAttribute CheckinCommend  command, Model model) {
 		System.out.println("체크인 post");
 
 		service.action(check, command);

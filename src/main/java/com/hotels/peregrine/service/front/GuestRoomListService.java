@@ -9,7 +9,7 @@ import com.hotels.peregrine.model.GuestRoomDTO;
 import com.hotels.peregrine.repository.GuestRoomRepository;
 
 @Service
-public class CheckinListService {
+public class GuestRoomListService {
 	
 	@Autowired
 	GuestRoomRepository roomlist;
@@ -20,5 +20,7 @@ public class CheckinListService {
 		
 		return roomlist.roomlist();
 	}
+	
+	
 
 }

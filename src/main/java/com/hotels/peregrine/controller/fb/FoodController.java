@@ -2,6 +2,8 @@ package com.hotels.peregrine.controller.fb;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.model.MaterialDTO;
+import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoTest;
+import com.hotels.peregrine.service.fb.FoodRegistService;
 import com.hotels.peregrine.service.fb.SearchAMaterialService;
 
 @Controller
@@ -21,6 +25,9 @@ public class FoodController {
 	
 	@Autowired
 	private SearchAMaterialService searchMatService;
+	
+	@Autowired
+	private FoodRegistService registService;
 	
 	@RequestMapping(value="/comp/fb/restaurant/food/regist", method=RequestMethod.GET)
 	public String foodRegistOpenController() {
@@ -43,11 +50,14 @@ public class FoodController {
 		return "fb/food/resultList";
 	}
 	@RequestMapping(value="/comp/fb/restaurant/food/regist", method=RequestMethod.POST)
-	public String registFood(Model model, @ModelAttribute FoodDTO food, @ModelAttribute("materialNo")int[] materialNo, @ModelAttribute("foodImage")MultipartFile foodImage) {
-		AutoTest.ModelBlackTest(food);
-		for(int no : materialNo) {
-			System.out.println(no);
+	public String registFood(Model model, @ModelAttribute FoodDTO food, @ModelAttribute("materialNo")String[] materialNo, @ModelAttribute("foodImage")MultipartFile foodImage, HttpServletRequest request) {
+		for(String i : materialNo) {
+			System.out.println(i);
 		}
-		return null;
+		/*int result = registService.registFood(food, foodImage, request, materialNo);
+		if(result==0) {
+			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패", "등록되지 않았습니다.", "../food");
+		}*/
+		return AutoAlertProcess.alertAfterRedirect(model, "음식 등록 완료", "음식이 성공적으로 등록되었습니다.", "../food");
 	}
 }

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +69,23 @@ breakChild += "</select>";
 $(".che_pre2").html(breakChild);
 
 
+$("#roomscount").on("change",function(){
+	var value = $(this).val();
+	var AllRooms = "";
+	for(var i = 0; i < value ; i++){
+	
+		AllRooms += breakAdult;
+		AllRooms += breakChild;
+
+	
+		AllRooms += "<br>"
+	}
+	$("#stayhidden").html(AllRooms)
+	
+	console.log(AllRooms);
+	
+})
+
 </script>
 
 </head>
@@ -77,12 +95,22 @@ $(".che_pre2").html(breakChild);
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 
-     <select class="che_pre1" name="breakAdult">
-		
-	 </select> 
-	 <select class="che_pre2" name="breakChild">
-		
-	</select> 
+	<h2>${groom.grNo }호 정보수정</h2>
+	<form:form>
+	<div class = "infobox">수속 번호 : ${groom.checkIn.cheNo }</div>
+	<div class = "infobox">고객 성/이름 : ${groom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName}</div>
+	<div class = "infobox">고객 번호: ${groom.checkIn.customer.cosTelno }</div>
+	<div class = "infobox">객실 명 : ${groom.checkIn.room.roomName }</div>
+	<div class = "infobox">객실 번호 : <input type = "text" name = "baseGrNo" value = "${groom.grNo }"></div>
+	<div class = "infobox">숙박 인원 : <input type = "text" name = "grStaySum" value = "${groom.grStaySum }"></div>
+	<div class = "infobox">체크인 날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheInTime }"/></div>
+	<div class = "infobox">체크아웃 예정일 : <fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheOutDate }"/></div>
+	<div class = "infobox">석식 성인 : <input type = "text" id = "grDiAdult" name = "grDiAdult" value = "${groom.grDiAdult }"></div>
+	<div class = "infobox">석식 어린이 : <input type = "text" id = "grDiAdult" name = "grDiChild" value = "${groom.grDiChild }"></div>
+
+	<input type="submit" value = "수정">
+	</form:form>
+
 
 	</div>
 	<footer></footer>

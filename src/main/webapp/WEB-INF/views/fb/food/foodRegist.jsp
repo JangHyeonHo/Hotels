@@ -54,7 +54,7 @@
 		<h1>
 			<spring:message code="food.regist" />
 		</h1>
-		<form:form>
+		<form:form enctype="multipart/form-data">
 			<spring:message code="food.name" />
 			<input type="text" name = "foodName">
 			<br>
