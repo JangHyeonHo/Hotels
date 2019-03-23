@@ -56,16 +56,16 @@
 		</h1>
 		<form:form>
 			<spring:message code="food.name" />
-			<input type="text">
+			<input type="text" name = "foodName">
 			<br>
 			<spring:message code="food.price" />
-			<input type="number">
+			<input type="number" name = "foodPrice">
 			<br>
 			<spring:message code="food.recipe" />
-			<textarea></textarea>
+			<textarea name = "foodRecipe"></textarea>
 			<br>
 			<spring:message code="food.kind" />
-			<select>
+			<select name = "foodKind">
 				<option value="<spring:message code="food.ko"/>"><spring:message
 						code="food.ko" /></option>
 				<option value="<spring:message code="food.en"/>"><spring:message
@@ -83,10 +83,12 @@
 			</select>
 			<br>
 			<spring:message code="food.image" />
-			<input type="file">
+			<input type="file" name = "foodImage">
 			<br>
 			<input type="button" value="<spring:message code="food.material"/>"
 				id="matRegBtn"><br>
+			<div id = "resultBox"></div>	
+			
 			<input type="submit" value="<spring:message code="regist"/>">
 		</form:form>
 	</div>

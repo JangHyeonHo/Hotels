@@ -45,6 +45,15 @@
 		})
 		
 	})
+	function regist(no){
+		var baseHtml = $("#resultBox",parent.opener.document).html();
+		var innerHtml = "<input type = 'hidden' name = 'materialNo' value='"+no+"'>"
+		innerHtml+= "<div class = 'matName'>"+$(this).parent().prev()+"</div>"
+		innerHtml+= "<div class = 'matCheck'><input type = 'button' value ='삭제' onclick='delete("+no+")'></div>"
+		baseHtml += innerHtml;
+		$("#resultBox",parent.opener.document).html(baseHtml);
+		self.close()
+	}
 
 </script>
 
