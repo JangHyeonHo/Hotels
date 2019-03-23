@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.RestaurantDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
 
@@ -29,7 +30,7 @@ public class RestaurantRepository {
 	}
 	
 	
-	public List<RestaurantReservationDTO> resnamesearch() {
+	public List<RestaurantCommand> resnamesearch() {
 		
 		return template.selectList("restaurant.namelist");
 	}

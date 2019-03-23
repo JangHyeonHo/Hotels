@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.command.RestaurantCommand;
+import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.restaurant.RestaurantReservationService;
@@ -29,32 +31,38 @@ public class RestaurantReservationController {
 		return "restaurant/restaurantReservationCusInfo";
 	}
 	
-	@RequestMapping(value="/restaurant/reservation/cusinfo",method=RequestMethod.POST)
-	public String postformOne(@ModelAttribute RestaurantReservationDTO dto,HttpSession session) {
-		System.out.println("레스토랑 예약 고객정보 포스트 작동");
-		
-		session.setAttribute("ses",dto);
-		System.out.println(dto.getCustomer().getCosNo());
-			
-		return "redirect:../reservation";
-	}
+//	@RequestMapping(value="/restaurant/reservation/cusinfo",method=RequestMethod.POST)
+//	public String postformOne(@ModelAttribute RestaurantReservationDTO dto,HttpSession session) {
+//		System.out.println("레스토랑 예약 고객정보 포스트 작동");
+//		
+//		session.setAttribute("ses",dto);
+//		System.out.println(dto.getCustomer().getCosNo());
+//			
+//		return "redirect:../reservation";
+//	}
 	
 	
 	
 	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.GET)
-	public String getformTow(@ModelAttribute RestaurantReservationDTO dto , Model model) {
+	public String getformTow(@ModelAttribute CustomerDTO dto ,   Model model, HttpSession session) {
 		System.out.println("레스토랑 예약 오픈");
+		AutoTest.ModelBlackTest(dto);
+		session.setAttribute("ses", dto);
 		
-		List<RestaurantReservationDTO> resinfo = service.resname();
+		List<RestaurantCommand> resinfo = service.resname();
 	
 		model.addAttribute("resinfo",resinfo);
 		return "restaurant/restaurantReservation";
 	}
 	
 	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.POST)
-	public String postform(@ModelAttribute RestaurantReservationDTO dto ) {
+	public String postform(@ModelAttribute RestaurantReservationDTO dto,  HttpSession session ) {
 		System.out.println("레스토랑 예약 작동");
+		
+		dto.setCustomer((CustomerDTO) session.getAttribute("ses"));
 		AutoTest.ModelBlackTest(dto);
+		
+		
 		dto = service.cusaction(dto);
 		service.mainaction(dto);
 		

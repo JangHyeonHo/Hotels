@@ -11,11 +11,14 @@
 	</insert>
 
 
-	<select id="namelist" resultMap="resnamebase">
+	<select id="namelist" resultMap="resnamebase" parameterType="String">
 
-		SELECT res_name,res_chair FROM
-		RESTAURANT
-
+		SELECT res_name,sum(res_table_count) as tc FROM
+		RESTAURANT 
+		<where>
+			res_name = #{resName}
+		</where>
+		group by res_name
 	</select>
 
 
@@ -115,7 +118,7 @@
 	<resultMap type="RestaurantReservation" id="resnamebase">
 		<id column="RES_NAME" jdbcType="NVARCHAR"
 			property="restaurant.resName" />
-		<result column="RES_CHAIR" jdbcType="BIGINT"
+		<result column="tc" jdbcType="BIGINT"
 			property="restaurant.resChair" />
 	</resultMap>
 

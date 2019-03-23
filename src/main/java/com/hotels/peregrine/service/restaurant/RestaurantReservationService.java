@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.repository.CustomerRepository;
@@ -28,7 +29,7 @@ public class RestaurantReservationService {
 	}
 	
 	
-	public List<RestaurantReservationDTO> resname() {
+	public List<RestaurantCommand> resname() {
 		
 		
 		

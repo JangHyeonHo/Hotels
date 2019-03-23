@@ -49,6 +49,7 @@
 		<typeAlias type="com.hotels.peregrine.model.ToolRentalDTO" alias="ToolRental"/>
 		
 		<typeAlias type="com.hotels.peregrine.command.MaterialCountCommand" alias="MaterialCountCommand"/>	
+		<typeAlias type="com.hotels.peregrine.command.RestaurantCommand" alias="RestaurantCommand"/>	
 	</typeAliases>
 
 
