@@ -36,7 +36,7 @@ public class FoodController {
 	@RequestMapping(value="/comp/fb/restaurant/food/searchMaterial", method=RequestMethod.POST)
 	public String resultList(Model model, @RequestParam("query") String query) {
 		List<MaterialDTO> list = searchMatService.getqueryList(query);
-		if(query==null && query=="") {
+		if(query=="" || query==null) {
 			list = null;
 		}
 		model.addAttribute("list",list);
