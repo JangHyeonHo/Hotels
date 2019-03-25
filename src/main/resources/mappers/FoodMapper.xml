@@ -5,28 +5,97 @@
 	<sql id="AllColumns">
 		FOOD_NO, FOOD_NAME, FOOD_PRICE, FOOD_RECIPE, FOOD_REGIST, FOOD_KIND, FOOD_ORI_FILE_NAME, FOOD_STORE_FILE_NAME
 	</sql>
+	
 	<insert id="registFood" parameterType="Food">
 		INSERT INTO
 		food
-		(<trim suffixOverrides=",">FOOD_NO, FOOD_NAME, FOOD_PRICE, FOOD_RECIPE, FOOD_REGIST, FOOD_KIND, 
+		(<trim suffixOverrides=",">FOOD_NO, FOOD_NAME, FOOD_PRICE, FOOD_RECIPE, FOOD_REGIST, FOOD_KIND,
 		<if test="foodOriFileName!=null">
 		FOOD_ORI_FILE_NAME, FOOD_STORE_FILE_NAME
 		</if>
 		</trim>)
 		VALUES
-		(<trim suffixOverrides=",">sq_food_no.nextval ,#{foodName}, #{foodPrice}, #{foodRecipe}, #{foodRegist}, #{foodKind}, 
+		(<trim suffixOverrides=",">sq_food_no.nextval ,#{foodName}, #{foodPrice}, #{foodRecipe}, #{foodRegist}, #{foodKind},
 		<if test="foodOriFileName!=null">
 		#{foodOriFileName}, #{foodStoreFileName}
 		</if>
 		</trim>)
 	</insert>
+	
 	<select id="foodNoSelect" parameterType="Food" resultType="Integer">
 		SELECT 
 			max(FOOD_NO)
 		FROM
 			food
 		WHERE
-			FOOD_NAME = #{foodName} and FOOD_STORE_FILE_NAME = #{foodStoreFileName}
+			FOOD_NAME = #{foodName} 
+		<if test="foodStoreFileName!=null">	
+		and FOOD_STORE_FILE_NAME = #{foodStoreFileName}
+		</if>
 	</select>
+	
+	<select id="foodCount" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM
+			food	
+	</select>
+	
+	<select id="foodList" parameterType="HashMap" resultMap="FoodMap">
+		SELECT 
+			rnum, fr.*
+		FROM
+			(SELECT 
+				rownum as rnum, f.*
+			FROM
+				(SELECT
+					<include refid="AllColumns"/>
+				FROM
+					food  ORDER BY 
+		 		food_no asc) f 
+		 	WHERE 
+		 		rownum &lt;= #{maxNum}
+		 	) fr
+		 WHERE
+		 	rnum &gt;= #{minNum}
+		
+	</select>
+	
+	<resultMap type="Food" id="FoodMap">
+		<id column="FOOD_NO" jdbcType="INTEGER" property="foodNo"/>
+		<result column="FOOD_NAME" jdbcType="VARCHAR" property="foodName"/>
+		<result column="FOOD_PRICE" jdbcType="VARCHAR" property="foodPrice"/>
+		<result column="FOOD_RECIPE" jdbcType="VARCHAR" property="foodRecipe"/>
+		<result column="FOOD_REGIST" jdbcType="VARCHAR" property="foodRegist"/>
+		<result column="FOOD_KIND" jdbcType="VARCHAR" property="foodKind"/>
+		<result column="FOOD_ORI_FILE_NAME" jdbcType="VARCHAR" property="foodOriFileName"/>
+		<result column="FOOD_STORE_FILE_NAME" jdbcType="VARCHAR" property="foodStoreFileName"/>
+	</resultMap>
+	
+	<select id="manuChangeRegistCall" parameterType="Integer" resultType="String">
+		SELECT 
+			FOOD_REGIST
+		FROM
+			food
+		WHERE
+			food_no = #{no}
+	</select>
+	
+	<update id="manuChange" parameterType="HashMap">
+		UPDATE 
+			food 
+		SET
+		 	food_regist = #{regist} 
+		 WHERE 
+		 	food_no = #{no}
+	</update>
+	
+	<delete id="deleteFood" parameterType="Integer">
+		DELETE FROM
+			food
+		WHERE
+			food_no=#{no}
+	
+	</delete>
 	
 </mapper>

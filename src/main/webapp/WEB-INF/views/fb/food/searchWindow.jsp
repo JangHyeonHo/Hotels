@@ -48,9 +48,29 @@
 	function regist(no){
 		var baseHtml = $("#resultBox",parent.opener.document).html();
 		var matName = $("#nameVal"+no).text();
-		var innerHtml = "<input type = 'hidden' name = 'materialNo' value='"+no+"'>"
+		var regNo = $(".seaNo",parent.opener.document).last().attr('id');
+		var errorCode = true;
+		var regNameTest = $(".matName",parent.opener.document).each(function(){
+			var thisText = $(this).text();
+			if(thisText == matName){
+				alert('이미 등록중인 식자재입니다!');
+				errorCode = false;
+			}
+		});
+		console.log(errorCode);
+		if(!errorCode){
+			return false;
+		}
+		if(regNo==null){
+			regNo = 1;
+		} else{
+			regNo = regNo.substring(9);
+			regNo++;
+		}
+		var innerHtml = "<div class = 'matList'><input type = 'hidden' name = 'materialNo' value='"+no+"'>"
+		innerHtml+= "<div class = 'seaNo' id = 'matNameNo"+regNo+"'>"+regNo+"</div>"
 		innerHtml+= "<div class = 'matName'>"+matName+"</div>"
-		innerHtml+= "<div class = 'matCheck'><input type = 'button' value ='삭제' onclick='deleteMat("+no+")'></div>"
+		innerHtml+= "<div class = 'matCheck'><input type = 'button' value ='삭제' onclick='deleteMat("+no+")'></div></div>"
 		baseHtml += innerHtml;
 		$("#resultBox",parent.opener.document).html(baseHtml);
 		self.close()
@@ -67,7 +87,27 @@
 		<h4><spring:message code="food.mat.search" /></h4>
 		<input type="text" name = "query" id="query">
 		<input type="button" value="<spring:message code="search" />" id="subBtn">
-		<div id ="resultList"></div>
+		<div id ="resultList">
+		<c:if test="${empty list }">
+			<spring:message code="search.nothing" />
+		</c:if>
+		<c:if test="${!empty list }">
+			<table>
+				<tr>
+					<th><spring:message code="mat.no" /></th>
+					<th><spring:message code="mat.name" /></th>
+					<th><spring:message code="regist" /></th>
+				</tr>
+				<c:forEach items="${list}" var="material">
+				<tr>
+					<td>${material.matNo }</td>
+					<td id = "nameVal${material.matNo }">${material.matName }</td>
+					<td><input type="button" onclick="regist(${material.matNo})" value="<spring:message code="regist"/>"></td>
+				</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		</div>
 	</div>
 	<footer></footer>
 </body>

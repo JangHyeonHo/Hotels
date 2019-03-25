@@ -40,7 +40,7 @@ public class DistributorController {
 	}
 	@RequestMapping(value="/comp/logistics/distributor/regist", method = RequestMethod.POST)
 	public String postRegist(@RequestParam("csvFile") MultipartFile file, HttpServletRequest request, Model model) {
-		int i = registService.listRegist(CSVFileUploader.csvFileReader(AutoFileClassfication.CSVFiling(file, request.getSession().getServletContext().getRealPath("/") + "/csvBackUp/")));
+		int i = registService.listRegist(CSVFileUploader.csvFileReader(AutoFileClassfication.CSVFiling(file, request.getSession().getServletContext().getRealPath("/") + "/resources/img/csvBackUp/")));
 		System.out.println(i + "개의 유통회사 정보 업로드가 완료되었음.");
 		if(i == 0) { 
 			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패", "유통회사가 등록되지 않았습니다.", "../");
