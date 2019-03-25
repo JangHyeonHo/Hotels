@@ -141,7 +141,6 @@ $(function(){
 	}
 	innerHtmlValue += "</select>";	 
 	
-	$(".stay_num").html(innerHtmlValue);
 	
 /* 	var selectValue = "<select class = 'roomskind'>";
 	for(var k = 1; k <= 1 ; k++){
@@ -161,11 +160,10 @@ $(function(){
 	var guestNo = "";
 	for(var w = 1; w <= 1; w++){
 		if(w != 0){
-			guestNo += "객실번호<input type='text' name='grNo'>";
+			guestNo += "객실번호 <input type='text' name='grNo'>";
 		}
 		
 	}
-	$(".grNo").html(guestNo);
 	
 	
 	
@@ -183,7 +181,6 @@ $(function(){
 	}
 	dinAdult += "</select>";
 	//che_pre에 넣어줌
-	$(".che_pre3").html(dinAdult);
 	
 	var dinChild = "<select class = 'che_pre3' name = 'DinChild'>";
 	//식사 인원수 1부터 20까지 증가시킴
@@ -196,10 +193,10 @@ $(function(){
 	}
 	dinChild += "</select>";
 	//che_pre에 넣어줌
-	$(".che_pre4").html(dinChild);
+
 	
-	
-	
+	var firstBoxing = innerHtmlValue + guestNo + dinAdult + dinChild + "<br>";
+	$("#stayhidden").html(firstBoxing)
 	
 	$("#roomscount").on("change",function(){
 		var value = $(this).val();
@@ -307,21 +304,6 @@ $(function(){
 
 
     <div id = "stayhidden">
-
-      <select class = "stay_num" name = "grStaySum">
-    
-      </select> 
-
-        객실번호<input type="text" class = "grNo" name = "grNo">      
-     
-     
-
-	<select class="che_pre3" name="DinAdult">
-		
-	</select>
-	<select class="che_pre4" name="DinChild">
-		
-	</select>
 			
     </div>
     

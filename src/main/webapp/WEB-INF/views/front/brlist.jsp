@@ -3,7 +3,8 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script type="text/javascript">
 
-
+/* 
 var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
 //식사 인원수 1부터 20까지 증가시킴
 for(var i = 0; i <= 10; i++){
@@ -84,7 +85,7 @@ $("#roomscount").on("change",function(){
 	console.log(AllRooms);
 	
 })
-
+ */
 </script>
 
 </head>
@@ -93,9 +94,38 @@ $("#roomscount").on("change",function(){
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
-	<h2>조식 목록</h2>
+	<h2>조식 여부</h2>
 
-
+<table>
+	<tr>
+	<th>수속 번호</th>
+	<th>고객 성/이름</th>
+	<th>고객 전화번호</th>
+	<th>객실 번호</th>
+	<th>숙박 인원</th>
+	<th>쿠폰 번호</th>
+	<th>조식 종류</th>
+	<th>성인 인원/어린이 인원</th>
+	</tr>
+	
+	<c:forEach items="${list }" var = "brlist">
+	<c:forEach items="${brlist.guestRooms }" var = "brlist2" >
+		<tr>
+	<td>${brlist2.checkIn.cheNo }</td>
+	<td>${brlist2.checkIn.customer.cosLName } ${brlist2.checkIn.customer.cosFName }</td>
+	<td>${brlist2.checkIn.customer.cosTelno }</td>
+	<td><a href = "breakfast/detail?grNo=${brlist2.grNo }">${brlist2.grNo }</a></td>
+	<td>${brlist2.grStaySum } 명</td>
+	<td>${brlist.breakCoupon }</td>
+	<td>${brlist.breakKind }</td>
+	<td>성인${brlist.breakAdult }명/어린이${brlist.breakChild }명</td>
+	<td><a href = "breakfast/delete?breakCoupon=${brlist.breakCoupon }">삭제</a></td>
+	
+	</tr>
+	</c:forEach>	
+	</c:forEach>
+</table>
+<input type = "button" onclick="location.href='../front'" value = "메인으로">
 	</div>
 	<footer></footer>
 </body>

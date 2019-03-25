@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.BreakfastDTO;
-import com.hotels.peregrine.model.GuestRoomDTO;
 
 @Repository
 public class BreakfastRepository {
@@ -18,16 +17,27 @@ public class BreakfastRepository {
 	private String namespace = "break";
 
 	//조식 리스트
-	public List<GuestRoomDTO> bflist() {
+	public List<BreakfastDTO> bflist() {
 		
 		return sql.selectList("break.bflist");
 	}
 	
-	//고객정보 등록 메소드
-	public void insert(BreakfastDTO breakfast) {
+	//조식등록 고객 디테일
+	public BreakfastDTO bfDetail(int no) {
 		
-		sql.insert("break.insert", breakfast);
+		return sql.selectOne("break.bfDetail",no);
+	}
+
+	//조식 등록 메소드
+	public void create(BreakfastDTO bf) {
 		
+		sql.insert("break.insert", bf);
+		
+	}
+
+	public void delete(int no) {
+		
+		sql.delete("break.delete",no);
 	}
 
 	

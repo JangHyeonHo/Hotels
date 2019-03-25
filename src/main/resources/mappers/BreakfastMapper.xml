@@ -2,17 +2,111 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="break">
 	<cache />
- 	<insert id="insert" parameterType="Breakfast">
+
+	<select id="bflist" resultMap="bfList">
+    select bf.break_coupon, ci.CHE_NO, gr.GR_NO, bf.BREAK_KIND, bf.BREAK_ADULT, bf.BREAK_CHILD,
+		cu.COS_L_NAME, cu.COS_F_NAME, cu.COS_TELNO, gr.GR_STAY_SUM
+		from
+		BREAKFAST bf full outer join GUEST_ROOM gr on (bf.GR_NO=gr.GR_NO)
+        left outer join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
+		left outer join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
+		ORDER BY gr.gr_no asc
+		
+	</select>
 	
-		insert into BREAKFAST
-		(BREAK_COUPON, GR_NO, CHE_NO, BREAK_ADULT, BREAK_CHILD)
-		values
-		(sq_BREAK_COUPON.nextval, #{guestRoom.grNo}, #{guestRoom.checkIn.cheNo},
-		#{breakAdult}, #{breakChild})
+	<select id="bfDetail" resultMap="bfdetail">
 	
-	</insert> 
+		select gr.CHE_NO, cu.COS_L_NAME, cu.COS_F_NAME, cu.COS_TELNO, gr.GR_NO,
+		gr.GR_STAY_SUM
+		from
+		GUEST_ROOM gr join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
+		join CUSTOMER cu on(ci.COS_NO=cu.COS_NO)
+		where
+		gr.GR_NO = #{grNo}
+	
+	</select>
+	
+	<insert id="insert" parameterType="Breakfast">
+	insert into BREAKFAST
+	(BREAK_COUPON, GR_NO, CHE_NO, BREAK_KIND, BREAK_ADULT, BREAK_CHILD)
+	values
+	(sq_BREAK_COUPON.nextval, #{guestRoom.grNo}, #{guestRoom.checkIn.cheNo}, #{breakKind}, #{breakAdult}, #{breakChild})
+	
+	</insert>
+	
+	<delete id="delete" parameterType = "Integer">
+	
+	delete from BREAKFAST
+	where
+	BREAK_COUPON = #{no}
+	
+	</delete>
 	
 	
 	
+	
+	<resultMap type="Breakfast" id="bfList">
+		<id column="BREAK_COUPON" jdbcType="INTEGER" property="breakCoupon" />
+		<result column="BREAK_KIND" jdbcType="VARCHAR"
+				property="breakKind" />
+		<result column="BREAK_ADULT" jdbcType="INTEGER"
+			property="breakAdult" />		
+		<result column="BREAK_CHILD" jdbcType="INTEGER"
+			property="breakChild" />	
+		<collection property="guestRooms" javaType="java.util.ArrayList" ofType="GuestRoom">
+		<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
+		<result column="GR_DI_ADULT" jdbcType="INTEGER"
+			property="grDiAdult" />
+		<result column="GR_DI_CHILD" jdbcType="INTEGER"
+			property="grDiChild" />
+		<result column="GR_STAY_SUM" jdbcType="INTEGER"
+			property="grStaySum" />
+
+		<association property="checkIn" javaType="CheckIn">
+			<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
+			<result column="ROOM_NAME" jdbcType="VARCHAR"
+				property="room.roomName" />
+			<result column="CHE_IN_time" jdbcType="TIMESTAMP"
+				property="cheInTime" />
+			<result column="CHE_IN_DATE" jdbcType="TIMESTAMP"
+				property="cheInDate" />
+			<result column="CHE_OUT_DATE" jdbcType="TIMESTAMP"
+				property="cheOutDate" />
+			<association property="customer" javaType="Customer">
+				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
+				<result column="COS_L_NAME" jdbcType="VARCHAR"
+					property="cosLName" />
+				<result column="COS_F_NAME" jdbcType="VARCHAR"
+					property="cosFName" />
+				<result column="COS_TELNO" jdbcType="VARCHAR"
+					property="cosTelno" />
+			</association>
+		</association>
+		</collection>
+	</resultMap>	
+		
+	<resultMap type="Breakfast" id="bfdetail">
+		<id column="BREAK_COUPON" jdbcType="INTEGER" property="breakCoupon" />
+		<result column="BREAK_KIND" jdbcType="VARCHAR" property="breakKind"/>
+		<result column="BREAK_ADULT" jdbcType="INTEGER" property="breakAdult"/>
+		<result column="BREAK_CHILD" jdbcType="INTEGER" property="breakChild"/>
+	<association property="guestRoom" javaType="GuestRoom">
+	<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
+		<result column="GR_STAY_SUM" jdbcType="INTEGER"
+			property="grStaySum" />
+	<association property="checkIn" javaType="CheckIn">
+	<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
+	<association property="customer" javaType="Customer">
+				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
+				<result column="COS_L_NAME" jdbcType="VARCHAR"
+					property="cosLName" />
+				<result column="COS_F_NAME" jdbcType="VARCHAR"
+					property="cosFName" />
+				<result column="COS_TELNO" jdbcType="VARCHAR"
+					property="cosTelno" />
+	</association>
+	</association>		
+	</association>
+	</resultMap>
 	
 </mapper>

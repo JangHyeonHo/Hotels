@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script type="text/javascript">
 
-
+/* 
 var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
 //식사 인원수 1부터 20까지 증가시킴
 for(var i = 0; i <= 10; i++){
@@ -84,7 +85,7 @@ $("#roomscount").on("change",function(){
 	console.log(AllRooms);
 	
 })
-
+ */
 </script>
 
 </head>
@@ -93,14 +94,21 @@ $("#roomscount").on("change",function(){
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
-	<h2>조식 여부</h2>
-
-     <select class="che_pre1" name="breakAdult">
-		
-	 </select> 
-	 <select class="che_pre2" name="breakChild">
-		
-	</select> 
+	<h2>${bf.guestRoom.grNo }호 조식 등록</h2>
+	<form:form>
+	<div class = "infobox">수속 번호 : ${bf.guestRoom.checkIn.cheNo } </div>
+	<div class = "infobox">고객 성/이름 : ${bf.guestRoom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName} </div>
+	<div class = "infobox">고객 번호: ${bf.guestRoom.checkIn.customer.cosTelno } </div>
+	<div class = "infobox">객실 번호 : ${bf.guestRoom.grNo } </div>
+	<div class = "infobox">숙박 인원 : ${bf.guestRoom.grStaySum } </div>
+ 	<input type="hidden" name="guestRoom.grNo" value="${bf.guestRoom.grNo }">
+ 	<input type="hidden" name="guestRoom.checkIn.cheNo" value="${bf.guestRoom.checkIn.cheNo }">
+	<div class = "infobox">조식 종류 : <input type = "text" name = "breakKind"></div>
+	<div class = "infobox">성인 : <input type = "text" name = "breakAdult"></div>
+	<div class = "infobox">어린이 : <input type = "text" name = "breakChild"></div>
+	
+	<input type="submit" value = "등록">
+	</form:form>
 
 	</div>
 	<footer></footer>

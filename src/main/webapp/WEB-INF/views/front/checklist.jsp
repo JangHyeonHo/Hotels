@@ -51,7 +51,6 @@
 	<th>체크인 날짜</th>
 	<th>체크아웃 예정일</th>
 	<th>석식 성인/어린이 인원</th>
-	<th>조식 성인/어린이 인원</th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "roomlist">
@@ -66,7 +65,8 @@
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInTime }"/></td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
 	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
-	<td><a href = "rooms/mealinfo?grNo=${roomlist.grNo }">조식성인${roomlist.grDiAdult }명/조식어린이${roomlist.grDiChild }명</a></td>
+	<td><a href = "rooms/checkout?grNo=${roomlist.grNo }">[체크아웃]</a></td>
+
 	</tr>
 	
 	</c:forEach>

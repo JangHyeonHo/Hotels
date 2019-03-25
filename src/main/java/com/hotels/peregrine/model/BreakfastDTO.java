@@ -1,6 +1,7 @@
 package com.hotels.peregrine.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 조식(breakfast) 테이블에 관한 것<br>
@@ -21,6 +22,13 @@ public class BreakfastDTO implements Serializable {
 	private int breakAdult;
 	private int breakChild;
 	private GuestRoomDTO guestRoom;
+	private List<GuestRoomDTO> guestRooms;
+	public List<GuestRoomDTO> getGuestRooms() {
+		return guestRooms;
+	}
+	public void setGuestRooms(List<GuestRoomDTO> guestRooms) {
+		this.guestRooms = guestRooms;
+	}
 	public int getBreakCoupon() {
 		return breakCoupon;
 	}
