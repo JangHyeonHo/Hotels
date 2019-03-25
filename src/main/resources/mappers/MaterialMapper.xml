@@ -115,6 +115,8 @@
 				and MAT_KIND = #{search}
 			</if>
 		</where>
+		ORDER BY 
+			mat_no asc
 	</select>
 	
 	<resultMap type="Material" id="searchMap">

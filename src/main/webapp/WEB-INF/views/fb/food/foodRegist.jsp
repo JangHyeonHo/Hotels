@@ -56,16 +56,16 @@
 		</h1>
 		<form:form enctype="multipart/form-data">
 			<spring:message code="food.name" />
-			<input type="text" name = "foodName">
+			<input type="text" name = "food.foodName">
 			<br>
 			<spring:message code="food.price" />
-			<input type="number" name = "foodPrice">
+			<input type="number" name = "food.foodPrice">
 			<br>
 			<spring:message code="food.recipe" />
-			<textarea name = "foodRecipe"></textarea>
+			<textarea name = "food.foodRecipe"></textarea>
 			<br>
 			<spring:message code="food.kind" />
-			<select name = "foodKind">
+			<select name = "food.foodKind">
 				<option value="<spring:message code="food.ko"/>"><spring:message
 						code="food.ko" /></option>
 				<option value="<spring:message code="food.en"/>"><spring:message
@@ -82,7 +82,7 @@
 						code="food.al" /></option>
 			</select>
 			<br>
-			<spring:message code="food.image" />
+			<spring:message code="food.image" /> 등록
 			<input type="file" name = "foodImage">
 			<br>
 			<input type="button" value="<spring:message code="food.material"/>"
@@ -90,6 +90,7 @@
 			<div id = "resultBox"></div>	
 			
 			<input type="submit" value="<spring:message code="regist"/>">
+			<input type="button" value="<spring:message code="back"/>" onclick="location.href='../food'">
 		</form:form>
 	</div>
 	<footer></footer>

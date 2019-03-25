@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.hotels.peregrine.command.FoodRegistCommand;
 import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.other.AutoFileClassfication;
 import com.hotels.peregrine.other.AutoTest;
@@ -22,21 +22,21 @@ public class FoodRegistService {
 	@Autowired
 	private RecipeFoodRepository rfRepository;
 
-	public int registFood(FoodDTO food, MultipartFile foodImage, HttpServletRequest request, int[] materialNo) {
+	public int registFood(FoodRegistCommand command, HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		if(!foodImage.isEmpty()) {
-			ClassifiedFile fileNaming = AutoFileClassfication.OnefileClassficationing(foodImage, request.getSession().getServletContext().getRealPath("/") + "/fb/food/");
-			food.setFoodOriFileName(fileNaming.getFileOriginName())
+		if(!command.getFoodImage().isEmpty()) {
+			ClassifiedFile fileNaming = AutoFileClassfication.OnefileClassficationing(command.getFoodImage(), request.getSession().getServletContext().getRealPath("/") + "/resources/img/fb/food/");
+			command.getFood().setFoodOriFileName(fileNaming.getFileOriginName())
 			.setFoodStoreFileName(fileNaming.getFileStoreName());
 		}
-		food.setFoodRegist(FoodDTO.FOODREGISTKIND[1]);
-		AutoTest.ModelBlackTest(food);
-		int result = foodRepository.regist(food);
+		command.getFood().setFoodRegist(FoodDTO.FOODREGISTKIND[1]);
+		AutoTest.ModelBlackTest(command.getFood());
+		int result = foodRepository.regist(command.getFood());
 		if(result == 0) {
 			return 0;
 		} else {
-			int foodNo = foodRepository.searchNo(food);
-			return rfRepository.insertRecipe(foodNo, materialNo);
+			int foodNo = foodRepository.searchNo(command.getFood());
+			return rfRepository.insertRecipe(foodNo, command.getMaterialNo());
 		}
 	}
 
