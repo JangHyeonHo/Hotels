@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.other.AutoAlertProcess;
+import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckOutService;
 
 @Controller
@@ -16,11 +18,11 @@ public class CheckOutController {
 	CheckOutService service;
 	
 	@RequestMapping(value = "/comp/front/rooms/checkout", method = RequestMethod.GET)
-	public String checkout(@ModelAttribute("checkout")int num, Model model) {
+	public String checkout(@ModelAttribute("cheNo")int num, Model model) {
 		
+		service.checkout(num);
 		
-		
-		return "";
+		return AutoAlertProcess.alertAfterRedirect(model, "체크아웃", "체크아웃 되었습니다.", "../rooms");
 		
 	}
 }

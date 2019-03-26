@@ -34,10 +34,15 @@ public class BreakfastRepository {
 		sql.insert("break.insert", bf);
 		
 	}
-
+	//조식 삭제
 	public void delete(int no) {
 		
 		sql.delete("break.delete",no);
+	}
+	//체크아웃리스트
+	public List<BreakfastDTO> checkoutlist() {
+		
+		return sql.selectList("break.checkoutlist");
 	}
 
 	

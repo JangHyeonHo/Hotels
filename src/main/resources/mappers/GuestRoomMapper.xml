@@ -19,6 +19,9 @@
 		from
 		GUEST_ROOM gr join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
 		join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
+		WHERE ci.CHE_OUT_TIME IS null
+		ORDER BY gr.CHE_NO asc
+		
 
 	</select>
 	
@@ -48,6 +51,8 @@
 	
 	
 		</update>
+		
+
 
 
 

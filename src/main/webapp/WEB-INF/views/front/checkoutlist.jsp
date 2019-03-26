@@ -3,14 +3,15 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>프론트</title>
+<title>객실 조회</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -37,17 +38,46 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
-    <br> <br>
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="room in use">
-    <input type="button" onclick="location.href='front/checkout'" id="btn-C" value="checkout">
-    <br> <br>
-    <input type="button" onclick="location.href='front/breakfast'" id="btn-D" value="breakfast">
-    <input type="button" id="btn-E" value="payment">
-    <input type="button" id="btn-G" value="history">
-    <input type="button" id="btn-H" onclick="location.href='front/add'" value="room add">
+	<h2>사용객실 정보</h2>
+	
+	<table>
+	<tr>
+	<th>수속 번호</th>
+	<th>고객 성/이름</th>
+	<th>고객 전화번호</th>
+	<th>객실 번호</th>
+	<th>객실명</th>
+	<th>숙박 인원</th>
+	<th>체크인 날짜</th>
+	<th>체크아웃 예정일</th>
+	<th>체크아웃 날짜</th>
+	<th>조식 종류</th>
+	<th>조식 성인/어린이 인원</th>
+	<th>석식 성인/어린이 인원</th>
+	</tr>
+	
+	<c:forEach items="${list }" var = "cheOutList">
+
+	<tr>
+	<td>${cheOutList.guestRoom.checkIn.cheNo }</td>
+	<td>${cheOutList.guestRoom.checkIn.customer.cosLName } ${cheOutList.guestRoom.checkIn.customer.cosFName }</td>
+	<td>${cheOutList.guestRoom.checkIn.customer.cosTelno }</td>
+	<td>${cheOutList.guestRoom.grNo }</td>
+	<td>${cheOutList.guestRoom.checkIn.room.roomName }</td>
+	<td>${cheOutList.guestRoom.grStaySum } 명</td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheInTime }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutDate }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutTime }"/></td>
+	<td>${cheOutList.breakKind }</td>
+	<td>조식성인${cheOutList.breakAdult }명/조식어린이${cheOutList.breakChild }명</td>
+	<td>석식성인${cheOutList.guestRoom.grDiAdult }명/석식어린이${cheOutList.guestRoom.grDiChild }명</td>
+	
+
+	</tr>
+	
+	</c:forEach>
+	</table>
+	<input type = "button" onclick="location.href='../front'" value = "메인으로">
 	</div>
 	<footer></footer>
 </body>
