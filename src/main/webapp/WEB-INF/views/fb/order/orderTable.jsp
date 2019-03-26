@@ -57,11 +57,12 @@
 		<c:if test="${i>32 and i<45 }">2</c:if>
 		</div>
 		<div class = "money"><spring:message code="money" /> : 0</div>
-		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?'"></div>
+		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?table=${i }'"></div>
 		<div class = "tableOrderList"><input type = "button" value="<spring:message code="order.list" /> 보기" onclick = "location.href='./list'"></div>
-		<div class = "tableOrderList"><input type = "button" value="<spring:message code="payment" /> 하기"></div>
+		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기"></div>
 	</div>
 	</c:forEach>
+	<div><input type = "button" value="<spring:message code="back" />"></div>
 	</div>
 	<footer></footer>
 </body>

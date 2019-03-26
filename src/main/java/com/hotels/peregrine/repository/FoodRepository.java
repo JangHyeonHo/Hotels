@@ -31,13 +31,14 @@ public class FoodRepository {
 	}
 
 	//모든 음식 리스트를 불러오기
-	public List<FoodDTO> listSelect(AutoPaging page) {
+	public List<FoodDTO> listSelect(AutoPaging page, String kind) {
 		// TODO Auto-generated method stub
 		Integer minNum = ((page.getPage()-1)*page.getLimit())+1;
 		Integer maxNum = minNum+page.getLimit()-1;
 		HashMap<String, Object> mapping = new HashMap<String, Object>();
 		mapping.put("minNum", minNum);
 		mapping.put("maxNum", maxNum);
+		mapping.put("kind", kind);
 		return template.selectList(namespace+".foodList",mapping);
 	}
 	
@@ -66,6 +67,12 @@ public class FoodRepository {
 	public int deleteFood(int no) {
 		// TODO Auto-generated method stub
 		return template.delete(namespace+".deleteFood",no);
+	}
+
+	//주문에 사용할 음식 이믈과 가격가져오기
+	public FoodDTO orderFoodCall(int foodNo) {
+		// TODO Auto-generated method stub
+		return template.selectOne(namespace+".namePriceCall",foodNo);
 	}
 	
 	
