@@ -13,14 +13,15 @@
 
 	<select id="namelist" resultMap="resnamebase" parameterType="String">
 
-		SELECT res_name,sum(res_table_count) as tc FROM
-		RESTAURANT 
+		SELECT r.res_name, sum(r.res_table_count)-count(rr.RES_CHAIR) as tc FROM
+		RESTAURANT r left outer join RESTAURANT_RESERVATION rr on(r.RES_CHAIR = rr.RES_CHAIR AND r.RES_NAME = rr.RES_NAME)
+		
 		<where>
 			<if test="value != null">
-			res_name = #{value}
+			r.res_name = #{value}
 			</if>
 		</where>
-		group by res_name
+		group by r.res_name
 	</select>
 
 
