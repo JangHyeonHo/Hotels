@@ -28,9 +28,11 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/" /> 
 	<resources mapping="/img/**" location="/resources/img/" />
 	<resources mapping="/food/**" location="/resources/img/fb/food/" />
+	<resources mapping="/banquet/**" location="/resources/img/fb/banquet/" />  
+	<resources mapping="/Restaurant/**" location="/resources/img/fb/Restaurant/" /> 
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 

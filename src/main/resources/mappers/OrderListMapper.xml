@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderlist">
+	<cache />
+	<sql id="allColumns">
+		ORD_NO, FOOD_NO, OL_COUNT, OL_TIME
+	</sql>
+	
+	<select id="tableCall" parameterType="Integer" resultMap="listMap">
+		SELECT 
+		ol.ORD_NO, ol.FOOD_NO, ol.OL_COUNT, ol.OL_TIME,
+		o.ORD_TABLE_NUM, f.FOOD_NAME, f.FOOD_PRICE
+		FROM 
+			order_list ol 
+		FULL OUTER JOIN 
+			orders o ON(ol.ORD_NO = o.ORD_NO)
+			LEFT OUTER JOIN
+				food f ON(f.FOOD_NO = ol.FOOD_NO)
+					WHERE
+						o.ORD_TABLE_NUM = #{table} and o.PAY_NO is null
+	</select>
+	
+	<resultMap type="OrderList" id="listMap">
+		<result column="OL_COUNT" jdbcType="INTEGER" property="olCount"/>
+		<result column="OL_TIME" jdbcType="TIMESTAMP" property="olTime"/>
+		<association javaType="Orders" property="orders">
+			<id column="ORD_NO" jdbcType="INTEGER" property="ordNo"/>
+			<result column="ORD_TABLE_NUM" jdbcType="INTEGER" property="ordTableNum"/>
+		</association>
+		<association javaType="Food" property="food">
+			<id column="FOOD_NAME" jdbcType="VARCHAR" property="foodName"/>
+			<result column="FOOD_PRICE" jdbcType="INTEGER" property="foodPrice"/>
+		</association>
+	</resultMap>
+	
+</mapper>

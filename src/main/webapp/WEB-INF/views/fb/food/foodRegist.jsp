@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,20 +66,10 @@
 			<br>
 			<spring:message code="food.kind" />
 			<select name = "food.foodKind">
-				<option value="<spring:message code="food.ko"/>"><spring:message
-						code="food.ko" /></option>
-				<option value="<spring:message code="food.en"/>"><spring:message
-						code="food.en" /></option>
-				<option value="<spring:message code="food.jp"/>"><spring:message
-						code="food.jp" /></option>
-				<option value="<spring:message code="food.ch"/>"><spring:message
-						code="food.ch" /></option>
-				<option value="<spring:message code="food.de"/>"><spring:message
-						code="food.de" /></option>
-				<option value="<spring:message code="food.be"/>"><spring:message
-						code="food.be" /></option>
-				<option value="<spring:message code="food.al"/>"><spring:message
-						code="food.al" /></option>
+				<c:forEach begin="1" end="7" step="1" var="i">
+				<option value="<spring:message code="food.ki${i }"/>"><spring:message
+						code="food.ki${i }" /></option>
+				</c:forEach>
 			</select>
 			<br>
 			<spring:message code="food.image" /> 등록

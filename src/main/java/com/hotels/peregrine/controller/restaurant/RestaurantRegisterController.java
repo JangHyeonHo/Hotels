@@ -36,7 +36,7 @@ public class RestaurantRegisterController {
 	public String postfrom(@ModelAttribute RestaurantDTO dto,@RequestParam("resStoreFileNameOne") MultipartFile file,HttpServletRequest request) {
 		System.out.println("레스토랑 포스트 작동 ");
 	
-		ClassifiedFile storefile = AutoFileClassfication.OnefileClassficationing(file, request.getSession().getServletContext().getRealPath("/") + "RestaurantImage/");
+		ClassifiedFile storefile = AutoFileClassfication.OnefileClassficationing(file, request.getSession().getServletContext().getRealPath("/") + "/resources/img/fb/Restaurant/");
 		
 		dto.setResStoreFileName(storefile.getFileStoreName());
 		
