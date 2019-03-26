@@ -10,6 +10,7 @@
 		BREAKFAST bf full outer join GUEST_ROOM gr on (bf.GR_NO=gr.GR_NO)
         left outer join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
 		left outer join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
+		WHERE ci.CHE_OUT_TIME IS null
 		ORDER BY gr.gr_no asc
 		
 	</select>
@@ -41,6 +42,21 @@
 	BREAK_COUPON = #{no}
 	
 	</delete>
+	
+	<select id="checkoutlist" resultMap = "cheOutList">
+		select gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO, cu.COS_F_NAME, cu.COS_TELNO,
+		ci.CHE_IN_time, ci.CHE_IN_DATE, ci.CHE_OUT_DATE, ci.CHE_OUT_TIME,
+		ci.ROOM_NAME, gr.GR_DI_ADULT, gr.GR_DI_CHILD, gr.GR_STAY_SUM,
+		bf.BREAK_KIND, bf.BREAK_ADULT, bf.BREAK_CHILD
+		from
+		BREAKFAST bf full outer join GUEST_ROOM gr on (bf.GR_NO=gr.GR_NO)
+        left outer join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
+		left outer join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
+		WHERE ci.CHE_OUT_TIME IS not null
+		ORDER BY gr.CHE_NO asc
+	
+	
+	</select>
 	
 	
 	
@@ -108,5 +124,50 @@
 	</association>		
 	</association>
 	</resultMap>
+	
+	<resultMap type="Breakfast" id="cheOutList">
+		<id column="BREAK_COUPON" jdbcType="INTEGER" property="breakCoupon" />
+		<result column="BREAK_KIND" jdbcType="VARCHAR"
+				property="breakKind" />
+		<result column="BREAK_ADULT" jdbcType="INTEGER"
+			property="breakAdult" />		
+		<result column="BREAK_CHILD" jdbcType="INTEGER"
+			property="breakChild" />	
+		<collection property="guestRooms" javaType="java.util.ArrayList" ofType="GuestRoom">
+		<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
+		<result column="GR_DI_ADULT" jdbcType="INTEGER"
+			property="grDiAdult" />
+		<result column="GR_DI_CHILD" jdbcType="INTEGER"
+			property="grDiChild" />
+		<result column="GR_STAY_SUM" jdbcType="INTEGER"
+			property="grStaySum" />
+
+		<association property="checkIn" javaType="CheckIn">
+			<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
+			<result column="ROOM_NAME" jdbcType="VARCHAR"
+				property="room.roomName" />
+			<result column="CHE_IN_time" jdbcType="TIMESTAMP"
+				property="cheInTime" />
+			<result column="CHE_IN_DATE" jdbcType="TIMESTAMP"
+				property="cheInDate" />
+			<result column="CHE_OUT_time" jdbcType="TIMESTAMP"
+				property="cheOutTime" />	
+			<result column="CHE_OUT_DATE" jdbcType="TIMESTAMP"
+				property="cheOutDate" />
+			<association property="customer" javaType="Customer">
+				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
+				<result column="COS_L_NAME" jdbcType="VARCHAR"
+					property="cosLName" />
+				<result column="COS_F_NAME" jdbcType="VARCHAR"
+					property="cosFName" />
+				<result column="COS_TELNO" jdbcType="VARCHAR"
+					property="cosTelno" />
+			</association>
+		</association>
+		</collection>
+	
+	</resultMap>
+	
+	
 	
 </mapper>

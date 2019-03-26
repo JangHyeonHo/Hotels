@@ -33,10 +33,10 @@ public class OrderListDTO implements Serializable {
 		this.olTime = olTime;
 		return this;
 	}
-	public OrdersDTO getOrder() {
+	public OrdersDTO getOrders() {
 		return orders;
 	}
-	public OrderListDTO setOrder(OrdersDTO orders) {
+	public OrderListDTO setOrders(OrdersDTO orders) {
 		this.orders = orders;
 		return this;
 	}

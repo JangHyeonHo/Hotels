@@ -16,13 +16,18 @@ public class FoodListService {
 	private FoodRepository repository;
 	
 	
-	public List<FoodDTO> foodListCall(AutoPaging paging){
-		return repository.listSelect(paging);
+	public List<FoodDTO> foodListCall(AutoPaging paging, String kind){
+		return repository.listSelect(paging, kind);
 	}
 
 	public int getAllListCount() {
 		// TODO Auto-generated method stub
 		return repository.listCount();
+	}
+
+	public FoodDTO foodNamePriceCall(int foodNo) {
+		// TODO Auto-generated method stub
+		return repository.orderFoodCall(foodNo);
 	}
 	
 }

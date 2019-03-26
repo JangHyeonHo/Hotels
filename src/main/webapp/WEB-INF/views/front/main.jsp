@@ -42,7 +42,7 @@
     <br> <br>
     <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
     <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="room in use">
-    <input type="button" id="btn-C" value="checkout">
+    <input type="button" onclick="location.href='front/checkout'" id="btn-C" value="checkout">
     <br> <br>
     <input type="button" onclick="location.href='front/breakfast'" id="btn-D" value="breakfast">
     <input type="button" id="btn-E" value="payment">

@@ -26,7 +26,7 @@ public class CheckInListController {
 		List<GuestRoomDTO> list = service.action();
 		model.addAttribute("list",list);
 		
-		return "front/checklist";
+		return "front/checkinlist";
 	}	
 	
 	

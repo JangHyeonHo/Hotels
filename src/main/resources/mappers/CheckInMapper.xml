@@ -15,6 +15,16 @@
 		from
 		CHECKIN
 	</select>
+	
+		<update id="checkout" parameterType="Integer">
+	
+			update CHECKIN
+			set
+			CHE_OUT_TIME = sysdate
+			where
+			CHE_NO = #{num} and CHE_OUT_TIME is null
+			
+		</update>
 
 
 

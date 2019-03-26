@@ -51,7 +51,11 @@
 				(SELECT
 					<include refid="AllColumns"/>
 				FROM
-					food  ORDER BY 
+					food 
+					<where>
+						FOOD_KIND = #{kind}
+					</where>
+					ORDER BY 
 		 		food_no asc) f 
 		 	WHERE 
 		 		rownum &lt;= #{maxNum}
@@ -97,5 +101,14 @@
 			food_no=#{no}
 	
 	</delete>
+	
+	<select id="namePriceCall" parameterType="Integer" resultType="Food">
+		SELECT
+			food_name, food_price
+		FROM
+			food
+		WHERE
+			food_no = #{foodNo}
+	</select>
 	
 </mapper>

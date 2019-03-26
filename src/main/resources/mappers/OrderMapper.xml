@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orders">
+	<cache />
+	<sql id="allColumns">
+		ORD_NO, PAY_NO, RR_NO, COS_NO, ORD_TABLE_NUM, ORD_SUM_PRICE
+	</sql>
+	
+	<select id="isRegist" parameterType="Integer" resultType="Orders">
+		SELECT 
+			<include refid="allColumns"/>
+		FROM 
+			orders 
+		WHERE ORD_TABLE_NUM = #{table} and PAY_NO is null
+	</select>
+	
+	<insert id="firstOrder" parameterType="Integer">
+		INSERT INTO
+			orders(ORD_NO,ORD_TABLE_NUM,ORD_SUM_PRICE)
+		VALUES
+			(sq_ord_no.nextval,#{table},0)
+	</insert>
+	
+	
+	
+</mapper>

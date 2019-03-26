@@ -19,7 +19,7 @@ public class RoomDetailService {
 
 	public void modify(GuestRoomDTO groom, int baseGrNo) {
 		
-		gr.update(groom,baseGrNo);
+		gr.update(groom, baseGrNo);
 		
 	}
 	
