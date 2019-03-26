@@ -32,6 +32,8 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script type="text/javascript">
 $(function(){
+
+	
 	  $("#rrn").on("change",function(){
 		 var rn = $(this).val();
 		 console.log(rn);
@@ -46,9 +48,13 @@ $(function(){
 		}) 
 	})  
 	
-	$("#tablecount").html(data);
-	
 });
+
+
+	
+	
+	
+
 
 </script>
 </head>
@@ -70,12 +76,13 @@ $(function(){
 	</c:forEach>
 	</select><br>
 	남은 테이블:
-	<div id=tablecount>
-
+	<div id=tablecount >
+	 ${resinfo[0].resTableCount}
 	</div><br>
 	
 	성인 수:<input type="text" name="rrAdult"><br>
 	어린이 수:<input type="text" name="rrChild"><br>
+	예약날짜선택:<input type="date" name="rrDate"><br>
 	<input type="submit" value="예약"><br>
 	</form:form>
 	</div>

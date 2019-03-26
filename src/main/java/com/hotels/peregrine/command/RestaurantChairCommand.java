@@ -1,10 +1,14 @@
 package com.hotels.peregrine.command;
 
-public class RestaurantChairCommand {
+import java.io.Serializable;
+
+public class RestaurantChairCommand implements Serializable {
 
 	private String resName;
 	private int resChair;
 	private int resTableCount;
+	
+	
 	public String getResName() {
 		return resName;
 	}
