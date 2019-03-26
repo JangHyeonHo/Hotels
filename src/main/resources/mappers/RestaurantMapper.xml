@@ -24,7 +24,7 @@
 	</select>
 
 
-	<insert id="resinsert" parameterType="RestaurantReservation">
+	<insert id="resinsert" parameterType="HashMap">
 
 		INSERT INTO
 		RESTAURANT_RESERVATION(
@@ -84,13 +84,14 @@
 	</delete>
 	
 	
-	<select id="chairsCall" parameterType="String" resultType="Restaurant">
+	<select id="chairsCall" parameterType="String" resultType="RestaurantChairCommand">
 		SELECT 
-		RES_CHAIR, res_table_count 
+		r.res_name, r.RES_CHAIR, r.res_table_count-count(rr.RES_CHAIR) AS tableleft 
 		FROM
-		restaurant
-		WHERE res_name=#{resName}
-		ORDER BY RES_CHAIR desc
+		restaurant r left outer join restaurant_reservation rr ON(r.res_chair = rr.res_chair and r.res_name = rr.res_name)
+		WHERE r.res_name=#{resName}
+		GROUP BY r.res_name, r.RES_CHAIR, r.res_table_count
+		ORDER BY r.RES_CHAIR DESC
 	</select>
 	
 	<resultMap type="RestaurantReservation" id="resdetailbase">

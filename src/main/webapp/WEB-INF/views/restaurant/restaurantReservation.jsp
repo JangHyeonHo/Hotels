@@ -46,7 +46,7 @@ $(function(){
 		}) 
 	})  
 	
-	
+	$("#tablecount").html(data);
 	
 });
 

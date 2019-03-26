@@ -50,6 +50,7 @@
 		
 		<typeAlias type="com.hotels.peregrine.command.MaterialCountCommand" alias="MaterialCountCommand"/>	
 		<typeAlias type="com.hotels.peregrine.command.RestaurantCommand" alias="RestaurantCommand"/>	
+		<typeAlias type="com.hotels.peregrine.command.RestaurantChairCommand" alias="RestaurantChairCommand"/>	
 	</typeAliases>
 
 

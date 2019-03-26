@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hotels.peregrine.command.RestaurantChairCommand;
 import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.RestaurantDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
@@ -40,10 +41,12 @@ public class RestaurantRepository {
 		return template.selectOne("restaurant.namelist",value);
 	}
 	
-	
 	public void resinsert(List<RestaurantReservationDTO> resList) {
+
 		
-		template.insert("restaurant.resinsert",resList);
+		for(RestaurantReservationDTO dto : resList ){
+		template.insert("restaurant.resinsert",dto);
+		}
 	}
 	
 	
@@ -71,7 +74,7 @@ public class RestaurantRepository {
 		template.delete("restaurant.resdeleteTwo",map);
 	}
 
-	public List<RestaurantDTO> AllChairs(String resName) {
+	public List<RestaurantChairCommand> AllChairs(String resName) {
 		// TODO Auto-generated method stub
 		return template.selectList("restaurant.chairsCall", resName);
 	}
