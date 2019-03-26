@@ -11,7 +11,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>객실 조회</title>
+<title>체크아웃 객실 조회</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -38,7 +38,7 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h2>사용객실 정보</h2>
+	<h2>체크아웃 객실 리스트</h2>
 	
 	<table>
 	<tr>
@@ -49,8 +49,8 @@
 	<th>객실명</th>
 	<th>숙박 인원</th>
 	<th>체크인 날짜</th>
-	<th>체크아웃 예정일</th>
 	<th>체크아웃 날짜</th>
+	<th>체크아웃 예정일</th>
 	<th>조식 종류</th>
 	<th>조식 성인/어린이 인원</th>
 	<th>석식 성인/어린이 인원</th>
@@ -65,9 +65,9 @@
 	<td>${cheOutList.guestRoom.grNo }</td>
 	<td>${cheOutList.guestRoom.checkIn.room.roomName }</td>
 	<td>${cheOutList.guestRoom.grStaySum } 명</td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheInTime }"/></td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutDate }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheInTime }"/>/</td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutTime }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutDate }"/></td>
 	<td>${cheOutList.breakKind }</td>
 	<td>조식성인${cheOutList.breakAdult }명/조식어린이${cheOutList.breakChild }명</td>
 	<td>석식성인${cheOutList.guestRoom.grDiAdult }명/석식어린이${cheOutList.guestRoom.grDiChild }명</td>

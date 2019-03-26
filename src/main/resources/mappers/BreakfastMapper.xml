@@ -133,7 +133,7 @@
 			property="breakAdult" />		
 		<result column="BREAK_CHILD" jdbcType="INTEGER"
 			property="breakChild" />	
-		<collection property="guestRooms" javaType="java.util.ArrayList" ofType="GuestRoom">
+		<association property="guestRoom" javaType="GuestRoom">
 		<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
 		<result column="GR_DI_ADULT" jdbcType="INTEGER"
 			property="grDiAdult" />
@@ -164,7 +164,7 @@
 					property="cosTelno" />
 			</association>
 		</association>
-		</collection>
+		</association>
 	
 	</resultMap>
 	

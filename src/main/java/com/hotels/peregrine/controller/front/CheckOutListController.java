@@ -23,8 +23,9 @@ public class CheckOutListController {
 		
 		List<BreakfastDTO> list = service.action();
 		model.addAttribute("list",list);
-		
-		AutoTest.ModelBlackTest(list);
+		System.out.println("무엇?몇줄?:"+list.size());
+		AutoTest.ModelBlackTest(list.get(0));
+	
 		return "front/checkoutlist";
 	}	
 }
