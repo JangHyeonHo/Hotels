@@ -41,11 +41,22 @@
 
 	</insert>
 
-	<select id="reslist" resultMap="listbase">
-
-		SELECT r.RR_NO AS rrno,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) ORDER BY RRNO desc
-
+	<select id="reslist" resultMap="listbase" parameterType="HashMap">
+		select rnum, ccr.* FROM
+		(select rownum as rnum, cr.* FROM 
+		(SELECT r.RR_NO AS rrno,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM
+		 CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) ORDER BY RRNO desc) cr
+		WHERE rownum &lt; = #{maxNum})ccr
+		WHERE rnum &gt; = #{minNum}
 	</select>
+	
+	<select id="listCnt" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM
+			RESTAURANT_RESERVATION	
+	</select>
+	
 	
 	<select id="resdetail" resultMap="resdetailbase">
 	

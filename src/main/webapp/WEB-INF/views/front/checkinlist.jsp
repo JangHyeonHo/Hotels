@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -54,7 +54,7 @@
 	</tr>
 	
 	<c:forEach items="${list }" var = "roomlist">
-
+<form:form>
 	<tr>
 	<td>${roomlist.checkIn.cheNo }</td>
 	<td>${roomlist.checkIn.customer.cosLName } ${roomlist.checkIn.customer.cosFName }</td>
@@ -68,9 +68,23 @@
 	<td><a href = "rooms/checkout?cheNo=${roomlist.checkIn.cheNo }">[체크아웃]</a></td>
 
 	</tr>
-	
+	</form:form>
 	</c:forEach>
 	</table>
+	<div id = "paging">
+		<c:set var="page" value="${paging.page}"/>
+			<c:if test="${paging.prev}"><a href="?page=1">◀◀</a><a href="?page=${paging.startPage-1}">◀</a></c:if>
+			<c:forEach step="1" begin="${paging.startPage}" end="${paging.endPage}" var="i">
+				<c:if test="${i == page}">
+				<a style = "font-weight : bold">${i}</a>
+				</c:if>
+				<c:if test="${i != page}">
+				<a href="?page=${i}">${i}</a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
+		</div>
+	
 	<input type = "button" onclick="location.href='../front'" value = "메인으로">
 	</div>
 	<footer></footer>

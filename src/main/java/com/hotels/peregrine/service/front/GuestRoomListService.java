@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotels.peregrine.model.GuestRoomDTO;
+import com.hotels.peregrine.other.AutoPaging;
 import com.hotels.peregrine.repository.GuestRoomRepository;
 
 @Service
@@ -16,10 +17,18 @@ public class GuestRoomListService {
 	
 	
 
-	public List<GuestRoomDTO> action() {
+	public List<GuestRoomDTO> action(AutoPaging paging) {
 		
-		return roomlist.roomlist();
+		return roomlist.roomlist(paging);
 	}
+
+
+
+	public int getAllListCount() {
+		
+		return roomlist.getAllListCnt();
+	}
+	
 	
 	
 

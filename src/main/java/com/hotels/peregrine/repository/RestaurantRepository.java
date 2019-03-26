@@ -11,6 +11,7 @@ import com.hotels.peregrine.command.RestaurantChairCommand;
 import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.RestaurantDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
+import com.hotels.peregrine.other.AutoPaging;
 
 @Repository
 public class RestaurantRepository {
@@ -50,9 +51,13 @@ public class RestaurantRepository {
 	}
 	
 	
-	public List<RestaurantReservationDTO> reslist() {
-		
-		return template.selectList("restaurant.reslist");
+	public List<RestaurantReservationDTO> reslist(AutoPaging paging) {
+		Integer minNum = ((paging.getPage()-1)*paging.getLimit())+1;
+		Integer maxNum = minNum+paging.getLimit()-1;
+		HashMap<String, Object> mapping = new HashMap<String, Object>();
+		mapping.put("minNum", minNum);
+		mapping.put("maxNum", maxNum);
+		return template.selectList("restaurant.reslist",mapping);
 	}
 	
 	public List<RestaurantReservationDTO> reserDetail(long num){
@@ -77,6 +82,11 @@ public class RestaurantRepository {
 	public List<RestaurantChairCommand> AllChairs(String resName) {
 		// TODO Auto-generated method stub
 		return template.selectList("restaurant.chairsCall", resName);
+	}
+
+	public int getAllListCnt() {
+		// TODO Auto-generated method stub
+		return template.selectOne("restaurant.listCnt");
 	}
 	
 }
