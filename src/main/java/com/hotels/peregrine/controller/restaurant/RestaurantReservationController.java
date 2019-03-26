@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.command.RestaurantChairCommand;
 import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.RestaurantReservationDTO;
@@ -50,6 +51,7 @@ public class RestaurantReservationController {
 		session.setAttribute("ses", dto);
 		
 		List<RestaurantCommand> resinfo = service.resname();
+		System.out.println("테이블 수는? "+resinfo.get(0).getResTableCount());
 	
 		model.addAttribute("resinfo",resinfo);
 		return "restaurant/restaurantReservation";
@@ -58,7 +60,7 @@ public class RestaurantReservationController {
 	@RequestMapping(value="/restaurant/reservation",method=RequestMethod.POST)
 	public String postform(@ModelAttribute RestaurantReservationDTO dto,  HttpSession session ) {
 		System.out.println("레스토랑 예약 작동");
-		
+	
 		dto.setCustomer((CustomerDTO) session.getAttribute("ses"));
 		AutoTest.ModelBlackTest(dto);
 		
@@ -69,10 +71,12 @@ public class RestaurantReservationController {
 	}
 	
 	@RequestMapping(value="/restaurant/reservation/table",method=RequestMethod.GET)
-	public String getformTow(@ModelAttribute("resname") String resname, Model model) {
+	public String getformTow(@ModelAttribute("resname") String resname, Model model , HttpSession session) {
 
 		System.out.println(resname);
+
 		model.addAttribute("result",service.resTableSearch(resname).getResTableCount());
+		
 		
 		return "restaurant/restaurantTableCount";
 	}
