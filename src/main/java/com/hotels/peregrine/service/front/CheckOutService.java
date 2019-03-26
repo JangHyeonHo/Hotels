@@ -9,6 +9,11 @@ import com.hotels.peregrine.repository.CheckinRepository;
 public class CheckOutService {
 
 	@Autowired
-	CheckinRepository check;
+	private CheckinRepository check;
+
+	public void checkout(int num) {
+		
+		check.checkout(num);
+	}
 	
 }

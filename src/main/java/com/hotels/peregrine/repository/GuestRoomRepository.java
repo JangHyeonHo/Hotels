@@ -1,5 +1,6 @@
 package com.hotels.peregrine.repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +47,8 @@ public class GuestRoomRepository {
 		sql.update("guest.update", mapping);
 		
 	}
+	
+
 
 
 

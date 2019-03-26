@@ -13,14 +13,15 @@
 
 	<select id="namelist" resultMap="resnamebase" parameterType="String">
 
-		SELECT res_name,sum(res_table_count) as tc FROM
-		RESTAURANT 
+		SELECT r.res_name, sum(r.res_table_count)-count(rr.RES_CHAIR) as tc FROM
+		RESTAURANT r left outer join RESTAURANT_RESERVATION rr on(r.RES_CHAIR = rr.RES_CHAIR AND r.RES_NAME = rr.RES_NAME)
+		
 		<where>
 			<if test="value != null">
-			res_name = #{value}
+			r.res_name = #{value}
 			</if>
 		</where>
-		group by res_name
+		group by r.res_name
 	</select>
 
 
@@ -34,8 +35,9 @@
 		RES_CHAIR,
 		RR_ADULT,
 		RR_CHILD,
-		RR_REG_DATE)
-		VALUES(RR_NO.nextval,#{customer.cosNo},#{restaurant.resName},#{restaurant.resChair},#{rrAdult},#{rrChild},sysdate)
+		RR_REG_DATE,
+		RR_DATE)
+		VALUES(RR_NO.nextval,#{customer.cosNo},#{restaurant.resName},#{restaurant.resChair},#{rrAdult},#{rrChild},sysdate,#{rrDate})
 
 	</insert>
 
@@ -84,7 +86,7 @@
 	</delete>
 	
 	
-	<select id="chairsCall" parameterType="String" resultType="RestaurantChairCommand">
+	<select id="chairsCall" parameterType="String" resultMap="chair">
 		SELECT 
 		r.res_name, r.RES_CHAIR, r.res_table_count-count(rr.RES_CHAIR) AS tableleft 
 		FROM
@@ -93,6 +95,17 @@
 		GROUP BY r.res_name, r.RES_CHAIR, r.res_table_count
 		ORDER BY r.RES_CHAIR DESC
 	</select>
+	
+	
+	<resultMap type="RestaurantChairCommand" id="chair">
+	<id column="res_name"   jdbcType="NVARCHAR"  property="resName"/>
+	<id column="RES_CHAIR"  jdbcType="BIGINT"  property="resChair"/>
+	<id column="tableleft"  jdbcType="BIGINT"  property="resTableCount"/>
+	
+	
+	</resultMap>
+	
+	
 	
 	<resultMap type="RestaurantReservation" id="resdetailbase">
 	<id column="RR_NO" jdbcType="BIGINT" property="rrNo"/>

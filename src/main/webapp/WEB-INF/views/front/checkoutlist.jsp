@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>레스토랑 예약</title>
+<title>객실 조회</title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -30,61 +30,54 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script type="text/javascript">
-$(function(){
-
-	
-	  $("#rrn").on("change",function(){
-		 var rn = $(this).val();
-		 console.log(rn);
- 		$.ajax({
-			url:"http://localhost/peregrine/restaurant/reservation/table",
-			method:'get',
-			data: "resname=" + rn,
-			dataType:'html',
-			success:function(data){
-				$("#tablecount").html(data);
-			}
-		}) 
-	})  
-	
-});
 
 
-	
-	
-	
-
-
-</script>
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h1>레스토랑 예약</h1>
-	<form:form>
+	<h2>사용객실 정보</h2>
 	
+	<table>
+	<tr>
+	<th>수속 번호</th>
+	<th>고객 성/이름</th>
+	<th>고객 전화번호</th>
+	<th>객실 번호</th>
+	<th>객실명</th>
+	<th>숙박 인원</th>
+	<th>체크인 날짜</th>
+	<th>체크아웃 예정일</th>
+	<th>체크아웃 날짜</th>
+	<th>조식 종류</th>
+	<th>조식 성인/어린이 인원</th>
+	<th>석식 성인/어린이 인원</th>
+	</tr>
 	
-<%-- 	<input type="hidden" name="customer.cosNo" value="${cosone.customer.cosNo }"> --%>
+	<c:forEach items="${list }" var = "cheOutList">
+
+	<tr>
+	<td>${cheOutList.guestRoom.checkIn.cheNo }</td>
+	<td>${cheOutList.guestRoom.checkIn.customer.cosLName } ${cheOutList.guestRoom.checkIn.customer.cosFName }</td>
+	<td>${cheOutList.guestRoom.checkIn.customer.cosTelno }</td>
+	<td>${cheOutList.guestRoom.grNo }</td>
+	<td>${cheOutList.guestRoom.checkIn.room.roomName }</td>
+	<td>${cheOutList.guestRoom.grStaySum } 명</td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheInTime }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutDate }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutTime }"/></td>
+	<td>${cheOutList.breakKind }</td>
+	<td>조식성인${cheOutList.breakAdult }명/조식어린이${cheOutList.breakChild }명</td>
+	<td>석식성인${cheOutList.guestRoom.grDiAdult }명/석식어린이${cheOutList.guestRoom.grDiChild }명</td>
 	
-	레스토랑 명 :<select name="restaurant.resName" id="rrn">
-	<c:forEach items="${resinfo }" var="rlist">
-	<option value="${rlist.resName }">${rlist.resName }</option>
+
+	</tr>
 	
 	</c:forEach>
-	</select><br>
-	남은 테이블:
-	<div id=tablecount >
-	 ${resinfo[0].resTableCount}
-	</div><br>
-	
-	성인 수:<input type="text" name="rrAdult"><br>
-	어린이 수:<input type="text" name="rrChild"><br>
-	예약날짜선택:<input type="date" name="rrDate"><br>
-	<input type="submit" value="예약"><br>
-	</form:form>
+	</table>
+	<input type = "button" onclick="location.href='../front'" value = "메인으로">
 	</div>
 	<footer></footer>
 </body>

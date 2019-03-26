@@ -3,6 +3,8 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 레스토랑 예약(restaurant_reservation) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -11,6 +13,7 @@ import java.util.Date;
  * <b>rrAdult</b> 레스토랑 고객 성인 인원수<br>
  * <b>rrChild</b> 레스토랑 고객 어린이 인원수<br>
  * <b>rrRegDate</b> 예약 등록일<br>
+ * <b>rrDate</b> 예약날짜<br>
  * <b>관계 테이블</b><br>
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
  * <b>★customer.cosNo</b> 고객(customer)테이블 <b>Primary Key, Foreign Key</b><br>
@@ -21,6 +24,8 @@ public class RestaurantReservationDTO implements Serializable {
 	private int rrNo;
 	private int rrAdult;
 	private int rrChild;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date rrDate;
 	private Date rrRegDate;
 	private CustomerDTO customer;
 	private RestaurantDTO restaurant;
@@ -43,6 +48,13 @@ public class RestaurantReservationDTO implements Serializable {
 	}
 	public RestaurantReservationDTO setRrChild(int rrChild) {
 		this.rrChild = rrChild;
+		return this;
+	}
+	public Date getRrDate() {
+		return rrDate;
+	}
+	public RestaurantReservationDTO setRrDate(Date rrDate) {
+		this.rrDate = rrDate;
 		return this;
 	}
 	public Date getRrRegDate() {
