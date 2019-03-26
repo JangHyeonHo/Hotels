@@ -22,9 +22,5 @@ public class OrderListRepository {
 		return template.selectList(namespace+".tableCall", table);
 
 	}
-
-	public List<OrderListDTO> orderListCall(int tableNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

@@ -74,15 +74,22 @@ public class OrderController {
 	public String sessionOrdering(@RequestParam("foodNo") int foodNo, @RequestParam("tableNo") int tableNo, HttpSession session) {
 		List<OrderListDTO> olList;
 		if(session.getAttribute("sessionOrderList")==null) {
+			System.out.println("세션에 리스트가 존재하지 않음");
 			olList = olService.getAllolList(tableNo);
 		}else{
+			System.out.println("세션에서 리스트 불러옴");
 			olList = (List<OrderListDTO>) session.getAttribute("sessionOrderList");
+			if(olList.get(0).getOrders().getOrdTableNum()!=tableNo){
+				olList = olService.getAllolList(tableNo);
+			}
 		}
 		boolean isOverLaping = false;
 		for(OrderListDTO dto : olList) {
 			if(dto.getFood().getFoodNo()==foodNo) {
+				System.out.println("세션에서 불러와서 하나 더함");
 				dto.setOlCount(dto.getOlCount()+1);
 				isOverLaping = true;
+				break;
 			} 
 		}
 		if(!isOverLaping) {
