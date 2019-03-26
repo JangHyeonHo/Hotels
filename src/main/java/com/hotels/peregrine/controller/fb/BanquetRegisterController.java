@@ -36,7 +36,7 @@ public class BanquetRegisterController {
 		AutoTest.ModelBlackTest(dto);
 		System.out.println("연회장 등록 포스트 오픈");
 		
-		ClassifiedFile storefile = AutoFileClassfication.OnefileClassficationing(file, request.getSession().getServletContext().getRealPath("/") + "banqutImage/");
+		ClassifiedFile storefile = AutoFileClassfication.OnefileClassficationing(file, request.getSession().getServletContext().getRealPath("/") + "/resources/img/fb/banquet/");
 		
 		dto.setBanStoreFileName(storefile.getFileStoreName());
 		
