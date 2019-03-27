@@ -40,7 +40,7 @@
 	<div id = "contents">
 	<h2>사용객실 정보</h2>
 	
-	<table>
+	<table class="table">
 	<tr>
 	<th>수속 번호</th>
 	<th>고객 성/이름</th>
@@ -51,6 +51,7 @@
 	<th>체크인 날짜</th>
 	<th>체크아웃 예정일</th>
 	<th>석식 성인/어린이 인원</th>
+	<th></th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "roomlist">

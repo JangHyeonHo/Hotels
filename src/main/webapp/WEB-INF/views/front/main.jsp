@@ -37,17 +37,17 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	    프론트 관리 <br>
-    <input type="button" id="btn-A" value="reservation">
+	    <h2>프론트 관리</h2>
+    <input type="button" class="btn btn-success" value="reservation">
     <br> <br>
-    <input type="button" onclick="location.href='front/checkin'" id="btn-B" value="checkin">
-    <input type="button" onclick="location.href='front/rooms'" id="btn-C" value="room in use">
-    <input type="button" onclick="location.href='front/checkout'" id="btn-C" value="checkout">
+    <input type="button" onclick="location.href='front/checkin'" class = "btn btn-primary btn-md" value="checkin">
+    <input type="button" onclick="location.href='front/rooms'" class = "btn btn-primary btn-md" value="room in use">
+    <input type="button" onclick="location.href='front/checkout'" class="btn btn-success" value="checkout">
     <br> <br>
-    <input type="button" onclick="location.href='front/breakfast'" id="btn-D" value="breakfast">
-    <input type="button" id="btn-E" value="payment">
-    <input type="button" id="btn-G" value="history">
-    <input type="button" id="btn-H" onclick="location.href='front/add'" value="room add">
+    <input type="button" onclick="location.href='front/breakfast'" class = "btn btn-primary btn-md" value="breakfast">
+    <input type="button" class = "btn btn-primary btn-md" value="payment">
+    <input type="button" class="btn btn-success" value="history">
+    <input type="button" class="btn btn-danger" onclick="location.href='front/add'" value="room add">
 	</div>
 	<footer></footer>
 </body>
