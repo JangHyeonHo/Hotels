@@ -24,6 +24,40 @@
 
 	</insert>
 
+	<select id="mlist" resultMap="listbase">
+
+		SELECT 
+		
+		EMP_NO,
+		EMP_NAME,
+		EMP_EMAIL,
+		EMP_PHONE,
+		EMP_B_DATE,
+		EMP_B_GENDER,
+		EMP_SALARY,
+		EMP_ADDR,
+		EMP_MANAGE_NAME,
+		EMP_DEPART_NAME
+		
+		FROM EMPLOYEE
+	</select>
+	
+	<resultMap type="Employee" id="listbase">
+	<id column="EMP_NO" jdbcType="BIGINT" property="empNo"/>
+	<result column="EMP_NAME" jdbcType="NVARCHAR" property="empName"/>
+	<result column="EMP_EMAIL" jdbcType="NVARCHAR" property="empEmail"/>
+	<result column="EMP_PHONE" jdbcType="NVARCHAR" property="empPhone"/>
+	<result column="EMP_B_DATE" jdbcType="DATE" property="empBDate"/>
+	<result column="EMP_B_GENDER" jdbcType="NVARCHAR" property="empGender"/>
+	<result column="EMP_SALARY" jdbcType="BIGINT" property="empSalary"/>
+	<result column="EMP_ADDR" jdbcType="NVARCHAR" property="empAddr"/>
+	<result column="EMP_MANAGE_NAME" jdbcType="NVARCHAR" property="empManageName"/>
+	<result column="EMP_DEPART_NAME" jdbcType="NVARCHAR" property="empDepartName"/>
+
+	
+	
+	</resultMap>
+
 
 
 </mapper>

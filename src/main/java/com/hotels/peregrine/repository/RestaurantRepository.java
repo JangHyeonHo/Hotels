@@ -1,5 +1,6 @@
 package com.hotels.peregrine.repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,13 +34,17 @@ public class RestaurantRepository {
 	
 	
 	public List<RestaurantCommand> resnamesearch(String value) {
-		
-		return template.selectList("restaurant.namelist",value);
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("value", value);
+		return template.selectList("restaurant.namelist",map);
 	}
 	
-	public RestaurantCommand resname(String value) {
+	public RestaurantCommand resname(String value,String dateTime) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("value", value);
+		map.put("dateTime",dateTime);
 		
-		return template.selectOne("restaurant.namelist",value);
+		return template.selectOne("restaurant.namelist",map);
 	}
 	
 	public void resinsert(List<RestaurantReservationDTO> resList) {
