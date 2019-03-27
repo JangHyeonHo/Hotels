@@ -65,6 +65,7 @@ public class MaterialController {
 		AutoPaging paging = new AutoPaging(command.getPage(),50,10);
 		paging.setListCount(listService.getAllListCount());
 		List<MaterialCountCommand> list = listService.materialList(paging);
+		AutoTest.ModelBlackTest(list.get(0));
 		model.addAttribute("materialList", list);
 		model.addAttribute("paging", paging);
 		return "logistics/material/matList";

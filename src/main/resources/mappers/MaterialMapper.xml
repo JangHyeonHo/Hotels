@@ -7,7 +7,7 @@
 		MAT_NO, MAT_NAME, MAT_KIND
 	</sql>
 	
-	<select id="materialList" resultMap="ListCall" parameterType="HashMap">
+	<select id="materialList" resultMap="ListCall" parameterType="HashMap" useCache="false" flushCache="true">
 		SELECT 
  			rnum, <include refid="AllColumn"/>, CONT_NO, DIS_NAME, COUNTING
  		FROM
