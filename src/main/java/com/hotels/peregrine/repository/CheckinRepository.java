@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.CheckInDTO;
+import com.hotels.peregrine.model.RoomDTO;
 
 @Repository
 public class CheckinRepository {
@@ -32,11 +33,6 @@ public class CheckinRepository {
 		 sql.update("checkin.checkout",num);
 	
 	}
-
-
-
-
-
 
 	
 }

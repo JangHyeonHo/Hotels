@@ -52,12 +52,24 @@ public class GuestRoomRepository {
 		sql.update("guest.update", mapping);
 		
 	}
-
+	
+	//체크아웃리스트
+	public List<GuestRoomDTO> checkoutlist(AutoPaging paging) {
+		Integer minNum = ((paging.getPage()-1)*paging.getLimit())+1;
+		Integer maxNum = minNum+paging.getLimit()-1;
+		HashMap<String, Object> mapping = new HashMap<String, Object>();
+		mapping.put("minNum", minNum);
+		mapping.put("maxNum", maxNum);
+		return sql.selectList("guest.checkoutlist",mapping);
+	}
+	
+	//페이징
 	public int getAllListCnt() {
 		// TODO Auto-generated method stub
 		return sql.selectOne("guest.listCnt");
 	}
 	
+
 
 
 
