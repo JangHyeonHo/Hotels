@@ -51,26 +51,20 @@
 	<th>체크인 날짜</th>
 	<th>체크아웃 날짜</th>
 	<th>체크아웃 예정일</th>
-	<th>조식 종류</th>
-	<th>조식 성인/어린이 인원</th>
-	<th>석식 성인/어린이 인원</th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "cheOutList">
 
 	<tr>
-	<td>${cheOutList.guestRoom.checkIn.cheNo }</td>
-	<td>${cheOutList.guestRoom.checkIn.customer.cosLName } ${cheOutList.guestRoom.checkIn.customer.cosFName }</td>
-	<td>${cheOutList.guestRoom.checkIn.customer.cosTelno }</td>
-	<td>${cheOutList.guestRoom.grNo }</td>
-	<td>${cheOutList.guestRoom.checkIn.room.roomName }</td>
-	<td>${cheOutList.guestRoom.grStaySum } 명</td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheInTime }"/>/</td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutTime }"/></td>
-	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.guestRoom.checkIn.cheOutDate }"/></td>
-	<td>${cheOutList.breakKind }</td>
-	<td>조식성인${cheOutList.breakAdult }명/조식어린이${cheOutList.breakChild }명</td>
-	<td>석식성인${cheOutList.guestRoom.grDiAdult }명/석식어린이${cheOutList.guestRoom.grDiChild }명</td>
+	<td>${cheOutList.checkIn.cheNo }</td>
+	<td>${cheOutList.checkIn.customer.cosLName } ${cheOutList.checkIn.customer.cosFName }</td>
+	<td>${cheOutList.checkIn.customer.cosTelno }</td>
+	<td>${cheOutList.grNo }</td>
+	<td>${cheOutList.checkIn.room.roomName }</td>
+	<td>${cheOutList.grStaySum } 명</td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.checkIn.cheInTime }"/>/</td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.checkIn.cheOutTime }"/></td>
+	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cheOutList.checkIn.cheOutDate }"/></td>
 	
 
 	</tr>

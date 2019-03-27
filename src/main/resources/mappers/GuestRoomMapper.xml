@@ -12,7 +12,7 @@
 		#{checkIn.cheNo}, #{grDiAdult}, #{grDiChild}, #{grStaySum})
 	</insert>
 
-	<select id="roomlist" resultMap="roomList" parameterType="HashMap">
+	<select id="roomlist" resultMap="roomList" parameterType="HashMap" useCache="false" flushCache="true">
 		select rnum, rrl.* FROM
 		(select rownum as rnum, rl.* FROM
 		(select gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO,cu.COS_F_NAME, cu.COS_TELNO,
@@ -27,9 +27,9 @@
 		 	rownum &lt;= #{maxNum} ) rrl  
 		WHERE
 		 	rnum &gt;= #{minNum}
-		 	
-		
-		
+	
+	
+	
 
 	</select>
 	

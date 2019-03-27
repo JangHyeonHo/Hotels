@@ -53,7 +53,9 @@
 				FROM
 					food 
 					<where>
+					<if test="kind != null">
 						FOOD_KIND = #{kind}
+					</if>	
 					</where>
 					ORDER BY 
 		 		food_no asc) f 

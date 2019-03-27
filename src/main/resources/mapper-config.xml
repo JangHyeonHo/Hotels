@@ -5,7 +5,7 @@
 	
 	<!-- 기본정보 셋팅 -->
 	<settings>
-		<setting name="cacheEnabled" value="true" />
+		<setting name="cacheEnabled" value="false" />
 		<setting name="lazyLoadingEnabled" value="true" />
 		<setting name="aggressiveLazyLoading" value="true" />
 		<setting name="useGeneratedKeys" value="true" />

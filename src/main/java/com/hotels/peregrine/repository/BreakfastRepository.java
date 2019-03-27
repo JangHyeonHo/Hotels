@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.BreakfastDTO;
+import com.hotels.peregrine.model.GuestRoomDTO;
 
 @Repository
 public class BreakfastRepository {
@@ -40,7 +41,7 @@ public class BreakfastRepository {
 		sql.delete("break.delete",no);
 	}
 	//체크아웃리스트
-	public List<BreakfastDTO> checkoutlist() {
+	public List<GuestRoomDTO> checkoutlist() {
 		
 		return sql.selectList("break.checkoutlist");
 	}
