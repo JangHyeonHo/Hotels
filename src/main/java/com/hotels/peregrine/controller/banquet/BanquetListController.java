@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.command.PageAndQueryCommand;
 import com.hotels.peregrine.model.BanquetRentalDTO;
+import com.hotels.peregrine.other.AutoPaging;
 import com.hotels.peregrine.service.banquet.BanquetListService;
 
 @Controller
@@ -21,9 +23,15 @@ public class BanquetListController {
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String getform(Model model) {
+	public String getform(Model model,@ModelAttribute PageAndQueryCommand command) {
 		System.out.println("연회장 예약목록 오픈");
-		List<BanquetRentalDTO> list = service.action();
+		if(command.getPage()==0) {
+			command.setPage(1);
+		}
+		AutoPaging paging = new AutoPaging(command.getPage(),10,10);
+		paging.setListCount(service.getAllListCount());
+		
+		List<BanquetRentalDTO> list = service.action(paging);
 		model.addAttribute("list",list);
 		return "banquet/banquetList";
 	}

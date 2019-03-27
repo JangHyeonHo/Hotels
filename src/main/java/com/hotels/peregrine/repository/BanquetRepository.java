@@ -1,5 +1,6 @@
 package com.hotels.peregrine.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.BanquetDTO;
 import com.hotels.peregrine.model.BanquetRentalDTO;
+import com.hotels.peregrine.other.AutoPaging;
 
 @Repository
 public class BanquetRepository {
@@ -33,9 +35,13 @@ public class BanquetRepository {
 		 return template.selectList("banquet.Bnamelist");
 	 }
 	 
-	 public List<BanquetRentalDTO> banquetList(){
-		 
-		 return template.selectList("banquet.Blist");
+	 public List<BanquetRentalDTO> banquetList(AutoPaging paging){
+		 Integer minNum = ((paging.getPage()-1)*paging.getLimit())+1;
+			Integer maxNum = minNum+paging.getLimit()-1;
+			HashMap<String, Object> mapping = new HashMap<String, Object>();
+			mapping.put("minNum", minNum);
+			mapping.put("maxNum", maxNum);
+		 return template.selectList("banquet.Blist",mapping);
 	 }
 	 
 	 public BanquetRentalDTO Bdetail(long num) {
@@ -58,5 +64,10 @@ public class BanquetRepository {
 		 template.delete("banquet.bdelete",num);
 		 
 	 }
+
+	public int getAllListCnt() {
+		// TODO Auto-generated method stub
+		return template.selectOne("banquet.listCnt");
+	}
 	 
 }
