@@ -43,20 +43,7 @@
 	
 	</delete>
 	
-	<select id="checkoutlist" resultMap = "cheOutList">
-		SELECT gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO, cu.COS_F_NAME, cu.COS_TELNO,
-		ci.CHE_IN_time, ci.CHE_IN_DATE, ci.CHE_OUT_DATE, ci.CHE_OUT_TIME,
-		ci.ROOM_NAME, gr.GR_DI_ADULT, gr.GR_DI_CHILD, gr.GR_STAY_SUM 
-		FROM
-	 	GUEST_ROOM gr left outer join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
-		left outer join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
-		WHERE ci.CHE_OUT_TIME IS not null
-		ORDER BY gr.CHE_NO ASC
-	
-	
-	</select>
-	
-	
+
 	
 	
 	<resultMap type="Breakfast" id="bfList">
@@ -94,6 +81,8 @@
 					property="cosFName" />
 				<result column="COS_TELNO" jdbcType="VARCHAR"
 					property="cosTelno" />
+				<result column="COS_ALLERGY" jdbcType="VARCHAR"
+					property="cosAllergy" />
 			</association>
 		</association>
 		</collection>
@@ -123,39 +112,7 @@
 	</association>
 	</resultMap>
 	
-	<resultMap type="GuestRoom" id="cheOutList">
-		<id column="GR_NO" jdbcType="INTEGER" property="grNo" />
-		<result column="GR_DI_ADULT" jdbcType="INTEGER"
-			property="grDiAdult" />
-		<result column="GR_DI_CHILD" jdbcType="INTEGER"
-			property="grDiChild" />
-		<result column="GR_STAY_SUM" jdbcType="INTEGER"
-			property="grStaySum" />
 
-		<association property="checkIn" javaType="CheckIn">
-			<id column="CHE_NO" jdbcType="INTEGER" property="cheNo" />
-			<result column="ROOM_NAME" jdbcType="VARCHAR"
-				property="room.roomName" />
-			<result column="CHE_IN_time" jdbcType="TIMESTAMP"
-				property="cheInTime" />
-			<result column="CHE_IN_DATE" jdbcType="TIMESTAMP"
-				property="cheInDate" />
-			<result column="CHE_OUT_time" jdbcType="TIMESTAMP"
-				property="cheOutTime" />	
-			<result column="CHE_OUT_DATE" jdbcType="TIMESTAMP"
-				property="cheOutDate" />
-			<association property="customer" javaType="Customer">
-				<id column="COS_NO" jdbcType="INTEGER" property="cosNo" />
-				<result column="COS_L_NAME" jdbcType="VARCHAR"
-					property="cosLName" />
-				<result column="COS_F_NAME" jdbcType="VARCHAR"
-					property="cosFName" />
-				<result column="COS_TELNO" jdbcType="VARCHAR"
-					property="cosTelno" />
-			</association>
-		</association>
-	
-	</resultMap>
 	
 	
 	

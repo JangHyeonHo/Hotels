@@ -106,6 +106,7 @@ $("#roomscount").on("change",function(){
 	<th>쿠폰 번호</th>
 	<th>조식 종류</th>
 	<th>성인 인원/어린이 인원</th>
+	<th>알러지 유무</th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "brlist">
@@ -120,7 +121,7 @@ $("#roomscount").on("change",function(){
 	<td>${brlist.breakKind }</td>
 	<td>성인${brlist.breakAdult }명/어린이${brlist.breakChild }명</td>
 	<td><a href = "breakfast/delete?breakCoupon=${brlist.breakCoupon }">삭제</a></td>
-	
+	<td>${brlist.guestRoom.checkIn.customer.cosAllergy }</td>
 	</tr>
 	</c:forEach>	
 	</c:forEach>

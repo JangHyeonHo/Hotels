@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +29,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script src="../../resources/js/checkin.js" ></script>
+<script src="../../js/checkin.js" ></script>
 <style type="text/css">
 
 
 
 </style>
+<script type="text/javascript">
+$(function(){
+
+	
+	  $("#rk").on("change",function(){
+		 var rk = $(this).val();
+		 console.log(rk);
+ 		$.ajax({
+			url:"http://localhost:4444/peregrine/comp/front/checkin/roomscount",
+			method:'GET',
+			data: "roomsname=" + rk,
+			dataType:'html',
+			success:function(data){
+				$("#roomnum").html(data);
+			}
+		}) 
+	})  
+	
+});
+
+
+	
+	
+	
+
+
+</script>
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
@@ -76,32 +103,20 @@
 				
 				
 	<div id = "roomname">			
-    <select class = "roomskind" name = "room.roomName">
-    <option value = "비즈니스 룸">비즈니스 룸</option>
-    <option value = "슈페리어 룸">슈페리어 룸</option>
-    <option value = "디럭스 룸">디럭스 룸</option>
-    <option value = "스위트 룸">스위트 룸</option>
-    <option value = "코너 룸">코너 룸</option>
+    <select class = "roomskind" name = "room.roomName" id="rk">
+    <c:forEach items="${list }" var="rlist">
+    <option value="${rlist.roomName }">${rlist.roomName }</option>
+    </c:forEach>
     </select>				
 	</div>	
 	
 <h4>-객실정보</h4>
       
      <div id = "roomnum">객실수
-     <select id = "roomscount" name = "room.roomCount">
-    <option class = "rcount" value = "1">1개</option>
-    <option class = "rcount" value = "2">2개</option>
-    <option class = "rcount" value = "3">3개</option>
-    <option class = "rcount" value = "4">4개</option>
-    <option class = "rcount" value = "5">5개</option>
-    <option class = "rcount" value = "6">6개</option>
-    <option class = "rcount" value = "7">7개</option>
-    <option class = "rcount" value = "8">8개</option>
-    </select>
+    
+     
     </div>
     
-
-
     <div id = "stayhidden">
 			
     </div>
@@ -112,7 +127,7 @@
 	</div>
     
 	<div id = "sub">
-    <input type = "submit" value = "체크인" class = "btn btn-primary btn-sm">
+    <input type = "submit" value = "체크인" id = "submitBtn" class = "btn btn-primary btn-sm">
     <input type = "reset" value = "재작성" class = "btn btn-primary btn-sm">
     <input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn-sm">
     </div>

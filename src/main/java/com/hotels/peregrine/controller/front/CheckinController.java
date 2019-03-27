@@ -1,17 +1,19 @@
 package com.hotels.peregrine.controller.front;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hotels.peregrine.command.CheckinCommend;
-import com.hotels.peregrine.model.BreakfastDTO;
 import com.hotels.peregrine.model.CheckInDTO;
+import com.hotels.peregrine.model.RoomDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
-import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckinService;
 
 @Controller
@@ -24,8 +26,10 @@ public class CheckinController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/comp/front/checkin", method = RequestMethod.GET)
-	public String checkin() {
+	public String checkin(Model model) {
 		
+		List<RoomDTO> list = service.nameList();
+		model.addAttribute("list",list);
 		return "front/checkin";
 	}	
 	
@@ -39,4 +43,13 @@ public class CheckinController {
 		
 		return AutoAlertProcess.alertAfterRedirect(model, "체크인 완료", "체크인 되었습니다.", "../front");
 	}	
+	
+	@RequestMapping(value = "/comp/front/checkin/roomscount", method = RequestMethod.GET)
+	public String checkinRoomCount(@RequestParam("roomsname") String roomname,Model model) {
+		
+		System.out.println(roomname);
+		
+		model.addAttribute("result",service.roomscount(roomname).getRoomCount());
+		return "front/roomcount";
+	}
 }

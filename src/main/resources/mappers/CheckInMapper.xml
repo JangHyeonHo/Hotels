@@ -7,7 +7,7 @@
 
 	insert into CHECKIN(
 	CHE_NO, COS_NO, ROOM_NAME, CHE_IN_TIME, CHE_IN_DATE, CHE_OUT_DATE, CHE_DETAIL)
-	VALUES(sq_CHE_NO.nextval,#{customer.cosNo},#{room.roomName},sysdate,#{cheInDate},#{cheOutDate},#{cheDetail})
+	VALUES(sq_CHE_NO.nextval,#{customer.cosNo}, #{room.roomName},sysdate,#{cheInDate},#{cheOutDate},#{cheDetail})
 	</insert>
 
 	<select id="select" resultType="Integer">
@@ -25,7 +25,6 @@
 			CHE_NO = #{num} and CHE_OUT_TIME is null
 			
 		</update>
-
 
 
 

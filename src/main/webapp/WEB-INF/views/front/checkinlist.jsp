@@ -54,24 +54,34 @@
 	<th></th>
 	</tr>
 	
+	<c:if test="${!empty list }">
+	
+	
 	<c:forEach items="${list }" var = "roomlist">
 <form:form>
 	<tr>
 	<td>${roomlist.checkIn.cheNo }</td>
 	<td>${roomlist.checkIn.customer.cosLName } ${roomlist.checkIn.customer.cosFName }</td>
 	<td>${roomlist.checkIn.customer.cosTelno }</td>
-	<td><a href = "rooms/detail?grNo=${roomlist.grNo }">${roomlist.grNo }</a></td>
+	<td><a href = "rooms/detail?grNo=${roomlist.grNo }">${roomlist.grNo }</a>호</td>
 	<td>${roomlist.checkIn.room.roomName }</td>
 	<td>${roomlist.grStaySum } 명</td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInTime }"/></td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
 	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
 	<td><a href = "rooms/checkout?cheNo=${roomlist.checkIn.cheNo }">[체크아웃]</a></td>
-
 	</tr>
 	</form:form>
 	</c:forEach>
+	
+	</c:if>
+
+	
 	</table>
+	
+		<c:if test="${empty list }">
+	<div id = "noninfo">사용중인 객실이 없습니다. </div>
+	</c:if>
 	<div id = "paging">
 		<c:set var="page" value="${paging.page}"/>
 			<c:if test="${paging.prev}"><a href="?page=1">◀◀</a><a href="?page=${paging.startPage-1}">◀</a></c:if>

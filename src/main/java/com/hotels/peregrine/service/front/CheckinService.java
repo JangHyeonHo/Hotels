@@ -10,10 +10,12 @@ import com.hotels.peregrine.command.CheckinCommend;
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.GuestRoomDTO;
+import com.hotels.peregrine.model.RoomDTO;
 import com.hotels.peregrine.repository.BreakfastRepository;
 import com.hotels.peregrine.repository.CheckinRepository;
 import com.hotels.peregrine.repository.CustomerRepository;
 import com.hotels.peregrine.repository.GuestRoomRepository;
+import com.hotels.peregrine.repository.RoomRepository;
 
 @Service
 public class CheckinService {
@@ -30,7 +32,10 @@ public class CheckinService {
 	@Autowired
 	private GuestRoomRepository guest;
 	
-	public void action(CheckInDTO check, CheckinCommend  command /*, BreakfastDTO Breakfast*/) {
+	@Autowired
+	private RoomRepository room;
+	
+	public void action(CheckInDTO check, CheckinCommend  command) {
 		
 		CustomerDTO customers = check.getCustomer();
 		GuestRoomDTO guestRoom = new GuestRoomDTO();
@@ -51,7 +56,7 @@ public class CheckinService {
 		checkins.insert(check);
 		System.out.println(2);
 		
-//		guestRoom.setCheckIn(new CheckInDTO().setCheNo(checkins.select()));
+
 		for(int i = 0; i<command.getGrNo().length; i++) {
 			grList.add(new GuestRoomDTO()
 					.setGrDiAdult(command.getDinAdult()[i])
@@ -60,18 +65,24 @@ public class CheckinService {
 					.setGrStaySum(command.getGrStaySum()[i])
 					.setCheckIn(new CheckInDTO().setCheNo(checkins.select())));
 		}
-//		Breakfast.getGuestRoom().setCheckIn(new CheckInDTO().setCheNo(checkins.select()));
-//		AutoTest.ModelBlackTest(Breakfast);
+
 		
 		//수속정보를 바탕으로 객실정보 생성
 		guest.insert(grList);
-//		System.out.println(3);
-//		breakf.insert(Breakfast);
+
+	}
+
+	public List<RoomDTO> nameList() {
 		
+		return room.nameList();
 		
 	}
 
-
-
+	public RoomDTO roomscount(String roomname) {
+		
+		return room.roomcount(roomname);
+	}
+	
+	
 
 }

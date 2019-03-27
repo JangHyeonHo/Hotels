@@ -164,7 +164,7 @@ $(function(){
 	var firstBoxing = innerHtmlValue + guestNo + dinAdult + dinChild + "<br>";
 	$("#stayhidden").html(firstBoxing)
 	
-	$("#roomscount").on("change",function(){
+	$(document).on("change","#roomscount",function(){
 		var value = $(this).val();
 		var AllRooms = "";
 		for(var i = 0; i < value ; i++){

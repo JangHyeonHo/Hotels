@@ -40,11 +40,6 @@ public class BreakfastRepository {
 		
 		sql.delete("break.delete",no);
 	}
-	//체크아웃리스트
-	public List<GuestRoomDTO> checkoutlist() {
-		
-		return sql.selectList("break.checkoutlist");
-	}
 
 	
 	
