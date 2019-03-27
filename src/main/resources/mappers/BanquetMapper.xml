@@ -34,9 +34,9 @@
 		SELECT BAN_NAME FROM banquet
 	</select>
 	
-	<select id="Blist" resultMap="banren">
+	<select id="Blist" resultMap="banren" useCache="false" flushCache="true">
 	
-	SELECT BR_NO,BAN_NAME,BR_CONSUMER,BR_USE_TIME,BR_PURPOSE,BR_PRICE,BR_EATING,BR_RANTAL_TIME,BR_REG_DATE FROM BANQUET_RENTAL order by BR_NO desc
+	SELECT BR_NO,BAN_NAME,BR_CONSUMER,BR_USE_TIME,BR_PURPOSE,BR_PRICE,BR_EATING,BR_RANTAL_TIME,BR_REG_DATE FROM BANQUET_RENTAL WHERE BR_CLOSE IS NULL  order by BR_NO DESC
 	
 	</select>
 	

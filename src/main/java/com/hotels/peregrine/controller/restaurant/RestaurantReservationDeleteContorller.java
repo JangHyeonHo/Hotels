@@ -10,7 +10,7 @@ import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.service.restaurant.RestaurantReservationDetailService;
 
 @Controller
-@RequestMapping("restaurant/reservation/list/detail/delete")
+@RequestMapping("/comp/fb/restaurant/reservation/list/detail/delete")
 public class RestaurantReservationDeleteContorller {
 
 	@Autowired

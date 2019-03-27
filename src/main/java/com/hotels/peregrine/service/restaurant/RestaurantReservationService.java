@@ -1,6 +1,7 @@
 package com.hotels.peregrine.service.restaurant;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class RestaurantReservationService {
 		return	reRepository.resnamesearch(null);
 	}
 
-	public void mainaction(RestaurantReservationDTO dto) {
+	public boolean mainaction(RestaurantReservationDTO dto) {
 		List<RestaurantChairCommand> chairList = reRepository.AllChairs(dto.getRestaurant().getResName());
 		List<RestaurantReservationDTO> resList = new ArrayList<RestaurantReservationDTO>();
 		int people = dto.getRrAdult() + dto.getRrChild(); //10
@@ -95,12 +96,18 @@ public class RestaurantReservationService {
 				}			
 			}
 		}
-		reRepository.resinsert(resList);
+		if(people > 0) {
+			return false;
+		} else {
+			reRepository.resinsert(resList);
+			return true;
+		}
+		
 	}
 
 
-	public RestaurantCommand resTableSearch(String resName) {
+	public RestaurantCommand resTableSearch(String resName,String dateTime) {
 
-		return	reRepository.resname(resName);
+		return	reRepository.resname(resName,dateTime);
 	}
 }

@@ -1,5 +1,7 @@
 package com.hotels.peregrine.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,6 +18,11 @@ public class EmployeeRepository {
 		
 		sql.insert("employee.einsert",dto);
 		
+	}
+
+	public List<EmployeeDTO> memberList() {
+		
+		return sql.selectList("employee.mlist");
 	}
 	
 }

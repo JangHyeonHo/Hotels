@@ -36,6 +36,6 @@ public class BanquetReservationController {
 		AutoTest.ModelBlackTest(dto);
 		service.action(dto);
 		
-		return "banquet/banquetReservation";
+		return "redirect:list";
 	}
 }

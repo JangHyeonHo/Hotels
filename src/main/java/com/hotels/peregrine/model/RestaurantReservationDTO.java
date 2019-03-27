@@ -24,7 +24,7 @@ public class RestaurantReservationDTO implements Serializable {
 	private int rrNo;
 	private int rrAdult;
 	private int rrChild;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	private Date rrDate;
 	private Date rrRegDate;
 	private CustomerDTO customer;

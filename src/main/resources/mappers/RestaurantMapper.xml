@@ -11,17 +11,28 @@
 	</insert>
 
 
-	<select id="namelist" resultMap="resnamebase" parameterType="String">
-
-		SELECT r.res_name, sum(r.res_table_count)-count(rr.RES_CHAIR) as tc FROM
-		RESTAURANT r left outer join RESTAURANT_RESERVATION rr on(r.RES_CHAIR = rr.RES_CHAIR AND r.RES_NAME = rr.RES_NAME)
-		
+	<select id="namelist" resultMap="resnamebase" parameterType="Hashmap" useCache="false" flushCache="true">
+	SELECT res_name, sum(tc) as stc FROM (
+		SELECT R.RES_NAME, R.RES_CHAIR, R.res_table_count, RR.SDATE, R.res_table_count-NVL(RR.CNT,0) AS TC FROM
+		(SELECT res_name,RES_CHAIR, res_table_count FROM
+		RESTAURANT) R LEFT OUTER JOIN (SELECT RES_NAME, RES_CHAIR, RR_DATE AS SDATE,COUNT(RR_DATE) CNT FROM RESTAURANT_RESERVATION
 		<where>
-			<if test="value != null">
-			r.res_name = #{value}
+			<if test="dateTime != null">
+			 RR_DATE = TO_DATE(#{dateTime},'YYYY-MM-DD hh24:mi')
 			</if>
 		</where>
-		group by r.res_name
+		GROUP BY RES_NAME, RES_CHAIR, RR_DATE) RR
+		ON(R.RES_NAME = RR.RES_NAME AND R.RES_CHAIR = RR.RES_CHAIR) ORDER BY R.RES_NAME ASC, R.RES_CHAIR DESC) 
+		<where>
+			<if test="value != null">
+			res_name = #{value}
+			</if>
+		</where> 
+		
+		GROUP BY res_name
+	
+	
+		
 	</select>
 
 
@@ -153,7 +164,7 @@
 	<resultMap type="RestaurantCommand" id="resnamebase">
 		<id column="RES_NAME" jdbcType="NVARCHAR"
 			property="resName" />
-		<result column="tc" jdbcType="BIGINT"
+		<result column="stc" jdbcType="BIGINT"
 			property="resTableCount" />
 	</resultMap>
 

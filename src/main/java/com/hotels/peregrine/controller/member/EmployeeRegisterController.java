@@ -11,13 +11,13 @@ import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.Employee.EmployeeRegisterService;
 
 @Controller
-@RequestMapping("/comp/member/singup")
+
 public class EmployeeRegisterController {
 
 	@Autowired
 	EmployeeRegisterService service;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/comp/member/singup" , method = RequestMethod.GET)
 	public String getform() {
 		System.out.println("직원 등록 오픈");
 		
@@ -31,6 +31,6 @@ public class EmployeeRegisterController {
 		AutoTest.ModelBlackTest(dto);
 		service.action(dto);
 		
-		return "";
+		return "redirect:list";
 	}
 }
