@@ -13,7 +13,7 @@ import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.service.restaurant.RestaurantReservationDetailService;
 
 @Controller
-@RequestMapping("/restaurant/reservation/list/detail")
+@RequestMapping("/comp/fb/restaurant/reservation/list/detail")
 public class RestaurantReservationDetailContorller {
 
 	@Autowired

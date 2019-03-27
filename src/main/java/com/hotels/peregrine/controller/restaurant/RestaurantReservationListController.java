@@ -15,7 +15,7 @@ import com.hotels.peregrine.other.AutoPaging;
 import com.hotels.peregrine.service.restaurant.RestaurantListService;
 
 @Controller
-@RequestMapping("/restaurant/reservation/list")
+@RequestMapping("/comp/fb/restaurant/reservation/list")
 public class RestaurantReservationListController {
 	
 	@Autowired
@@ -27,7 +27,7 @@ public class RestaurantReservationListController {
 		if(command.getPage()==0) {
 			command.setPage(1);
 		}
-		AutoPaging paging = new AutoPaging(command.getPage(),1,10);
+		AutoPaging paging = new AutoPaging(command.getPage(),10,10);
 		paging.setListCount(service.getAllListCount());
 		
 		List<RestaurantReservationDTO> list = service.action(paging);
