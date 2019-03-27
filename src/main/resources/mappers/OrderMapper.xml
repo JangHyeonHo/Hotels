@@ -6,7 +6,7 @@
 		ORD_NO, PAY_NO, RR_NO, COS_NO, ORD_TABLE_NUM, ORD_SUM_PRICE
 	</sql>
 	
-	<select id="isRegist" parameterType="Integer" resultType="Orders">
+	<select id="isRegist" parameterType="Integer" resultType="Orders" useCache="false" flushCache="true">
 		SELECT 
 			<include refid="allColumns"/>
 		FROM 
@@ -20,6 +20,26 @@
 		VALUES
 			(sq_ord_no.nextval,#{table},0)
 	</insert>
+	
+	<select id="fullamount" resultType="Orders" useCache="false" flushCache="true">
+		SELECT 
+			ORD_TABLE_NUM, nvl(sum(ol_count*food_price),0) AS ORD_SUM_PRICE 
+		FROM
+			(SELECT
+				o.ORD_NO, o.ORD_TABLE_NUM, ol.OL_COUNT ,f.FOOD_PRICE 
+			FROM
+				orders o 
+			left outer JOIN 
+				ORDER_LIST ol 
+				ON(o.ORD_NO = ol.ORD_NO) 
+				LEFT OUTER JOIN 
+					food f
+					ON(f.FOOD_NO = ol.FOOD_NO)
+				WHERE 
+					o.PAY_NO IS NULL)
+				GROUP BY ORD_TABLE_NUM
+				ORDER BY ORD_TABLE_NUM asc
+	</select>
 	
 	
 	

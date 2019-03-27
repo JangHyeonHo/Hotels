@@ -56,7 +56,24 @@
 		<c:if test="${i>5 and i<33 }">4</c:if>
 		<c:if test="${i>32 and i<45 }">2</c:if>
 		</div>
-		<div class = "money"><spring:message code="money" /> : 0</div>
+		<div class = "money"><spring:message code="money" /> : 
+		<c:if test="${empty list}">0</c:if>
+		<c:set var="loop_done" value="false" />
+		<c:forEach items="${list}" var="li" varStatus="cnt">
+			<c:if test="${not loop_done }">
+				<c:if test="${li.ordTableNum eq i }">
+					${li.ordSumPrice}
+					<c:set var="loop_done" value="true" />
+				</c:if>
+				<c:if test="${li.ordTableNum ne i }">
+					<c:if test="${cnt.last}">
+						0
+						<c:set var="loop_done" value="true" />
+					</c:if>
+				</c:if>
+			</c:if>
+		</c:forEach>
+		</div>
 		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?table=${i }'"></div>
 		<div class = "tableOrderList"><input type = "button" value="<spring:message code="order.list" /> 보기" onclick = "location.href='./list'"></div>
 		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기"></div>

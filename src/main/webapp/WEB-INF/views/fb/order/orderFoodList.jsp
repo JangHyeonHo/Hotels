@@ -21,6 +21,12 @@
 					<th>
 					<spring:message code="order.count"/>
 					</th>
+					<th>
+					<spring:message code="plus"/>
+					</th>
+					<th>
+					<spring:message code="minus"/>
+					</th>
 				</tr>
 			<c:forEach items="${sessionOrderList }" var="lists" varStatus="i">
 				<tr>
@@ -36,10 +42,18 @@
 					<td>
 					${lists.olCount }
 					</td>
+					<td>
+					<input type = "button" value ="<spring:message code="plus"/>" onclick="plus()">
+					</td>
+					<td>
+					<input type = "button" value ="<spring:message code="minus"/>" onclick="minus()">
+					</td>
 				</tr>
 			</c:forEach>
 			</table>
 			<div id = "amount">
-				<spring:message code="payment.money"/> : ${allSum }
+				<spring:message code="payment.money"/> : ${amount }
 			</div>
+			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
+			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
 			</c:if>

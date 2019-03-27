@@ -3,12 +3,12 @@
 <mapper namespace="orderlist">
 	<cache />
 	<sql id="allColumns">
-		ORD_NO, FOOD_NO, OL_COUNT, OL_TIME
+		OL_NO, ORD_NO, FOOD_NO, OL_COUNT, OL_TIME
 	</sql>
 	
-	<select id="tableCall" parameterType="Integer" resultMap="listMap">
+	<select id="tableCall" parameterType="Integer" resultMap="listMap" useCache="false" flushCache="true">
 		SELECT 
-		ol.ORD_NO, ol.FOOD_NO, ol.OL_COUNT, ol.OL_TIME,
+		ol.OL_NO, o.ORD_NO, f.FOOD_NO, ol.OL_COUNT, ol.OL_TIME,
 		o.ORD_TABLE_NUM, f.FOOD_NAME, f.FOOD_PRICE
 		FROM 
 			order_list ol 
@@ -18,19 +18,48 @@
 				food f ON(f.FOOD_NO = ol.FOOD_NO)
 					WHERE
 						o.ORD_TABLE_NUM = #{table} and o.PAY_NO is null
+							ORDER BY o.ORD_NO
 	</select>
 	
 	<resultMap type="OrderList" id="listMap">
+		<result column="OL_NO" jdbcType="INTEGER" property="olNo"/>
 		<result column="OL_COUNT" jdbcType="INTEGER" property="olCount"/>
 		<result column="OL_TIME" jdbcType="TIMESTAMP" property="olTime"/>
 		<association javaType="Orders" property="orders">
-			<id column="ORD_NO" jdbcType="INTEGER" property="ordNo"/>
+			<result column="ORD_NO" jdbcType="INTEGER" property="ordNo"/>
 			<result column="ORD_TABLE_NUM" jdbcType="INTEGER" property="ordTableNum"/>
 		</association>
 		<association javaType="Food" property="food">
-			<id column="FOOD_NAME" jdbcType="VARCHAR" property="foodName"/>
+			<result column="FOOD_NO" jdbcType="VARCHAR" property="foodNo"/>
+			<result column="FOOD_NAME" jdbcType="INTEGER" property="foodName"/>
 			<result column="FOOD_PRICE" jdbcType="INTEGER" property="foodPrice"/>
 		</association>
 	</resultMap>
+	
+	<insert id="olRegist" parameterType="OrderList">
+		<selectKey keyProperty="orders.ordNo" order="BEFORE" resultType="Integer">
+		SELECT ord_no FROM orders WHERE ORD_TABLE_NUM = #{orders.ordTableNum} and pay_no is null
+		</selectKey>
+		INSERT INTO
+			order_list(<include refid="allColumns"/>)
+		VALUES
+		(sq_ol_no.nextval,#{orders.ordNo}, #{food.foodNo}, #{olCount}, SYSDATE)
+	</insert>
+	
+	<update id="olUpdate" parameterType="OrderList">
+		UPDATE 
+			order_list
+		SET
+			OL_COUNT = #{olCount}, OL_TIME = SYSDATE
+		WHERE
+			FOOD_NO = #{food.foodNo} and ORD_NO = #{orders.ordNo}
+	</update>
+	
+	<delete id="olDelete" parameterType="OrderList">
+		DELETE FROM 
+			order_list
+		WHERE
+			FOOD_NO = #{food.foodNo} and ORD_NO = #{orders.ordNo}
+	</delete>
 	
 </mapper>

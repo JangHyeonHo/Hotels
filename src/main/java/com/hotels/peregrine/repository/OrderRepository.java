@@ -1,5 +1,7 @@
 package com.hotels.peregrine.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,11 @@ public class OrderRepository {
 	public int firstOrder(int table) {
 		// TODO Auto-generated method stub
 		return template.insert(namespace+".firstOrder", table);
+	}
+
+	public List<OrdersDTO> amountCall() {
+		// TODO Auto-generated method stub
+		return template.selectList(namespace+".fullamount");
 	}
 
 	

@@ -14,11 +14,6 @@ public class OrderListService {
 	@Autowired
 	private OrderListRepository repository;
 
-	public List<OrderListDTO> getAllolList(int tableNo) {
-		// TODO Auto-generated method stub
-		
-		return repository.tableInfomation(tableNo);
-	}
 	
 	
 }
