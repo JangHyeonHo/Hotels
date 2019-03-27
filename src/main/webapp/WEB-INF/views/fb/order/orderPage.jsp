@@ -82,6 +82,21 @@
 				}
 			})
 		}
+		function order(){
+			var tableNum = $("#tableNum").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/regist",
+				method:'post',
+				data:"tableNo=" + tableNum,
+				dataType:'html',
+				success:function(data){
+					alert("메뉴를 성공적으로 주문했습니다.");
+				},
+				error:function(){
+					alert("메뉴 주문에 실패했습니다.\n주문을 다시 등록해 주세요.")
+				}
+			})
+		}
 
 </script>
 
@@ -112,6 +127,12 @@
 					<th>
 					<spring:message code="order.count"/>
 					</th>
+					<th>
+					<spring:message code="plus"/>
+					</th>
+					<th>
+					<spring:message code="minus"/>
+					</th>
 				</tr>
 			<c:forEach items="${orderList }" var="lists" varStatus="i">
 				<tr>
@@ -127,14 +148,21 @@
 					<td>
 					${lists.olCount }
 					</td>
+					<td>
+					<input type = "button" value ="<spring:message code="plus"/>" onclick="plus()">
+					</td>
+					<td>
+					<input type = "button" value ="<spring:message code="minus"/>" onclick="minus()">
+					</td>
 				</tr>
 			</c:forEach>
 			</table>
 			<div id = "amount">
-				<spring:message code="payment.money"/> : ${allSum }
+				<spring:message code="payment.money"/> : ${amount }
 			</div>
 			</c:if>
-			
+			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
+			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
 		</div>
 		<div id = "foodBox">
 			<c:forEach	begin="1" end="7" var="i" step="1">

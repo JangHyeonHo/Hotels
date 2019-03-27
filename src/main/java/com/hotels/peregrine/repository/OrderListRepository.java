@@ -22,5 +22,20 @@ public class OrderListRepository {
 		return template.selectList(namespace+".tableCall", table);
 
 	}
+
+	public int listInsert(OrderListDTO ol) {
+		// TODO Auto-generated method stub
+		return template.insert(namespace + ".olRegist", ol);
+	}
+
+	public int listUpdate(OrderListDTO ol) {
+		// TODO Auto-generated method stub
+		return template.update(namespace + ".olUpdate", ol);
+	}
+
+	public int listDelete(OrderListDTO ol) {
+		// TODO Auto-generated method stub
+		return template.delete(namespace + ".olDelete", ol);
+	}
 	
 }
