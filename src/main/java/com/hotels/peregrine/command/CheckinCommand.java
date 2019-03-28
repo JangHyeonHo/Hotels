@@ -2,7 +2,7 @@ package com.hotels.peregrine.command;
 
 import java.io.Serializable;
 
-public class CheckinCommend implements Serializable{
+public class CheckinCommand implements Serializable{
 
 	private int[] grStaySum;
 	private int[] grNo;

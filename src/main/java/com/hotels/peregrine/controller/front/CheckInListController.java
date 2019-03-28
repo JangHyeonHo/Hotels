@@ -28,7 +28,7 @@ public class CheckInListController {
 		if(command.getPage()==0) {
 			command.setPage(1);
 		}
-		AutoPaging paging = new AutoPaging(command.getPage(),6,8);
+		AutoPaging paging = new AutoPaging(command.getPage(),5,2);
 		paging.setListCount(service.getAllListCount());
 		
 		List<GuestRoomDTO> list = service.action(paging);
