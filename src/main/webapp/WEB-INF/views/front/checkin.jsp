@@ -30,7 +30,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 
-<!-- <script src=""></script> -->
+<script src='<c:url value='js/checkin.js'></c:url>'></script> -->
 
 <style type="text/css">
 #contents{
@@ -107,7 +107,7 @@ select{
 }
 .che_pre3{
   width: 150px;
-  padding: 4px 0 4px 4px;
+  padding: 4px 0 4px 2px;
   margin: 10px 10px;
 }
 
@@ -399,9 +399,9 @@ $(function(){
 	</div>
     
 	<div id = "sub">
-    <input type = "submit" value = "체크인" id = "submitBtn" class = "btn btn-primary btn-sm">
-    <input type = "reset" value = "재작성" class = "btn btn-primary btn-sm">
-    <input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn-sm">
+    <input type = "submit" value = "체크인" id = "submitBtn" class = "btn btn-outline-danger">
+    <input type = "reset" value = "재작성" class = "btn btn-outline-secondary">
+    <input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
     </div>
     </form:form>
 	</div>
