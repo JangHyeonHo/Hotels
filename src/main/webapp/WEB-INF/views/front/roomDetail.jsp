@@ -13,7 +13,8 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <title>식사여부</title>
-
+<!-- 폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
 <script src="http://code.jquery.com/jquery-3.3.1.js"
@@ -38,7 +39,10 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+
 
 
 var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
@@ -91,7 +95,7 @@ $("#roomscount").on("change",function(){
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 
@@ -108,11 +112,12 @@ $("#roomscount").on("change",function(){
 	<div class = "infobox">석식 성인 : <input type = "text" id = "grDiAdult" name = "grDiAdult" value = "${groom.grDiAdult }"></div>
 	<div class = "infobox">석식 어린이 : <input type = "text" id = "grDiAdult" name = "grDiChild" value = "${groom.grDiChild }"></div>
 
-	<input type="submit" value = "수정">
+	<input type="submit" value = "수정" class = "btn btn-outline-danger">
+	<input type = "button" value = "뒤로가기" id = "submitBtn3" onclick="history.back(-1)" class = "btn btn-primary btn">
 	</form:form>
 
 
 	</div>
-	<footer></footer>
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

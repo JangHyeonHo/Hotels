@@ -108,6 +108,7 @@ $("#roomscount").on("change",function(){
 	<div class = "infobox">어린이 : <input type = "text" name = "breakChild"></div>
 	
 	<input type="submit" value = "등록">
+	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
 	</form:form>
 
 	</div>

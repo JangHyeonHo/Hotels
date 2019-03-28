@@ -40,52 +40,7 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script type="text/javascript">
 
-/* 
-var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakAdult += "<option value="+ i +">조식 성인 인원</option>";
-	}
-	
-	breakAdult += "<option value="+ i +">조식성인 : " + i + "명</option>";
-}
-breakAdult += "</select>";
-//che_pre에 넣어줌
-$(".che_pre1").html(breakAdult);
 
-
-var breakChild = "<select class = 'che_pre2' name = 'breakChild'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakChild += "<option value="+ i +">조식 어린이 인원</option>";
-	}
-	
-	breakChild += "<option value="+ i +">조식 어린이 : " + i + "명</option>";
-}
-breakChild += "</select>";
-//che_pre에 넣어줌
-$(".che_pre2").html(breakChild);
-
-
-$("#roomscount").on("change",function(){
-	var value = $(this).val();
-	var AllRooms = "";
-	for(var i = 0; i < value ; i++){
-	
-		AllRooms += breakAdult;
-		AllRooms += breakChild;
-
-	
-		AllRooms += "<br>"
-	}
-	$("#stayhidden").html(AllRooms)
-	
-	console.log(AllRooms);
-	
-})
- */
 </script>
 
 </head>
@@ -96,7 +51,7 @@ $("#roomscount").on("change",function(){
 	<div id="contents">
 	<h2>조식 여부</h2>
 
-<table>
+<table class = "table table-hover">
 	<tr>
 	<th>수속 번호</th>
 	<th>고객 성/이름</th>
@@ -107,6 +62,7 @@ $("#roomscount").on("change",function(){
 	<th>조식 종류</th>
 	<th>성인 인원/어린이 인원</th>
 	<th>알러지 유무</th>
+	<th></th>
 	</tr>
 	
 	<c:forEach items="${list }" var = "brlist">
@@ -120,13 +76,14 @@ $("#roomscount").on("change",function(){
 	<td>${brlist.breakCoupon }</td>
 	<td>${brlist.breakKind }</td>
 	<td>성인${brlist.breakAdult }명/어린이${brlist.breakChild }명</td>
-	<td><a href = "breakfast/delete?breakCoupon=${brlist.breakCoupon }">삭제</a></td>
 	<td>${brlist.guestRoom.checkIn.customer.cosAllergy }</td>
+	<td><a href = "breakfast/delete?breakCoupon=${brlist.breakCoupon }">삭제</a></td>
 	</tr>
 	</c:forEach>	
 	</c:forEach>
 </table>
-<input type = "button" onclick="location.href='../front'" value = "메인으로">
+<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
+<input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
 	</div>
 	<footer></footer>
 </body>

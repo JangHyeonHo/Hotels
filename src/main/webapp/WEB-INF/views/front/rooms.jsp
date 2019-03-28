@@ -39,12 +39,13 @@
 	<div id = "contents">
 	
 	<form:form>
-	<div id = "roomname">객실명</div><input type="text" id = "roomsname" name = "roomName">
-	<div id = "roomcost">객실 이용 금액</div><input type="text" id = "roomscost" name = "roomPrice">
-	<div id = "roomcount">객실 수</div><input type="text" id = "roomscount" name = "roomCount">
+	<div class = "infobox">객실명</div><input type="text" id = "roomsname" name = "roomName">
+	<div class = "infobox">객실 이용 금액</div><input type="text" id = "roomscost" name = "roomPrice">
+	<div class = "infobox">객실 수</div><input type="text" id = "roomscount" name = "roomCount">
 <!-- 	<div id = "roomfile">객실 사진</div><input type="file" id = "roomsfile" name = "roomStoreFileName"> -->
 	<br> <br>
-	<input type="submit" value = "등록">
+	<input type="submit" value = "등록" class = "btn btn-outline-danger">
+	 <input type = "button" value = "메인으로" id = "submitBtn3" onclick="location.href='../front'" class = "btn btn-primary btn">
 	</form:form>
 	
 	</div>
