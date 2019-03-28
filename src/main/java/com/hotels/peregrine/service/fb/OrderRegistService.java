@@ -51,11 +51,6 @@ public class OrderRegistService {
 			if(oldList != null && oldList.equals(newList)) {
 				//현재 주문했던 수량이 일치하지 않는 경우
 				if(olList.get(i).getOlCount()!=tableCall.get(i).getOlCount()){
-					//수량이 0일 때(주문된 물건을 취소했을 때)
-					if(olList.get(i).getOlCount()==0) {
-						deleteResult += orderlist.listDelete(olList.get(i));
-						
-					}
 					updateResult += orderlist.listUpdate(olList.get(i));
 				}
 			//주문한 물건이 없는 경우(새로운 주문일 경우)

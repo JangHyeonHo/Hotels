@@ -14,6 +14,13 @@ public class OrderListService {
 	@Autowired
 	private OrderListRepository repository;
 
+	public List<OrderListDTO> listCall(int tableNum) {
+		// TODO Auto-generated method stub
+		return repository.orderListCall(tableNum);
+	}
+
+	
+
 	
 	
 }

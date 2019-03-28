@@ -38,7 +38,7 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<h3><spring:message code="order" /></h3>
-		<input type="button" value="전체 <spring:message code="order.list" />" onclick="location.href='./order/list'" >
+		<input type="button" value="전체 <spring:message code="order.list" />" onclick="location.href='./order/list?table=0'" >
 		<input type="button" value="전체 <spring:message code="order.table" />" onclick="location.href='./order/table'" >
 	</div>
 	<footer></footer>
