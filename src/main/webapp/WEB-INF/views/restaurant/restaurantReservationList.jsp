@@ -58,6 +58,19 @@
 
 
 </style>
+<script type="text/javascript">
+$(function(){
+	$("#menutep").hover(function(){
+		$(".frontmenu").css("display","block");
+	});
+	$("#menutep").mouseleave(function(){
+		$(".frontmenu").css("display","none");
+	});
+	
+});
+
+</script>
+
 
 </head>
 <body>
