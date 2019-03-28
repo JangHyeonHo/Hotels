@@ -35,8 +35,8 @@
 	</select>
 	
 	<select id="Blist" resultMap="banren" useCache="false" flushCache="true">
-	SELECT rnum, bbr.* FROM
-	(SELECT rownum as rnum bl.* FROM
+	SELECT rnum, bbl.* FROM
+	(SELECT rownum as rnum, bl.* FROM
 	(SELECT BR_NO,BAN_NAME,BR_CONSUMER,BR_USE_TIME,BR_PURPOSE,BR_PRICE,BR_EATING,BR_RANTAL_TIME,BR_REG_DATE 
 	FROM BANQUET_RENTAL WHERE BR_CLOSE IS NULL  order by BR_NO DESC) bl
 	WHERE rownum &lt; = #{maxNum}) bbl

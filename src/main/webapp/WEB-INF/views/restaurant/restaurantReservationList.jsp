@@ -44,8 +44,9 @@
 <style>
 #contents {
 	width: 1080px;
-	min-height:800px;
+	min-height:700px;
 	margin:0 auto;
+	
 
 }
 
@@ -54,23 +55,30 @@
 	min-height: 400px;
 	float: left;
 	
+	
 }
 
 
 </style>
 <script type="text/javascript">
 $(function(){
-	$("#menutep").hover(function(){
+	$(".ltep").hover(function(){
 		$(".frontmenu").css("display","block");
 	});
-	$("#menutep").mouseleave(function(){
+	$(".ltep").mouseleave(function(){
 		$(".frontmenu").css("display","none");
 	});
 	
 });
 
 </script>
+<style>
 
+td, th{
+text-align:center;
+}
+
+</style>
 
 </head>
 <body>
@@ -79,7 +87,7 @@ $(function(){
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 		<div id="maincontent">
-			<h1>레스토랑 예약자 명단</h1>
+			<h1 style="text-align:center">레스토랑 예약자 명단</h1>
 			<table class="table thead-dark">
 			<tr>
 			<th>예약번호</th>
@@ -99,7 +107,9 @@ $(function(){
 		</table>
 	<br>
 			
-			<div id="paging">
+		
+		</div>
+	<div id="paging" style="text-align:center">
 				<c:set var="page" value="${paging.page}" />
 				<c:if test="${paging.prev}">
 					<a href="?page=1">◀◀</a>
@@ -119,7 +129,6 @@ $(function(){
 					<a href="?page=${paging.maxPage}">▶▶</a>
 				</c:if>
 			</div>
-		</div>
 	</div>
 	<jsp:include page="../backFooter.jsp"/>
 </body>

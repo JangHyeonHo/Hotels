@@ -22,10 +22,17 @@ public class OrderListDTO implements Serializable {
 	private int olCount;
 	private Date olTime;
 	private int olOldCount;
+	private String foodName;
 	private OrdersDTO orders;
 	private FoodDTO food;
 	private List<FoodDTO> foods;
 	
+	public String getFoodName() {
+		return foodName;
+	}
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
 	public int getOlNo() {
 		return olNo;
 	}
