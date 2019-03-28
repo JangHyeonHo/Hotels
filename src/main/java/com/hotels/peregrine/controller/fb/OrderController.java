@@ -7,17 +7,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hotels.peregrine.exception.NotEqualsTableNumException;
 import com.hotels.peregrine.exception.NotSessionExistingException;
+import com.hotels.peregrine.exception.aCountIsNothingException;
 import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.model.OrderListDTO;
 import com.hotels.peregrine.model.OrdersDTO;
 import com.hotels.peregrine.other.AutoPaging;
-import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.fb.FoodListService;
 import com.hotels.peregrine.service.fb.OrderListService;
 import com.hotels.peregrine.service.fb.OrderRegistService;
@@ -42,11 +43,6 @@ public class OrderController {
 	public String OrderMain() {
 		System.out.println("주문등록");
 		return "fb/order/orderMain";
-	}
-	
-	@RequestMapping(value="/comp/fb/restaurant/order/list", method=RequestMethod.GET)
-	public String OrderList() {
-		return null;
 	}
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/table", method=RequestMethod.GET)
@@ -79,7 +75,7 @@ public class OrderController {
 				orders = registService.orderInfo(table);
 			}
 		}
-		AutoTest.ModelBlackTest(orders.get(0));
+//		AutoTest.ModelBlackTest(orders.get(0));
 		int allSum = 0;
 		for(OrderListDTO dto : orders) {
 			allSum += (dto.getFood().getFoodPrice() * dto.getOlCount());
@@ -107,6 +103,59 @@ public class OrderController {
 		}
 		registService.orderRegist(olList);
 		return "dummy";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/plus", method=RequestMethod.GET)
+	public String plusMaterial(@RequestParam("tableNo") int tableNo, @RequestParam("index") int index, HttpSession session, Model model) throws Exception {
+		List<OrderListDTO> olList;
+		if(session.getAttribute("sessionOrderList")==null) {
+			olList = registService.orderInfo(tableNo);
+		}else{
+			System.out.println("세션에서 리스트 불러옴");
+			olList = (List<OrderListDTO>) session.getAttribute("sessionOrderList");
+			if(olList.get(0).getOrders().getOrdTableNum()!=tableNo){
+				olList = registService.orderInfo(tableNo);
+			}
+		}
+		olList.get(index-1).setOlCount(olList.get(index-1).getOlCount()+1);
+		int allSum = 0;
+		for(OrderListDTO dto : olList) {
+			allSum += (dto.getFood().getFoodPrice() * dto.getOlCount());
+		}
+//		AutoTest.ModelBlackTest(olList.get(0));
+		session.setAttribute("sessionOrderList", olList);
+		model.addAttribute("amount", allSum);
+		System.out.println("섹션 객체 저장 완료");
+		return "fb/order/orderFoodList";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/minus", method=RequestMethod.GET)
+	public String minusMaterial(@RequestParam("tableNo") int tableNo, @RequestParam("index") int index, HttpSession session, Model model) throws Exception {
+		List<OrderListDTO> olList;
+		if(session.getAttribute("sessionOrderList")==null) {
+			olList = registService.orderInfo(tableNo);
+		}else{
+			System.out.println("세션에서 리스트 불러옴");
+			olList = (List<OrderListDTO>) session.getAttribute("sessionOrderList");
+			if(olList.get(0).getOrders().getOrdTableNum()!=tableNo){
+				olList = registService.orderInfo(tableNo);
+			}
+		}
+		if(olList.get(index-1).getOlCount()>0) {
+			olList.get(index-1).setOlCount(olList.get(index-1).getOlCount()-1);
+		} else {
+			throw new aCountIsNothingException();
+		}
+		
+		int allSum = 0;
+		for(OrderListDTO dto : olList) {
+			allSum += (dto.getFood().getFoodPrice() * dto.getOlCount());
+		}
+//		AutoTest.ModelBlackTest(olList.get(0));
+		session.setAttribute("sessionOrderList", olList);
+		model.addAttribute("amount", allSum);
+		System.out.println("섹션 객체 저장 완료");
+		return "fb/order/orderFoodList";
 	}
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/regist/sesinput", method=RequestMethod.POST)
@@ -150,6 +199,14 @@ public class OrderController {
 		model.addAttribute("amount", allSum);
 		System.out.println("섹션 객체 저장 완료");
 		return "fb/order/orderFoodList";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/list", method=RequestMethod.GET)
+	private String tableOrderList(@ModelAttribute("table") int table, Model model) {
+		List<OrderListDTO> olList = olService.listCall(table);
+		model.addAttribute("list",olList);
+		model.addAttribute("tableNum",table);
+		return "fb/order/tableOrderList";
 	}
 	
 }

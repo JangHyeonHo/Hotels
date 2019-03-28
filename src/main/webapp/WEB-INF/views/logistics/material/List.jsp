@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 				<td>${bat.miInNum }</td>
 				<td>${bat.miInContent }</td>
 				<td>${bat.miPrice }</td>
-				<td>${bat.miInbDate }</td>
+				<td><fmt:formatDate pattern="yyyy년 MM월 dd일 HH시 mm분" value="${bat.miInbDate }"/></td>
 			</tr>
 			</c:forEach>
 			</c:if>
@@ -72,7 +73,7 @@
 				<td>${bat.moOutNum }</td>
 				<td>${bat.moOutContent }</td>
 				<td>${bat.employee.empNo }</td>
-				<td>${bat.moOutbDate }</td>
+				<td><fmt:formatDate pattern="yyyy년 MM월 dd일 HH시 mm분" value="${bat.moOutbDate }"/></td>
 			</tr>
 			</c:forEach>
 			</c:if>

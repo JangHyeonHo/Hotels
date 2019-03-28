@@ -15,12 +15,13 @@ import java.util.List;
  * <b>관계 테이블</b><br>
  * <b>★orders.ordNo</b> 주문(orders)테이블 <b>Primary Key, Foreign key</b><br>
  * <b>★food.foodNo</b> 음식(food)테이블 <b>Primary Key, Foreign key</b><br>
- * @version 1.8
+ * @version 1.9
  * */
 public class OrderListDTO implements Serializable {
 	private int olNo;
 	private int olCount;
 	private Date olTime;
+	private int olOldCount;
 	private OrdersDTO orders;
 	private FoodDTO food;
 	private List<FoodDTO> foods;
@@ -40,6 +41,12 @@ public class OrderListDTO implements Serializable {
 	}
 	public Date getOlTime() {
 		return olTime;
+	}
+	public int getOlOldCount() {
+		return olOldCount;
+	}
+	public void setOlOldCount(int olOldCount) {
+		this.olOldCount = olOldCount;
 	}
 	public OrderListDTO setOlTime(Date olTime) {
 		this.olTime = olTime;
