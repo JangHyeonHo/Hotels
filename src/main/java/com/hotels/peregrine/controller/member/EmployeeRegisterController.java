@@ -25,7 +25,7 @@ public class EmployeeRegisterController {
 		return"member/employeeRegister";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/comp/member/singup", method = RequestMethod.POST)
 	public String postform(@ModelAttribute EmployeeDTO dto) {
 		System.out.println("직원 등록 포스트 작동");
 		AutoTest.ModelBlackTest(dto);
