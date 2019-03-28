@@ -3,28 +3,23 @@
 	<header>
 	     <div id="headertop">
           <div id=leftcontent>
-            <div class="ltep">MAIN</div>
-            <div class="ltep">MEMBER
-                    <table class="tepclass">
-                            <tr>
-                                <td>List</td>
-                            </tr>
-                            <tr>
-                                <td>Schedule</td> 
-                            </tr>
-        
-                        </table>
+            <div class="ltep">FB</div>
+            <div class="ltep"><a href="#" class="menutep">FRONT</a>
+                    <ul>
+                    	<li class="frontmenu">Reservation</li>
+                    	<li class="frontmenu">Checkin</li>
+                    	<li class="frontmenu">Checkout</li>
+                    	<li class="frontmenu">Rooms</li>
+                    	<li class="frontmenu">History</li>
+                    	<li class="frontmenu">Lost</li>
+                    </ul>
+                  
             </div>
-            <div class="ltep">ROOM
-                    <table class="tepclass">
-                            <tr>
-                                <td>CheckIn</td>
-                            </tr>
-                            <tr>
-                                <td>Reservation</td> 
-                            </tr>
-   
-                        </table>
+            <div class="ltep">HR
+            		<ul>
+            			<li>List</li>
+            		</ul>
+                   
             </div>
           </div>
            <div id="mark"></div> 
