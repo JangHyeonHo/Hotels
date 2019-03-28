@@ -62,12 +62,11 @@
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<c:import url="../backHeader.jsp" />
+	<jsp:include page="../backHeader.jsp"/>
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 		<div id="maincontent">
 			<h1>레스토랑 예약자 명단</h1>
-			<c:forEach items="${list }" var="reslist">
 			<table class="table thead-dark">
 			<tr>
 			<th>예약번호</th>
@@ -75,16 +74,18 @@
 			<th>전화번호</th>
 			<th>이메일</th>
 			</tr>
+			<c:forEach items="${list }" var="reslist">
 			<tr>
 			<td><a href=list/detail?rrno=${reslist.rrNo}>${reslist.rrNo }</a> </td>
 			<td> ${reslist.customer. cosLName} ${reslist.customer. cosFName } </td>
 			<td> ${reslist.customer. cosTelno } </td>
 			<td> ${reslist.customer.cosEmail } </td>
 			</tr>
+			</c:forEach>
 		
 		</table>
 	<br>
-			</c:forEach>
+			
 			<div id="paging">
 				<c:set var="page" value="${paging.page}" />
 				<c:if test="${paging.prev}">
@@ -107,6 +108,6 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="../backFooter.jsp" />
+	<jsp:include page="../backFooter.jsp"/>
 </body>
 </html>
