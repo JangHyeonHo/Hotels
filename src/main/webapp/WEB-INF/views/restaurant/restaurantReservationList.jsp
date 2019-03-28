@@ -39,8 +39,8 @@
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 
-<link href="<c:url value="/resources/css/backHeader.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/backFooter.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <style>
 #contents {
 	width: 1080px;
@@ -68,7 +68,7 @@
 		<div id="maincontent">
 			<h1>레스토랑 예약자 명단</h1>
 			<c:forEach items="${list }" var="reslist">
-			<table class="table-striped">
+			<table class="table thead-dark">
 			<tr>
 			<th>예약번호</th>
 			<th>성명</th>
