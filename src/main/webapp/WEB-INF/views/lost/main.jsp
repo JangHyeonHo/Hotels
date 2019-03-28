@@ -37,9 +37,9 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	
-  <input type="button" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
-  <input type="button" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
+	<h2>분실물 등록/삭제</h2>
+  <input type="button" class="btn btn-danger" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
+  <input type="button" class = "btn btn-primary btn" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
    
 
 	

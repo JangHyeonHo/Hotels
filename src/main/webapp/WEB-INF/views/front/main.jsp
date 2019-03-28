@@ -47,6 +47,8 @@
     <input type="button" onclick="location.href='front/breakfast'" class = "btn btn-primary btn-md" value="breakfast">
     <input type="button" class = "btn btn-primary btn-md" value="payment">
     <input type="button" class="btn btn-success" value="history">
+    <br><br>
+    <input type="button" class="btn btn-danger" onclick="location.href='lost'" value="lost">
     <input type="button" class="btn btn-danger" onclick="location.href='front/add'" value="room add">
 	</div>
 	<footer></footer>
