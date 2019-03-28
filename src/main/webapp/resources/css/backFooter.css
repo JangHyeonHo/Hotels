@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#footer{
+	margin: 0 auto;
+    width: 1080px;
+    height: 50px;
+   
+}
+.footcontent{
+    float: left;
+    font:62.5%/1.6em "Source Serif Pro", serif;
+    font-size: 15px;
+    color: #0f2d53;
+    margin: 10px 0 0 10px;
+}
