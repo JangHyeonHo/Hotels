@@ -44,6 +44,7 @@
 	<div id = "roomcount">분실 위치</div><input type="text" id = "lostloc" name = "lostLoc">
 	<br> <br>
 	<input type="submit" value = "등록" class = "btn btn-outline-danger">
+	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
 	</form:form>
 	
 	

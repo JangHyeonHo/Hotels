@@ -30,8 +30,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <!-- 폰트설정 -->
-<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gothic+A1|Poppins" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gothic+A1|Poppins|Yeon+Sung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Gothic+A1|Poppins|Yeon+Sung" rel="stylesheet">
+<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/checkin_content.css" />">
 <script src="<c:url value='/js/checkin.js'></c:url>"></script>
 
@@ -44,7 +47,7 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 <h2>체크인</h2>
@@ -92,7 +95,7 @@
 	</div>	
 	
       
-     <div id = "roomnum">객실수
+     <div id = "roomnum">
     
      
     </div>
@@ -101,7 +104,7 @@
 			
     </div>
     
-    <div id = "che_pre">객실 선호사항</div> <input type="text" id = "chePre" name = "cheDetail" class = "textput">
+    <div id = "che_pre">객실 선호사항</div> <input type="text" id = "chePre" name = "cheDetail">
 	<div id = "hiddenBox">
 	
 	</div>
@@ -109,10 +112,11 @@
 	<div id = "sub">
     <input type = "submit" value = "체크인" id = "submitBtn" class = "btn btn-outline-danger">
     <input type = "reset" value = "재작성" id = "submitBtn" class = "btn btn-outline-secondary">
-    <input type = "button" value = "메인으로" id = "submitBtn3" onclick="location.href='../front'" class = "btn btn-primary btn">
+   <input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
     </div>
     </form:form>
 	</div>
-	<footer></footer>
+	<!-- 푸터 -->
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>
