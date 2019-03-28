@@ -52,11 +52,14 @@
 					<include refid="AllColumns"/>
 				FROM
 					food 
-					<where>
+					<trim prefix="WHERE" suffixOverrides="and">
+					<if test="menu != null">
+					food_regist = #{menu} and
+					</if>
 					<if test="kind != null">
 						FOOD_KIND = #{kind}
 					</if>	
-					</where>
+					</trim>
 					ORDER BY 
 		 		food_no asc) f 
 		 	WHERE 
@@ -111,6 +114,15 @@
 			food
 		WHERE
 			food_no = #{foodNo}
+	</select>
+	
+	<select id="menuCounting" parameterType="String" resultType="Integer">
+		SELECT 
+		count(*) as cnt 
+		FROM 
+		food 
+		WHERE food_regist = '등록중' and food_kind = #{value}
+		GROUP BY FOOD_KIND
 	</select>
 	
 </mapper>

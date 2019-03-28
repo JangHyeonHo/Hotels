@@ -128,6 +128,53 @@
 				}
 			})
 		}
+		function kinds(kindName){
+			var tableNum = $("#tableNum").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/regist/kind",
+				method:'get',
+				data:"table=" + tableNum +"&searchSet=" + kindName,
+				dataType:'html',
+				success:function(data){
+					$("#foodBox").html(data);
+				},
+				error:function(){
+					alert("메뉴가 존재하지 않습니다!");
+				}
+			})
+		}
+		function prev(pageNum){
+			var tableNum = $("#tableNum").text();
+			var kindName = $("#selectedBox").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/regist/kind",
+				method:'get',
+				data:"table=" + tableNum +"&page="+pageNum+"&searchSet=" + kindName,
+				dataType:'html',
+				success:function(data){
+					$("#foodBox").html(data);
+				},
+				error:function(){
+					alert("이전페이지가 존재하지 않습니다!");
+				}
+			})
+		}
+		function next(pageNum){
+			var tableNum = $("#tableNum").text();
+			var kindName = $("#selectedBox").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/regist/kind",
+				method:'get',
+				data:"table=" + tableNum +"&page="+pageNum+"&searchSet=" + kindName,
+				dataType:'html',
+				success:function(data){
+					$("#foodBox").html(data);
+				},
+				error:function(){
+					alert("이전페이지가 존재하지 않습니다!");
+				}
+			})
+		}
 
 </script>
 
@@ -173,15 +220,25 @@
 		</div>
 		<div id = "foodBox">
 			<c:forEach	begin="1" end="7" var="i" step="1">
-				<div class = "foodKind" onclick="kinds(<spring:message code="food.ki${i }"/>)"><spring:message code="food.ki${i }"/></div>
+				<c:if test="${kind eq i}">
+				<div id = "selectedBox" class = "foodKind" style = "background-color:skyblue;" onclick="kinds('<spring:message code="food.ki${i }"/>')"><spring:message code="food.ki${i }"/></div>
+				</c:if>
+				<c:if test="${kind ne i}">
+				<div class = "foodKind" onclick="kinds('<spring:message code="food.ki${i }"/>')"><spring:message code="food.ki${i }"/></div>
+				</c:if>
 			</c:forEach>
 			<c:forEach items="${foodList }" var="food">
 				<div class = "foodList" onclick="orders(${food.foodNo })">
 					<div class="foodLabel"><spring:message code="food.name"/></div><div class="foodName foodMain">${food.foodName }</div>
-					<div class="foodImage"><img width="100%" height="150px" alt="${food.foodOriFileName}" src='<c:url value="/food/${food.foodStoreFileName}" />'></div>
+					<div class="foodImage"><img width="100%" height="150px" alt="${food.foodOriFileName}" src='<c:url value="/img/fb/food/${food.foodStoreFileName}" />'></div>
 					<div class="foodLabel"><spring:message code="food.price"/> ￦</div><div class="foodPrice foodMain">${food.foodPrice }</div>
 				</div>
 			</c:forEach>
+		<div id = "paging">
+		<c:set var="page" value="${paging.page}"/>
+			<c:if test="${paging.prev}"><div onclick="prev(${paging.startPage-1})">◀</div></c:if>
+			<c:if test="${paging.next}"><div onclick="next(${paging.endPage+1})">▶</div></c:if>
+		</div>
 		</div>
 	</div>
 	<footer></footer>

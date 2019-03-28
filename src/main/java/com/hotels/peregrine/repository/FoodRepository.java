@@ -31,7 +31,7 @@ public class FoodRepository {
 	}
 
 	//모든 음식 리스트를 불러오기
-	public List<FoodDTO> listSelect(AutoPaging page, String kind) {
+	public List<FoodDTO> listSelect(AutoPaging page, String kind, String menu) {
 		// TODO Auto-generated method stub
 		Integer minNum = ((page.getPage()-1)*page.getLimit())+1;
 		Integer maxNum = minNum+page.getLimit()-1;
@@ -39,6 +39,7 @@ public class FoodRepository {
 		mapping.put("minNum", minNum);
 		mapping.put("maxNum", maxNum);
 		mapping.put("kind", kind);
+		mapping.put("menu", menu);
 		return template.selectList(namespace+".foodList",mapping);
 	}
 	
@@ -73,6 +74,11 @@ public class FoodRepository {
 	public FoodDTO orderFoodCall(int foodNo) {
 		// TODO Auto-generated method stub
 		return template.selectOne(namespace+".namePriceCall",foodNo);
+	}
+	//주문에 사용할 음식종류의 총 개수를 가져오기
+	public int allCountCall(String value) {
+		// TODO Auto-generated method stub
+		return template.selectOne(namespace + ".menuCounting", value);
 	}
 	
 	

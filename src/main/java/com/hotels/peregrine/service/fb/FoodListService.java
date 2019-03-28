@@ -16,8 +16,8 @@ public class FoodListService {
 	private FoodRepository repository;
 	
 	
-	public List<FoodDTO> foodListCall(AutoPaging paging, String kind){
-		return repository.listSelect(paging, kind);
+	public List<FoodDTO> foodListCall(AutoPaging paging, String kind, String menu){
+		return repository.listSelect(paging, kind, menu);
 	}
 
 	public int getAllListCount() {
@@ -28,6 +28,11 @@ public class FoodListService {
 	public FoodDTO foodNamePriceCall(int foodNo) {
 		// TODO Auto-generated method stub
 		return repository.orderFoodCall(foodNo);
+	}
+
+	public int allFoodCount(String searchSet) {
+		// TODO Auto-generated method stub
+		return repository.allCountCall(searchSet);
 	}
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hotels.peregrine.command.PageAndQueryCommand;
 import com.hotels.peregrine.exception.NotEqualsTableNumException;
 import com.hotels.peregrine.exception.NotSessionExistingException;
 import com.hotels.peregrine.exception.aCountIsNothingException;
@@ -19,6 +20,7 @@ import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.model.OrderListDTO;
 import com.hotels.peregrine.model.OrdersDTO;
 import com.hotels.peregrine.other.AutoPaging;
+import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.fb.FoodListService;
 import com.hotels.peregrine.service.fb.OrderListService;
 import com.hotels.peregrine.service.fb.OrderRegistService;
@@ -56,7 +58,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/regist", method=RequestMethod.GET)
-	public String orderRegist(Model model, @RequestParam("table") int table, HttpSession session) {
+	public String orderRegist(Model model, @RequestParam("table") int table, @ModelAttribute PageAndQueryCommand command, HttpSession session) {
+		if(command.getPage()==0) {
+			command.setPage(1);
+		}
+		if(command.getSearchSet()==null) {
+			command.setSearchSet("한식");
+		}
 		System.out.println("테이블 " + table + "번 주문");
 		if(!registService.isRegist(table)) {
 			System.out.println("테이블이 존재하지 않으므로 새로 테이블을 등록합니다.");
@@ -80,14 +88,44 @@ public class OrderController {
 		for(OrderListDTO dto : orders) {
 			allSum += (dto.getFood().getFoodPrice() * dto.getOlCount());
 		}
-		AutoPaging page = new AutoPaging(1, 16, 3);
-		List<FoodDTO> foodList = foodService.foodListCall(page,"한식");
+		AutoPaging page = new AutoPaging(command.getPage(), 16, 1);
+		page.setListCount(foodService.allFoodCount(command.getSearchSet()));
+		List<FoodDTO> foodList = foodService.foodListCall(page,command.getSearchSet(),"등록중");
+		AutoTest.ModelBlackTest(page);
 		model.addAttribute("orderList",orders);
 		model.addAttribute("amount", allSum);
 		model.addAttribute("foodList",foodList);
-
+		model.addAttribute("paging",page);
+		for(int i = 0; i < FoodDTO.ALLFOODKIND.length ; i++) {
+			if(command.getSearchSet().equals(FoodDTO.ALLFOODKIND[i])) {
+				model.addAttribute("kind",i+1);
+			}
+		}
 		return "fb/order/orderPage";
 	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/regist/kind", method=RequestMethod.GET)
+	public String foodListChange(Model model, @RequestParam("table") int table, @ModelAttribute PageAndQueryCommand command, HttpSession session) {
+		if(command.getPage()==0) {
+			command.setPage(1);
+		}
+		if(command.getSearchSet()==null) {
+			command.setSearchSet("한식");
+		}
+		AutoPaging page = new AutoPaging(command.getPage(), 16, 1);
+		page.setListCount(foodService.allFoodCount(command.getSearchSet()));
+		List<FoodDTO> foodList = foodService.foodListCall(page,command.getSearchSet(),"등록중");
+		model.addAttribute("foodList",foodList);
+		model.addAttribute("paging",page);
+		for(int i = 0; i < FoodDTO.ALLFOODKIND.length ; i++) {
+			if(command.getSearchSet().equals(FoodDTO.ALLFOODKIND[i])) {
+				model.addAttribute("kind",i+1);
+			}
+		}
+		return "fb/order/foodList";
+	}
+	
+	
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/regist", method=RequestMethod.POST)
 	public String orderCall(@RequestParam("tableNo") int tableNo, HttpSession session) throws Exception {
