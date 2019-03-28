@@ -17,7 +17,7 @@ public class EmployeeRegisterController {
 	@Autowired
 	EmployeeRegisterService service;
 	
-	@RequestMapping(value = "/comp/member/singup" , method = RequestMethod.GET)
+	@RequestMapping(value = "/comp/member/signup" , method = RequestMethod.GET)
 	public String getform() {
 		System.out.println("직원 등록 오픈");
 		
@@ -25,7 +25,7 @@ public class EmployeeRegisterController {
 		return"member/employeeRegister";
 	}
 	
-	@RequestMapping(value = "/comp/member/singup", method = RequestMethod.POST)
+	@RequestMapping(value = "/comp/member/signup", method = RequestMethod.POST)
 	public String postform(@ModelAttribute EmployeeDTO dto) {
 		System.out.println("직원 등록 포스트 작동");
 		AutoTest.ModelBlackTest(dto);

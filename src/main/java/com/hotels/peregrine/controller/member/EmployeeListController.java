@@ -17,7 +17,7 @@ public class EmployeeListController {
 	@Autowired
 	EmployeeListService sercive;
 	
-	@RequestMapping(value="/comp/fb/member/list" , method = RequestMethod.GET)
+	@RequestMapping(value="/comp/member/list" , method = RequestMethod.GET)
 	public String getForm(Model model) {
 		System.out.println("직원 리스트 오픈");
 		
