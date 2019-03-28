@@ -90,7 +90,7 @@ min-width : 1300px;
 			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
 		</div>
 	
-	<input type = "button" onclick="location.href='../front'" value = "메인으로">
+	<input type = "button" onclick="location.href='../front'" class = "btn btn-primary btn" value = "메인으로">
 	</div>
 	<footer></footer>
 </body>
