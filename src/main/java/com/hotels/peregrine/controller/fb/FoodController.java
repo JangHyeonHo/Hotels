@@ -84,7 +84,7 @@ public class FoodController {
 		AutoPaging paging = new AutoPaging(command.getPage(),15,10);
 		paging.setListCount(listService.getAllListCount());
 		List<FoodDTO> list = listService.foodListCall(paging,null);
-		model.addAttribute("directory","/food/");
+		model.addAttribute("directory","/img/fb/food/");
 		model.addAttribute("foodList", list);
 		model.addAttribute("paging", paging);
 		return "fb/food/foodList";

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+#header{
+margin: 0 auto;
+width: 1080px;
+height: 200px;
+
+}
+#headertop{
+    
+    width: 1080px;
+    height: 150px;
+    float: left;
+    
+}
+#mark{
+    float: left;
+    width: 230px;
+    height: 100px;
+    background:url(http://www.peregrinewines.co.nz/workspace/assets/images/logo-animated_gradient-no-byline.svg) no-repeat;
+    margin: 15px 0 0 0;
+    
+}
+#leftcontent{
+  
+    width: 425px;
+    height: 100px;
+    float: left;
+    margin: 10px 0 0 0;
+}
+#rightcontent{
+   
+    width: 425px;
+    height: 100px;
+    float: left;
+    margin: 10px 0 0 0;
+
+}
+.ltep{
+    float: left;
+    font:62.5%/1.6em "Source Serif Pro", serif;
+    font-size: 15px;
+    color: #0f2d53;
+    margin: 40px 15px 0 55px;
+}
+
+.rtep{
+    float: left;
+    font:62.5%/1.6em "Source Serif Pro", serif;
+    font-size: 15px;
+    color: #0f2d53;
+    margin: 40px 20px 0 30px;
+}
+.tepclass{
+    display: none;;
+}

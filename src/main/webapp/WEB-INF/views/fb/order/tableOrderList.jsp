@@ -4,13 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title><spring:message code="order.table" /></title>
+<title><spring:message code="order.list"/></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -30,14 +31,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <style>
-	#contents{
-		min-width: 960px;
+	#olCan{
+		color : red;
 	}
-	.tableBox{
-		width : 20%;
-		height : 180px;
-		border: 1px solid black;
-		float:left;
+	#olReg{
+		color : blue;
 	}
 </style>
 
@@ -47,39 +45,49 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h3><spring:message code="order.table" /></h3>
-	<c:forEach begin="1" end="44" step="1" var="i">
-	<div class="tableBox">
-		<div class = "tableNo"><spring:message code="number" /> : ${i }</div>
-		<div class = "tableChairs"><spring:message code="table.chairNum" /> : 
-		<c:if test="${i<6 }">6</c:if>
-		<c:if test="${i>5 and i<33 }">4</c:if>
-		<c:if test="${i>32 and i<45 }">2</c:if>
-		</div>
-		<div class = "money"><spring:message code="money" /> : 
-		<c:if test="${empty list}">0</c:if>
-		<c:set var="loop_done" value="false" />
-		<c:forEach items="${list}" var="li" varStatus="cnt">
-			<c:if test="${not loop_done }">
-				<c:if test="${li.ordTableNum eq i }">
-					${li.ordSumPrice}
-					<c:set var="loop_done" value="true" />
+		<c:if test="${!empty list[0].orders}">
+		<c:if test="${tableNum eq 0}">
+			전체
+		</c:if>
+		<c:if test="${tableNum ne 0}">
+			${tableNum}번
+		</c:if>
+		<spring:message code="table"/> <spring:message code="order.list"/>
+		<table>
+			<tr>
+				<th><spring:message code="ol.no"/></th>
+				<th><spring:message code="table.no"/></th>
+				<th><spring:message code="food.name"/></th>
+				<th><spring:message code="order.count"/></th>
+				<th><spring:message code="ol.time"/></th>
+				<th><spring:message code="order.status"/></th>
+			</tr>
+		<c:forEach items="${list}" var="ol">
+			<tr>
+				<td>${ol.olNo }</td>
+				<td>${ol.orders.ordTableNum }</td>
+				<td>${ol.food.foodName }</td>
+				<td><c:if test="${ol.olCount < 0}">${(ol.olCount*-1) }</c:if><c:if test="${ol.olCount > 0}">${ol.olCount }</c:if></td>
+				<td><fmt:formatDate pattern="HH시 mm분 ss초" value="${ol.olTime }"/></td>
+				<c:if test="${ol.olCount < 0}">
+				<td id = "olCan">
+				<spring:message code="order.cancel"/>
+				</td>
 				</c:if>
-				<c:if test="${li.ordTableNum ne i }">
-					<c:if test="${cnt.last}">
-						0
-						<c:set var="loop_done" value="true" />
-					</c:if>
+				<c:if test="${ol.olCount > 0}">
+				<td id = "olReg">
+				<spring:message code="order.regist"/>
+				</td>
 				</c:if>
-			</c:if>
+			</tr>
 		</c:forEach>
-		</div>
-		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?table=${i }'"></div>
-		<div class = "tableOrderList"><input type = "button" value="<spring:message code="order.list" /> 보기" onclick = "location.href='./list?table=${i }'"></div>
-		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기"></div>
-	</div>
-	</c:forEach>
-	<div><input type = "button" value="<spring:message code="back" />" onclick="location.href='../order'"></div>
+		</table>
+		<div><input type = "button" value="<spring:message code="back" />" onclick = "javascript:history.back();"></div>
+		</c:if>
+		<c:if test="${empty list[0].orders}">
+			<spring:message code="orderList.nothing" />
+			<input type = "button" value = "<spring:message code="order" />하러 가기" onclick="javascript:history.back();">
+		</c:if>
 	</div>
 	<footer></footer>
 </body>

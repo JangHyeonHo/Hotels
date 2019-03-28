@@ -8,7 +8,10 @@
 	
 	<select id="tableCall" parameterType="Integer" resultMap="listMap" useCache="false" flushCache="true">
 		SELECT 
-		ol.OL_NO, o.ORD_NO, f.FOOD_NO, ol.OL_COUNT, ol.OL_TIME,
+			ORD_NO, FOOD_NO, OL_COUNT, ORD_TABLE_NUM, FOOD_NAME, FOOD_PRICE
+		FROM
+		(SELECT 
+		o.ORD_NO, f.FOOD_NO, sum(ol.OL_COUNT) AS OL_COUNT,
 		o.ORD_TABLE_NUM, f.FOOD_NAME, f.FOOD_PRICE
 		FROM 
 			order_list ol 
@@ -18,7 +21,9 @@
 				food f ON(f.FOOD_NO = ol.FOOD_NO)
 					WHERE
 						o.ORD_TABLE_NUM = #{table} and o.PAY_NO is null
+						GROUP BY o.ORD_NO, o.ORD_TABLE_NUM, f.FOOD_NO, f.FOOD_NAME, f.FOOD_PRICE
 							ORDER BY o.ORD_NO
+		)
 	</select>
 	
 	<resultMap type="OrderList" id="listMap">
@@ -46,14 +51,24 @@
 		(sq_ol_no.nextval,#{orders.ordNo}, #{food.foodNo}, #{olCount}, SYSDATE)
 	</insert>
 	
-	<update id="olUpdate" parameterType="OrderList">
-		UPDATE 
-			order_list
-		SET
-			OL_COUNT = #{olCount}, OL_TIME = SYSDATE
+	<insert id="olUpdate" parameterType="OrderList">
+		<selectKey keyProperty="olOldCount" order="BEFORE" resultType="Integer">
+		SELECT
+		#{olCount}-sum(ol.ol_count)
+		FROM
+		ORDER_LIST ol
+		LEFT OUTER JOIN
+		orders o
+		on(o.ORD_NO = ol.ORD_NO)
 		WHERE
-			FOOD_NO = #{food.foodNo} and ORD_NO = #{orders.ordNo}
-	</update>
+		o.ORD_TABLE_NUM = #{orders.ordTableNum} AND 
+		ol.FOOD_NO = #{food.foodNo} and o.pay_no is null
+		</selectKey>
+		INSERT INTO
+			order_list(<include refid="allColumns"/>)
+		VALUES
+		(sq_ol_no.nextval,#{orders.ordNo}, #{food.foodNo}, #{olOldCount}, SYSDATE)
+	</insert>
 	
 	<delete id="olDelete" parameterType="OrderList">
 		DELETE FROM 
@@ -61,5 +76,38 @@
 		WHERE
 			FOOD_NO = #{food.foodNo} and ORD_NO = #{orders.ordNo}
 	</delete>
+	
+	
+	<select id="olList" parameterType="Integer" resultMap="olTableList"  useCache="false" flushCache="true">
+		SELECT 
+		ol.ord_no, o.ord_table_num, f.food_name, ol.OL_NO, ol.ol_count, ol.ol_time 
+		FROM 
+		ORDER_LIST ol 
+		LEFT OUTER JOIN 
+		ORDERS o on(o.ORD_NO = ol.ORD_NO) 
+		LEFT OUTER JOIN 
+		food f ON(f.FOOD_NO = ol.FOOD_NO) 
+		<where>
+			<if test="value != 0">
+			o.ORD_TABLE_NUM = #{value} 
+			</if>
+		</where>
+		AND o.PAY_NO IS NULL 
+		ORDER BY ol.ol_no desc
+	</select>
+	
+	<resultMap type="OrderList" id="olTableList">
+		<id column="ol_no" jdbcType="INTEGER" property="olNo"/>
+		<result column="ol_count" jdbcType="INTEGER" property="olCount"/>
+		<result column="ol_time" jdbcType="TIMESTAMP" property="olTime"/>
+		<association property="orders" javaType="Orders">
+			<result column="ord_no" jdbcType="INTEGER" property="ordNo"/>
+			<result column="ord_table_num" jdbcType="INTEGER" property="ordTableNum" />
+		</association>
+		<association property="food" javaType="Food">
+			<result column="food_name" jdbcType="VARCHAR" property="foodName"/>
+		</association>
+	</resultMap>
+	
 	
 </mapper>

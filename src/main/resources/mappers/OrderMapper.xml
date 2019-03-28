@@ -41,6 +41,4 @@
 				ORDER BY ORD_TABLE_NUM asc
 	</select>
 	
-	
-	
 </mapper>

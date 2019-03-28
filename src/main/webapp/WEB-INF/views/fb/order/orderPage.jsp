@@ -91,9 +91,40 @@
 				dataType:'html',
 				success:function(data){
 					alert("메뉴를 성공적으로 주문했습니다.");
+					location.href="./table"
 				},
 				error:function(){
 					alert("메뉴 주문에 실패했습니다.\n주문을 다시 등록해 주세요.")
+				}
+			})
+		}
+		function plus(no){
+			var tableNum = $("#tableNum").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/plus",
+				method:'get',
+				data:"tableNo=" + tableNum + "&index="+no,
+				dataType:'html',
+				success:function(data){
+					$("#listBox").html(data);
+				},
+				error:function(){
+					alert("처음부터 다시 시도해 주십시오.")
+				}
+			})
+		}
+		function minus(no){
+			var tableNum = $("#tableNum").text();
+			$.ajax({
+				url:"http://localhost/peregrine/comp/fb/restaurant/order/minus",
+				method:'get',
+				data:"tableNo=" + tableNum + "&index="+no,
+				dataType:'html',
+				success:function(data){
+					$("#listBox").html(data);
+				},
+				error:function(){
+					alert("더 이상 뺄 수 없습니다.\n처음부터 다시 시도해 주십시오.")
 				}
 			})
 		}
@@ -109,64 +140,40 @@
 		 
 		<div id = "mainBox"><span id ="tableNum">${orderList[0].orders.ordTableNum }</span>번 <spring:message code="order.regist"/></div>
 		<div id = "listBox">
+			<table>
+				<tr>
+					<th><spring:message code="number"/></th>
+					<th><spring:message code="food.name"/></th>
+					<th><spring:message code="food.price"/></th>
+					<th><spring:message code="order.count"/></th>
+					<th><spring:message code="plus"/></th>
+					<th><spring:message code="minus"/></th>
+				</tr>
+			<c:forEach items="${orderList }" var="lists" varStatus="i">
+				<c:if test="${lists.olCount ne 0 }">
+				<tr>
+					<td>${i.count }</td>
+					<td>${lists.food.foodName }</td>
+					<td>${lists.food.foodPrice }</td>
+					<td>${lists.olCount }</td>
+					<td><input type = "button" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
+					<td><input type = "button" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
+				</tr>
+				</c:if>
+			</c:forEach>
+			</table>
 			<c:if test="${empty orderList[0].food.foodName }">
 				<div id = "orderBox"><spring:message code="order.nothing"/></div>
 			</c:if>
-			<c:if test="${!empty orderList[0].food.foodName }">
-			<table>
-				<tr>
-					<th>
-					<spring:message code="number"/>
-					</th>
-					<th>
-					<spring:message code="food.name"/>
-					</th>
-					<th>
-					<spring:message code="food.price"/>
-					</th>
-					<th>
-					<spring:message code="order.count"/>
-					</th>
-					<th>
-					<spring:message code="plus"/>
-					</th>
-					<th>
-					<spring:message code="minus"/>
-					</th>
-				</tr>
-			<c:forEach items="${orderList }" var="lists" varStatus="i">
-				<tr>
-					<td>
-					${i.count }
-					</td>
-					<td>
-					${lists.food.foodName }
-					</td>
-					<td>
-					${lists.food.foodPrice }
-					</td>
-					<td>
-					${lists.olCount }
-					</td>
-					<td>
-					<input type = "button" value ="<spring:message code="plus"/>" onclick="plus()">
-					</td>
-					<td>
-					<input type = "button" value ="<spring:message code="minus"/>" onclick="minus()">
-					</td>
-				</tr>
-			</c:forEach>
-			</table>
 			<div id = "amount">
 				<spring:message code="payment.money"/> : ${amount }
 			</div>
-			</c:if>
 			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
 			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
 		</div>
 		<div id = "foodBox">
 			<c:forEach	begin="1" end="7" var="i" step="1">
-				<div class = "foodKind"><spring:message code="food.ki${i }"/></div>
+				<div class = "foodKind" onclick="kinds(<spring:message code="food.ki${i }"/>)"><spring:message code="food.ki${i }"/></div>
 			</c:forEach>
 			<c:forEach items="${foodList }" var="food">
 				<div class = "foodList" onclick="orders(${food.foodNo })">
