@@ -43,7 +43,7 @@
 	<div id = "roomcost">분실물 등록 날짜</div><input type="date" id = "lostdate" name = "lostDate">
 	<div id = "roomcount">분실 위치</div><input type="text" id = "lostloc" name = "lostLoc">
 	<br> <br>
-	<input type="submit" value = "등록">
+	<input type="submit" value = "등록" class = "btn btn-outline-danger">
 	</form:form>
 	
 	

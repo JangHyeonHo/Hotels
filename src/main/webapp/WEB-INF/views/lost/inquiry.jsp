@@ -40,7 +40,7 @@
 	<div id = "contents">
 	<h2>분실물 조회</h2>
 	
-	<table>
+	<table class = "table">
 	<tr>
 	<th>분실물 번호</th>
 	<th>분실물 명</th>
@@ -61,7 +61,8 @@
 	
 	</c:forEach>
 	</table>
-	
+	<input type = "button" onclick="location.href='../lost'" value = "뒤로가기" class = "btn btn-primary btn">
+	<input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
 	</div>
 	<footer></footer>
 </body>

@@ -1,2 +1,88 @@
 @charset "UTF-8";
 
+#contents{
+min-width : 1200px;
+margin: 12px 20px;
+}
+.infobox{
+	font-family: 'Gothic A1', sans-serif;
+}
+
+.textput{
+  width: 240px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+select{
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#cheInyear{
+  width: 80px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+
+}
+#cheInmonth{
+  width: 60px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#cheInday{
+  width: 60px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#cheOutyear{
+  width: 80px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#cheOutmonth{
+  width: 60px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#cheOutday{
+  width: 60px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#rk{
+  width: 150px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 0;
+}
+#roomscount{
+  width: 80px;
+  padding: 4px 0 4px 10px;
+  margin: 10px 0;
+}
+.stay_num{
+  width: 150px;
+  padding: 4px 0 4px 0;
+  margin: 10px 10px 0 0;
+}
+.guestNo{
+  width: 120px;
+  padding: 6px 0 6px 10px;
+  margin: 10px 20px 0 0;
+}
+.che_pre3{
+  width: 150px;
+  padding: 4px 0 4px 2px;
+  margin-right: 10px;
+}
+#chePre{
+	margin-bottom:40px; 
+}
+#submitBtn3{
+	margin-left: 18px;
+}

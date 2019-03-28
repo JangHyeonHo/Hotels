@@ -5,13 +5,13 @@
 
 	<select id="bflist" resultMap="bfList">
     select bf.break_coupon, ci.CHE_NO, gr.GR_NO, bf.BREAK_KIND, bf.BREAK_ADULT, bf.BREAK_CHILD,
-		cu.COS_L_NAME, cu.COS_F_NAME, cu.COS_TELNO, gr.GR_STAY_SUM
+		cu.COS_L_NAME, cu.COS_F_NAME, cu.COS_TELNO, cu.COS_ALLERGY, gr.GR_STAY_SUM
 		from
 		BREAKFAST bf full outer join GUEST_ROOM gr on (bf.GR_NO=gr.GR_NO)
         left outer join CHECKIN ci on(gr.CHE_NO=ci.CHE_NO)
 		left outer join CUSTOMER cu on(cu.COS_NO=ci.COS_NO)
 		WHERE ci.CHE_OUT_TIME IS null
-		ORDER BY gr.gr_no asc
+		ORDER BY ci.CHE_NO asc
 		
 	</select>
 	

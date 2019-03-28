@@ -91,7 +91,7 @@ $("#roomscount").on("change",function(){
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 
@@ -108,7 +108,8 @@ $("#roomscount").on("change",function(){
 	<div class = "infobox">석식 성인 : <input type = "text" id = "grDiAdult" name = "grDiAdult" value = "${groom.grDiAdult }"></div>
 	<div class = "infobox">석식 어린이 : <input type = "text" id = "grDiAdult" name = "grDiChild" value = "${groom.grDiChild }"></div>
 
-	<input type="submit" value = "수정">
+	<input type="submit" value = "수정" >
+	<input type = "button" value = "뒤로가기" id = "submitBtn3" onclick="location.href='../rooms'" class = "btn btn-primary btn">
 	</form:form>
 
 
