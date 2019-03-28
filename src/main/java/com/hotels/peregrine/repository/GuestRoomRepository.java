@@ -63,16 +63,15 @@ public class GuestRoomRepository {
 		return sql.selectList("guest.checkoutlist",mapping);
 	}
 	
-	//페이징
+	//사용중인객실 리스트페이징
 	public int getAllListCnt() {
-		// TODO Auto-generated method stub
 		return sql.selectOne("guest.listCnt");
 	}
+	//체크아웃 객실 리스트 페이징
+	public int getCheOutListCnt() {
+		return sql.selectOne("guest.CheOutListCnt");
+	}
 	
-
-
-
-
 
 
 }

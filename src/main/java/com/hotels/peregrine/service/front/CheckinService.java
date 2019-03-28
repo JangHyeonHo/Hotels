@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotels.peregrine.command.CheckinCommend;
+import com.hotels.peregrine.command.CheckinCommand;
+import com.hotels.peregrine.command.RoomCountCommand;
 import com.hotels.peregrine.model.CheckInDTO;
 import com.hotels.peregrine.model.CustomerDTO;
 import com.hotels.peregrine.model.GuestRoomDTO;
@@ -35,7 +36,7 @@ public class CheckinService {
 	@Autowired
 	private RoomRepository room;
 	
-	public void action(CheckInDTO check, CheckinCommend  command) {
+	public void action(CheckInDTO check, CheckinCommand  command) {
 		
 		CustomerDTO customers = check.getCustomer();
 		GuestRoomDTO guestRoom = new GuestRoomDTO();
@@ -78,9 +79,14 @@ public class CheckinService {
 		
 	}
 
-	public RoomDTO roomscount(String roomname) {
+	public RoomCountCommand roomscount(String roomname, String cheIn, String cheOut) {
 		
-		return room.roomcount(roomname);
+		return room.roomcount(roomname, cheIn, cheOut);
+	}
+
+	public List<RoomCountCommand> roomsCount() {
+		
+		return room.roomCount();
 	}
 	
 	

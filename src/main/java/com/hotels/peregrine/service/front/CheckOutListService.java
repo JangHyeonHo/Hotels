@@ -22,7 +22,7 @@ public class CheckOutListService {
 
 	public int getAllListCount() {
 		
-		return gr.getAllListCnt();
+		return gr.getCheOutListCnt();
 	}
 
 }

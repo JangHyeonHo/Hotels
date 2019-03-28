@@ -14,18 +14,47 @@
 	<result column="ROOM_NAME" jdbcType="VARCHAR" property="roomName"/>
 	</resultMap>
 	
-	<select id="roomcount" parameterType="String" resultMap="roomcountbase">
 	
-	select room_count from ROOM
-	<where>
-	room_name = #{roomname}
-	</where>
+	
+	<select id="roomCount" resultMap="roombase" parameterType="HashMap">
+	
+	select 
+r.room_name , r.room_count-count(cn.gr_no) as bin
+from 
+room r 
+left outer join 
+    (select 
+    ci.room_name, ci.che_no, gr.gr_no, ci.che_in_date, ci.che_out_date 
+    from 
+    guest_room 
+    gr 
+    left outer join 
+    checkin ci 
+    on(gr.che_no = ci.che_no) 
+    where 
+    ci.che_out_date <![CDATA[ > ]]> to_date(#{cheIn},'YYYY-MM-DD') 
+    and 
+    ci.che_in_date <![CDATA[ < ]]> to_date(#{cheOut},'YYYY-MM-DD') 
+    and 
+    ci.pay_no is null
+    order by ci.che_no) cn 
+on(cn.room_name = r.room_name) 
+where
+r.room_name = #{roomname}
+group by r.room_name, r.room_count
+	
 	
 	</select>
  	
- 	<resultMap type="Room" id="roomcountbase">
- 	<result column="room_count"  jdbcType="BIGINT" property="roomCount"/>
+ 	
+ 	
+ 	
+ 	
+ 	<resultMap type="RoomCountCommand" id="roombase">
+ 	<result column="room_name"  jdbcType="VARCHAR" property="roomName"/>
+ 	<result column="bin"  jdbcType="BIGINT" property="roomCount"/>
  	
  	</resultMap>
+ 	
 		
 </mapper>

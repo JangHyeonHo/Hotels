@@ -42,6 +42,15 @@
 			CHE_OUT_TIME IS null
 	</select>
 	
+	<select id="CheOutListCnt" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM
+			GUEST_ROOM g join checkin c on(g.che_no=c.che_no)
+		where
+			CHE_OUT_TIME IS not null
+	</select>
+	
 	<select id="roomDetail" resultMap="roomdetail">
 		select gr.CHE_NO,cu.COS_L_NAME, gr.GR_NO,cu.COS_F_NAME, cu.COS_TELNO,
 		ci.CHE_IN_time, ci.CHE_IN_DATE, ci.CHE_OUT_DATE,

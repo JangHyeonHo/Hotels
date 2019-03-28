@@ -30,6 +30,7 @@ public class CheckOutListController {
 		
 		List<GuestRoomDTO> list = service.action(paging);
 		model.addAttribute("list",list);
+		model.addAttribute("paging", paging);
 		System.out.println("무엇?몇줄?:"+list.size());
 	
 		return "front/checkoutlist";
