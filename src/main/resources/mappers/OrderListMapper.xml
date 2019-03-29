@@ -30,13 +30,13 @@
 		<result column="OL_NO" jdbcType="INTEGER" property="olNo"/>
 		<result column="OL_COUNT" jdbcType="INTEGER" property="olCount"/>
 		<result column="OL_TIME" jdbcType="TIMESTAMP" property="olTime"/>
+		<result column="FOOD_NAME" jdbcType="VARCHAR" property="foodName"/>
 		<association javaType="Orders" property="orders">
 			<result column="ORD_NO" jdbcType="INTEGER" property="ordNo"/>
 			<result column="ORD_TABLE_NUM" jdbcType="INTEGER" property="ordTableNum"/>
 		</association>
 		<association javaType="Food" property="food">
-			<result column="FOOD_NO" jdbcType="VARCHAR" property="foodNo"/>
-			<result column="FOOD_NAME" jdbcType="INTEGER" property="foodName"/>
+			<result column="FOOD_NO" jdbcType="INTEGER" property="foodNo"/>
 			<result column="FOOD_PRICE" jdbcType="INTEGER" property="foodPrice"/>
 		</association>
 	</resultMap>

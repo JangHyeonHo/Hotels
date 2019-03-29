@@ -60,6 +60,26 @@
 	
 	
 	</div>
+			<div id="paging">
+				<c:set var="page" value="${paging.page}" />
+				<c:if test="${paging.prev}">
+					<a href="?page=1">◀◀</a>
+					<a href="?page=${paging.startPage-1}">◀</a>
+				</c:if>
+				<c:forEach step="1" begin="${paging.startPage}"
+					end="${paging.endPage}" var="i">
+					<c:if test="${i == page}">
+						<a style="font-weight: bold">${i}</a>
+					</c:if>
+					<c:if test="${i != page}">
+						<a href="?page=${i}">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${paging.next}">
+					<a href="?page=${paging.endPage+1}">▶</a>
+					<a href="?page=${paging.maxPage}">▶▶</a>
+				</c:if>
+			</div>
 	<footer></footer>
 </body>
 </html>

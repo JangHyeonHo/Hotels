@@ -126,7 +126,7 @@ $(function(){
 
 
 
-		var dinAdult = "<select class = 'che_pre3' name = 'DinAdult'>";
+		var dinAdult = "<select class = 'form-control' name = 'DinAdult'>";
 		//식사 인원수 1부터 20까지 증가시킴
 		for(var i = 0; i <= 10; i++){
 			if(i == 0 ){
@@ -138,7 +138,7 @@ $(function(){
 		dinAdult += "</select>";
 		//che_pre에 넣어줌
 
-		var dinChild = "<select class = 'che_pre3' name = 'DinChild'>";
+		var dinChild = "<select class = 'form-control' name = 'DinChild'>";
 		//식사 인원수 1부터 20까지 증가시킴
 		for(var i = 0; i <= 10; i++){
 			if(i == 0 ){

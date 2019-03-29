@@ -30,9 +30,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <!-- 폰트설정 -->
-<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gothic+A1|Poppins" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gothic+A1|Poppins|Yeon+Sung" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Gothic+A1|Poppins|Yeon+Sung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+
 <link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/checkin_content.css" />">
@@ -51,21 +52,25 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 <h2>체크인</h2>
-<h4>-고객정보</h4>
 
 	<form:form>
+	<fieldset>
+	<legend>고객정보</legend>
 	<div class = "infobox">고객 성</div> <input type="text" id = "fname" name = "customer.cosLName" class = "textput">
     <div class = "infobox">고객 이름</div> <input type="text" id = "lname" name = "customer.cosFName" class = "textput">
     <div class = "infobox">고객 전화번호</div> <input type="text" id = "phone" name = "customer.cosTelno" class = "textput">
     <div class = "infobox">이메일</div> <input type="text" id = "email" name = "customer.cosEmail" class = "textput">
     <div class = "infobox">알레르기 유무</div>
+    <div id = "allergyInfo">
     <input type = "radio" class = "allergy1" name = "allergy" value="있음">있음
     <input type = "radio" class = "allergy1" name = "allergy" value="없음" checked="checked">없음
+    </div>
     <div id = "allergyinfo"  style = "display:none;">
     <div class = "infobox">알레르기 종류</div> <input type="text" id = "allergykind" name = "customer.cosAllergy">
     </div>
-    
-<h4>-수속정보</h4>
+    </fieldset>
+    <fieldset>
+	<legend>수속정보</legend>
     <div class = "infobox">입실 예정일</div>
 				<select id="cheInyear" class="year">
 				</select>년
@@ -81,13 +86,14 @@
 				<select id="cheOutmonth" class = "outmonth">
 				</select>월
 				<select id="cheOutday" class="day">
-				</select>일			
-				
-<h4>-객실정보</h4>	
+				</select>일
+	</fieldset>			
+	<fieldset>
+	<legend>객실정보</legend>
 
 		
 	<div id = "roomname">			
-    <select class = "roomskind" name = "room.roomName" id="rk">
+    <select class = "form-control" name = "room.roomName" id="rk">
     <c:forEach items="${list }" var="rlist">
     <option value="${rlist.roomName }">${rlist.roomName }</option>
     </c:forEach>
@@ -108,11 +114,11 @@
 	<div id = "hiddenBox">
 	
 	</div>
-    
+    </fieldset>
 	<div id = "sub">
-    <input type = "submit" value = "체크인" id = "submitBtn" class = "btn btn-outline-danger">
-    <input type = "reset" value = "재작성" id = "submitBtn" class = "btn btn-outline-secondary">
-   <input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
+    <input type = "submit" value = "체크인" id = "submitBtn1" class = "customBtn btn btn-outline-danger">
+    <input type = "reset" value = "재작성" id = "submitBtn2" class = "customBtn btn btn-outline-secondary">
+   <input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
     </div>
     </form:form>
 	</div>
