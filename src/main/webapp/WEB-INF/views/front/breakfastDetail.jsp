@@ -38,80 +38,45 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script type="text/javascript">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
 
-/* 
-var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakAdult += "<option value="+ i +">조식 성인 인원</option>";
-	}
-	
-	breakAdult += "<option value="+ i +">조식성인 : " + i + "명</option>";
-}
-breakAdult += "</select>";
-//che_pre에 넣어줌
-$(".che_pre1").html(breakAdult);
-
-
-var breakChild = "<select class = 'che_pre2' name = 'breakChild'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakChild += "<option value="+ i +">조식 어린이 인원</option>";
-	}
-	
-	breakChild += "<option value="+ i +">조식 어린이 : " + i + "명</option>";
-}
-breakChild += "</select>";
-//che_pre에 넣어줌
-$(".che_pre2").html(breakChild);
-
-
-$("#roomscount").on("change",function(){
-	var value = $(this).val();
-	var AllRooms = "";
-	for(var i = 0; i < value ; i++){
-	
-		AllRooms += breakAdult;
-		AllRooms += breakChild;
-
-	
-		AllRooms += "<br>"
-	}
-	$("#stayhidden").html(AllRooms)
-	
-	console.log(AllRooms);
-	
-})
- */
-</script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/breakfastDetail_content.css" />" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
-	<h2>${bf.guestRoom.grNo }호 조식 등록</h2>
+	<h2>조식 상세정보</h2>
+	
 	<form:form>
+	<fieldset>
+	<legend>${bf.guestRoom.grNo }호 조식 등록</legend>>
 	<div class = "infobox">수속 번호 : ${bf.guestRoom.checkIn.cheNo } </div>
 	<div class = "infobox">고객 성/이름 : ${bf.guestRoom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName} </div>
 	<div class = "infobox">고객 번호: ${bf.guestRoom.checkIn.customer.cosTelno } </div>
 	<div class = "infobox">객실 번호 : ${bf.guestRoom.grNo } </div>
-	<div class = "infobox">숙박 인원 : ${bf.guestRoom.grStaySum } </div>
+	<div class = "infobox">숙박 인원 : <span class = "backg">　${bf.guestRoom.grStaySum }　</span></div>
  	<input type="hidden" name="guestRoom.grNo" value="${bf.guestRoom.grNo }">
  	<input type="hidden" name="guestRoom.checkIn.cheNo" value="${bf.guestRoom.checkIn.cheNo }">
 	<div class = "infobox">조식 종류 : <input type = "text" name = "breakKind"></div>
 	<div class = "infobox">성인 : <input type = "text" name = "breakAdult"></div>
 	<div class = "infobox">어린이 : <input type = "text" name = "breakChild"></div>
 	
-	<input type="submit" value = "등록">
+	</fieldset>
+	<input type="submit" value = "등록" class = "btn btn-outline-danger btn-b">
 	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
+	
+	
 	</form:form>
 
 	</div>
-	<footer></footer>
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

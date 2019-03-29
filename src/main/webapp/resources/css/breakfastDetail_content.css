@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
 #contents{
-width : 420px;
+width : 440px;
 margin: 12px auto 0 auto; 
 font-family: 'Stylish', sans-serif;
 }
 h2{
-	font-size: 40px;
+	font-size: 42px;
 	font-family: 'Jua', sans-serif;
 }
 legend{
@@ -17,33 +17,11 @@ legend{
 	
 }
 fieldset{
-	width : 420px;
 	padding: 10px;
 	margin-bottom: 10px;
 	border: 2px solid gray;
 	border-radius: 6px;
 }
-.type-b{
-	width: 200px;
-}
-.type-c{
-	width: 160px;
-}
-.sb{
-	color: blue;
-}
 .backg{
-
-}
-#deinfo{
-	margin-left: 28px; 
-}
-.infobox{
-	margin:10px 0 22px 10px;
-	font-size: 22px;
-}
-
-.btn-b{
-	margin-right:10px;
-	width: 120px;
+	background-color: silver;
 }

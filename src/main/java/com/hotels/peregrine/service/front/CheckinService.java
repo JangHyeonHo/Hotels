@@ -42,7 +42,7 @@ public class CheckinService {
 		GuestRoomDTO guestRoom = new GuestRoomDTO();
 		
 		if(customers.getCosAllergy()==null || customers.getCosAllergy() == "") {
-			customers.setCosAllergy("null");
+			customers.setCosAllergy("N");
 		}
 		System.out.println("sad :"+command.getGrNo().length);
 		List<GuestRoomDTO> grList = new ArrayList<GuestRoomDTO>();

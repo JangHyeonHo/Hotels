@@ -11,13 +11,7 @@ font-family: 'Stylish', sans-serif;
 	font-size: 48px;
 	font-family: 'Jua', sans-serif;
 }
-a:hover{
-	 text-decoration:none
-}
-.danger{
-	color: red;
-}
-#cheIn{
+#all{
 	min-width: 1300px;
 	width:80%;
 	margin:12px auto;
@@ -28,27 +22,8 @@ table{
 }
 th{
 	font-family: 'Song Myung', serif;
-	background-color: silver;
-}
-
-.tdd{
-	font-size: 32px;
-}
-#paging{
-	font-size: 20px;
-	text-align: center;
-}
-#paging a{
-	color: red;
-}
-#paging a:visited{
-	color: black;
-}
-#btn{
-	width: 100%;
 }
 #mainBtn{
-	float: left;
 	margin-left: 20px;
-	width: 200px;
+	width: 140px;
 }

@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<title>식사여부</title>
+<title>객실정보수정</title>
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
@@ -49,53 +49,6 @@
 <link href="<c:url value="/css/roomDetail_content.css" />" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 
-
-
-var breakAdult = "<select class = 'che_pre1' name = 'breakAdult'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakAdult += "<option value="+ i +">조식 성인 인원</option>";
-	}
-	
-	breakAdult += "<option value="+ i +">조식성인 : " + i + "명</option>";
-}
-breakAdult += "</select>";
-//che_pre에 넣어줌
-$(".che_pre1").html(breakAdult);
-
-
-var breakChild = "<select class = 'che_pre2' name = 'breakChild'>";
-//식사 인원수 1부터 20까지 증가시킴
-for(var i = 0; i <= 10; i++){
-	if(i == 0 ){
-		breakChild += "<option value="+ i +">조식 어린이 인원</option>";
-	}
-	
-	breakChild += "<option value="+ i +">조식 어린이 : " + i + "명</option>";
-}
-breakChild += "</select>";
-//che_pre에 넣어줌
-$(".che_pre2").html(breakChild);
-
-
-$("#roomscount").on("change",function(){
-	var value = $(this).val();
-	var AllRooms = "";
-	for(var i = 0; i < value ; i++){
-	
-		AllRooms += breakAdult;
-		AllRooms += breakChild;
-
-	
-		AllRooms += "<br>"
-	}
-	$("#stayhidden").html(AllRooms)
-	
-	console.log(AllRooms);
-	
-})
-
 </script>
 
 </head>
@@ -107,21 +60,42 @@ $("#roomscount").on("change",function(){
 
 <div id = "deinfo">
 	<h2>객실 상세정보</h2>
-<form:form>
+<form:form class = "form-inline">
 	<fieldset>
 <legend><span class = "sb">${groom.grNo }</span>호 정보수정</legend>
 	
-	<div class = "infobox">수속 번호 : <span class = "backg">${groom.checkIn.cheNo }</span></div>
+	<div class = "infobox">수속 번호 <input type="text" class="form-control type-b" value = "${groom.checkIn.cheNo }" readonly></div>
 	<div class = "infobox">고객 성/이름 : <span class = "backg">${groom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName}</span></div>
 	<div class = "infobox">고객 번호: <span class = "backg">${groom.checkIn.customer.cosTelno }</span></div>
 	<div class = "infobox">객실 명 : <span class = "backg">${groom.checkIn.room.roomName }</span></div>
-	<div class = "infobox">객실 번호 : <input type = "text" name = "baseGrNo" value = "${groom.grNo }"></div>
-	<div class = "infobox">숙박 인원 : <input type = "text" name = "grStaySum" value = "${groom.grStaySum }"></div>
+	<div class = "infobox">객실 번호 : <input type = "text" class="form-control type-b" name = "baseGrNo" value = "${groom.grNo }">호</div>
+	<div class = "infobox">숙박 인원 : <input type = "text" class="form-control type-c" name = "grStaySum" value = "${groom.grStaySum }">명</div>
 	<div class = "infobox">체크인 날짜 : <span class = "backg"><fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheInTime }"/></span></div>
 	<div class = "infobox">체크아웃 예정일 : <span class = "backg"><fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheOutDate }"/></span></div>
-	<div class = "infobox">석식 성인 : <input type = "text" id = "grDiAdult" name = "grDiAdult" value = "${groom.grDiAdult }"></div>
-	<div class = "infobox">석식 어린이 : <input type = "text" id = "grDiAdult" name = "grDiChild" value = "${groom.grDiChild }"></div>
-	
+	<div class = "infobox">
+	<!-- 석식 성인 -->
+	<select class = "form-control" name = "grDiAdult">
+	<option value="0">석식 성인 인원</option>
+	<c:forEach begin="1" end="10" step="1" var="i">
+		<option value="${i }"
+		<c:if test="${groom.grDiAdult eq i}">
+			selected
+		</c:if>
+		> 석식 성인인원 : ${i }명 </option>
+	</c:forEach>
+	</select>
+	<!-- 성인 어린이 -->
+	<select class = "form-control" name = "grDiChild">
+	<option value="0">석식 어린이 인원</option>
+	<c:forEach begin="1" end="10" step="1" var="i">
+		<option value="${i }"
+		<c:if test="${groom.grDiAdult eq i}">
+			selected
+		</c:if>
+		> 석식 어린이인원 : ${i }명 </option>
+	</c:forEach>
+	</select>
+	</div>
 	</fieldset>
 
 	<input type="submit" value = "수정" class = "btn btn-outline-danger btn-b">

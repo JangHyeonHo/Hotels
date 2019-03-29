@@ -38,18 +38,26 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script type="text/javascript">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
 
-
-</script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/brlist_content.css" />" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
-	<h2>조식 여부</h2>
+	
+<div id= "all">
+	<div id = "title">
+	<h2>Breakfast List</h2>
+	</div>
 
 <table class = "table table-hover">
 	<tr>
@@ -76,15 +84,17 @@
 	<td>${brlist.breakCoupon }</td>
 	<td>${brlist.breakKind }</td>
 	<td>성인${brlist.breakAdult }명/어린이${brlist.breakChild }명</td>
-	<td>${brlist.guestRoom.checkIn.customer.cosAllergy }</td>
+	<td>${brlist2.checkIn.customer.cosAllergy }</td>
 	<td><a href = "breakfast/delete?breakCoupon=${brlist.breakCoupon }">삭제</a></td>
 	</tr>
 	</c:forEach>	
 	</c:forEach>
 </table>
 
-<input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
+<input type = "button" id = "mainBtn" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
+
+</div>	
 	</div>
-	<footer></footer>
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

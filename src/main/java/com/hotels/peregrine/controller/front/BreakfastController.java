@@ -22,7 +22,7 @@ public class BreakfastController {
 		
 		List<BreakfastDTO> list = service.action();
 		model.addAttribute("list",list);
-		
+
 		
 		return "front/brlist";
 	}	
