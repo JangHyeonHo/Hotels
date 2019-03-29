@@ -4,30 +4,48 @@
 	<header>
 	     <div id="headertop">
           <div id=leftcontent>
-            <div class="ltep">FB</div>
-            <div class="ltep"><a href="#">FRONT</a>
+            <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
+            		<ul>
+            			<li class="fbmenu"><a href="#">Restaurant</a></li>
+            			<li class="fbmenu"><a href="#">Banquet</a></li>
+            			<li class="fbmenu"><a href="#">lounge</a></li>
+            		
+            		</ul></div>
+            <div class="ltep" id="front"><a href="#"><span class="tepcolor">FRONT</span></a>
                     <ul>
-                    	<li class="frontmenu">Reservation</li>
-                    	<li class="frontmenu">Checkin</li>
-                    	<li class="frontmenu">Checkout</li>
-                    	<li class="frontmenu">Rooms</li>
-                    	<li class="frontmenu">History</li>
-                    	<li class="frontmenu">Lost</li>
+                    	<li class="frontmenu"><a href="#">Reservation</a></li>
+                    	<li class="frontmenu"><a href="#">Checkin</a></li>
+                    	<li class="frontmenu"><a href="#">Checkout</a></li>
+                    	<li class="frontmenu"><a href="#">Rooms</a></li>
+                    	<li class="frontmenu"><a href="#">History</a></li>
+                    	<li class="frontmenu"><a href="#">Lost</a></li>
                     </ul>
                   
             </div>
-            <div class="ltep">HR
+            <div class="ltep" id="hr"><a href="#"><span class="tepcolor">HR</span></a>
             		<ul>
-            			<li>List</li>
+            			<li class="hrmenu"><a href="#">List</a></li>
+            			<li class="hrmenu"><a href="#">Schedule</a></li>
             		</ul>
                    
             </div>
           </div>
-           <div id="mark"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%"></div> 
+           <div id="mark"><a href="/comp"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%"></a></div> 
            <div id=rightcontent>
-                <div class="rtep">RESTAURANT</div>
-                <div class="rtep">BANQUET</div>
-                <div class="rtep">DISTRIBUTOR</div>
+                <div class="rtep" id="member"><a href="#"><span class="tepcolor">Member</span></a>
+                	<ul>
+                		<li class="membertmenu"><a href="#">Myschedule</a></li>
+                		<li class="membertmenu"><a href="#">Mypage</a></li>
+                		<li class="membertmenu"><a href="#">Works</a></li>
+                	</ul>
+                </div>
+                <div class="rtep" id="logistics"><a href="#"><span class="tepcolor">Logistics</span></a>
+                		<li class="logisticsmenu"><a href="#">Constract</a></li>
+                		<li class="logisticsmenu"><a href="#">Distributor</a></li>
+                		<li class="logisticsmenu"><a href="#">Material</a></li>
+                		<li class="logisticsmenu"><a href="#">Termination</a></li>
+                </div>
+               
            </div>
     </div>
 	</header>
