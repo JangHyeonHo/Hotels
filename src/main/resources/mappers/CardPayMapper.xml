@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cardPay">
+	<cache />
+	<sql id="allColumns">
+		PAY_NO, CP_INS_MONTH, CP_CNAME, CP_CNUM, CP_MONTH, CP_YEAR
+	</sql>
+	<insert id="insertCard" parameterType="CardPay">
+		<selectKey keyProperty="payment.payNo" resultType="Integer" order="BEFORE">
+			SELECT
+			 	max(pay_no) 
+			FROM
+			 	payment
+			 WHERE
+			 	pay_sum = #{payment.paySum}
+		</selectKey>
+		INSERT INTO
+			card_pay(<include refid="allColumns"/>)
+		VALUES
+			 (#{payment.payNo},#{cpInsMonth},#{cpCname},#{cpCnum},#{cpMonth},#{cpYear})
+	</insert>
+	
+	
+</mapper>

@@ -76,7 +76,7 @@
 		</div>
 		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?table=${i }'"></div>
 		<div class = "tableOrderList"><input type = "button" value="<spring:message code="order.list" /> 보기" onclick = "location.href='./list?table=${i }'"></div>
-		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기"></div>
+		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${i }'"></div>
 	</div>
 	</c:forEach>
 	<div><input type = "button" value="<spring:message code="back" />" onclick="location.href='../order'"></div>

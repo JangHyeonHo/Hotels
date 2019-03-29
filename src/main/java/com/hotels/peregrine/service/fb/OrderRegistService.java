@@ -41,12 +41,13 @@ public class OrderRegistService {
 		int updateResult = 0;
 		int deleteResult = 0;
 		for(int i = 0; i < olList.size(); i++) {
-			AutoTest.ModelBlackTest(olList.get(i));
+//			AutoTest.ModelBlackTest(tableCall.get(i));
+//			AutoTest.ModelBlackTest(olList.get(i));
 			String oldList = null;
 			if(tableCall.size() > i) {
-				oldList = tableCall.get(i).getFood().getFoodName();
+				oldList = tableCall.get(i).getFoodName();
 			}
-			String newList = olList.get(i).getFood().getFoodName();
+			String newList = olList.get(i).getFoodName();
 			//이미 주문한 물건이 있는 경우
 			if(oldList != null && oldList.equals(newList)) {
 				//현재 주문했던 수량이 일치하지 않는 경우

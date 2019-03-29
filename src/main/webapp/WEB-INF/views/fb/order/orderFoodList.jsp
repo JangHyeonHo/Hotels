@@ -16,7 +16,7 @@
 				<c:if test="${lists.olCount ne 0 }">
 				<tr>
 					<td>${i.count }</td>
-					<td>${lists.food.foodName }</td>
+					<td>${lists.foodName }</td>
 					<td>${lists.food.foodPrice }</td>
 					<td>${lists.olCount }</td>
 					<td><input type = "button" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
@@ -33,3 +33,4 @@
 			</div>
 			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
 			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
+			<input type = "button" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">

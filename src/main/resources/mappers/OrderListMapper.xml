@@ -8,10 +8,10 @@
 	
 	<select id="tableCall" parameterType="Integer" resultMap="listMap" useCache="false" flushCache="true">
 		SELECT 
-			ORD_NO, FOOD_NO, OL_COUNT, ORD_TABLE_NUM, FOOD_NAME, FOOD_PRICE
+			ORD_NO, FOOD_NO, OL_COUNTS, ORD_TABLE_NUM, FOOD_NAME, FOOD_PRICE
 		FROM
 		(SELECT 
-		o.ORD_NO, f.FOOD_NO, sum(ol.OL_COUNT) AS OL_COUNT,
+		o.ORD_NO, f.FOOD_NO, sum(ol.OL_COUNT) AS OL_COUNTS,
 		o.ORD_TABLE_NUM, f.FOOD_NAME, f.FOOD_PRICE
 		FROM 
 			order_list ol 
@@ -20,7 +20,7 @@
 			LEFT OUTER JOIN
 				food f ON(f.FOOD_NO = ol.FOOD_NO)
 					WHERE
-						o.ORD_TABLE_NUM = #{table} and o.PAY_NO is null
+						o.ORD_TABLE_NUM = #{value} and o.PAY_NO is null
 						GROUP BY o.ORD_NO, o.ORD_TABLE_NUM, f.FOOD_NO, f.FOOD_NAME, f.FOOD_PRICE
 							ORDER BY o.ORD_NO
 		)
@@ -28,7 +28,7 @@
 	
 	<resultMap type="OrderList" id="listMap">
 		<result column="OL_NO" jdbcType="INTEGER" property="olNo"/>
-		<result column="OL_COUNT" jdbcType="INTEGER" property="olCount"/>
+		<result column="OL_COUNTS" jdbcType="INTEGER" property="olCount"/>
 		<result column="OL_TIME" jdbcType="TIMESTAMP" property="olTime"/>
 		<result column="FOOD_NAME" jdbcType="VARCHAR" property="foodName"/>
 		<association javaType="Orders" property="orders">

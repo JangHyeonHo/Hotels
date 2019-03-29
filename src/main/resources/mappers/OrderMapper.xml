@@ -41,4 +41,21 @@
 				ORDER BY ORD_TABLE_NUM asc
 	</select>
 	
+	<update id="sumPrice" parameterType="HashMap">
+		UPDATE 
+			orders 
+		SET 
+			ORD_SUM_PRICE = #{price} 
+		WHERE 
+			ORD_TABLE_NUM = #{tableNum}
+	</update>
+	
+	<update id="updatePayNo" parameterType="HashMap">
+		UPDATE
+			orders
+		SET
+			pay_no = #{payNo}
+		WHERE
+			ORD_TABLE_NUM = #{tableNum} and pay_no is null
+	</update>
 </mapper>

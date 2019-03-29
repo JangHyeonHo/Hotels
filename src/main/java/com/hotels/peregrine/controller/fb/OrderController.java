@@ -1,10 +1,14 @@
 package com.hotels.peregrine.controller.fb;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,14 +20,17 @@ import com.hotels.peregrine.command.PageAndQueryCommand;
 import com.hotels.peregrine.exception.NotEqualsTableNumException;
 import com.hotels.peregrine.exception.NotSessionExistingException;
 import com.hotels.peregrine.exception.aCountIsNothingException;
+import com.hotels.peregrine.model.CardPayDTO;
 import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.model.OrderListDTO;
 import com.hotels.peregrine.model.OrdersDTO;
+import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoPaging;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.fb.FoodListService;
 import com.hotels.peregrine.service.fb.OrderListService;
 import com.hotels.peregrine.service.fb.OrderRegistService;
+import com.hotels.peregrine.service.fb.PaymentSystemService;
 import com.hotels.peregrine.service.fb.TableListService;
 
 @Controller
@@ -40,6 +47,9 @@ public class OrderController {
 	
 	@Autowired
 	private TableListService tableService;
+	
+	@Autowired
+	private PaymentSystemService paymentService;
 	
 	@RequestMapping(value="/comp/fb/restaurant/order", method=RequestMethod.GET)
 	public String OrderMain() {
@@ -245,6 +255,53 @@ public class OrderController {
 		model.addAttribute("list",olList);
 		model.addAttribute("tableNum",table);
 		return "fb/order/tableOrderList";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment", method=RequestMethod.GET)
+	private String tablePayment(@ModelAttribute("table") int table, Model model) {
+		if(!registService.isRegist(table)) {
+			System.out.println("주문이 없으므로 결제페이지 띄울 수 없음");
+			return AutoAlertProcess.alertAfterRedirect(model, "결제 에러", "해당 테이블에 주문은 존재하지 않습니다.", "../table");
+		} 
+		List<OrderListDTO> olList =	registService.orderInfo(table);
+		int allSum = 0;
+		for(OrderListDTO dto : olList) {
+			allSum += (dto.getFood().getFoodPrice() * dto.getOlCount());
+		}
+		if(allSum == 0) {
+			return AutoAlertProcess.alertAfterRedirect(model, "결제 에러", "해당 테이블의 주문 내역이 존재하지 않습니다.", "../table");
+		}
+		int result = paymentService.updateAllPrice(table,allSum);
+		if(result == 0) {
+			return AutoAlertProcess.alertAfterRedirect(model, "결제 에러", "다시 시도해 주시기 바랍니다.", "../table");
+		}
+		model.addAttribute("list",olList);
+		model.addAttribute("amount", allSum);
+		model.addAttribute("tableNum",table);
+		return "fb/order/Payment";
+	}
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment", method=RequestMethod.POST)
+	public String endedPayment(@ModelAttribute("table") int tableNum, @ModelAttribute("pay") int payNo) {
+		System.out.println("실행됐나?");
+		int result = paymentService.orderPayEnded(tableNum, payNo);
+        return "dummy";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment/card", method=RequestMethod.GET)
+	private String cardPayWindow(Model model, @RequestParam("pay") int pay) {
+		model.addAttribute("pay",pay);
+		return "fb/order/cardPayment";
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment/card", method=RequestMethod.POST)
+	private ResponseEntity<String> cardPayWindow(Model model, @ModelAttribute CardPayDTO command) {
+		AutoTest.ModelBlackTest(command);
+		command.getPayment().setPayDate(new Date());
+		System.out.println(command.getPayment().getPayDate());
+		int result = paymentService.cardPay(command);
+		HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		return new ResponseEntity<String>(paymentService.payNumCall(command), responseHeaders, HttpStatus.CREATED);
 	}
 	
 }

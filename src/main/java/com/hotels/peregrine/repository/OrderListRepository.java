@@ -17,9 +17,9 @@ public class OrderListRepository {
 	private String namespace = "orderlist";
 
 	//주문한 테이블의 리스트 상세정보
-	public List<OrderListDTO> tableInfomation(int table) {
+	public List<OrderListDTO> tableInfomation(int value) {
 		// TODO Auto-generated method stub
-		return template.selectList(namespace+".tableCall", table);
+		return template.selectList(namespace+".tableCall", value);
 
 	}
 	//첫번째로 주문할 경우

@@ -3,7 +3,7 @@ package com.hotels.peregrine.model;
 import java.io.Serializable;
 
 /**
- * 카드결제(cash_pay) 테이블에 관한 것<br>
+ * 현금결제(cash_pay) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
  * <b>변수</b><br>
  * <b>cashReceipt</b> 현금영수증 전화 번호<br>
