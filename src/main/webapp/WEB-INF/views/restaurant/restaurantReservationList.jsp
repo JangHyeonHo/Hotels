@@ -38,9 +38,10 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<script src="<c:url value='/js/backHeader.js'></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
 
-<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <style>
 #contents {
 	width: 1080px;
@@ -54,6 +55,7 @@
 	width: 1080px;
 	min-height: 400px;
 	float: left;
+	margin:100px 0 0 0; 
 	
 	
 }
@@ -61,17 +63,9 @@
 
 </style>
 <script type="text/javascript">
-$(function(){
-	$(".ltep").hover(function(){
-		$(".frontmenu").css("display","block");
-	});
-	$(".ltep").mouseleave(function(){
-		$(".frontmenu").css("display","none");
-	});
-	
-});
-
 </script>
+
+
 <style>
 
 td, th{
@@ -87,7 +81,7 @@ text-align:center;
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 		<div id="maincontent">
-			<h1 style="text-align:center">레스토랑 예약자 명단</h1>
+			<h1 style="text-align:center">Restaurant Reservation List</h1>
 			<table class="table thead-dark">
 			<tr>
 			<th>예약번호</th>

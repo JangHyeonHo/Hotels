@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+	<cache />
+	<sql id="AllColumns">
+		PAY_NO, PAY_SUM, PAY_DATE
+	</sql>
+	<insert id="insertPay" parameterType="Payment">
+		INSERT INTO
+			payment(<include refid="AllColumns"/>)
+		VALUES
+			(sq_pay_no.nextval,#{paySum},#{payDate})
+	</insert>
+	
+	
+	<select id="selectNo" resultType="String" parameterType="Payment"  useCache="false" flushCache="true">
+		SELECT
+			max(PAY_NO)
+		FROM
+			payment
+		WHERE
+			pay_sum = #{paySum}
+	</select>
+	
+</mapper>

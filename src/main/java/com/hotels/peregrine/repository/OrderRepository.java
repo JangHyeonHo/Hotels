@@ -1,5 +1,6 @@
 package com.hotels.peregrine.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -37,6 +38,22 @@ public class OrderRepository {
 	public List<OrdersDTO> amountCall() {
 		// TODO Auto-generated method stub
 		return template.selectList(namespace+".fullamount");
+	}
+
+	public int allPriceSet(int table, int price) {
+		// TODO Auto-generated method stub
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("tableNum", table);
+		map.put("price", price);
+		return template.update(namespace+".sumPrice",map);
+	}
+
+	public int updatePayNo(int tableNum, int payNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("tableNum", tableNum);
+		map.put("payNo", payNo);
+		return template.update(namespace + ".updatePayNo", map);
 	}
 
 	
