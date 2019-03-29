@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 #contents{
 min-width : 1300px;
 margin: 12px auto 0 auto; 
@@ -6,31 +7,23 @@ font-family: 'Stylish', sans-serif;
 }
 #title{
 	margin: 20px auto;
-	float: left;
 	font-size: 48px;
 	font-family: 'Jua', sans-serif;
 }
 a:hover{
 	 text-decoration:none
 }
-.danger{
-	color: red;
-}
-#cheIn{
-	min-width: 1300px;
-	width:80%;
-	margin:12px auto;
-	padding : 0 40px;
-}
 table{
 	text-align: center;
 }
 th{
 	font-family: 'Song Myung', serif;
-	background-color: silver;
 }
-.tdd{
-	font-size: 32px;
+#chetable{
+	min-width: 1240px;
+	margin: 12px auto ;
+	width: 80%;
+	padding : 0 60px;
 }
 #paging{
 	font-size: 20px;
@@ -42,11 +35,8 @@ th{
 #paging a:visited{
 	color: black;
 }
-#btn{
-	width: 100%;
-}
+
 #mainBtn{
-	float: left;
-	margin-left: 20px;
 	width: 200px;
+	margin-left: 20px;
 }

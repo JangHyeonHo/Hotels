@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#contents{
+	min-width:1200px;
+	margin: 12px auto 0 auto; 
+	font-family: 'Song Myung', serif;
+}
+
+h2{
+	margin: 20px auto;
+	padding-left: 60px;
+	font-size: 48px;
+	font-family: 'Jua', sans-serif;
+}
+#mainform{
+	margin-left: 60px;
+}
+.btn-a{
+	width: 200px;
+}

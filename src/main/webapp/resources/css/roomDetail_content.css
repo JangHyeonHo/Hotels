@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#contents{
+width : 440px;
+
+margin: 12px auto 0 auto; 
+font-family: 'Stylish', sans-serif;
+}
+h2{
+	font-size: 42px;
+	font-family: 'Jua', sans-serif;
+}
+legend{
+	width: auto ;
+	margin-left: 20px;
+	font-size: 32px;
+	font-family: 'Song Myung', serif;
+	
+}
+fieldset{
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid gray;
+	border-radius: 6px;
+}
+.sb{
+	color: blue;
+}
+.backg{
+	background-color: silver;
+}
+#deinfo{
+	margin-left: 28px; 
+}
+.infobox{
+	margin:10px;
+	font-size: 22px;
+}
+
+.btn-b{
+	width: 140px;
+}
