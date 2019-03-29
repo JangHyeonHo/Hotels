@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 header{
 
 min-width: 1200px;
@@ -10,21 +11,6 @@ ul{
 	list-style:none;
 	padding:0;
 }
-.frontmenu{
-	display:none;
-}
-.hrmenu{
-	display:none;
-}
-.fbmenu{
-	display:none;
-}
-.membermenu{
-	display:none;
-}
-.logisticsmenu{
-	display:none;
-}
 #headertop{
     
     width: 100%;
@@ -32,6 +18,18 @@ ul{
     float: left;
     
     
+}
+.roommenu{
+	display:none;
+}
+.Restaurantmenu{
+	display:none;
+}
+.banquetmenu{
+	display:none;
+}
+.Aboutmenu{
+	display:none;
 }
 #mark{
     float: left;
@@ -61,10 +59,10 @@ ul{
 	height : 40px;
     float: left;
     font:62.5%/1.6em "Source Serif Pro", serif;
-    font-size: 18px;
+    font-size: 15px;
     color: #0f2d53;
     text-align : center;
-    margin:30px 0 0 0;
+    margin:30px 0 0 50px;
 }
 
 .rtep{
@@ -72,12 +70,8 @@ ul{
 	height : 40px;
     float: left;
     font:62.5%/1.6em "Source Serif Pro", serif;
-    font-size: 18px;
+    font-size: 15px;
     color: #0f2d53;
     text-align : center;
-     margin:30px 0 0 0;
+     margin:30px 0 0 50px;
 }
-.tepcolor{
-	color:#0f2d53;
-}
-
