@@ -39,8 +39,14 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/roomDetail_content.css" />" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 
 
@@ -99,23 +105,29 @@ $("#roomscount").on("change",function(){
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 
-	<h2>${groom.grNo }호 정보수정</h2>
-	<form:form>
-	<div class = "infobox">수속 번호 : ${groom.checkIn.cheNo }</div>
-	<div class = "infobox">고객 성/이름 : ${groom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName}</div>
-	<div class = "infobox">고객 번호: ${groom.checkIn.customer.cosTelno }</div>
-	<div class = "infobox">객실 명 : ${groom.checkIn.room.roomName }</div>
+<div id = "deinfo">
+	<h2>객실 상세정보</h2>
+<form:form>
+	<fieldset>
+<legend><span class = "sb">${groom.grNo }</span>호 정보수정</legend>
+	
+	<div class = "infobox">수속 번호 : <span class = "backg">${groom.checkIn.cheNo }</span></div>
+	<div class = "infobox">고객 성/이름 : <span class = "backg">${groom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName}</span></div>
+	<div class = "infobox">고객 번호: <span class = "backg">${groom.checkIn.customer.cosTelno }</span></div>
+	<div class = "infobox">객실 명 : <span class = "backg">${groom.checkIn.room.roomName }</span></div>
 	<div class = "infobox">객실 번호 : <input type = "text" name = "baseGrNo" value = "${groom.grNo }"></div>
 	<div class = "infobox">숙박 인원 : <input type = "text" name = "grStaySum" value = "${groom.grStaySum }"></div>
-	<div class = "infobox">체크인 날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheInTime }"/></div>
-	<div class = "infobox">체크아웃 예정일 : <fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheOutDate }"/></div>
+	<div class = "infobox">체크인 날짜 : <span class = "backg"><fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheInTime }"/></span></div>
+	<div class = "infobox">체크아웃 예정일 : <span class = "backg"><fmt:formatDate pattern="yyyy-MM-dd" value="${groom.checkIn.cheOutDate }"/></span></div>
 	<div class = "infobox">석식 성인 : <input type = "text" id = "grDiAdult" name = "grDiAdult" value = "${groom.grDiAdult }"></div>
 	<div class = "infobox">석식 어린이 : <input type = "text" id = "grDiAdult" name = "grDiChild" value = "${groom.grDiChild }"></div>
+	
+	</fieldset>
 
-	<input type="submit" value = "수정" class = "btn btn-outline-danger">
-	<input type = "button" value = "뒤로가기" id = "submitBtn3" onclick="history.back(-1)" class = "btn btn-primary btn">
-	</form:form>
-
+	<input type="submit" value = "수정" class = "btn btn-outline-danger btn-b">
+	<input type = "button" value = "뒤로가기" onclick="history.back(-1)" class = "btn btn-primary btn btn-b">
+</form:form>
+</div>
 
 	</div>
 	<jsp:include page="../backFooter.jsp" />

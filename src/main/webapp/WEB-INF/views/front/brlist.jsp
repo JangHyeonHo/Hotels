@@ -82,7 +82,7 @@
 	</c:forEach>	
 	</c:forEach>
 </table>
-<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
+
 <input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
 	</div>
 	<footer></footer>

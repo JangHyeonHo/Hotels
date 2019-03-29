@@ -30,14 +30,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <!-- 폰트설정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
 
-<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/checkin_content.css" />">
-<script src="<c:url value='/js/checkin.js'></c:url>"></script>
+<script src="<c:url value="/js/checkin.js"></c:url>"></script>
 
 <style type="text/css">
 
@@ -116,7 +117,7 @@
 	</div>
     </fieldset>
 	<div id = "sub">
-    <input type = "submit" value = "체크인" id = "submitBtn1" class = "customBtn btn btn-outline-danger">
+    <input type = "submit" value = "체크인" id = "submitBtn" class = "customBtn btn btn-outline-danger">
     <input type = "reset" value = "재작성" id = "submitBtn2" class = "customBtn btn btn-outline-secondary">
    <input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
     </div>

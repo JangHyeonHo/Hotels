@@ -30,21 +30,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<style type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
 
-#contents{
-min-width : 1300px;
-}
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/checkoutlist_content.css" />" rel="stylesheet" type="text/css">
 
-</style>
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h2>체크아웃 객실 리스트</h2>
+	
+	<div id = "chetable">
+	
+	<div id = "title">
+	<h2>CheckOut Information</h2>
+	</div>
 	
 	<table class = "table table-hover">
 	<tr>
@@ -60,10 +67,10 @@ min-width : 1300px;
 	</tr>
 	
 	<c:forEach items="${list }" var = "cheOutList">
-
+	
 	<tr>
-	<td>${cheOutList.checkIn.cheNo }</td>
-	<td>${cheOutList.checkIn.customer.cosLName } ${cheOutList.checkIn.customer.cosFName }</td>
+	<td class = "tdd">${cheOutList.checkIn.cheNo }</td>
+	<td class = "tdd">${cheOutList.checkIn.customer.cosLName } ${cheOutList.checkIn.customer.cosFName }</td>
 	<td>${cheOutList.checkIn.customer.cosTelno }</td>
 	<td>${cheOutList.grNo }</td>
 	<td>${cheOutList.checkIn.room.roomName }</td>
@@ -74,11 +81,12 @@ min-width : 1300px;
 	</tr>
 	
 	</c:forEach>
+	
 	</table>
 	
 	<div id = "paging">
 		<c:set var="page" value="${paging.page}"/>
-			<c:if test="${paging.prev}"><a href="?page=1">◀◀</a><a href="?page=${paging.startPage-1}">◀</a></c:if>
+			<c:if test="${paging.prev}"><a href="?page=1">[맨앞으로]</a><a href="?page=${paging.startPage-1}">[이전]</a></c:if>
 			<c:forEach step="1" begin="${paging.startPage}" end="${paging.endPage}" var="i">
 				<c:if test="${i == page}">
 				<a style = "font-weight : bold">${i}</a>
@@ -87,11 +95,12 @@ min-width : 1300px;
 				<a href="?page=${i}">${i}</a>
 				</c:if>
 			</c:forEach>
-			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
+			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">[다음]</a><a href="?page=${paging.maxPage}">[맨뒤로]</a></c:if>
 		</div>
 	
-	<input type = "button" onclick="location.href='../front'" class = "btn btn-primary btn" value = "메인으로">
+	<input type = "button" id = "mainBtn" onclick="location.href='../front'" class = "btn btn-primary btn" value = "메인으로">
 	</div>
-	<footer></footer>
+	</div>
+		<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

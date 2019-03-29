@@ -30,12 +30,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
 
-<link href="<c:url value="/resources/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/checkinlist_content.css" />" rel="stylesheet" type="text/css">
 
 </head>
@@ -47,7 +48,7 @@
 
 	<div id = "cheIn">
 	<div id = "title">
-	<h2>사용객실 정보</h2>
+	<h2>User Room Information</h2>
 	</div>
 	<table class="table table-hover">
 	<tr>
@@ -78,7 +79,7 @@
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInTime }"/></td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
 	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
-	<td><a href = "rooms/checkout?cheNo=${roomlist.checkIn.cheNo }">[체크아웃]</a></td>
+	<td><a href = "rooms/checkout?cheNo=${roomlist.checkIn.cheNo }"><span class = "danger">체크아웃</span></a></td>
 	</tr>
 	</form:form>
 	</c:forEach>
@@ -93,7 +94,7 @@
 	</c:if>
 	<div id = "paging">
 		<c:set var="page" value="${paging.page}"/>
-			<c:if test="${paging.prev}"><a href="?page=1">◀◀</a><a href="?page=${paging.startPage-1}">◀</a></c:if>
+			<c:if test="${paging.prev}"><a href="?page=1">[맨앞으로]</a><a href="?page=${paging.startPage-1}">[이전]</a></c:if>
 			<c:forEach step="1" begin="${paging.startPage}" end="${paging.endPage}" var="i">
 				<c:if test="${i == page}">
 				<a style = "font-weight : bold">${i}</a>
@@ -102,10 +103,11 @@
 				<a href="?page=${i}">${i}</a>
 				</c:if>
 			</c:forEach>
-			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
+			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">[다음]</a><a href="?page=${paging.maxPage}">[맨뒤로]</a></c:if>
 		</div>
-	
+	<div id = "btn">
 	<input type = "button" id = "mainBtn" onclick="location.href='../front'" class = "btn btn-primary btn" value = "메인으로">
+	</div>
 	</div>
 	</div>
 	<jsp:include page="../backFooter.jsp" />
