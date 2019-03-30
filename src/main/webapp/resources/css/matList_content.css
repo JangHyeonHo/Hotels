@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #contents{
-	min-width:1800px;
+	min-width:1400px;
 	margin: 12px auto 0 auto; 
 	font-family: 'Stylish', sans-serif;
 }
@@ -11,10 +11,10 @@
 	font-family: 'Jua', sans-serif;
 }
 #con{
-	min-width: 1700px;
+	min-width: 800px;
 	width:80%;
-	margin:12px auto;
-	padding : 0 40px;
+	margin:0 auto;
+	padding : 0 10px;
 }
 table{
 	text-align: center;
@@ -33,6 +33,5 @@ th{
 	color: black;
 }
 .btn-a{
-	width: 160px;
+	width: 140px;
 }
-

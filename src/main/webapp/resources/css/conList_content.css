@@ -22,17 +22,9 @@ table{
 th{
 	font-family: 'Song Myung', serif;
 }
-#paging{
-	font-size: 20px;
-	text-align: center;
-}
-#paging a{
-	color: red;
-}
-#paging a:visited{
-	color: black;
-}
 .btn-a{
-	width: 160px;
+	width: 140px;
 }
-
+#empty{
+	font-size: 22px;
+}

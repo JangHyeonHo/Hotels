@@ -34,6 +34,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
 <link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/disList_content.css" />" rel="stylesheet" type="text/css">
@@ -100,9 +101,9 @@
 			</c:forEach>
 			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
 		</div>
-		<input type = "button" value = "<spring:message code="dist.oneRegist" />" id ="oneRegBtn">
-		<input type = "button" value = "<spring:message code="cont.regist" />" id = "contBtn">
-		<input type = "button" value = "<spring:message code="cont.list" />" onclick = "location.href = './contract'">
+		<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="dist.oneRegist" />" id ="oneRegBtn">
+		<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="cont.regist" />" id = "contBtn">
+		<input type = "button" class = "btn btn-primary btn btn-a" value = "<spring:message code="cont.list" />" onclick = "location.href = './contract'">
 	</c:if>
 	<c:if test="${empty distributorList}">
 		<spring:message code="dis.nothing" /><br>

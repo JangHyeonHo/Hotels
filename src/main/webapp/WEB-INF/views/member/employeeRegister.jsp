@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 <%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,33 +29,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/employeelist_content.css" />" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h1>직원등록</h1>
+	<div id = "con">
+		<div id = "title">
+			<h2>직원등록</h2>
+		</div>
 	<form:form>
-	직원 성명 <input type="text" name="empName"> <br>
-	이메일 <input type="email" name="empEmail"> <br>
-	전화 번호 <input type="text" name="empPhone"> <br>
-	생년월일 <input type="date" name="empBDate"> <br>
-	성별  남 <input type="radio" name="empGender" value="M"> 
-	       여<input type="radio" name="empGender" value="F"> <br>
-	급여 <input type="text" name="empSalary"> <br>
-	주소 <input type="text" name="empAddr"> <br>
-	통장 계좌번호 <input type="text" name="empAccNum"> <br> 
-	통장 은행명 <input type="text" name="empAccBank"> <br>
-	상의 사이즈 <input type="text" name="empTopSize"> <br>
-	하의 사이즈 <input type="text" name="empBotSize"> <br>
-	부서명 <input type="text" name="empDepartName"> <br>
-	직급명 <input type="text" name="empManageName"> <br>
-	<input type="submit" value="등록">
+	<div id = "con2">
+	<div class = "form-inline"><label>직원 성명 :</label> <input type="text" class="form-control" name="empName"></div> <br>
+	<div class = "form-inline"><label>이메일 :</label> <input type="email" class="form-control" name="empEmail"></div> <br>
+	<div class = "form-inline"><label>전화 번호 :</label> <input type="text" class="form-control" name="empPhone"></div> <br>
+	<div class = "form-inline"><label>생년월일 :</label> <input type="date" class="form-control" name="empBDate"></div> <br>
+	<div class = "form-inline"><label>성별  남</label><input type="radio" class="form-control" name="empGender" value="M"> 
+	     <label>여</label><input type="radio" class="form-control" name="empGender" value="F"></div> <br>
+	<div class = "form-inline"><label>급여 :</label> <input type="text" class="form-control" name="empSalary"></div> <br>
+	<div class = "form-inline"><label>주소 :</label> <input type="text" class="form-control" name="empAddr"></div> <br>
+	<div class = "form-inline"><label>통장 계좌번호 :</label> <input type="text" class="form-control" name="empAccNum"></div> <br> 
+	<div class = "form-inline"><label>통장 은행명 :</label> <input type="text" class="form-control" name="empAccBank"></div> <br>
+	<div class = "form-inline"><label>상의 사이즈 :</label> <input type="text" class="form-control" name="empTopSize"></div> <br>
+	<div class = "form-inline"><label>하의 사이즈 :</label> <input type="text" class="form-control" name="empBotSize"></div> <br>
+	<div class = "form-inline"><label>부서명 :</label> <input type="text" class="form-control" name="empDepartName"></div> <br>
+	<div class = "form-inline"><label>직급명 :</label><input type="text" class="form-control" name="empManageName"></div> <br>
+	
+	</div>
+	<input type="submit" class = "btn btn-outline-danger" value="등록">
 	</form:form>
 	</div>
-	<footer></footer>
+	</div>
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

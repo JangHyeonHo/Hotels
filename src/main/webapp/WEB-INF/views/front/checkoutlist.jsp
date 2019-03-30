@@ -34,6 +34,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
 
 <link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">

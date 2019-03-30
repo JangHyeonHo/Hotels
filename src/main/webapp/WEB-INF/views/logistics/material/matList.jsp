@@ -29,6 +29,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/matList_content.css" />" rel="stylesheet" type="text/css">
 <script>
 	$(function(){
 		$("#delBtn").on("click",function(){
@@ -72,11 +80,15 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<h3><spring:message code="material.list"/></h3>
-		<table>
+	<div id = "con">
+		<div id = "title">
+		<h2><spring:message code="material.list"/></h2>
+		</div>
+		
+		<table class = "table table-hover">
 			<tr>
 				<th><spring:message code="mat.no" /></th>
 				<th><spring:message code="mat.name" /></th>
@@ -111,18 +123,20 @@
 			<c:if test="${paging.next}"><a href="?page=${paging.endPage+1}">▶</a><a href="?page=${paging.maxPage}">▶▶</a></c:if>
 		</div>
 		
-	</div>
+	
 	<c:if test="${empty materialList}">
 		<spring:message code="material.nothing" /><br>
 	</c:if>
-	<input type = "button" value = "<spring:message code="material.regist" />" onclick = "location.href = './contract'">
-	<input type = "button" value = "<spring:message code="material.delete" />" id = "delBtn">
-	<input type = "button" value = "해당 <spring:message code="mat.in" />" id = "inboundBtn">
-	<input type = "button" value = "해당 <spring:message code="mat.out" />" id = "outboundBtn">
-	<input type = "button" value = "전체 <spring:message code="in.out" />" onclick = "location.href = './material/list'">
-	<input type = "button" value = "해당 <spring:message code="in.out" />" id = "inOutBtn">
-	<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
+	<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="material.regist" />" onclick = "location.href = './contract'">
+	<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="material.delete" />" id = "delBtn">
+	<input type = "button" class="btn btn-danger btn-a" value = "해당 <spring:message code="mat.in" />" id = "inboundBtn">
+	<input type = "button" class="btn btn-danger btn-a" value = "해당 <spring:message code="mat.out" />" id = "outboundBtn">
+	<input type = "button" class = "btn btn-primary btn btn-a" value = "전체 <spring:message code="in.out" />" onclick = "location.href = './material/list'">
+	<input type = "button" class = "btn btn-primary btn btn-a" value = "해당 <spring:message code="in.out" />" id = "inOutBtn">
+	<input type = "button" class = "btn btn-primary btn btn-a" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
+	</div>
+	</div>
 	
-	<footer></footer>
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>

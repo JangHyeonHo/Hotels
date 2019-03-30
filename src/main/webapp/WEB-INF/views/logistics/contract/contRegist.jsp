@@ -37,6 +37,7 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+	
 		<form:form>
 			<spring:message code="dis.name"/> : ${distributor.disName}<br>
 			<spring:message code="dis.phone"/> : ${distributor.disPhone}<br>

@@ -38,6 +38,15 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/conList_content.css" />" rel="stylesheet" type="text/css">
+
 <script>
 	$(function() {
 		$("#contDelBtn").on("click",function(){
@@ -71,13 +80,16 @@
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
+	<div id = "con">	
+	
 		<c:if test="${!empty ContractList}">
-			<h3>
-				<spring:message code="cont.list" />
-			</h3>
+	<div id = "title">
+	<h2><spring:message code="cont.list" /></h2>
+	</div>
+
 			<table>
 				<tr>
 					<th><spring:message code="cont.no" /></th>
@@ -96,19 +108,23 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<input type = "button" value="<spring:message code="cont.delete" />" id="contDelBtn"/>
-			<input type = "button" value="<spring:message code="dist.list" /> 보기" onclick = "location.href = './distributor'"/>
-			<input type = "button" value="해당 <spring:message code="dist" /> 의 <spring:message code="material.regist" />" id = "matRegBtn"/>
+			<input type = "button" class = "btn btn-outline-danger btn-a" value="<spring:message code="cont.delete" />" id="contDelBtn"/>
+			<input type = "button" class = "btn btn-primary btn btn-a" value="<spring:message code="dist.list" /> 보기" onclick = "location.href = './distributor'"/>
+			<input type = "button" class="btn btn-danger btn-a" value="해당 <spring:message code="dist" /> 의 <spring:message code="material.regist" />" id = "matRegBtn"/>
 		</c:if>
+		<div id = "empty">
 		<c:if test="${empty ContractList}">
+		
 			<spring:message code="cont.nothing" />
 			<br>
-			<input type="button" value="<spring:message code="dist.list" />로"
+			<input type="button" class = "btn btn-primary btn btn-a"  value="<spring:message code="dist.list" />로"
 				onclick = "location.href = './distributor'">
+		
 		</c:if>
-		<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
-
+		<input type = "button" class = "btn btn-primary btn btn-a"  value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
+		</div>
 	</div>
-	<footer></footer>
+	</div>	
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>
