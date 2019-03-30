@@ -6,12 +6,16 @@
           <div id=leftcontent>
             <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
             		<ul>
-            			<li class="fbmenu"><a href="#">Restaurant</a></li>
+            			<li class="fbmenu" id="test"><a href="#">Restaurant</a>
+            			<ul >
+            				<li id="test">테스트</li>
+            			</ul>
+            			</li> 
             			<li class="fbmenu"><a href="#">Banquet</a></li>
             			<li class="fbmenu"><a href="#">lounge</a></li>
             		
             		</ul></div>
-
+						
             <div class="ltep" id="hr"><a href="#"><span class="tepcolor">HR</span></a>
             		<ul>
             			<li class="hrmenu"><a href="#">List</a></li>

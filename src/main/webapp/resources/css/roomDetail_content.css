@@ -23,12 +23,7 @@ fieldset{
 	border: 2px solid gray;
 	border-radius: 6px;
 }
-.type-b{
-	width: 200px;
-}
-.type-c{
-	width: 160px;
-}
+
 .sb{
 	color: blue;
 }
@@ -42,7 +37,6 @@ fieldset{
 	margin:10px 0 22px 10px;
 	font-size: 22px;
 }
-
 .btn-b{
 	margin-right:10px;
 	width: 120px;

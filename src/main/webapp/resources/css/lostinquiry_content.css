@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#contents{
+min-width : 580px;
+margin: 12px auto 0 auto; 
+font-family: 'Stylish', sans-serif;
+}
+a:hover{
+	 text-decoration:none
+}
+h2{
+	font-size: 40px;
+	font-family: 'Jua', sans-serif;
+	text-align: center;
+}
+table{
+	text-align: center;
+}
+#con2{
+	margin: 0 auto;
+	width:880px;
+	padding:40px;
+}
+.danger{
+	color: red;
+}

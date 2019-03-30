@@ -88,37 +88,43 @@
 	<!-- 실제 작성 구간 -->
 	<div id="contents">
 		<div id="maincontents">
-			<h1>STEP 2 .레스토랑 예약</h1>
+			<div id="reservationbox">
+			
 			<form:form>
-
+		
+		 <h1>STEP 2 .레스토랑 예약</h1>
 				<ul>
-					<li>레스토랑 명 <br><select name="restaurant.resName" id="rrn" class="inputs">
+					<li><span class="fontsizeclass">레스토랑 명</span> <br><select name="restaurant.resName" id="rrn" class="inputs">
 							<c:forEach items="${resinfo }" var="rlist">
 								<option value="${rlist.resName }">${rlist.resName }</option>
 
 							</c:forEach>
 					</select></li>
-					<li>성인 수<br>
+					<li><span class="fontsizeclass">성인 수</span><br>
 					<input type="text" name="rrAdult" class="inputs"></li>
-					<li>어린이 수<br>
+					<li><span class="fontsizeclass">어린이 수</span><br>
 					<input type="text" name="rrChild" class="inputs"></li>
-					<li>예약날짜선택<br>
+					<li><span class="fontsizeclass">예약날짜선택</span><br>
 					<input type="date" id="rrDate" class="inputs"></li>
-					<li>방문시간선택<br>
+					<li><span class="fontsizeclass">방문시간선택</span><br>
 					<select id="rrTime" class="inputs">
+							<option>방문 시간을 선택해 주십시오.</option>
 							<option value="11:00">11:00</option>
 							<option value="13:00">13:00</option>
 							<option value="17:00">17:00</option>
 							<option value="19:00">19:00</option>
 					</select></li>
-					<li>남은 테이블<br>
+					<li><span class="fontsizeclass">남은 테이블</span><br>
 						<div id="tablecount"></div></li>
 					<li><div id="hb"></div></li>
 				</ul>
-
+	
 				<div id="btnbox"><input type="submit" value="예약" id="subBtn" class="btn btn-secondary"></div>
 				<br>
 			</form:form>
+		
+		</div>
+			<div id="infobox"><div id="infofont">레스토랑 예약</div></div>
 		</div>
 	</div>
 	<footer></footer>

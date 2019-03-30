@@ -107,6 +107,7 @@
 				onclick = "location.href = './distributor'">
 		</c:if>
 		<input type = "button" value="<spring:message code="back" />" onclick = "location.href = '../logistics'"/>
+
 	</div>
 	<footer></footer>
 </body>
