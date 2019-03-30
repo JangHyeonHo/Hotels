@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+h2{
+	font-size: 34px;
+	font-family: 'Jua', sans-serif;
+}
+#contents{
+width : 420px;
+margin: 12px auto 0 auto; 
+font-family: 'Stylish', sans-serif;
+}
+.room{
+	font-size: 18px;
+}
+.type-b{
+	margin-left: 12px;
+	margin-bottom: 12px;
+}
+.sub-btn{
+	width: 100px;
+	margin-right: 8px;
+}
+#con2{
+	width: 200px;
+}

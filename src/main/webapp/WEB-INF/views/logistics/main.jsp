@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +29,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/logisticsMain_content.css" />" rel="stylesheet" type="text/css">
 <script>
 
 </script>
@@ -36,15 +43,17 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<h3><spring:message code="logistics"/></h3>
-		<input type = "button" value = "<spring:message code="dist.list"/> 확인" onclick = "location.href = './logistics/distributor'"><br>
-		<input type = "button" value = "<spring:message code="cont.list"/> 확인" onclick = "location.href = './logistics/contract'"><br>
-		<input type = "button" value = "<spring:message code="material.list"/> 확인" onclick = "location.href = './logistics/material'"><br>
-		<input type = "button" value = "<spring:message code="in.out"/> 확인" onclick = "location.href = './logistics/material/list'"><br>
+	<div id = "con">
+		<h2><spring:message code="logistics"/></h2>
+		<input type = "button" class = "btn btn-primary btn-md btn-a" value = "<spring:message code="dist.list"/> 확인" onclick = "location.href = './logistics/distributor'">
+		<input type = "button" class = "btn btn-primary btn-md btn-a" value = "<spring:message code="cont.list"/> 확인" onclick = "location.href = './logistics/contract'"><br>
+		<input type = "button" class = "btn btn-primary btn-md btn-a" value = "<spring:message code="material.list"/> 확인" onclick = "location.href = './logistics/material'">
+		<input type = "button" class = "btn btn-primary btn-md btn-a" value = "<spring:message code="in.out"/> 확인" onclick = "location.href = './logistics/material/list'"><br>
 	</div>
-	<footer></footer>
+	</div>
+	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

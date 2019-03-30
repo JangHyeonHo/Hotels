@@ -3,7 +3,7 @@
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,19 +29,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/logisticsMain_content.css" />" rel="stylesheet" type="text/css">
 
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+	<div id = "con1">
+	<h2>유통업체 등록</h2>
+	
 		<form:form enctype="multipart/form-data">
-		<spring:message code="dist.regist" /> : <input type = "file" name = "csvFile"><br>
-		<input type = "submit" value = "<spring:message code="regist" />">
+		<span class = "spn"><spring:message code="dist.regist" /> : </span><input type = "file" class = "btn btn-outline-secondary" name = "csvFile"><br>
+		<input type = "submit" class = "btn-b btn btn-outline-danger" value = "<spring:message code="regist" />">
+		<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "btn-b btn btn-primary btn">
 		</form:form>
 	</div>
-	<footer></footer>
+	</div>
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>

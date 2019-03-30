@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#contents{
+max-width : 280px;
+margin: 12px auto 0 auto; 
+font-family: 'Stylish', sans-serif;
+}
+h2{
+	font-size: 34px;
+	font-family: 'Jua', sans-serif;
+}
+.btn-A{
+	width: 120px;
+}

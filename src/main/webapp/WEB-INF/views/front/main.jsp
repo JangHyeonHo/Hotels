@@ -43,7 +43,7 @@
 	<jsp:include page="../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h2>프론트 관리</h2>
+	<h2>Front Management</h2>
 	<div id = "mainform">
     <input type="button" class="btn btn-success btn-a" value="reservation">
     <br> <br>
