@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotels.peregrine.model.CardPayDTO;
-import com.hotels.peregrine.repository.CartPayRepository;
+import com.hotels.peregrine.model.CashPayDTO;
+import com.hotels.peregrine.model.PaymentDTO;
+import com.hotels.peregrine.repository.CardPayRepository;
+import com.hotels.peregrine.repository.CashPayRepository;
 import com.hotels.peregrine.repository.OrderRepository;
 import com.hotels.peregrine.repository.PaymentRepository;
 
@@ -18,7 +21,10 @@ public class PaymentSystemService {
 	private PaymentRepository payment;
 	
 	@Autowired
-	private CartPayRepository card;
+	private CardPayRepository card;
+	
+	@Autowired
+	private CashPayRepository cash;
 
 	public int updateAllPrice(int table,int price) {
 		// TODO Auto-generated method stub
@@ -36,14 +42,25 @@ public class PaymentSystemService {
 		return 0;
 	}
 
-	public String payNumCall(CardPayDTO command) {
+	public String payNumCall(PaymentDTO paymentDTO) {
 		// TODO Auto-generated method stub
-		return payment.getPayNo(command.getPayment());
+		return payment.getPayNo(paymentDTO);
 	}
 
 	public int orderPayEnded(int tableNum, int payNo) {
 		// TODO Auto-generated method stub
 		return orders.updatePayNo(tableNum, payNo);
+	}
+
+	public int cashPay(CashPayDTO command) {
+		// TODO Auto-generated method stub
+		int result = payment.payment(command.getPayment());
+		
+		if(result!=0) {
+			command.getPayment().setPayNo(0);
+			return cash.payment(command);
+		}
+		return 0;
 	}
 
 }

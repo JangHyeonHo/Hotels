@@ -14,11 +14,28 @@
 		WHERE ORD_TABLE_NUM = #{table} and PAY_NO is null
 	</select>
 	
-	<insert id="firstOrder" parameterType="Integer">
+	<insert id="firstOrder" parameterType="Orders">
+		<selectKey order="BEFORE" keyProperty="restaurantReservation.customer.cosNo" resultType="Integer">
+			SELECT 
+				cos_no
+			FROM
+				restaurant_reservation
+			WHERE
+				rr_no = #{restaurantReservation.rrNo}
+		</selectKey>
+		
 		INSERT INTO
-			orders(ORD_NO,ORD_TABLE_NUM,ORD_SUM_PRICE)
+			orders(ORD_NO,ORD_TABLE_NUM,ORD_SUM_PRICE
+				<if test="restaurantReservation.rrNo!=0">
+					,RR_NO, COS_NO
+				</if>
+			)
 		VALUES
-			(sq_ord_no.nextval,#{table},0)
+			(sq_ord_no.nextval,#{ordTableNum},0
+				<if test="restaurantReservation.rrNo!=0">
+					,#{restaurantReservation.rrNo}, #{restaurantReservation.customer.cosNo}
+				</if>
+			)
 	</insert>
 	
 	<select id="fullamount" resultType="Orders" useCache="false" flushCache="true">

@@ -6,6 +6,7 @@ height:150px;
 margin: 0 auto;
 
 }
+
 ul{
 	list-style:none;
 	padding:0;
@@ -30,7 +31,7 @@ ul{
     width: 100%;
     height: 150px;
     float: left;
-    
+    margin:30px 0 0 0;
     
 }
 #mark{
@@ -59,7 +60,7 @@ ul{
 .ltep{
 	width : 33%;
 	height : 40px;
-    float: left;
+    float: right;
     font:62.5%/1.6em "Source Serif Pro", serif;
     font-size: 18px;
     color: #0f2d53;
@@ -79,5 +80,8 @@ ul{
 }
 .tepcolor{
 	color:#0f2d53;
+}
+#test{
+	display:inline;
 }
 

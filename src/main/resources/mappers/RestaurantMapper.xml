@@ -52,12 +52,24 @@
 
 	</insert>
 
-	<select id="reslist" resultMap="listbase" parameterType="HashMap">
+	<select id="reslist" resultMap="listbase" parameterType="HashMap" useCache="false" flushCache="true">
 		select rnum, ccr.* FROM
 		(select rownum as rnum, cr.* FROM 
-		(SELECT r.RR_NO AS rrno,COS_TELNO,COS_L_NAME,COS_F_NAME,COS_EMAIL,COS_ALLERGY FROM
-		 CUSTOMER c JOIN RESTAURANT_RESERVATION r on(c.COS_NO = r.COS_NO) ORDER BY RRNO desc) cr
-		WHERE rownum &lt; = #{maxNum})ccr
+		(SELECT r.RR_NO AS rrno, c.COS_TELNO, c.COS_L_NAME, c.COS_F_NAME, c.COS_EMAIL, c.COS_ALLERGY, r.RES_CHAIR, r.RR_CHILD, r.RR_ADULT, r.RR_DATE, r.RES_NAME, o.ORD_TABLE_NUM FROM
+		 RESTAURANT_RESERVATION r LEFT OUTER JOIN CUSTOMER c on(c.COS_NO = r.COS_NO) LEFT OUTER JOIN orders o on(o.RR_NO = r.RR_NO AND o.COS_NO = r.COS_NO)
+		 <where>
+		 	<if test="query != null">
+		 		<if test="query.length() == 10">
+		 		to_char(RR_DATE,'YYYY-MM-dd') = #{query}
+		 		</if>
+		 		<if test="query.length() != 10">
+		 		r.RR_DATE = to_date(#{query},'YYYY-MM-DD hh24:mi')
+		 		</if>
+		 		
+		 	</if>
+		 </where>
+		 ORDER BY RRNO asc) cr
+		WHERE rownum &lt; = #{maxNum}) ccr
 		WHERE rnum &gt; = #{minNum}
 	</select>
 	
@@ -145,14 +157,24 @@
 	
 
 	 <resultMap type="RestaurantReservation" id="listbase">
-	   <id column="COS_TELNO" jdbcType="NVARCHAR" property="customer.cosTelno"/>
-	   <result column="RR_NO" jdbcType="BIGINT" property="rrNo"/>
-	   <result column="COS_L_NAME" jdbcType="NVARCHAR" property="customer.cosLName"/>
-	   <result column="COS_F_NAME" jdbcType="NVARCHAR" property="customer.cosFName"/>
-	   <result column="COS_EMAIL" jdbcType="NVARCHAR" property="customer.cosEmail"/>
-	   <result column="COS_ALLERGY" jdbcType="NVARCHAR" property="customer.cosAllergy"/>
-
-
+	 
+	   <id column="RRNO" jdbcType="INTEGER" property="rrNo"/>
+	   <result column="RR_ADULT" jdbcType="INTEGER" property="rrAdult"/>
+	   <result column="RR_CHILD" jdbcType="INTEGER" property="rrChild"/>
+	   <result column="RR_DATE" jdbcType="TIMESTAMP" property="rrDate"/>
+	   <result column="ORD_TABLE_NUM" jdbcType="INTEGER" property="ordTableNum"/>
+	   
+	   <association property="restaurant" javaType="Restaurant">
+	   	<result column="RES_NAME"   jdbcType="VARCHAR"  property="resName"/>
+	   	<result column="RES_CHAIR" jdbcType="INTEGER" property="resChair"/>
+	   </association>
+	   <association property="customer" javaType="Customer">
+	   	<result column="COS_TELNO" jdbcType="VARCHAR" property="cosTelno"/>
+	   	<result column="COS_L_NAME" jdbcType="VARCHAR" property="cosLName"/>
+	   	<result column="COS_F_NAME" jdbcType="VARCHAR" property="cosFName"/>
+	   	<result column="COS_EMAIL" jdbcType="VARCHAR" property="cosEmail"/>
+	   	<result column="COS_ALLERGY" jdbcType="VARCHAR" property="cosAllergy"/>
+	   </association>
 	</resultMap>
 
 

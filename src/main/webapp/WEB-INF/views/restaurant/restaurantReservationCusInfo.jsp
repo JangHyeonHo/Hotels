@@ -44,6 +44,7 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script src="<c:url value="/js/cusPageHeader.js"></c:url>" ></script>
 <link href="<c:url value="/css/cusPageHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/cusPageFooter.css" />" rel="stylesheet" type="text/css">
 
 
 <script type="text/javascript">
@@ -117,8 +118,26 @@
 	float: left;
 }
 
+#reservationbox {
+	width: 450px;
+	min-height: 400px;
+	margin: 30px 0 0 0;
+	float: left
+}
+
+#infobox {
+	background-image:
+		url(https://img.huffingtonpost.com/asset/5bf24ac824000060045835ff.jpeg?ops=scalefit_630_noupscale);
+	background-repeat: no-repeat;
+	width: 550px;
+	height: 400px;
+	float: right;
+	margin: 50px 0 0 0px;
+}
+
 .inputs {
-	width: 200px;
+	width: 300px;
+	height: 30px;
 	background-color: #f5f5f5;
 	border: 1px solid #f5f5f5;
 	border-radius: 10px;
@@ -139,15 +158,34 @@ h1 {
 }
 
 #btnbox {
-	width: 135px;
+	width: 530px;
 	float: left;
 	text-align: center;
 }
-#respic{
-	width:100px;
-	
-	float:right;
+
+#respic {
+	width: 100px;
+	float: right;
 }
+
+.fontsizeclass {
+	font-size: 25px;
+}
+
+#infofont {
+	font-size: 30px;
+	display: inline-block;
+	transform: translate(-50%, -50%);
+	position: relative;
+	top: 170px;
+	left: 50%;
+	padding: 30px;
+	font-weight: bold;
+	background-color: black;
+	opacity: 0.5;
+	color:white;
+}
+
 </style>
 </head>
 <body>
@@ -157,18 +195,21 @@ h1 {
 	<div id="contents">
 
 		<div id="maincontens">
-			<h1>STEP 1 .예약자 정보 입력</h1>
+		<div id="reservationbox">
+		
 			<form:form id="frm">
+			<fieldset>	
+			<h1>STEP 1 .예약자 정보 입력</h1>
 				<ul>
-					<li>성<br> <input type="text" name="customer.cosLName"
+					<li><span class="fontsizeclass">성</span><br> <input type="text" name="customer.cosLName"
 						id="ln" class="inputs"></li>
-					<li>이름<br> <input type="text" name="customer.cosFName"
+					<li><span class="fontsizeclass">이름</span><br> <input type="text" name="customer.cosFName"
 						id="nl" class="inputs"></li>
-					<li>전화번호<br> <input type="text" name="customer.cosTelno"
+					<li><span class="fontsizeclass">전화번호</span><br> <input type="text" name="customer.cosTelno"
 						id="ph" class="inputs"></li>
-					<li>이메일 주소<br> <input type="email"
+					<li><span class="fontsizeclass">이메일 주소</span><br> <input type="email"
 						name="customer.cosEmail" id="em" class="inputs"></li>
-					<li>알러지 유무<br> <select name="Allergy" id="al"
+					<li><span class="fontsizeclass">알러지 유무</span><br> <select name="Allergy" id="al"
 						onclick="exist()">
 							<option value="N">N</option>
 							<option value="Y">Y</option>
@@ -176,14 +217,17 @@ h1 {
 						style="display: none;" placeholder="알러지 상세">
 						<div id="hiddenBox"></div></li>
 				</ul>
-					
+				
 				<div id="btnbox">
 					<button type="button" id="submitBtn" class="btn btn-secondary">다음</button>
 				</div>
+				
 			</form:form>
+			</div>
+			<div id="infobox"><div id="infofont">레스토랑 예약</div></div>
 		</div>
 		
 	</div>
-	<footer></footer>
+	<jsp:include page="../cusPageFooter.jsp" />
 </body>
 </html>

@@ -40,6 +40,7 @@
 	<h3><spring:message code="order" /></h3>
 		<input type="button" value="전체 <spring:message code="order.list" />" onclick="location.href='./order/list?table=0'" >
 		<input type="button" value="전체 <spring:message code="order.table" />" onclick="location.href='./order/table'" >
+		<input type="button" value="전체 <spring:message code="res.list" />" onclick="location.href='./reservation'" >
 	</div>
 	<footer></footer>
 </body>
