@@ -82,7 +82,7 @@
 					<td class = "name">${dis.disName}</td>
 					<td class = "phone">${dis.disPhone}</td>
 					<td class = "zipcode">${dis.disZipCode}/${dis.disNZipCode}</td>
-					<td class = "address">${dis.disAddr}/${dis.disNAddr}</td>
+					<td class = "address">${dis.disAddr}<br>${dis.disNAddr}</td>
 					<td class = "regdate"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dis.disRegDate}"/></td>
 					<td class = "checkbox"><input type = "radio" name = "disNo" value = "${dis.disNo}"></td>
 				</tr>
