@@ -57,12 +57,12 @@
 	<h1>연회장 등록</h1>
 	<form:form enctype="multipart/form-data">
 		<ul>
-		<li>연회장 명<br>	<input type="text" name="banName"></li> 
-		<li>연회장 연회장 기본금<br> <input type="text" name="banPoundation"></li>
-		<li>연회장 설명 <br><input type="text" name="banDescription"></li>
-		<li>연회장 기본 이용 시간<br> <input type="text" name="banTime"></li>
-		<li>연회장 최대 수용수<br> <input type="test" name="banMaxPeople"></li>
-		<li>연회장 사진<br> <input type="file" name="banStoreFileNameOne"></li>
+		<li>연회장 명	<input type="text" name="banName" class="form-control"></li> 
+		<li>연회장 연회장 기본금 <input type="text" name="banPoundation" class="form-control"></li>
+		<li>연회장 설명 <input type="text" name="banDescription" class="form-control" ></li>
+		<li>연회장 기본 이용 시간 <input type="text" name="banTime" class="form-control"></li>
+		<li>연회장 최대 수용수 <input type="test" name="banMaxPeople" class="form-control"></li>
+		<li>연회장 사진 <input type="file" name="banStoreFileNameOne" class="form-control"></li>
 		</ul>
 	 <input type="submit" value="등록">
 	</form:form>
