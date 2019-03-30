@@ -30,14 +30,16 @@ public class OrderListDTO implements Serializable {
 	public String getFoodName() {
 		return foodName;
 	}
-	public void setFoodName(String foodName) {
+	public OrderListDTO setFoodName(String foodName) {
 		this.foodName = foodName;
+		return this;
 	}
 	public int getOlNo() {
 		return olNo;
 	}
-	public void setOlNo(int olNo) {
+	public OrderListDTO setOlNo(int olNo) {
 		this.olNo = olNo;
+		return this;
 	}
 	public int getOlCount() {
 		return olCount;

@@ -16,9 +16,9 @@ public class RestaurantListService {
 	@Autowired
 	RestaurantRepository repository;
 	
-	public List<RestaurantReservationDTO> action(AutoPaging paging){
+	public List<RestaurantReservationDTO> action(AutoPaging paging, PageAndQueryCommand command){
 		
-		return  repository.reslist(paging);
+		return  repository.reslist(paging, command);
 	}
 
 	public int getAllListCount() {

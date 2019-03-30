@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hotels.peregrine.model.OrdersDTO;
+import com.hotels.peregrine.model.RestaurantReservationDTO;
 
 @Repository
 public class OrderRepository {
@@ -30,9 +31,10 @@ public class OrderRepository {
 	}
 	
 	//테이블에 주문된 이력이 없어서 바로 주문을 하였을 떄
-	public int firstOrder(int table) {
+	public int firstOrder(int table, int i) {
 		// TODO Auto-generated method stub
-		return template.insert(namespace+".firstOrder", table);
+		OrdersDTO dto = new OrdersDTO().setOrdTableNum(table).setRestaurantReservation(new RestaurantReservationDTO().setRrNo(i));
+		return template.insert(namespace+".firstOrder", dto);
 	}
 
 	public List<OrdersDTO> amountCall() {

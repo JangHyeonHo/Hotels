@@ -10,7 +10,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title><spring:message code="payment" /></title>
+<title><spring:message code="payment.card"/></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -28,35 +28,50 @@
 <!-- BootStrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- 폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 	<script>
-		function cardPopUp(tableNum){
-			var pay = $("#pay").text();
-			console.log(pay);
-			window.open("./payment/card?pay="+pay,"카드 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
+	function payment(){
+		var cash = $("#cash").val();
+		var cashReceipt = $("#cashReceipt").val();
+		var cashCeoReceipt = $("#cashCeoReceipt").val();
+		var paySum = $("#paySum").val();
+		if(cash-paySum<0){
+			alert("지불하신 금액이 주문하신 금액보다 적습니다.");
+			return false;
 		}
-		function cashPopUp(tableNum){
-			var pay = $("#pay").text();
-			console.log(pay);
-			window.open("./payment/cash?pay="+pay,"현금 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
-		}
-		function paymentEnded(payno){
-			var tn = $("#tableNum").text();
-			$.ajax({
-			url : "./payment",
+		$.ajax({
+			url : "./cash",
 			method : "post",
-			data : "table=" + tn + "&pay=" + payno,
-			dataType:'html',
-			success:function(data){
-				alert("성공적으로 결제 완료했습니다.")
-				location.href="../table";
+			data : "cashReceipt=" + cashReceipt + "&cashCeoReceipt=" + cashCeoReceipt
+			+"&payment.paySum=" + paySum,
+			dataType:'text',
+			success:function(text){
+				self.close();
+				opener.alert("거스름돈은 " + (cash-paySum) + "입니다.");
+				opener.paymentEnded(text);
 			},
 			error:function(data){
 				alert("결제 실패했습니다! 다시 시도해 주세요.")
 			}
 		})
+	}
+	function isClose(){
+		if(confirm('결제가 진행되지 않았지만 창을 닫으시겠습니까?')){
+			self.close();
 		}
-	
+	}
+	$(function(){
+		$("#reciSelectBox").on("change",function(){
+			var boxing = $(this).val();
+			var numberBox = "";
+			if(boxing!="nothing"){
+				numberBox += "번호 : <input type = 'text' id= '"+boxing+"' name ='" + boxing + "'>"
+			}
+			$("#cashReci").html(numberBox);
+		})
+	})
 	</script>
 
 </head>
@@ -65,31 +80,18 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<div id = "mainBox"><span id ="tableNum">${list[0].orders.ordTableNum }</span>번 테이블<spring:message code="payment"/></div>
-			<table>
-				<tr>
-					<th><spring:message code="number"/></th>
-					<th><spring:message code="food.name"/></th>
-					<th><spring:message code="food.price"/></th>
-					<th><spring:message code="order.count"/></th>
-				</tr>
-			<c:forEach items="${list }" var="li" varStatus="i">
-				<c:if test="${li.olCount ne 0 }">
-				<tr>
-					<td>${i.count }</td>
-					<td>${li.foodName }</td>
-					<td>${li.food.foodPrice }</td>
-					<td>${li.olCount }</td>
-				</tr>
-				</c:if>
-			</c:forEach>
-			</table>
-			<div id = "amount">
-				<spring:message code="payment.allsum"/> : <span id = "pay">${amount }</span>
-			</div>
-		<input type = "button" value = "<spring:message code="payment.card"/>" onclick="cardPopUp(${list[0].orders.ordTableNum })">
-		<input type = "button" value = "<spring:message code="payment.cash"/>" onclick="cashPopUp(${list[0].orders.ordTableNum })">
-		<input type = "button" value="<spring:message code="back" />" onclick="javascript:history.back()">
+		<spring:message code="pay.cashPay"/><input type = "text" id = "cash"><br>
+		<select id = "reciSelectBox">
+			<option value="nothing"><spring:message code="pay.cashReceipt"/> 선택</option>
+			<option value="cashReceipt"><spring:message code="pay.cashReceipt"/></option>
+			<option value="cashCeoReceipt"><spring:message code="pay.cashCeo"/></option>
+		</select><br>
+		<div id = "cashReci"></div>
+		
+		
+		<spring:message code="payment.money"/> ${pay }<input type = "hidden" value="${pay }" name = "payment.paySum" id = "paySum"><br>
+		<input type ="button" value="<spring:message code="payment"/>" onclick="payment()">
+		<input type ="button" value="<spring:message code="close"/>" onclick="isClose()">
 	</div>
 	<footer></footer>
 </body>

@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,39 @@
 
 
 </style>
-<script type="text/javascript">
+<script>
+function todayList(){
+	var todaysDate = new Date().toISOString().substring(0,10);
+	console.log(todaysDate);
+	var times = $("#timeSel").val()
+	console.log(times);
+	if(times == "null"){
+		times = "";
+	}
+	location.href="./list?query=" + todaysDate+ " " + times
+}
+function tableRegist(no, date){
+	var today = new Date().toISOString().substring(0,10);
+	console.log(today);
+	console.log(date);
+	if(today==date){
+		window.open("./order/table?rrNo="+no,"테이블 선택", "resizable=no, scrollbars=no",true)
+	} else{
+		alert("오늘 이용하는 고객들만 테이블 등록이 가능합니다!");
+	}
+	
+	/* $.ajax({
+		url:
+		method:
+		data:
+		dataType:
+		success:function(){
+			
+		}
+		
+		
+	}) */
+}
 </script>
 
 
@@ -88,6 +121,12 @@ text-align:center;
 			<th>성명</th>
 			<th>전화번호</th>
 			<th>이메일</th>
+			<th><spring:message code="res.adult" /></th>
+			<th><spring:message code="res.child" /></th>
+			<th><spring:message code="res.wantChair" /></th>
+			<th><spring:message code="res.wantDate" /></th>
+			<th><spring:message code="restaurant.name" /></th>
+			<th><spring:message code="table.no" /></th>
 			</tr>
 			<c:forEach items="${list }" var="reslist">
 			<tr>
@@ -95,13 +134,35 @@ text-align:center;
 			<td> ${reslist.customer. cosLName} ${reslist.customer. cosFName } </td>
 			<td> ${reslist.customer. cosTelno } </td>
 			<td> ${reslist.customer.cosEmail } </td>
+			<td> ${reslist.rrAdult } </td>
+			<td> ${reslist.rrChild } </td>
+			<td> ${reslist.restaurant.resChair } </td>
+			<td> <fmt:formatDate value="${reslist.rrDate }" pattern="YYYY년 MM월 dd일 HH시 mm분"/> 예약 </td>
+			<td> ${reslist.restaurant.resName } </td>
+			<td> 
+				<c:if test="${reslist.ordTableNum eq 0 }">
+					<input type = "button" value="<spring:message code="regist" />" onclick="tableRegist(${reslist.rrNo },'<fmt:formatDate value="${reslist.rrDate }" pattern="YYYY-MM-dd"/>')">
+				</c:if>
+				<c:if test="${reslist.ordTableNum ne 0 }">
+					${reslist.ordTableNum }
+				</c:if>
+			</td>
 			</tr>
 			</c:forEach>
 		
 		</table>
 	<br>
 			
-		
+		<div id = "btnBox">
+			<select id = "timeSel">
+				<option value = "null">시간 선택</option>
+				<option value = "11:00">11:00</option>
+				<option value = "13:00">13:00</option>
+				<option value = "17:00">17:00</option>
+				<option value = "19:00">19:00</option>
+			</select>
+			<input type = "button" value="<spring:message code="today" /> 보기" onclick = "todayList()">
+		</div>
 		</div>
 	<div id="paging" style="text-align:center">
 				<c:set var="page" value="${paging.page}" />
@@ -123,6 +184,8 @@ text-align:center;
 					<a href="?page=${paging.maxPage}">▶▶</a>
 				</c:if>
 			</div>
+			
+	<input type = "button" value="<spring:message code="back" />" onclick = "history.back()">
 	</div>
 	<jsp:include page="../backFooter.jsp"/>
 </body>

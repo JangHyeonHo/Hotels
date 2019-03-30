@@ -89,10 +89,9 @@
 		food f ON(f.FOOD_NO = ol.FOOD_NO) 
 		<where>
 			<if test="value != 0">
-			o.ORD_TABLE_NUM = #{value} 
+			o.ORD_TABLE_NUM = #{value} AND o.PAY_NO IS NULL 
 			</if>
 		</where>
-		AND o.PAY_NO IS NULL 
 		ORDER BY ol.ol_no desc
 	</select>
 	

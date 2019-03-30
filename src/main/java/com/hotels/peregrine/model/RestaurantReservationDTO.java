@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * <b>rrChild</b> 레스토랑 고객 어린이 인원수<br>
  * <b>rrRegDate</b> 예약 등록일<br>
  * <b>rrDate</b> 예약날짜<br>
+ * <b>ordTableNum</b> 테이블번호(orders)<br>
  * <b>관계 테이블</b><br>
  * 『해당하는 테이블의 이름.getter, setter로 이용할 수 있음』<br>
  * <b>★customer.cosNo</b> 고객(customer)테이블 <b>Primary Key, Foreign Key</b><br>
@@ -27,6 +28,7 @@ public class RestaurantReservationDTO implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	private Date rrDate;
 	private Date rrRegDate;
+	private int ordTableNum;
 	private CustomerDTO customer;
 	private RestaurantDTO restaurant;
 	public int getRrNo() {
@@ -50,9 +52,17 @@ public class RestaurantReservationDTO implements Serializable {
 		this.rrChild = rrChild;
 		return this;
 	}
+	public int getOrdTableNum() {
+		return ordTableNum;
+	}
+	public RestaurantReservationDTO setOrdTableNum(int ordTableNum) {
+		this.ordTableNum = ordTableNum;
+		return this;
+	}
 	public Date getRrDate() {
 		return rrDate;
 	}
+	
 	public RestaurantReservationDTO setRrDate(Date rrDate) {
 		this.rrDate = rrDate;
 		return this;

@@ -68,8 +68,13 @@
 
 </style>
 
+
+
 <script>
-	
+	<c:if test="${reservation ne 0}">
+		alert("정상적으로 해당 테이블에 예약 등록이 완료되었습니다.")
+		self.close();
+	</c:if>
 		function orders(no){
 			var tableNum = $("#tableNum").text();
 			$.ajax({

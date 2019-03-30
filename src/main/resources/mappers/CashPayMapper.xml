@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cashPay">
+	<cache />
+	<sql id="allColumns">
+		PAY_NO, CASH_RECEIPT, CASH_CEO_RECEIPT
+	</sql>
+	<insert id="insertCash" parameterType="CashPay">
+		<selectKey keyProperty="payment.payNo" resultType="Integer" order="BEFORE">
+			SELECT
+			 	max(pay_no) 
+			FROM
+			 	payment
+			 WHERE
+			 	pay_sum = #{payment.paySum}
+		</selectKey>
+		INSERT INTO
+			cash_pay(PAY_NO
+			<trim prefix="," suffixOverrides=",">
+			<if test="cashReceipt!=null">
+			CASH_RECEIPT,
+			</if>
+			<if test="cashCeoReceipt!=null">
+			CASH_CEO_RECEIPT
+			</if>
+			</trim>
+			)
+		VALUES
+			 (#{payment.payNo}
+			 <trim prefix="," suffixOverrides=",">
+			<if test="cashReceipt!=null">
+			#{cashReceipt},
+			</if>
+			<if test="cashCeoReceipt!=null">
+			#{cashCeoReceipt}
+			</if>
+			</trim>)
+	</insert>
+	
+</mapper>
