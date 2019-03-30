@@ -112,16 +112,34 @@
 }
 
 #maincontens {
+
 	width: 1080px;
 	min-height: 400px;
 	float: left;
 }
+#reservationbox{
+width:450px;
+min-height:400px;
+margin: 30px 0 0 0;
+float:left
+}
+#infobox{
+background-image:url(https://img.huffingtonpost.com/asset/5bf24ac824000060045835ff.jpeg?ops=scalefit_630_noupscale);
+background-repeat: no-repeat;
+back
+width:550px;
+height:400px;
+float:right;
+margin:50px 0 0 0px;
 
+}
 .inputs {
-	width: 200px;
+	width: 300px;
+	height:30px;
 	background-color: #f5f5f5;
 	border: 1px solid #f5f5f5;
 	border-radius: 10px;
+	
 }
 
 li {
@@ -148,6 +166,23 @@ h1 {
 	
 	float:right;
 }
+.fontsizeclass{
+font-size:25px;
+
+}
+
+fieldset{
+   padding: 10px;
+   margin-bottom: 10px;
+   border: 2px solid gray;
+   border-radius: 6px;
+}
+#infofont{
+	color:white;
+	font-size:30px;
+	text-align:center;
+}
+
 </style>
 </head>
 <body>
@@ -157,18 +192,21 @@ h1 {
 	<div id="contents">
 
 		<div id="maincontens">
-			<h1>STEP 1 .예약자 정보 입력</h1>
+		<div id="reservationbox">
+		
 			<form:form id="frm">
+			<fieldset>	
+			<legend><h1>STEP 1 .예약자 정보 입력</h1></legend>
 				<ul>
-					<li>성<br> <input type="text" name="customer.cosLName"
+					<li><span class="fontsizeclass">성</span><br> <input type="text" name="customer.cosLName"
 						id="ln" class="inputs"></li>
-					<li>이름<br> <input type="text" name="customer.cosFName"
+					<li><span class="fontsizeclass">이름</span><br> <input type="text" name="customer.cosFName"
 						id="nl" class="inputs"></li>
-					<li>전화번호<br> <input type="text" name="customer.cosTelno"
+					<li><span class="fontsizeclass">전화번호</span><br> <input type="text" name="customer.cosTelno"
 						id="ph" class="inputs"></li>
-					<li>이메일 주소<br> <input type="email"
+					<li><span class="fontsizeclass">이메일 주소</span><br> <input type="email"
 						name="customer.cosEmail" id="em" class="inputs"></li>
-					<li>알러지 유무<br> <select name="Allergy" id="al"
+					<li><span class="fontsizeclass">알러지 유무</span><br> <select name="Allergy" id="al"
 						onclick="exist()">
 							<option value="N">N</option>
 							<option value="Y">Y</option>
@@ -176,11 +214,14 @@ h1 {
 						style="display: none;" placeholder="알러지 상세">
 						<div id="hiddenBox"></div></li>
 				</ul>
-					
+				
 				<div id="btnbox">
 					<button type="button" id="submitBtn" class="btn btn-secondary">다음</button>
 				</div>
+				</fieldset>
 			</form:form>
+			</div>
+			<div id="infobox"><span id="infofont">레스토랑 예약</span></div>
 		</div>
 		
 	</div>
