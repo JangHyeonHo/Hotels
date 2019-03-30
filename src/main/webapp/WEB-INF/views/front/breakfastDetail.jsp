@@ -55,28 +55,50 @@
 	<div id="contents">
 	<h2>조식 상세정보</h2>
 	
-	<form:form>
+	<form:form class = "form-inline">
 	<fieldset>
-	<legend>${bf.guestRoom.grNo }호 조식 등록</legend>>
-	<div class = "infobox">수속 번호 : ${bf.guestRoom.checkIn.cheNo } </div>
+	<legend><span class = "sb">${bf.guestRoom.grNo }</span>호 조식 등록</legend>
+	<div id = "deinfo">
+	<div class = "infobox">수속 번호 : <input type="text" class="form-control type-b" value ="${bf.guestRoom.checkIn.cheNo }" readonly></div>
 	<div class = "infobox">고객 성/이름 : ${bf.guestRoom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName} </div>
 	<div class = "infobox">고객 번호: ${bf.guestRoom.checkIn.customer.cosTelno } </div>
 	<div class = "infobox">객실 번호 : ${bf.guestRoom.grNo } </div>
-	<div class = "infobox">숙박 인원 : <span class = "backg">　${bf.guestRoom.grStaySum }　</span></div>
+	<div class = "infobox">숙박 인원 : <span class = "backg">　${bf.guestRoom.grStaySum }명　</span></div>
  	<input type="hidden" name="guestRoom.grNo" value="${bf.guestRoom.grNo }">
  	<input type="hidden" name="guestRoom.checkIn.cheNo" value="${bf.guestRoom.checkIn.cheNo }">
-	<div class = "infobox">조식 종류 : <input type = "text" name = "breakKind"></div>
-	<div class = "infobox">성인 : <input type = "text" name = "breakAdult"></div>
-	<div class = "infobox">어린이 : <input type = "text" name = "breakChild"></div>
 	
+	<div class = "infobox">조식 종류 :
+	<select class="form-control type-b" name = "breakKind">
+	<option value = "한식">한식</option>
+	<option value = "양식">양식</option>
+	</select>
+	</div>
+	<div class = "infobox">성인 :
+	<select class="form-control type-b" name = "breakAdult">
+	<option value="0">인원</option>
+		<c:forEach begin="1" end="10" step="1" var="i">
+			<option value="${i }">${i }명</option>
+		</c:forEach>
+	</select>
+
+		　어린이 :
+	<select class="form-control type-b" name = "breakChild">
+	<option value="0">인원</option>
+		<c:forEach begin="1" end="10" step="1" var="i">
+			<option value="${i }">${i }명</option>
+		</c:forEach>
+	</select>
+	</div>
+	
+	</div>
 	</fieldset>
 	<input type="submit" value = "등록" class = "btn btn-outline-danger btn-b">
 	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
 	
 	
 	</form:form>
-
 	</div>
+
 	<jsp:include page="../backFooter.jsp" />
 </body>
 </html>

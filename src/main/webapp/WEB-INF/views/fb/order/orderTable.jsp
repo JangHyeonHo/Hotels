@@ -39,8 +39,14 @@
 		border: 1px solid black;
 		float:left;
 	}
-</style>
 
+</style>
+	<script>
+		$(function(){
+			$(".t1").parent().parent().css("background-color","skyblue");
+		})
+	
+	</script>
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
@@ -62,12 +68,12 @@
 		<c:forEach items="${list}" var="li" varStatus="cnt">
 			<c:if test="${not loop_done }">
 				<c:if test="${li.ordTableNum eq i }">
-					${li.ordSumPrice}
+					<span class = "t1">${li.ordSumPrice}</span>
 					<c:set var="loop_done" value="true" />
 				</c:if>
 				<c:if test="${li.ordTableNum ne i }">
 					<c:if test="${cnt.last}">
-						0
+						<span class = "t2">0</span>
 						<c:set var="loop_done" value="true" />
 					</c:if>
 				</c:if>

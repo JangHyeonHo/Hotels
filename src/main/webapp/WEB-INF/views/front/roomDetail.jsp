@@ -64,7 +64,7 @@
 	<fieldset>
 <legend><span class = "sb">${groom.grNo }</span>호 정보수정</legend>
 	
-	<div class = "infobox">수속 번호 <input type="text" class="form-control type-b" value = "${groom.checkIn.cheNo }" readonly></div>
+	<div class = "infobox">수속 번호 : <input type="text" class="form-control type-b" value = "${groom.checkIn.cheNo }" readonly></div>
 	<div class = "infobox">고객 성/이름 : <span class = "backg">${groom.checkIn.customer.cosLName} ${groom.checkIn.customer.cosFName}</span></div>
 	<div class = "infobox">고객 번호: <span class = "backg">${groom.checkIn.customer.cosTelno }</span></div>
 	<div class = "infobox">객실 명 : <span class = "backg">${groom.checkIn.room.roomName }</span></div>

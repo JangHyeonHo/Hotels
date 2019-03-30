@@ -17,11 +17,33 @@ legend{
 	
 }
 fieldset{
+	width: 400px ;
 	padding: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 14px;
 	border: 2px solid gray;
 	border-radius: 6px;
 }
 .backg{
 	background-color: silver;
 }
+#deinfo{
+	margin: 0 12px 12px 12px;
+}
+.infobox{
+	margin:10px 0 12px 10px;
+	font-size: 22px;
+}
+.sb{
+	color: blue;
+}
+.btn-b{
+	margin:4px 14px 0 0;
+	width: 120px;
+}
+.btn{
+	margin-top: 4px;
+	width: 120px;
+}
+
+
+
