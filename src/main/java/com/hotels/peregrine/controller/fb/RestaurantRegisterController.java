@@ -1,4 +1,4 @@
-package com.hotels.peregrine.controller.restaurant;
+package com.hotels.peregrine.controller.fb;
 
 import javax.servlet.http.HttpServletRequest;
 
