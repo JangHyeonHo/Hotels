@@ -89,9 +89,10 @@
 	<div id="contents">
 		<div id="maincontents">
 			<div id="reservationbox">
-			<h1>STEP 2 .레스토랑 예약</h1>
+			
 			<form:form>
-
+		
+		 <h1>STEP 2 .레스토랑 예약</h1>
 				<ul>
 					<li><span class="fontsizeclass">레스토랑 명</span> <br><select name="restaurant.resName" id="rrn" class="inputs">
 							<c:forEach items="${resinfo }" var="rlist">
@@ -121,7 +122,9 @@
 				<div id="btnbox"><input type="submit" value="예약" id="subBtn" class="btn btn-secondary"></div>
 				<br>
 			</form:form>
+		
 		</div>
+			<div id="infobox"><div id="infofont">레스토랑 예약</div></div>
 		</div>
 	</div>
 	<footer></footer>

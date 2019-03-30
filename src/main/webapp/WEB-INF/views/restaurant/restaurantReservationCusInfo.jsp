@@ -44,6 +44,7 @@
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script src="<c:url value="/js/cusPageHeader.js"></c:url>" ></script>
 <link href="<c:url value="/css/cusPageHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/cusPageFooter.css" />" rel="stylesheet" type="text/css">
 
 
 <script type="text/javascript">
@@ -112,34 +113,34 @@
 }
 
 #maincontens {
-
 	width: 1080px;
 	min-height: 400px;
 	float: left;
 }
-#reservationbox{
-width:450px;
-min-height:400px;
-margin: 30px 0 0 0;
-float:left
-}
-#infobox{
-background-image:url(https://img.huffingtonpost.com/asset/5bf24ac824000060045835ff.jpeg?ops=scalefit_630_noupscale);
-background-repeat: no-repeat;
-back
-width:550px;
-height:400px;
-float:right;
-margin:50px 0 0 0px;
 
+#reservationbox {
+	width: 450px;
+	min-height: 400px;
+	margin: 30px 0 0 0;
+	float: left
 }
+
+#infobox {
+	background-image:
+		url(https://img.huffingtonpost.com/asset/5bf24ac824000060045835ff.jpeg?ops=scalefit_630_noupscale);
+	background-repeat: no-repeat;
+	width: 550px;
+	height: 400px;
+	float: right;
+	margin: 50px 0 0 0px;
+}
+
 .inputs {
 	width: 300px;
-	height:30px;
+	height: 30px;
 	background-color: #f5f5f5;
 	border: 1px solid #f5f5f5;
 	border-radius: 10px;
-	
 }
 
 li {
@@ -157,30 +158,32 @@ h1 {
 }
 
 #btnbox {
-	width: 135px;
+	width: 530px;
 	float: left;
 	text-align: center;
 }
-#respic{
-	width:100px;
-	
-	float:right;
-}
-.fontsizeclass{
-font-size:25px;
 
+#respic {
+	width: 100px;
+	float: right;
 }
 
-fieldset{
-   padding: 10px;
-   margin-bottom: 10px;
-   border: 2px solid gray;
-   border-radius: 6px;
+.fontsizeclass {
+	font-size: 25px;
 }
-#infofont{
+
+#infofont {
+	font-size: 30px;
+	display: inline-block;
+	transform: translate(-50%, -50%);
+	position: relative;
+	top: 170px;
+	left: 50%;
+	padding: 30px;
+	font-weight: bold;
+	background-color: black;
+	opacity: 0.5;
 	color:white;
-	font-size:30px;
-	text-align:center;
 }
 
 </style>
@@ -196,7 +199,7 @@ fieldset{
 		
 			<form:form id="frm">
 			<fieldset>	
-			<legend><h1>STEP 1 .예약자 정보 입력</h1></legend>
+			<h1>STEP 1 .예약자 정보 입력</h1>
 				<ul>
 					<li><span class="fontsizeclass">성</span><br> <input type="text" name="customer.cosLName"
 						id="ln" class="inputs"></li>
@@ -218,13 +221,13 @@ fieldset{
 				<div id="btnbox">
 					<button type="button" id="submitBtn" class="btn btn-secondary">다음</button>
 				</div>
-				</fieldset>
+				
 			</form:form>
 			</div>
-			<div id="infobox"><span id="infofont">레스토랑 예약</span></div>
+			<div id="infobox"><div id="infofont">레스토랑 예약</div></div>
 		</div>
 		
 	</div>
-	<footer></footer>
+	<jsp:include page="../cusPageFooter.jsp" />
 </body>
 </html>
