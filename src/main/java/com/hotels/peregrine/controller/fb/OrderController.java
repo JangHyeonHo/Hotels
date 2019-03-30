@@ -21,9 +21,11 @@ import com.hotels.peregrine.exception.NotEqualsTableNumException;
 import com.hotels.peregrine.exception.NotSessionExistingException;
 import com.hotels.peregrine.exception.aCountIsNothingException;
 import com.hotels.peregrine.model.CardPayDTO;
+import com.hotels.peregrine.model.CashPayDTO;
 import com.hotels.peregrine.model.FoodDTO;
 import com.hotels.peregrine.model.OrderListDTO;
 import com.hotels.peregrine.model.OrdersDTO;
+import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoPaging;
 import com.hotels.peregrine.other.AutoTest;
@@ -58,17 +60,21 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/table", method=RequestMethod.GET)
-	public String TableRegist(Model model, HttpSession session) {
+	public String TableRegist(Model model, HttpSession session, @ModelAttribute RestaurantReservationDTO rrNo) {
 		if(session.getAttribute("sessionOrderList")!=null) {
 			session.invalidate();
 		}
+		
 		List<OrdersDTO> list = tableService.orderAmountCall();
+		
+		model.addAttribute("rrNo",rrNo.getRrNo());
+
 		model.addAttribute("list",list);
 		return "fb/order/orderTable";
 	}
 	
 	@RequestMapping(value="/comp/fb/restaurant/order/regist", method=RequestMethod.GET)
-	public String orderRegist(Model model, @RequestParam("table") int table, @ModelAttribute PageAndQueryCommand command, HttpSession session) {
+	public String orderRegist(Model model, @RequestParam("table") int table, @ModelAttribute PageAndQueryCommand command, @ModelAttribute RestaurantReservationDTO rrNo, HttpSession session) {
 		if(command.getPage()==0) {
 			command.setPage(1);
 		}
@@ -78,7 +84,7 @@ public class OrderController {
 		System.out.println("테이블 " + table + "번 주문");
 		if(!registService.isRegist(table)) {
 			System.out.println("테이블이 존재하지 않으므로 새로 테이블을 등록합니다.");
-			registService.firstOrderCall(table);
+			registService.firstOrderCall(table,rrNo);
 		} 
 		System.out.println("주문페이지 준비하겠습니다.");
 		List<OrderListDTO> orders;
@@ -106,6 +112,7 @@ public class OrderController {
 		model.addAttribute("amount", allSum);
 		model.addAttribute("foodList",foodList);
 		model.addAttribute("paging",page);
+		model.addAttribute("reservation",rrNo.getRrNo());
 		for(int i = 0; i < FoodDTO.ALLFOODKIND.length ; i++) {
 			if(command.getSearchSet().equals(FoodDTO.ALLFOODKIND[i])) {
 				model.addAttribute("kind",i+1);
@@ -230,12 +237,15 @@ public class OrderController {
 		}
 		if(!isOverLaping) {
 			if(olList.get(0).getFood().getFoodNo()==0) {
-				olList.get(0).setFood(foodService.foodNamePriceCall(foodNo)).setOlCount(1);
+				FoodDTO foodCall = foodService.foodNamePriceCall(foodNo);
+				olList.get(0).setFood(foodCall).setOlCount(1).setFoodName(foodCall.getFoodName());
 			} else {
+				FoodDTO foodCall = foodService.foodNamePriceCall(foodNo);
 				olList.add(new OrderListDTO()
 						.setOlCount(1)
 						.setOrders(olList.get(0).getOrders())
-						.setFood(foodService.foodNamePriceCall(foodNo)));
+						.setFood(foodCall)
+						.setFoodName(foodCall.getFoodName()));
 			}
 		}
 		int allSum = 0;
@@ -293,6 +303,12 @@ public class OrderController {
 		return "fb/order/cardPayment";
 	}
 	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment/cash", method=RequestMethod.GET)
+	private String cashPayWindow(Model model, @RequestParam("pay") int pay) {
+		model.addAttribute("pay",pay);
+		return "fb/order/cashPayment";
+	}
+	
 	@RequestMapping(value="/comp/fb/restaurant/order/table/payment/card", method=RequestMethod.POST)
 	private ResponseEntity<String> cardPayWindow(Model model, @ModelAttribute CardPayDTO command) {
 		AutoTest.ModelBlackTest(command);
@@ -301,7 +317,25 @@ public class OrderController {
 		int result = paymentService.cardPay(command);
 		HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
-		return new ResponseEntity<String>(paymentService.payNumCall(command), responseHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<String>(paymentService.payNumCall(command.getPayment()), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/payment/cash", method=RequestMethod.POST)
+	private ResponseEntity<String> cashPayWindow(Model model, @ModelAttribute CashPayDTO command) {
+		AutoTest.ModelBlackTest(command);
+		command.getPayment().setPayDate(new Date());
+		if(command.getCashCeoReceipt().equals("undefined")) {
+			command.setCashCeoReceipt(null);
+		}
+		if(command.getCashReceipt().equals("undefined")) {
+			command.setCashReceipt(null);
+		}
+		
+		System.out.println(command.getPayment().getPayDate());
+		int result = paymentService.cashPay(command);
+		HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		return new ResponseEntity<String>(paymentService.payNumCall(command.getPayment()), responseHeaders, HttpStatus.CREATED);
 	}
 	
 }

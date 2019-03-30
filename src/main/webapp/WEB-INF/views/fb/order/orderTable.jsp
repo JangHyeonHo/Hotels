@@ -45,7 +45,17 @@
 		$(function(){
 			$(".t1").parent().parent().css("background-color","skyblue");
 		})
-	
+		function registTable(tableNum,rrNo,status){
+			if(rrNo!=0){
+				if(status){
+					alert("현재 해당하는 테이블엔 다른 사람의 자리가 존재합니다.")
+					return false;
+				}
+			location.href="./regist?table="+tableNum+"&rrNo="+rrNo;
+			return false;
+			}
+			location.href="./regist?table="+tableNum
+		}
 	</script>
 </head>
 <body>
@@ -70,17 +80,20 @@
 				<c:if test="${li.ordTableNum eq i }">
 					<span class = "t1">${li.ordSumPrice}</span>
 					<c:set var="loop_done" value="true" />
+					</div>
+		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "registTable(${i },${rrNo },true)"></div>
 				</c:if>
 				<c:if test="${li.ordTableNum ne i }">
 					<c:if test="${cnt.last}">
 						<span class = "t2">0</span>
 						<c:set var="loop_done" value="true" />
+						</div>
+						<div class = "tableOrderCall"><input type = "button" value="<spring:message code="regist" />" onclick = "registTable(${i },${rrNo },false)"></div>
 					</c:if>
 				</c:if>
 			</c:if>
 		</c:forEach>
-		</div>
-		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "location.href='./regist?table=${i }'"></div>
+		
 		<div class = "tableOrderList"><input type = "button" value="<spring:message code="order.list" /> 보기" onclick = "location.href='./list?table=${i }'"></div>
 		<div class = "tablePayMent"><input type = "button" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${i }'"></div>
 	</div>

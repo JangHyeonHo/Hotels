@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hotels.peregrine.command.PageAndQueryCommand;
 import com.hotels.peregrine.command.RestaurantChairCommand;
 import com.hotels.peregrine.command.RestaurantCommand;
 import com.hotels.peregrine.model.RestaurantDTO;
@@ -56,12 +57,14 @@ public class RestaurantRepository {
 	}
 	
 	
-	public List<RestaurantReservationDTO> reslist(AutoPaging paging) {
+	public List<RestaurantReservationDTO> reslist(AutoPaging paging, PageAndQueryCommand command) {
 		Integer minNum = ((paging.getPage()-1)*paging.getLimit())+1;
 		Integer maxNum = minNum+paging.getLimit()-1;
 		HashMap<String, Object> mapping = new HashMap<String, Object>();
 		mapping.put("minNum", minNum);
 		mapping.put("maxNum", maxNum);
+		mapping.put("query", command.getQuery());
+		
 		return template.selectList("restaurant.reslist",mapping);
 	}
 	

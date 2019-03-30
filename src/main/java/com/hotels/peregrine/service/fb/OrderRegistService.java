@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotels.peregrine.model.OrderListDTO;
+import com.hotels.peregrine.model.RestaurantReservationDTO;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.repository.OrderListRepository;
 import com.hotels.peregrine.repository.OrderRepository;
@@ -24,9 +25,9 @@ public class OrderRegistService {
 		return order.isRegist(table);
 	}
 
-	public int firstOrderCall(int table) {
+	public int firstOrderCall(int table, RestaurantReservationDTO rrNo) {
 		// TODO Auto-generated method stub
-		return order.firstOrder(table);
+		return order.firstOrder(table,rrNo.getRrNo());
 	}
 
 	public List<OrderListDTO> orderInfo(int table) {
