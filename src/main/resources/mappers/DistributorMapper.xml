@@ -6,7 +6,7 @@
 		DIS_NO, DIS_NAME, DIS_PHONE, DIS_REG_DATE, DIS_ZIP_CODE, DIS_N_ZIP_CODE, DIS_ADDR, DIS_N_ADDR
 	</sql>
 	
- 	<select id="disList" resultMap="selectAll" parameterType="HashMap">
+ 	<select id="disList" resultMap="selectAll" parameterType="HashMap" useCache="false" flushCache="true">
  		SELECT 
  			rnum, <include refid="AlldisColumn"/>
  		FROM
