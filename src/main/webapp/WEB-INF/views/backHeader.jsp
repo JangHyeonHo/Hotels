@@ -6,7 +6,7 @@
           <div id=leftcontent>
             <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
             		<ul>
-            			<li class="fbmenu" id="test"><a href="#">Restaurant</a>
+            			<li class="fbmenu" id="test"><a href="/peregrine/comp/fb/restaurant/reservation">Restaurant</a>
             			<ul >
             				<li id="test">테스트</li>
             			</ul>
@@ -24,7 +24,7 @@
                    
             </div>
           </div>
-           <div id="mark"><a href="/comp"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%"></a></div> 
+           <div id="mark"><a href="/peregrine/comp"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%"></a></div> 
            <div id=rightcontent>
                 <!-- <div class="rtep" id="member"><a href="#"><span class="tepcolor">Member</span></a>
                 	<ul>
@@ -33,7 +33,7 @@
                 		<li class="membertmenu"><a href="#">Works</a></li>
                 	</ul>
                 </div> -->
-                   <div class="rtep" id="front"><a href="#"><span class="tepcolor">FRONT</span></a>
+                   <div class="rtep" id="front"><a href="/peregrine/comp/front"><span class="tepcolor">FRONT</span></a>
                     <ul>
                     	<li class="frontmenu"><a href="#">Reservation</a></li>
                     	<li class="frontmenu"><a href="#">Checkin</a></li>
@@ -44,7 +44,7 @@
                     </ul>
                   
             </div>
-                <div class="rtep" id="logistics"><a href="#"><span class="tepcolor">Logistics</span></a>
+                <div class="rtep" id="logistics"><a href="/peregrine/comp/logistics"><span class="tepcolor">Logistics</span></a>
                 		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/contract">Constract</a></li>
                 		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/distributor">Distributor</a></li>
                 		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/material">Material</a></li>

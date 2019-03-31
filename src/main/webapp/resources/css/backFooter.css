@@ -4,12 +4,14 @@
 	margin: 0 auto;
     width: 1080px;
     height: 50px;
+    background-color: rgba(0,27,64,0.9);
    
 }
 .footcontent{
     float: left;
     font:62.5%/1.6em "Source Serif Pro", serif;
     font-size: 15px;
-    color: #0f2d53;
+    color: white;
+    
     margin: 10px 0 0 10px;
 }

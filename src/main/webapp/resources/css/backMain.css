@@ -1,0 +1,56 @@
+@charset "UTF-8";
+#contents {
+	width: 1800px;
+	min-height: 800px;
+	margin: 0 auto;
+
+}
+
+#maincontents {
+	width: 1800px;
+	min-height: 500px;
+	float: left;
+	
+    margin : 100px 0 0 0;
+}
+#leftbox{
+    width: 600px;
+    min-height: 500px;
+   
+    float: left;
+}
+
+#midbox{
+    width: 600px;
+    min-height: 500px;
+   
+    float: left;
+}
+#rightbox{
+    width: 600px;
+    min-height: 500px;
+   
+    float: right;
+}
+.fonts{
+    width: 520px;
+    position: relative;
+    top:-290px;
+    left: 40px;
+    color: black;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #ffffff;
+        background-color: rgba( 255, 255, 255, 0.5 );
+      
+
+}
+.imgs{
+    width:520px; height:400px; margin: 40px 0 40px 40px; transform: scale(1);
+   
+}
+.imgs:hover{
+    transform: scale(1.2);
+    
+}

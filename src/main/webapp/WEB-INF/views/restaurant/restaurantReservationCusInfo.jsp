@@ -43,150 +43,15 @@
 	rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <script src="<c:url value="/js/cusPageHeader.js"></c:url>" ></script>
+<script src="<c:url value="/js/restaurantReservation.js"></c:url>" ></script>
 <link href="<c:url value="/css/cusPageHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/cusPageFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/restaurantReservation.css" />" rel="stylesheet" type="text/css">
 
 
-<script type="text/javascript">
-	function exist() {
 
-		var a = document.getElementById("al").value;
 
-		var b = "Y";
-		console.log(a);
 
-		if (a == b) {
-			$("#albox").css("display", "block");
-		} else {
-			$("#albox").css("display", "none");
-		}
-
-	}
-
-	$(function() {
-
-		var inputHidden = "<input   type = 'hidden' id = 'ale' name="
-
-		$("#submitBtn")
-				.on(
-						"click",
-						function(e) {
-							var al = $("#al").val() + $("#albox").val()
-							var checkInHiddenHtml = inputHidden
-									+ "'customer.cosAllergy' value='" + al
-									+ "'>"
-
-							console.log(checkInHiddenHtml);
-
-							$("#hiddenBox").html(checkInHiddenHtml);
-
-							var lname = $("#ln").val()
-							var nnane = $("#nl").val()
-							var phone = $("#ph").val()
-							var email = $("#em").val()
-							var allergy = $("#ale").val()
-
-							$
-									.ajax({
-										url : "../reservation",
-										method : 'get',
-										data : "cosLName=" + lname
-												+ "&cosFName=" + nnane
-												+ "&cosTelno=" + phone
-												+ "&cosEmail=" + email
-												+ "&cosAllergy=" + allergy,
-										dataType : 'html',
-										success : function(data) {
-											$("#contents").html(data);
-										}
-									})
-
-						})
-
-	});
-</script>
-<style type="text/css">
-#contents {
-	width: 1080px;
-	min-height: 700px;
-	margin: 0 auto;
-}
-
-#maincontens {
-	width: 1080px;
-	min-height: 400px;
-	float: left;
-}
-
-#reservationbox {
-	width: 450px;
-	min-height: 400px;
-	margin: 30px 0 0 0;
-	float: left
-}
-
-#infobox {
-	background-image:
-		url(https://img.huffingtonpost.com/asset/5bf24ac824000060045835ff.jpeg?ops=scalefit_630_noupscale);
-	background-repeat: no-repeat;
-	width: 550px;
-	height: 400px;
-	float: right;
-	margin: 50px 0 0 0px;
-}
-
-.inputs {
-	width: 300px;
-	height: 30px;
-	background-color: #f5f5f5;
-	border: 1px solid #f5f5f5;
-	border-radius: 10px;
-}
-
-li {
-	list-style: none;
-	font-family: 'Noto Sans KR', sans-serif;
-	color: #666;
-	font-weight: 400;
-}
-
-h1 {
-	list-style: none;
-	font-family: 'Noto Sans KR', sans-serif;
-	color: #666;
-	font-weight: 400;
-}
-
-#btnbox {
-	width: 530px;
-	float: left;
-	text-align: center;
-}
-
-#respic {
-	width: 100px;
-	float: right;
-}
-
-.fontsizeclass {
-	font-size: 25px;
-}
-
-#infofont {
-	font-size: 30px;
-	display: inline-block;
-	transform: translate(-50%, -50%);
-	position: relative;
-	top: 170px;
-	left: 50%;
-	padding: 30px;
-	font-weight: bold;
-	background-color: black;
-	opacity: 0.5;
-	color:white;
-}
-
-</style>
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->

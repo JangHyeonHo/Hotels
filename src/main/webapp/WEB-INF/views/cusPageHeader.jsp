@@ -13,13 +13,13 @@
                 <div class="ltep" id="restaurant"><a href="#"><span class="tepcolor">Restaurant</span></a>
                         <ul>
                                 <li class="Restaurantmenu"><a href="#">Introduce</a></li>
-                                <li class="Restaurantmenu"><a href="http://localhost/peregrine/restaurant/reservation/cusinfo">Reservation</a></li>
+                                <li class="Restaurantmenu"><a href="/peregrine/restaurant/reservation/cusinfo">Reservation</a></li>
                         </ul>
                       
                 </div>
               
               </div>
-               <div id="mark"><a href="/main"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%"></a></div> 
+               <div id="mark"><img alt="logo" style = "max-height : 100px;" src="<c:url value="/img/hotellogo.svg" />" width="100%" onclick="location.href='/peregrine/main'"></div> 
                <div id=rightcontent>
                     <div class="rtep" id="banquet"><a href="#"><span class="tepcolor">Banquet</span></a>
                         <ul>

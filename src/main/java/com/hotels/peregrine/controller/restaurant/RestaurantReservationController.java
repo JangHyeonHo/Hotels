@@ -69,7 +69,7 @@ public class RestaurantReservationController {
 		
 		dto = service.cusaction(dto);
 		if(service.mainaction(dto)) {
-			return "redirect:/comp/fb/restaurant/reservation/list";
+			return "redirect:/restaurant/reservation/cusinfo";
 		} else {
 			return AutoAlertProcess.alertAfterRedirect(model, "예약 등록 실패!", "좌석이 모자랍니다. 다른 날을 이용해 주세요", "./reservation/cusinfo");
 		}

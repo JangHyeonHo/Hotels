@@ -1,0 +1,32 @@
+@charset "UTF-8";
+#contents {
+	width: 1800px;
+	min-height: 900px;
+	margin: 0 auto;
+    
+}
+
+#maincontents {
+	width: 1400px;
+	min-height: 700px;
+	float: left;
+	
+    margin : 100px 0 0 200px;
+}
+#picbox{
+    
+    
+    float: left;
+ 
+}
+.maintext{
+width:300px;
+font-size:44px;
+font-weight: bold;
+font-family: 'EB Garamond', serif;
+color:#fff;
+text-shadow:0 0 10px rgba(0,0,0,0.6);
+position: relative;
+left:545px;
+bottom:415px;
+}

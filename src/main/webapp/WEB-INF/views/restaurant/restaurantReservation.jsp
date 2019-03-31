@@ -41,47 +41,7 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro"
 	rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<script type="text/javascript">
-	$(function() {
-
-		$("#rrTime")
-				.on(
-						"change",
-						function() {
-							var rn = $("#rrn").val();
-							var date = $("#rrDate").val();
-							var time = $("#rrTime").val();
-
-							var dateTime = date + " " + time
-
-							console.log(rn);
-							$
-									.ajax({
-										url : "table",
-										method : 'get',
-										data : "resname=" + rn + "&datetime="
-												+ dateTime,
-										dataType : 'html',
-										success : function(data) {
-											$("#tablecount").html(data);
-											
-										}
-									})
-						})
-		$("#subBtn")
-				.on(
-						"click",
-						function() {
-							var date = $("#rrDate").val();
-							var time = $("#rrTime").val();
-							console.log(date + time);
-							var hiddenText = "<input type = 'hidden' name ='rrDate' value = '"+date+" "+time+"'>"
-							$("#hb").html(hiddenText);
-							alert("예약이 완료되었습니다.")
-						})
-
-	});
-</script>
+<script src="<c:url value="/js/restaurantReservation.js"></c:url>" ></script>
 </head>
 <body>
 	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->

@@ -3,5 +3,5 @@
 
 <div id="footer">
    
-     <div class="footcontent">  © 2019 Peregrine Hotel - 이원학 장현호 유승재</div>
+     <div class="footcontent">  © 2019 Peregrine Hotel - 이원학 장현호 유승재   <a href="/peregrine/main">Main</a></div>
 </div>
