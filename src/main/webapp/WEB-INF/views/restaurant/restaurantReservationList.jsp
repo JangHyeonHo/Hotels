@@ -72,7 +72,7 @@ function todayList(){
 	if(times == "null"){
 		times = "";
 	}
-	location.href="./list?query=" + todaysDate+ " " + times
+	location.href="./reservation?query=" + todaysDate+ " " + times
 }
 function tableRegist(no, date){
 	var today = new Date().toISOString().substring(0,10);

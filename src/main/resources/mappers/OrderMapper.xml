@@ -23,7 +23,6 @@
 			WHERE
 				rr_no = #{restaurantReservation.rrNo}
 		</selectKey>
-		
 		INSERT INTO
 			orders(ORD_NO,ORD_TABLE_NUM,ORD_SUM_PRICE
 				<if test="restaurantReservation.rrNo!=0">
@@ -36,6 +35,12 @@
 					,#{restaurantReservation.rrNo}, #{restaurantReservation.customer.cosNo}
 				</if>
 			)
+	</insert>
+	<insert id="firstOrder2" parameterType="Orders">
+		INSERT INTO
+			orders(ORD_NO,ORD_TABLE_NUM,ORD_SUM_PRICE)
+		VALUES
+			(sq_ord_no.nextval,#{value},0)
 	</insert>
 	
 	<select id="fullamount" resultType="Orders" useCache="false" flushCache="true">

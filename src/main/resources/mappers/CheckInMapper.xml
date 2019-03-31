@@ -25,7 +25,56 @@
 			CHE_NO = #{num} and CHE_OUT_TIME is null
 			
 		</update>
-
-
+	
+	<select id="checkoutAndPayment" resultMap="checkOutAllinFo" parameterType="HashMap" useCache="false" flushCache="true">
+SELECT 
+chdi.che_no, chdi.room_price, chdi.di_adult, chdi.di_child, bre.break_adult, bre.break_child, 
+chdi.room_price + chdi.di_adult + chdi.di_child + bre.break_adult + bre.break_child AS total_price
+FROM 
+	(SELECT 
+		CHE_NO, room_name, room_price*count(gr_no) AS room_price, sum(GR_DI_ADULT)*#{diAdultPrice} AS di_adult, sum(GR_DI_CHILD)*#{diChildPrice} AS di_child 
+	FROM
+		(SELECT 
+			c.che_no, c.ROOM_NAME, r.ROOM_PRICE, g.GR_NO, g.GR_STAY_SUM, g.GR_DI_ADULT, g.GR_DI_CHILD
+		FROM 
+			GUEST_ROOM g
+		LEFT OUTER JOIN 
+			CHECKIN c
+			ON(c.CHE_NO = g.CHE_NO)
+		LEFT OUTER JOIN 
+			room r 
+			on(c.ROOM_NAME = r.ROOM_NAME)
+		WHERE
+			c.CHE_NO = #{cheNo}) 
+	GROUP BY CHE_NO, room_name, room_price) chdi 
+JOIN
+	(SELECT 
+		sum(BREAK_ADULT) * #{breAdultPrice} AS break_adult, sum(BREAK_CHILD)*#{breChildPrice} AS break_child, CHE_NO 
+	FROM 
+		(SELECT 
+			b.BREAK_CHILD, b.BREAK_ADULT, g.GR_NO, c.CHE_NO
+		FROM 
+			BREAKFAST b 
+		LEFT OUTER JOIN 
+			GUEST_ROOM g 
+			on(b.CHE_NO = g.CHE_NO AND b.GR_NO = g.GR_NO) 
+		LEFT OUTER JOIN 
+			CHECKIN c 
+			on(c.CHE_NO = g.CHE_NO) 
+		WHERE 
+			c.che_no = #{cheNo}) 
+	GROUP BY CHE_NO) bre
+ON(bre.che_no = chdi.che_no)
+	</select>
+	
+	<resultMap type="CheckOutTotalSumCommand" id="checkOutAllinFo">
+		<id column="che_no" jdbcType="INTEGER" property="cheNo"/>
+		<result column="room_price" jdbcType="INTEGER" property="roomPrice"/>
+		<result column="di_adult" jdbcType="INTEGER" property="diAdult"/>
+		<result column="di_child" jdbcType="INTEGER" property="diChild"/>
+		<result column="break_adult" jdbcType="INTEGER" property="breakAdult"/>
+		<result column="break_child" jdbcType="INTEGER" property="breakChild"/>
+		<result column="total_price" jdbcType="INTEGER" property="totalPrice"/>
+	</resultMap>
 
 </mapper>

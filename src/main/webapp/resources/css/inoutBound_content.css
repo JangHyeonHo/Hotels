@@ -1,32 +1,27 @@
 @charset "UTF-8";
 
 #contents{
-	min-width:1600px;
+	min-width:600px;
 	margin: 12px auto 0 auto; 
 	font-family: 'Stylish', sans-serif;
 }
 #title{
-	width: 240px;
+	width: 200px;
 	height: 60px;
+	
 	margin-bottom : 20px;
 	font-size: 48px;
 	font-family: 'Jua', sans-serif;
 }
 #con{
-	width:80%;
-	margin:12px auto;
+	width: 400px;
 	padding : 0 40px;
 }
-table{
-	text-align: center;
+.infobox{
+	margin: 12px 0 12px 0;
+	font-size: 18px;
 }
-th{
-	font-family: 'Song Myung', serif;
-}
-.btn-a{
-	width: 210px;
-	margin-top: 28px;
-}
-#empty{
-	font-size: 22px;
+.customBtn{
+	margin-top:20px;
+	width: 140px;
 }

@@ -60,11 +60,12 @@
 	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+
 	<div id = "con">
-	
-	<div id = "title">
+		<div id = "title">
 	<h2>유통업체 리스트</h2>
 	</div>
+	
 	<c:if test="${!empty distributorList}">
 		<table class = "table table-hover">
 			<tr>
