@@ -73,22 +73,24 @@
 		<c:if test="${i>32 and i<45 }">2</c:if>
 		</div>
 		<div class = "money"><spring:message code="money" /> : 
-		<c:if test="${empty list}">0</c:if>
+		<c:if test="${empty list}">
+		0</div><div class = "tableOrderCall"><input type = "button" value="<spring:message code="regist" />" onclick = "registTable(${i },${rrNo },false)"></div>
+		</c:if>
 		<c:set var="loop_done" value="false" />
 		<c:forEach items="${list}" var="li" varStatus="cnt">
 			<c:if test="${not loop_done }">
 				<c:if test="${li.ordTableNum eq i }">
 					<span class = "t1">${li.ordSumPrice}</span>
-					<c:set var="loop_done" value="true" />
 					</div>
-		<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "registTable(${i },${rrNo },true)"></div>
+					<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "registTable(${i },${rrNo },true)"></div>
+					<c:set var="loop_done" value="true" />
 				</c:if>
 				<c:if test="${li.ordTableNum ne i }">
 					<c:if test="${cnt.last}">
 						<span class = "t2">0</span>
-						<c:set var="loop_done" value="true" />
 						</div>
 						<div class = "tableOrderCall"><input type = "button" value="<spring:message code="regist" />" onclick = "registTable(${i },${rrNo },false)"></div>
+						<c:set var="loop_done" value="true" />
 					</c:if>
 				</c:if>
 			</c:if>
@@ -99,6 +101,7 @@
 	</div>
 	</c:forEach>
 	<div><input type = "button" value="<spring:message code="back" />" onclick="location.href='../order'"></div>
+	<div><input type = "button" value="<spring:message code="table.allDelete" />" onclick="location.href='./table/deleteAll'"></div>
 	</div>
 	<footer></footer>
 </body>
