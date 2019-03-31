@@ -31,9 +31,12 @@ public class OrderRepository {
 	}
 	
 	//테이블에 주문된 이력이 없어서 바로 주문을 하였을 떄
-	public int firstOrder(int table, int i) {
+	public int firstOrder(int value, int i) {
 		// TODO Auto-generated method stub
-		OrdersDTO dto = new OrdersDTO().setOrdTableNum(table).setRestaurantReservation(new RestaurantReservationDTO().setRrNo(i));
+		if(i == 0) {
+		 return template.insert(namespace+".firstOrder2", value);
+		}
+		OrdersDTO dto = new OrdersDTO().setOrdTableNum(value).setRestaurantReservation(new RestaurantReservationDTO().setRrNo(i));
 		return template.insert(namespace+".firstOrder", dto);
 	}
 

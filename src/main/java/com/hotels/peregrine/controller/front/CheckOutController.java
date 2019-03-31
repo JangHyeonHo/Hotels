@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hotels.peregrine.command.CheckOutTotalSumCommand;
 import com.hotels.peregrine.other.AutoAlertProcess;
 import com.hotels.peregrine.other.AutoTest;
 import com.hotels.peregrine.service.front.CheckOutService;
@@ -15,14 +16,17 @@ import com.hotels.peregrine.service.front.CheckOutService;
 public class CheckOutController {
 
 	@Autowired
-	CheckOutService service;
+	private CheckOutService service;
 	
 	@RequestMapping(value = "/comp/front/rooms/checkout", method = RequestMethod.GET)
 	public String checkout(@ModelAttribute("cheNo")int num, Model model) {
 		
-		service.checkout(num);
+//		int result = service.checkout(num);
+		CheckOutTotalSumCommand price = service.checkInInfo(num);
+		AutoTest.ModelBlackTest(price);
+		model.addAttribute("totalPrice",price);
 		
-		return AutoAlertProcess.alertAfterRedirect(model, "체크아웃", "체크아웃 되었습니다.", "../rooms");
+		return "front/Payment";
 		
 	}
 }

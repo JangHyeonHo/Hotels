@@ -18,3 +18,8 @@ h2{
 	font-size: 42px;
 	font-family: 'Jua', sans-serif;
 }
+
+.btn{
+	width : 100%;
+	padding : 6.5px 0;
+}

@@ -80,14 +80,14 @@
 				<c:if test="${li.ordTableNum eq i }">
 					<span class = "t1">${li.ordSumPrice}</span>
 					</div>
-					<div class = "tableOrderCall"><input type = "button" value="<spring:message code="order" />" onclick = "registTable(${i },${rrNo },true)"></div>
+					<div class = "tableOrderCall"><input type = "button" class="btn btn-danger btn-a btn-sm"  value="<spring:message code="order" />" onclick = "registTable(${i },${rrNo },true)"></div>
 					<c:set var="loop_done" value="true" />
 				</c:if>
 				<c:if test="${li.ordTableNum ne i }">
 					<c:if test="${cnt.last}">
 						<span class = "t2">0</span>
 						</div>
-						<div class = "tableOrderCall"><input type = "button" value="<spring:message code="regist" />"  onclick = "registTable(${i },${rrNo },false)"></div>
+						<div class = "tableOrderCall"><input type = "button" class="btn btn-danger btn-a btn-sm"  value="<spring:message code="regist" />"  onclick = "registTable(${i },${rrNo },false)"></div>
 						<c:set var="loop_done" value="true" />
 					</c:if>
 				</c:if>
