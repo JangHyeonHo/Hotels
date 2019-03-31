@@ -28,6 +28,10 @@
 <!-- BootStrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+<!-- BootStrap DatePicker -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <!-- 폰트설정 -->
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
@@ -73,22 +77,8 @@
     </fieldset>
     <fieldset>
 	<legend>수속정보</legend>
-    <div class = "infobox">입실 예정일</div>
-				<select id="cheInyear" class="year">
-				</select>년
-				<select id = "cheInmonth" class = "inmonth">
-				</select>월
-				<select id="cheInday" class="day">
-				</select>일
-				
-	
-	 <div class = "infobox">퇴실 예정일</div>
-				<select id="cheOutyear" class="year">
-				</select>년
-				<select id="cheOutmonth" class = "outmonth">
-				</select>월
-				<select id="cheOutday" class="day">
-				</select>일
+    <div class = "infobox">입/퇴실 예정일</div>
+			<input type = "text" id = "cheInDatePicker" class = "textput">
 	</fieldset>			
 	<fieldset>
 	<legend>객실정보</legend>

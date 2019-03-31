@@ -41,7 +41,7 @@ public class CheckinService {
 		CustomerDTO customers = check.getCustomer();
 		GuestRoomDTO guestRoom = new GuestRoomDTO();
 		
-		if(customers.getCosAllergy()==null || customers.getCosAllergy() == "") {
+		if(customers.getCosAllergy()==null || customers.getCosAllergy().equals("") || customers.getCosAllergy().equals("null")) {
 			customers.setCosAllergy("N");
 		}
 		System.out.println("sad :"+command.getGrNo().length);

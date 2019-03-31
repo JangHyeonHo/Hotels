@@ -33,7 +33,8 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
-<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<script src="<c:url value="/js/backHeader.js"/>" ></script>
+<script src="<c:url value="/js/rooms.js"/>" ></script>
 
 <link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
@@ -48,11 +49,12 @@
 	<div id = "contents">
 	
 	<h2>Room Regist</h2>
-	<form:form>
-	<div class = "infobox">객실명</div><input type="text" class="form-control type-b"  id = "roomsname" name = "roomName">
-	<div class = "infobox">객실 이용 금액</div><input type="text" class="form-control type-b"  id = "roomscost" name = "roomPrice">
-	<div class = "infobox">객실 수</div><input type="text" class="form-control type-b"  id = "roomscount" name = "roomCount">
-<!-- 	<div id = "roomfile">객실 사진</div><input type="file" id = "roomsfile" name = "roomStoreFileName"> -->
+	<form:form enctype="multipart/form-data">
+	<div class = "infobox">객실명</div><input type="text" class="form-control type-b" required id = "roomsname" name = "roomName">
+	<div class = "infobox">객실 이용 금액</div><input type="number" min="10000" value="10000" required placeholder="원 단위입니다." step="1000" class="form-control type-b"  id = "roomscost" name = "roomPrice">
+	<div class = "infobox">객실 수</div><input type="number" required min="1" value = "1" class="form-control type-b"  id = "roomscount" name = "roomCount">
+	<div id = "hiddenPicture"></div>
+	<div id = "roomfile">객실 사진</div><input type="file" id = "roomsfile" name = "roomImage" accept="image/*">
 	<br> <br>
 	<input type="submit" value = "등록" class = "btn-A btn btn-outline-danger">
 	 <input type = "button" value = "메인으로" id = "submitBtn3" onclick="location.href='../front'" class = "btn-A btn-primary btn">

@@ -3,7 +3,16 @@
 <mapper namespace="room">
 	<cache />
 	<insert id="insert" parameterType="Room">
-		insert into room(ROOM_NAME, ROOM_PRICE, ROOM_COUNT<!-- , ROOM_STORE_FILE_NAME -->) values(#{roomName}, #{roomPrice}, #{roomCount}<!-- , #{roomStoreFileName} -->)
+		insert into 
+		room(ROOM_NAME, ROOM_PRICE, ROOM_COUNT
+		<if test="roomStoreFileName!=null">
+		 ,ROOM_STORE_FILE_NAME
+		 </if>) 
+		values
+		(#{roomName}, #{roomPrice}, #{roomCount}
+		<if test="roomStoreFileName!=null">
+		, #{roomStoreFileName} 
+		</if>)
 	</insert>
 	
 	<select id="nameList" resultMap="namebase">
