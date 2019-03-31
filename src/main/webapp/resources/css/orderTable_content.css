@@ -1,21 +1,20 @@
 @charset "UTF-8";
 
-#contents{
+#contents {
 	min-width:1200px;
 	margin: 12px auto 0 auto; 
 	font-family: 'Stylish', sans-serif;
 }
 
+.tableBox {
+	width: 20%;
+	height: 180px;
+	border: 1px solid silver;
+	float: left;
+}
 h2{
 	margin: 20px auto;
 	padding-left: 60px;
-	font-size: 48px;
+	font-size: 42px;
 	font-family: 'Jua', sans-serif;
-}
-#mainform{
-	margin-left: 60px;
-	min-height:400px; 
-}
-.btn-a{
-	width: 200px;
 }
