@@ -338,4 +338,10 @@ public class OrderController {
 		return new ResponseEntity<String>(paymentService.payNumCall(command.getPayment()), responseHeaders, HttpStatus.CREATED);
 	}
 	
+	@RequestMapping(value="/comp/fb/restaurant/order/table/deleteAll", method=RequestMethod.GET)
+	private String deleteAllNoPersonTable(Model model) {
+		int result = tableService.allDelete();
+		return AutoAlertProcess.alertAfterRedirect(model, "삭제 성공", "비어있는 주문 테이블을 성공적으로 모두 삭제했습니다.", "../table");
+	}
+	
 }

@@ -58,6 +58,11 @@ public class OrderRepository {
 		return template.update(namespace + ".updatePayNo", map);
 	}
 
+	public int noPersonDeleteAll() {
+		// TODO Auto-generated method stub
+		return template.delete(namespace+".deleteNoPerson");
+	}
+
 	
 	
 	
