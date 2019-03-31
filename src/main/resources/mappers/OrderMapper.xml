@@ -75,4 +75,11 @@
 		WHERE
 			ORD_TABLE_NUM = #{tableNum} and pay_no is null
 	</update>
+	
+	<delete id="deleteNoPerson">
+		DELETE FROM 
+			orders
+		WHERE
+			pay_no is NULL AND ord_sum_price=0 AND cos_no IS NULL
+	</delete>
 </mapper>

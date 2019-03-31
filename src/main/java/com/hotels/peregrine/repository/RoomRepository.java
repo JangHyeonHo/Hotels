@@ -19,8 +19,8 @@ public class RoomRepository {
 	private String namespace = "room";
 	
 	//객실을 만들기위해 있는 메소드~
-	public void insert(RoomDTO rooms) {
-		sql.insert(namespace+".insert",rooms);
+	public int insert(RoomDTO rooms) {
+		return sql.insert(namespace+".insert",rooms);
 	}
 
 	public List<RoomDTO> nameList() {

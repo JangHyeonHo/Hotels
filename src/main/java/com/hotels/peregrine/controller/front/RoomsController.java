@@ -1,5 +1,7 @@
 package com.hotels.peregrine.controller.front;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +27,9 @@ public class RoomsController {
 	}
 	
 	@RequestMapping(value = "/comp/front/add", method = RequestMethod.POST)
-	public String reservation(@ModelAttribute RoomDTO rooms, Model model) {
+	public String reservation(@ModelAttribute RoomDTO rooms, Model model, HttpServletRequest request) {
 		AutoTest.ModelBlackTest(rooms);
-		service.action(rooms);
+		int result = service.action(rooms, request);
 		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "등록되었습니다.", "../front");
 	}
 	

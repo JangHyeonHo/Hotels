@@ -2,6 +2,8 @@ package com.hotels.peregrine.model;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 객실(room) 테이블에 관한 것<br>
  * <p>★표시는 not null을 말함<br>
@@ -17,6 +19,7 @@ public class RoomDTO implements Serializable {
 	private int roomPrice;
 	private int roomCount;
 	private String roomStoreFileName;
+	private MultipartFile roomImage;
 	public String getRoomName() {
 		return roomName;
 	}
@@ -45,5 +48,13 @@ public class RoomDTO implements Serializable {
 		this.roomStoreFileName = roomStoreFileName;
 		return this;
 	}
+	public MultipartFile getRoomImage() {
+		return roomImage;
+	}
+	public RoomDTO setRoomImage(MultipartFile roomImage) {
+		this.roomImage = roomImage;
+		return this;
+	}
+	
 	
 }

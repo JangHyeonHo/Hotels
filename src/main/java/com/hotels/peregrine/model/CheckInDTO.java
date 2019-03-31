@@ -28,9 +28,9 @@ public class CheckInDTO implements Serializable {
 	private int cheNo;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheInTime;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date cheOutTime;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date cheInDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date cheOutDate;

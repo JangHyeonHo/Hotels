@@ -18,6 +18,11 @@ public class TableListService {
 		// TODO Auto-generated method stub
 		return orders.amountCall();
 	}
+
+	public int allDelete() {
+		// TODO Auto-generated method stub
+		return orders.noPersonDeleteAll();
+	}
 	
 	
 }
