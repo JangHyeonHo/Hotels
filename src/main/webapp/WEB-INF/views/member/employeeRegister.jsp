@@ -54,8 +54,8 @@
 	<div class = "form-inline"><label>이메일 :</label> <input type="email" class="form-control" name="empEmail"></div> <br>
 	<div class = "form-inline"><label>전화 번호 :</label> <input type="text" class="form-control" name="empPhone"></div> <br>
 	<div class = "form-inline"><label>생년월일 :</label> <input type="date" class="form-control" name="empBDate"></div> <br>
-	<div class = "form-inline"><label>성별  남</label><input type="radio" class="form-control" name="empGender" value="M"> 
-	     <label>여</label><input type="radio" class="form-control" name="empGender" value="F"></div> <br>
+	<div class = "form-inline"><label>성별 : 남</label><input type="radio" class="rado" name="empGender" value="M"> 
+	     <label>여</label><input type="radio" class="rado" name="empGender" value="F"></div> <br>
 	<div class = "form-inline"><label>급여 :</label> <input type="text" class="form-control" name="empSalary"></div> <br>
 	<div class = "form-inline"><label>주소 :</label> <input type="text" class="form-control" name="empAddr"></div> <br>
 	<div class = "form-inline"><label>통장 계좌번호 :</label> <input type="text" class="form-control" name="empAccNum"></div> <br> 
@@ -66,7 +66,8 @@
 	<div class = "form-inline"><label>직급명 :</label><input type="text" class="form-control" name="empManageName"></div> <br>
 	
 	</div>
-	<input type="submit" class = "btn btn-outline-danger" value="등록">
+	<input type="submit" class="btn btn-danger btn-a" value="등록">
+	<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn btn-a">
 	</form:form>
 	</div>
 	</div>
