@@ -90,7 +90,7 @@
 	<h2><spring:message code="cont.list" /></h2>
 	</div>
 
-			<table>
+			<table class = "table">
 				<tr>
 					<th><spring:message code="cont.no" /></th>
 					<th><spring:message code="dis.name" /></th>

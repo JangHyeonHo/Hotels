@@ -6,7 +6,9 @@
 	font-family: 'Stylish', sans-serif;
 }
 #title{
-	margin: 20px auto;
+	width: 200px;
+	height: 60px;
+	margin-bottom : 20px;
 	font-size: 48px;
 	font-family: 'Jua', sans-serif;
 }
@@ -33,4 +35,5 @@ th{
 }
 .btn-a{
 	width: 210px;
+	margin-top: 18px;
 }

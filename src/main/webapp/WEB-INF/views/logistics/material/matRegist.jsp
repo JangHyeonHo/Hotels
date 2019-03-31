@@ -30,27 +30,46 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/contRegist_content.css" />" rel="stylesheet" type="text/css">
 
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
+		<div id = "con">
+	<div id = "title">
+	<h2><spring:message code="material.regist" /></h2>
+	</div>
 		<form:form>
-		<h3><spring:message code="material.regist" /></h3>
-		<spring:message code="mat.name" /> : <input type = "text" id = "matName" name = "matName"><br>
-		<spring:message code="mat.kind" /> : <select name="matKind">
+	
+		<div class = "frm form-inline">
+		<spring:message code="mat.name" /> : <input type = "text" class="form-control" id = "matName" name = "matName"><br>
+		</div>
+		<div class = "frm form-inline">
+		<spring:message code="mat.kind" /> : <select name="matKind" class="form-control">
 		<c:forEach begin="1" end="${materialLv}" step="1" var="i">
 			<option value = "<spring:message code="material.lv${i}" />"><spring:message code="material.lv${i}" /></option>
 		</c:forEach>
-		</select><br>
+		</select>
+		</div>
 		<spring:message code="material.regist" /> <spring:message code="dis.name" /> : ${distributor.disName} <input type = "hidden" name = "contract.contNo" value = "${contNo}">
+	
 		<input type = "hidden" name = "contract.distributor.disNo" value = "${distributor.disNo}"><br>
-		<input type = "submit" value = "<spring:message code="regist" />">
+		<input type = "submit" class = "customBtn btn btn-outline-danger" value = "<spring:message code="regist" />">
+		<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
 		</form:form>
+		</div>
 	</div>
-	<footer></footer>
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>

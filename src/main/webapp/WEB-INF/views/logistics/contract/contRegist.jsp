@@ -29,25 +29,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/contRegist_content.css" />" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	
+		<div id = "con">
+		<div id = "title">
+		<h2>계약 등록</h2>
+		</div>
 		<form:form>
 			<spring:message code="dis.name"/> : ${distributor.disName}<br>
 			<spring:message code="dis.phone"/> : ${distributor.disPhone}<br>
 			<spring:message code="dis.address"/> : ${distributor.disAddr} / ${distributor.disNAddr}<br>
 			<input type = "hidden" id = "disNo" name = "distributor.disNo" value = "${distributor.disNo} ">
-			<spring:message code="cont.kind"/>
-			<input type = "text" id = "contMatKind" name = "contMatKind"><br>
-			<input type = "submit" value="<spring:message code="regist"/>">
+		<div class = "form-inline">
+			<spring:message code="cont.kind"/> :
+			<input type = "text" class="form-control" id = "contMatKind" name = "contMatKind">
+		</div>	
+			<input type = "submit" class = "customBtn btn btn-outline-danger" value="<spring:message code="regist"/>">
+			<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
 		</form:form>
+		</div>
 	</div>
-	<footer></footer>
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>

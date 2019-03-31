@@ -1,17 +1,18 @@
 @charset "UTF-8";
 
 #contents{
-	min-width:1800px;
+	min-width:1600px;
 	margin: 12px auto 0 auto; 
 	font-family: 'Stylish', sans-serif;
 }
 #title{
-	margin: 20px auto;
+	width: 200px;
+	height: 60px;
+	margin-bottom : 20px;
 	font-size: 48px;
 	font-family: 'Jua', sans-serif;
 }
 #con{
-	min-width: 1700px;
 	width:80%;
 	margin:12px auto;
 	padding : 0 40px;
@@ -33,6 +34,6 @@ th{
 	color: black;
 }
 .btn-a{
-	width: 160px;
+	width: 210px;
 }
 
