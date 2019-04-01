@@ -67,6 +67,16 @@ JOIN
 ON(bre.che_no = chdi.che_no)
 	</select>
 	
+	<update id="payEnd" parameterType="HashMap">
+		UPDATE 
+			checkin 
+		SET
+			pay_no = #{payNo}
+		WHERE
+			che_no = #{cheNo}
+	
+	</update>
+	
 	<resultMap type="CheckOutTotalSumCommand" id="checkOutAllinFo">
 		<id column="che_no" jdbcType="INTEGER" property="cheNo"/>
 		<result column="room_price" jdbcType="INTEGER" property="roomPrice"/>

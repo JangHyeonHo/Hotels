@@ -8,6 +8,7 @@ import com.hotels.peregrine.model.CashPayDTO;
 import com.hotels.peregrine.model.PaymentDTO;
 import com.hotels.peregrine.repository.CardPayRepository;
 import com.hotels.peregrine.repository.CashPayRepository;
+import com.hotels.peregrine.repository.CheckinRepository;
 import com.hotels.peregrine.repository.OrderRepository;
 import com.hotels.peregrine.repository.PaymentRepository;
 
@@ -25,6 +26,9 @@ public class PaymentSystemService {
 	
 	@Autowired
 	private CashPayRepository cash;
+	
+	@Autowired
+	private CheckinRepository checkIn;
 
 	public int updateAllPrice(int table,int price) {
 		// TODO Auto-generated method stub
@@ -61,6 +65,11 @@ public class PaymentSystemService {
 			return cash.payment(command);
 		}
 		return 0;
+	}
+
+	public int checkOutPayEnded(int num, int payNo) {
+		// TODO Auto-generated method stub
+		return checkIn.checkoutPayment(num, payNo);
 	}
 
 }

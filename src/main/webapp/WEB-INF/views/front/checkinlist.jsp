@@ -80,7 +80,7 @@
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheInTime }"/></td>
 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${roomlist.checkIn.cheOutDate }"/></td>
 	<td>석식성인${roomlist.grDiAdult }명/석식어린이${roomlist.grDiChild }명</td>
-	<td><a href = "rooms/checkout?cheNo=${roomlist.checkIn.cheNo }"><span class = "danger">체크아웃</span></a></td>
+	<td><a href = "./rooms/checkout?cheNo=${roomlist.checkIn.cheNo }"><span class = "danger">체크아웃</span></a></td>
 	</tr>
 	</form:form>
 	</c:forEach>

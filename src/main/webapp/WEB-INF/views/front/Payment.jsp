@@ -33,19 +33,19 @@
 		function cardPopUp(tableNum){
 			var pay = $("#pay").text();
 			console.log(pay);
-			window.open("./payment/card?pay="+pay,"카드 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
+			window.open("./checkout/card?pay="+pay,"카드 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
 		}
 		function cashPopUp(tableNum){
 			var pay = $("#pay").text();
 			console.log(pay);
-			window.open("./payment/cash?pay="+pay,"현금 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
+			window.open("./checkout/cash?pay="+pay,"현금 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
 		}
 		function paymentEnded(payno){
-			var tn = $("#tableNum").text();
+			var tn = $("#cheNo").text();
 			$.ajax({
-			url : "./payment",
+			url : "./checkout",
 			method : "post",
-			data : "table=" + tn + "&pay=" + payno,
+			data : "cheNo=" + tn + "&pay=" + payno,
 			dataType:'html',
 			success:function(data){
 				alert("성공적으로 결제 완료했습니다.")
@@ -66,6 +66,7 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 		<div id = "mainBox"></div>
+			<input type = "hidden" value = "${totalPrice.cheNo }" id = "cheNo">
 			ㅁㅁ <spring:message code="customer.pay"/><br>
 			<spring:message code="rooms.pay"/> : ${totalPrice.roomPrice }<br>
 			<spring:message code="dinner.pay"/> : ${totalPrice.diAdult + totalPrice.diChild }<br>
@@ -77,8 +78,8 @@
 			<div id = "amount">
 				<spring:message code="payment.allsum"/> : <span id = "pay">${totalPrice.totalPrice }</span>
 			</div>
-		<input type = "button" value = "<spring:message code="payment.card"/>" onclick="cardPopUp(${list[0].orders.ordTableNum })">
-		<input type = "button" value = "<spring:message code="payment.cash"/>" onclick="cashPopUp(${list[0].orders.ordTableNum })">
+		<input type = "button" value = "<spring:message code="payment.card"/>" onclick="cardPopUp(${totalPrice.cheNo })">
+		<input type = "button" value = "<spring:message code="payment.cash"/>" onclick="cashPopUp(${totalPrice.cheNo })">
 		<input type = "button" value="<spring:message code="back" />" onclick="javascript:history.back()">
 	</div>
 	<footer></footer>
