@@ -32,6 +32,7 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 <link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
 <script src="<c:url value='/js/backHeader.js'></c:url>" ></script>
 <style>
 #contents {
@@ -54,7 +55,7 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<div id = "maincontents">
-	<h1>연회장 등록</h1>
+	<h1 style="text-align:center">Banquet Regist</h1>
 	<form:form enctype="multipart/form-data">
 		<ul>
 		<li>연회장 명	<input type="text" name="banName" class="form-control"></li> 
@@ -68,6 +69,6 @@
 	</form:form>
 	</div>
 	</div>
-	<footer></footer>
+	<jsp:include page="../backFooter.jsp"></jsp:include>
 </body>
 </html>

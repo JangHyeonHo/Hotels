@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<header>
 	     <div id="headertop">
+	   <div id="infobar"><div id="infobox"> <% if(1==0) /* 고쳐줘 */ {%><a href="/peregrine/comp/member/mypage">이거지워줘${loginfo.empName}</a>님 환영합니다.<%}else{  %>
+	   <a href="/peregrine/comp/login" id="loginbox">로그인</a><%} %></div></div>
           <div id=leftcontent>
             <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
             		<ul>
-            			<li class="fbmenu" id="test"><a href="/peregrine/comp/fb/restaurant/reservation">Restaurant</a>
-            			<ul >
-            				<li id="test">테스트</li>
-            			</ul>
-            			</li> 
+            			<li class="fbmenu"><a href="/peregrine/comp/fb/restaurant/reservation">Restaurant</a></li> 
             			<li class="fbmenu"><a href="#">Banquet</a></li>
             			<li class="fbmenu"><a href="#">lounge</a></li>
             		
