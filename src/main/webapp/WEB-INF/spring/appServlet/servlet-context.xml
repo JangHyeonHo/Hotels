@@ -32,6 +32,16 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 	<mvc:resources mapping="/img/**" location="/resources/img/" cache-period="31556926"/>
 	<mvc:resources mapping="/css/**" location="/resources/css/" cache-period="31556926"/>
 	<mvc:resources mapping="/js/**" location="/resources/js/" cache-period="31556926"/>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/comp/**" />
+			<mvc:exclude-mapping path="/comp/member/login"/>
+			<mvc:exclude-mapping path="/comp"/>
+				<bean class="com.hotels.peregrine.other.CompanyInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
