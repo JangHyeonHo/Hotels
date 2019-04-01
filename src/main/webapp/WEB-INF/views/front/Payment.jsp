@@ -41,7 +41,7 @@
 			window.open("./checkout/cash?pay="+pay,"현금 결제", "height=300px, width=500px, resizable=no, scrollbars=no",true)
 		}
 		function paymentEnded(payno){
-			var tn = $("#cheNo").text();
+			var tn = $("#cheNo").val();
 			$.ajax({
 			url : "./checkout",
 			method : "post",
@@ -49,7 +49,7 @@
 			dataType:'html',
 			success:function(data){
 				alert("성공적으로 결제 완료했습니다.")
-				location.href="../table";
+				location.href="../rooms";
 			},
 			error:function(data){
 				alert("결제 실패했습니다! 다시 시도해 주세요.")
