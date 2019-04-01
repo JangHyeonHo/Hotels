@@ -37,6 +37,8 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 		<mvc:interceptor>
 			<mvc:mapping path="/comp/**" />
 			<mvc:exclude-mapping path="/comp/member/login"/>
+			<mvc:exclude-mapping path="/comp/member/signup"/>
+			<mvc:exclude-mapping path="/comp/member/logout"/>
 			<mvc:exclude-mapping path="/comp"/>
 				<bean class="com.hotels.peregrine.other.CompanyInterceptor" />
 		</mvc:interceptor>
