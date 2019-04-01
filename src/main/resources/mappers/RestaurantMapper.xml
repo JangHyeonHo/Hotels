@@ -120,9 +120,9 @@
 	</delete>
 	
 	
-	<select id="chairsCall" parameterType="HashMap" resultMap="chair">
+	<select id="chairsCall" parameterType="HashMap" resultMap="chair" flushCache="true" useCache="false">
 		SELECT 
-		r.res_name, r.RES_CHAIR, r.res_table_count-(select count(res_chair) from restaurant_reservation where rr_date = #{curDate} AS tableleft 
+		r.res_name, r.RES_CHAIR, r.res_table_count-(select count(res_chair) from restaurant_reservation where rr_date = #{curDate}) AS tableleft 
 		FROM
 		restaurant r left outer join restaurant_reservation rr ON(r.res_chair = rr.res_chair and r.res_name = rr.res_name)
 		WHERE r.res_name=#{resName}
