@@ -47,6 +47,14 @@ public class CheckinRepository {
 		map.put("breChildPrice",5000);
 		return sql.selectOne("checkin.checkoutAndPayment",map);
 	}
+	//체크아웃후 결제할때.
+	public int checkoutPayment(int num, int payNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cheNo", num);
+		map.put("payNo", payNo);
+		return sql.update("checkin.payEnd",map);
+	}
 
 
 	

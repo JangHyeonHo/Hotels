@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title>분실물 메인</title>
+<title><spring:message code="login"/></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -28,33 +28,24 @@
 <!-- BootStrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
-<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
-
-<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/lostCreate_content.css" />" rel="stylesheet" type="text/css">
+<!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 
 
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<jsp:include page="../backHeader.jsp" />
+	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-	<h2>분실물 등록/삭제</h2>
-  <input type="button" class="btn btn-danger btn-a" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
-  <input type="button" class = "btn btn-primary btn btn-a" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
-  <input type="button" class = "btn btn-primary btn btn-a" onclick="location.href='front'" id="btn-B" value="메인으로">
-   
-
-	
-	
+		<h3><spring:message code="login"/></h3>
+		<form:form>
+		<input type = "text" placeholder="<spring:message code="id"/>" name = "memberName"><br>
+		<input type = "password" placeholder="<spring:message code="pw"/>" name = "memberNo"><br>
+		<input type = "submit" value="<spring:message code="login"/>">
+		</form:form>
 	</div>
-	<jsp:include page="../backFooter.jsp" />
+	<footer></footer>
 </body>
 </html>

@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="employee">
 
+	<sql id="AllColumns">
+		EMP_NO,
+		EMP_NAME,
+		EMP_EMAIL,
+		EMP_PHONE,
+		EMP_B_DATE,
+		EMP_B_GENDER,
+		EMP_SALARY,
+		EMP_ADDR,
+		EMP_ACC_NUM,
+		EMP_ACC_BANK,
+		EMP_TOP_SIZE,
+		EMP_BOT_SIZE,
+		EMP_MANAGE_NAME,
+		EMP_DEPART_NAME
+	</sql>
+
 	<insert id="einsert" parameterType="Employee">
 
 		INSERT INTO EMPLOYEE(EMP_NO,
@@ -19,7 +36,7 @@
 		EMP_MANAGE_NAME,
 		EMP_DEPART_NAME)
 
-		VALUES(emp_no.nextval,#{empName},#{empEmail},#{empPhone},#{empBDate},#{empGender},#{empSalary},#{empAddr},#{empAccNum},#{empAccBank},#{empTopSize},#{empBotSize},#{empManageName},#{empDepartName})
+		VALUES(#{empNo},#{empName},#{empEmail},#{empPhone},#{empBDate},#{empGender},#{empSalary},#{empAddr},#{empAccNum},#{empAccBank},#{empTopSize},#{empBotSize},#{empManageName},#{empDepartName})
 
 
 	</insert>
@@ -47,7 +64,7 @@
 	<result column="EMP_NAME" jdbcType="NVARCHAR" property="empName"/>
 	<result column="EMP_EMAIL" jdbcType="NVARCHAR" property="empEmail"/>
 	<result column="EMP_PHONE" jdbcType="NVARCHAR" property="empPhone"/>
-	<result column="EMP_B_DATE" jdbcType="DATE" property="empBDate"/>
+	<result column="EMP_B_DATE" jdbcType="TIMESTAMP" property="empBDate"/>
 	<result column="EMP_B_GENDER" jdbcType="NVARCHAR" property="empGender"/>
 	<result column="EMP_SALARY" jdbcType="BIGINT" property="empSalary"/>
 	<result column="EMP_ADDR" jdbcType="NVARCHAR" property="empAddr"/>
@@ -57,7 +74,30 @@
 	
 	
 	</resultMap>
+	
+	<select id="member" parameterType="LoginCommand" resultMap="LoginInfomation" flushCache="true" useCache="false">
+		SELECT <include refid="AllColumns"/>
+		FROM
+		employee
+		WHERE emp_name = #{memberName} and emp_no = #{memberNo}
+	</select>
+	
+	<resultMap type="Employee" id="LoginInfomation">
+		<id column="EMP_NO" jdbcType="INTEGER" property="empNo"/>
+		<result column="EMP_NAME" jdbcType="VARCHAR" property="empName"/>
+		<result column="EMP_EMAIL" jdbcType="VARCHAR" property="empEmail"/>
+		<result column="EMP_PHONE" jdbcType="VARCHAR" property="empPhone"/>
+		<result column="EMP_B_DATE" jdbcType="TIMESTAMP" property="empBDate"/>
+		<result column="EMP_B_GENDER" jdbcType="VARCHAR" property="empGender"/>
+		<result column="EMP_SALARY" jdbcType="INTEGER" property="empSalary"/>
+		<result column="EMP_ADDR" jdbcType="VARCHAR" property="empAddr"/>
+		<result column="EMP_ACC_NUM" jdbcType="VARCHAR" property="empAccNum"/>
+		<result column="EMP_ACC_BANK" jdbcType="VARCHAR" property="empAccBank"/>
+		<result column="EMP_TOP_SIZE" jdbcType="INTEGER" property="empTopSize"/>
+		<result column="EMP_BOT_SIZE" jdbcType="INTEGER" property="empBotSize"/>
+		<result column="EMP_MANAGE_NAME" jdbcType="VARCHAR" property="empManageName"/>
+		<result column="EMP_DEPART_NAME" jdbcType="VARCHAR" property="empDepartName"/>
 
-
+	</resultMap>
 
 </mapper>

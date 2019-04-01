@@ -41,20 +41,23 @@ public class RestaurantReservationService {
 	}
 
 	public boolean mainaction(RestaurantReservationDTO dto) {
-		List<RestaurantChairCommand> chairList = reRepository.AllChairs(dto.getRestaurant().getResName());
+		List<RestaurantChairCommand> chairList = reRepository.AllChairs(dto.getRestaurant().getResName(),dto.getRrDate());
 		List<RestaurantReservationDTO> resList = new ArrayList<RestaurantReservationDTO>();
 		int people = dto.getRrAdult() + dto.getRrChild(); //10
 		for(int i = 0; i< chairList.size(); i++) {
 			if(people == 0) {
 				break;
 			}
-			int maxChair = chairList.get(i).getResChair(); //6 4 2
-			int Tablecount = chairList.get(i).getResTableCount();// 1 3 4
+			int maxChair = chairList.get(i).getResChair(); //6
+			int Tablecount = chairList.get(i).getResTableCount();// 10
 			while(Tablecount > 0) {
-				if(people-maxChair >= 0) { //21-6
+				if(people-maxChair >= 0 || chairList.size() ==1) { //21-6
 					people -= maxChair; //15;
 					Tablecount--;
-				} else if(people-maxChair < 0) { //1-6
+					if(people <= 0) {
+						people = 0;
+					}
+				} else if(people-maxChair < 0) { //4-6
 					int finalChair = 0;
 					for(int b = i; b<chairList.size()-1; b++) {
 						int chairMoving = chairList.get(b).getResChair()-people; //4-1 ==3
@@ -80,7 +83,9 @@ public class RestaurantReservationService {
 							break;
 						}
 					}
-					maxChair = finalChair;
+					if(chairList.size() !=1) {
+						maxChair = finalChair;
+					} 
 				}
 				System.out.println("배치 의자 : " + maxChair);
 				resList.add(new RestaurantReservationDTO() 

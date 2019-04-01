@@ -70,8 +70,8 @@
 	
 	</c:forEach>
 	</table>
-	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn">
-	<input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn">
+	<input type = "button" onclick="history.back(-1)" value = "뒤로가기" class = "btn btn-primary btn btn-a">
+	<input type = "button" onclick="location.href='../front'" value = "메인으로" class = "btn btn-primary btn btn-a">
 	</div>
 	</div>
 	<jsp:include page="../backFooter.jsp" />

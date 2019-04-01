@@ -19,6 +19,7 @@ a:hover{
 }
 #cheIn{
 	min-width: 1300px;
+	min-height : 800px;
 	width:80%;
 	margin:12px auto;
 	padding : 0 40px;

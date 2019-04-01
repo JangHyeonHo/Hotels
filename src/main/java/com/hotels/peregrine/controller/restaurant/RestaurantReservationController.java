@@ -54,7 +54,7 @@ public class RestaurantReservationController {
 		session.setAttribute("ses", dto);
 		
 		List<RestaurantCommand> resinfo = service.resname();
-		System.out.println("테이블 수는? "+resinfo.get(0).getResTableCount());
+//		System.out.println("테이블 수는? "+resinfo.get(0).getResTableCount());
 	
 		model.addAttribute("resinfo",resinfo);
 		return "restaurant/restaurantReservation";

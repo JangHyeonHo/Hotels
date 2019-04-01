@@ -14,8 +14,9 @@ h2{
 }
 #mainform{
 	margin-left: 60px;
-	min-height:400px; 
+	min-height:660px; 
 }
 .btn-a{
 	width: 200px;
+	margin-bottom: 40px;
 }

@@ -88,7 +88,9 @@
 		</c:if>
 		<c:if test="${empty list[0].orders}">
 			<spring:message code="orderList.nothing" />
+			<div id = "btn-d">
 			<input type = "button" class = "btn btn-primary btn-sm btn-a" value = "<spring:message code="order" />하러 가기" onclick="javascript:history.back();">
+			</div>
 		</c:if>
 		</div>
 	</div>

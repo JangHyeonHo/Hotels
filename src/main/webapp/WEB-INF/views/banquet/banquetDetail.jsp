@@ -35,13 +35,13 @@
 
 function refreshOne(){
 	
-	location.href="detail/refreshone?brNo=${dto.brNo}";
+	location.href="./detail/refreshone?brNo=${dto.brNo}";
 	
 }
 
 function refreshTwo(){
 	
-	location.href="detail/refreshtwo?brNo=${dto.brNo}";
+	location.href="./detail/refreshtwo?brNo=${dto.brNo}";
 
 }
 </script>
