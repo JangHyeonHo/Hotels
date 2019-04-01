@@ -87,9 +87,12 @@ public class RestaurantRepository {
 		template.delete("restaurant.resdeleteTwo",map);
 	}
 
-	public List<RestaurantChairCommand> AllChairs(String resName) {
+	public List<RestaurantChairCommand> AllChairs(String resName, Date date) {
 		// TODO Auto-generated method stub
-		return template.selectList("restaurant.chairsCall", resName);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("resName", resName);
+		map.put("curDate",date);
+		return template.selectList("restaurant.chairsCall", map);
 	}
 
 	public int getAllListCnt() {

@@ -47,9 +47,9 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<h2>분실물 등록/삭제</h2>
-  <input type="button" class="btn btn-danger" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
-  <input type="button" class = "btn btn-primary btn" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
-  <input type="button" class = "btn btn-primary btn" onclick="location.href='front'" id="btn-B" value="메인으로">
+  <input type="button" class="btn btn-danger btn-a" onclick="location.href='lost/create'" id="btn-A" value="분실물 등록">
+  <input type="button" class = "btn btn-primary btn btn-a" onclick="location.href='lost/inquiry'" id="btn-B" value="분실물 조회">
+  <input type="button" class = "btn btn-primary btn btn-a" onclick="location.href='front'" id="btn-B" value="메인으로">
    
 
 	

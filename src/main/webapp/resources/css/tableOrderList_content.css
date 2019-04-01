@@ -15,6 +15,7 @@
 }
 #con{
 	margin-left: 22px;
+	min-height: 800px;
 }
 h2{
 	margin: 20px auto;
@@ -24,4 +25,5 @@ h2{
 }
 .btn-a{
 	width: 120px;
+	margin-bottom: 80px;
 }

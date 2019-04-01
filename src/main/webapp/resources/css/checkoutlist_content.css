@@ -22,6 +22,7 @@ th{
 #chetable{
 	min-width: 1240px;
 	margin: 12px auto ;
+	min-height: 800px;
 	width: 80%;
 	padding : 0 60px;
 }
@@ -38,5 +39,5 @@ th{
 
 #mainBtn{
 	width: 200px;
-	margin-left: 20px;
+	margin-left: 20px 0 40px 0;
 }

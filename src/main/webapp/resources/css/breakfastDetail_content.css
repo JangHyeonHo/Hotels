@@ -18,6 +18,7 @@ legend{
 }
 fieldset{
 	width: 400px ;
+	min-height:480px;
 	padding: 10px;
 	margin-bottom: 14px;
 	border: 2px solid gray;
@@ -30,7 +31,7 @@ fieldset{
 	margin: 0 12px 12px 12px;
 }
 .infobox{
-	margin:10px 0 12px 10px;
+	margin:14px 0 14px 10px;
 	font-size: 22px;
 }
 .sb{
@@ -43,6 +44,7 @@ fieldset{
 .btn{
 	margin-top: 4px;
 	width: 120px;
+	margin-bottom: 40px;
 }
 
 

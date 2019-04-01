@@ -2,6 +2,7 @@
 
 #contents{
 min-width : 580px;
+min-height: 800px;
 margin: 12px auto 0 auto; 
 font-family: 'Stylish', sans-serif;
 }
@@ -23,4 +24,7 @@ table{
 }
 .danger{
 	color: red;
+}
+.btn-a{
+	margin-bottom: 100px;
 }
