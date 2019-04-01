@@ -37,7 +37,7 @@
 
 <link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/brlist_content.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/Payment_content.css" />" rel="stylesheet" type="text/css">
 
 	<script>
 		function cardPopUp(tableNum){
@@ -75,9 +75,12 @@
 	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-
+	<div id = "con">	
+	<div id = "title">
 		<div id = "mainBox"><span id ="tableNum">${list[0].orders.ordTableNum }</span>번 테이블<spring:message code="payment"/></div>
-			<table>
+	</div>	
+	<div id = "con">	
+			<table class = "table">
 				<tr>
 					<th><spring:message code="number"/></th>
 					<th><spring:message code="food.name"/></th>
@@ -95,12 +98,14 @@
 				</c:if>
 			</c:forEach>
 			</table>
+	</div>
+	</div>
 			<div id = "amount">
 				<spring:message code="payment.allsum"/> : <span id = "pay">${amount }</span>
 			</div>
-		<input type = "button" value = "<spring:message code="payment.card"/>" onclick="cardPopUp(${list[0].orders.ordTableNum })">
-		<input type = "button" value = "<spring:message code="payment.cash"/>" onclick="cashPopUp(${list[0].orders.ordTableNum })">
-		<input type = "button" value="<spring:message code="back" />" onclick="javascript:history.back()">
+		<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="payment.card"/>" onclick="cardPopUp(${list[0].orders.ordTableNum })">
+		<input type = "button" class="btn btn-danger btn-a" value = "<spring:message code="payment.cash"/>" onclick="cashPopUp(${list[0].orders.ordTableNum })">
+		<input type = "button" class = "btn btn-primary btn-md btn-a" value="<spring:message code="back" />" onclick="javascript:history.back()">
 	</div>
 	<jsp:include page="../../backFooter.jsp" />
 </body>
