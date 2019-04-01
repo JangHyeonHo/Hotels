@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#contents{
+width:450px;
+margin: 12px 0; 
+font-family: 'Stylish', sans-serif;
+font-size: 18px;
+}
+#title{
+	width:400px;
+	height :100px;
+	float:left;
+	margin: 0 10px;
+	font-size: 32px;
+	font-family: 'Jua', sans-serif;
+}
+
+#con{
+	width: 400px;
+	height:520px;
+	margin-left: 12px;
+}
+#con2{
+	font-size: 28px;
+}
+.boxx{
+	width: 240px;
+	padding-bottom: 10px;
+}
+.btn-a{
+	margin-top: 10px;
+	margin-left: 14px;
+	width: 180px;
+}
+#dox{
+	width: 450px;
+	height: 80px;
+}

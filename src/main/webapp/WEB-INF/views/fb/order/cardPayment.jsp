@@ -31,6 +31,16 @@
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/Pay_content.css" />" rel="stylesheet" type="text/css">
+
 	<script>
 	function payment(){
 		var cpCname = $("#cpCname").val();
@@ -68,10 +78,17 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<form:form>
+	
+		<form:form class = "form-inline">
+		<div id = "con">
+		<div id = "title">
 		<spring:message code="payment.card"/><br>
-		<spring:message code="pay.cardBankName"/> : 
-		<select name = "cpCname" id="cpCname">
+		</div>
+		<br>
+		
+		<div class = "form-inline boxx">
+		<spring:message code="pay.cardBankName"/>  
+		<select name = "cpCname" id="cpCname" class="form-control" >
 			<c:forEach begin="1" end="21" step="1" var="name">
 				<c:if test="${name eq 1 }">
 				<optgroup label="카드">
@@ -85,16 +102,32 @@
 				</c:if>
 			</c:forEach>
 		</select>
-		<br>
-		<spring:message code="pay.cardNum"/> : <input type = "text" id="cpCnum" name = "cpCnum" maxlength="19"><br>
-		<spring:message code="pay.cardMonth"/> <input type = "text" id="cpMonth" name = "cpMonth" maxlength="2">
-		<spring:message code="pay.cardYear"/> <input type = "text" id="cpYear" name = "cpYear" maxlength="2"><br>
-		<spring:message code="pay.cardInsDate"/> <input type = "text" id="cpInsMonth" name = "cpInsMonth" maxlength="2">년<br>
-		<spring:message code="payment.money"/> ${pay }<input type = "hidden" value="${pay }" name = "payment.paySum" id = "paySum"><br>
-		<input type ="button" value="<spring:message code="payment"/>" onclick="payment()">
-		<input type ="button" value="<spring:message code="close"/>" onclick="isClose()">
+		</div>
+		<div class="form-inline boxx">
+		<spring:message code="pay.cardNum"/>  <input type = "text" class="form-control" id="cpCnum" name = "cpCnum" maxlength="19">
+		</div>
+		<div class="form-inline boxx">
+		<spring:message code="pay.cardMonth"/> <input type = "text" class="form-control"  id="cpMonth" name = "cpMonth" maxlength="2">
+		</div>
+		<div class="form-inline boxx">
+		<spring:message code="pay.cardYear"/> <input type = "text" class="form-control" id="cpYear" name = "cpYear" maxlength="2">
+		</div>
+		<div class="form-inline boxx">
+		<spring:message code="pay.cardInsDate"/>(개월수) <input type = "text" class="form-control form-inline" id="cpInsMonth" name = "cpInsMonth" maxlength="2">
+		</div>
+		<div class="form-inline boxx">
+		<spring:message code="payment.money"/> ${pay }
+		</div>
+		</div>
+		<input type = "hidden" value="${pay }" name = "payment.paySum" id = "paySum">
+		<div id = "dox">
+		<input type ="button" class = "customBtn btn btn-outline-danger btn-a" value="<spring:message code="payment"/>" onclick="payment()">
+		<input type ="button" class = "btn btn-primary btn-md btn-a" value="<spring:message code="close"/>" onclick="isClose()">
+		</div>
+		
 		</form:form>
-	</div>
+		</div>
+	
 	<footer></footer>
 </body>
 </html>

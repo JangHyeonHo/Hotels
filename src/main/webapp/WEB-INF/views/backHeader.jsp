@@ -7,7 +7,7 @@
 	<header>
 	     <div id="headertop">
 	   <div id="infobar"><div id="infobox"> <c:if test="${loginfo ne null }"> <a href="/peregrine/comp/member/mypage">${loginfo.empName}</a>님 환영합니다  <a href="/peregrine/comp/member/logout">[로그아웃]</a></c:if>
-	  <c:if test="${loginfo eq null }"> <a href="/peregrine/comp/member/login" id="loginbox">로그인</a></c:if></div></div>
+	  <c:if test="${loginfo eq null }"> <a href="/peregrine/comp/member/login" id="loginbox">로그인</a>  <a href="/peregrine/comp/member/signup" id="loginbox">[직원등록]</a></c:if></div></div>
           <div id=leftcontent>
             <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
             		<ul id="fbnav">

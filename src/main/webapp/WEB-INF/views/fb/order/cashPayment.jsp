@@ -10,7 +10,7 @@
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title><spring:message code="payment.card"/></title>
+<title><spring:message code="payment.cash"/></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
@@ -31,6 +31,16 @@
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/Pay_content.css" />" rel="stylesheet" type="text/css">
+
 	<script>
 	function payment(){
 		var cash = $("#cash").val();
@@ -67,7 +77,7 @@
 			var boxing = $(this).val();
 			var numberBox = "";
 			if(boxing!="nothing"){
-				numberBox += "번호 : <input type = 'text' id= '"+boxing+"' name ='" + boxing + "'>"
+				numberBox += "번호를 입력해 주세요.  <input type = 'text' class = 'form-control boxx'  id= '"+boxing+"' name ='" + boxing + "'>"
 			}
 			$("#cashReci").html(numberBox);
 		})
@@ -80,8 +90,12 @@
 	<header></header>
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		<spring:message code="pay.cashPay"/><input type = "text" id = "cash"><br>
-		<select id = "reciSelectBox">
+	<div id = "con">
+	<div id = "title">현금 결제 </div>
+		<div class="form-inline boxx">
+		<spring:message code="pay.cashPay"/> :<input type = "text" class="form-control" id = "cash"><br>
+		</div>
+		<select id = "reciSelectBox" class="form-control">
 			<option value="nothing"><spring:message code="pay.cashReceipt"/> 선택</option>
 			<option value="cashReceipt"><spring:message code="pay.cashReceipt"/></option>
 			<option value="cashCeoReceipt"><spring:message code="pay.cashCeo"/></option>
@@ -90,8 +104,9 @@
 		
 		
 		<spring:message code="payment.money"/> ${pay }<input type = "hidden" value="${pay }" name = "payment.paySum" id = "paySum"><br>
-		<input type ="button" value="<spring:message code="payment"/>" onclick="payment()">
-		<input type ="button" value="<spring:message code="close"/>" onclick="isClose()">
+		<input type ="button" class = "customBtn btn btn-outline-danger btn-a" value="<spring:message code="payment"/>" onclick="payment()">
+		<input type ="button" class = "btn btn-primary btn-md btn-a" value="<spring:message code="close"/>" onclick="isClose()">
+	</div>
 	</div>
 	<footer></footer>
 </body>
