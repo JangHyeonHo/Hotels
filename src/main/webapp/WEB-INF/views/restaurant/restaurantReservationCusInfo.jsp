@@ -63,7 +63,7 @@
 		<div id="reservationbox">
 		
 			<form:form id="frm">
-			<fieldset>	
+
 			<h1>STEP 1 .예약자 정보 입력</h1>
 				<ul>
 					<li><span class="fontsizeclass">성</span><br> <input type="text" name="customer.cosLName"

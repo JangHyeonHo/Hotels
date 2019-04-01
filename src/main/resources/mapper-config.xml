@@ -53,6 +53,7 @@
 		<typeAlias type="com.hotels.peregrine.command.RestaurantChairCommand" alias="RestaurantChairCommand"/>	
 		<typeAlias type="com.hotels.peregrine.command.RoomCountCommand" alias="RoomCountCommand"/>
 		<typeAlias type="com.hotels.peregrine.command.CheckOutTotalSumCommand" alias="CheckOutTotalSumCommand"/>
+		<typeAlias type="com.hotels.peregrine.command.LoginCommand" alias="LoginCommand"/>
 	</typeAliases>
 
 
