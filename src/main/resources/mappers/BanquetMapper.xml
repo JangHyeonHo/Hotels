@@ -105,12 +105,12 @@
 	<id column="BR_NO" jdbcType="BIGINT" property="brNo"/>
 	<result column="BAN_NAME" jdbcType="NVARCHAR" property="banquet.banName"/>
 	<result column="BR_CONSUMER" jdbcType="BIGINT" property="brConsumer"/>
-	<result column="BR_USE_TIME" jdbcType="DATE" property="brUseTime"/>
+	<result column="BR_USE_TIME" jdbcType="TIMESTAMP" property="brUseTime"/>
 	<result column="BR_PURPOSE" jdbcType="NVARCHAR" property="brPurpose"/>
 	<result column="BR_PRICE" jdbcType="BIGINT" property="brPrice"/>
 	<result column="BR_EATING" jdbcType="NVARCHAR" property="brEating"/>
 	<result column="BR_RANTAL_TIME" jdbcType="BIGINT" property="brRantalTime"/>
-	<result column="BR_REG_DATE" jdbcType="DATE" property="brRegDate"/>
+	<result column="BR_REG_DATE" jdbcType="TIMESTAMP" property="brRegDate"/>
 	
 	</resultMap>
 	
@@ -124,12 +124,12 @@
 	<result column="BR_CLOSE" jdbcType="TIMESTAMP" property="brClose"/>
 	<result column="BR_EX_PAY" jdbcType="BIGINT" property="brExPay"/>
 	<result column="BR_CONSUMER" jdbcType="BIGINT" property="brConsumer"/>
-	<result column="BR_USE_TIME" jdbcType="DATE" property="brUseTime"/>
+	<result column="BR_USE_TIME" jdbcType="TIMESTAMP" property="brUseTime"/>
 	<result column="BR_PURPOSE" jdbcType="NVARCHAR" property="brPurpose"/>
 	<result column="BR_PRICE" jdbcType="BIGINT" property="brPrice"/>
 	<result column="BR_EATING" jdbcType="NVARCHAR" property="brEating"/>
 	<result column="BR_RANTAL_TIME" jdbcType="BIGINT" property="brRantalTime"/>
-	<result column="BR_REG_DATE" jdbcType="DATE" property="brRegDate"/>
+	<result column="BR_REG_DATE" jdbcType="TIMESTAMP" property="brRegDate"/>
 	
 	</resultMap>
 	

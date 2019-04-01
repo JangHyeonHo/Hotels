@@ -3,38 +3,38 @@
  */
 
 $(function(){
-	$("#front").hover(function(){
+	$("#front").mouseover(function(){
 		$(".frontmenu").css("display","block");
 	});
-	$("#front").mouseleave(function(){
+	$("#front").mouseout(function(){
 		$(".frontmenu").css("display","none");
 	});
 	
-	$("#hr").hover(function(){
+	$("#hr").mouseover(function(){
 		$(".hrmenu").css("display","block");
 	});
-	$("#hr").mouseleave(function(){
+	$("#hr").mouseout(function(){
 		$(".hrmenu").css("display","none");
 	});
 	
-	$("#fb").hover(function(){
+	$("#fb").mouseover(function(){
 		$(".fbmenu").css("display","block");
 	});
-	$("#fb").mouseleave(function(){
+	$("#fb").mouseout(function(){
 		$(".fbmenu").css("display","none");
 	});
 	
-	$("#member").hover(function(){
+	$("#member").mouseover(function(){
 		$(".membertmenu").css("display","block");
 	});
-	$("#member").mouseleave(function(){
+	$("#member").mouseout(function(){
 		$(".membertmenu").css("display","none");
 	});
 	
-	$("#logistics").hover(function(){
+	$("#logistics").mouseover(function(){
 		$(".logisticsmenu").css("display","block");
 	});
-	$("#logistics").mouseleave(function(){
+	$("#logistics").mouseout(function(){
 		$(".logisticsmenu").css("display","none");
 	});
 	

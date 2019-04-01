@@ -19,9 +19,13 @@ public class RecipeFoodRepository {
 		HashMap<String, Integer> keying = new HashMap<String, Integer>();
 		keying.put("foodNo", foodNo);
 		int result = 0;
-		for(int i : materialNo) {
-			keying.put("matNo", i);
-			result += template.insert(namespace + ".insertRecipe",keying);
+		if(materialNo.length!=0) {
+			for(int i : materialNo) {
+				keying.put("matNo", i);
+				result += template.insert(namespace + ".insertRecipe",keying);
+			}
+		} else {
+			result = 99999;
 		}
 		
 		return result;

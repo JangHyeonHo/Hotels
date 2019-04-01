@@ -13,7 +13,7 @@
 
 							var dateTime = date + " " + time
 
-							console.log(rn);
+//							console.log(rn);
 							$
 									.ajax({
 										url : "table",
@@ -33,7 +33,7 @@
 						function() {
 							var date = $("#rrDate").val();
 							var time = $("#rrTime").val();
-							console.log(date + time);
+//							console.log(date + time);
 							var hiddenText = "<input type = 'hidden' name ='rrDate' value = '"+date+" "+time+"'>"
 							$("#hb").html(hiddenText);
 							alert("예약이 완료되었습니다.")
@@ -46,7 +46,7 @@
 		var a = document.getElementById("al").value;
 
 		var b = "Y";
-		console.log(a);
+//		console.log(a);
 
 		if (a == b) {
 			$("#albox").css("display", "block");
@@ -69,7 +69,7 @@
 									+ "'customer.cosAllergy' value='" + al
 									+ "'>"
 
-							console.log(checkInHiddenHtml);
+//							console.log(checkInHiddenHtml);
 
 							$("#hiddenBox").html(checkInHiddenHtml);
 

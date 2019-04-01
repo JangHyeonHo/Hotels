@@ -25,7 +25,7 @@ public class CSVFileUploader {
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 			int result = 0;
 			while ((msg = br.readLine()) != null) {
-				if(result==2500) {
+				if(result==750) {
 					break;
 				}
 				String[] arrayMsg = msg.split(",");

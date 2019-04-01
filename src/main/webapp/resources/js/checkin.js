@@ -195,7 +195,7 @@ $(function(){
 //		console.log(stayVal+1);
 		var aduDin = "<option id = 'AduTitle' value='0'>석식 성인 인원</option>";
 		for(var i = 1; i <= stayVal; i++){
-			console.log(i);
+//			console.log(i);
 			aduDin += "<option value='"+ i +"'>석식성인 : " + i + "명</option>";
 		}
 		var ain = $(this).next().next().html(aduDin);

@@ -1,42 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!-- JSTL사용 필요한것 알아서 짤라서 사용 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- 타이틀명 수정하기(필수) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
-<title><spring:message code="order.regist"/></title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title><spring:message code="order.regist" /></title>
 
 <!-- 미 변경 목록(JQuery설정, BootStrap설정) -->
 <!-- JQuery -->
-<script
-  src="http://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.js"
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
 <!-- JQuery UI -->
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+	crossorigin="anonymous"></script>
+<!-- BootStrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<!-- BootStrap -->
 <script
-  src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script>
-<!-- BootStrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- BootStrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
-<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
-<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/orderPage_content.css" />" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish"
+	rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>"></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet"
+	type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet"
+	type="text/css">
+<link href="<c:url value="/css/orderPage_content.css" />"
+	rel="stylesheet" type="text/css">
 
 
 
@@ -156,76 +172,119 @@
 
 </head>
 <body>
-<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
+	<!-- 헤더 푸터 건들지 말것(필수는 아님) -->
 	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
-	<div id = "contents">
-		<div id = "hak">
-		<div id = "mainBox"><span id ="tableNum">${orderList[0].orders.ordTableNum }</span>번 <spring:message code="order.regist"/></div>
-	
-		<div id = "listBox">
-			<table class = "table con">
-				<tr>
-					<th><spring:message code="number"/></th>
-					<th><spring:message code="food.name"/></th>
-					<th><spring:message code="food.price"/></th>
-					<th><spring:message code="order.count"/></th>
-					<th><spring:message code="plus"/></th>
-					<th><spring:message code="minus"/></th>
-				</tr>
-			<c:forEach items="${orderList }" var="lists" varStatus="i">
-				<c:if test="${lists.olCount ne 0 }">
-				<tr>
-					<td>${i.count }</td>
-					<td>${lists.foodName }</td>
-					<td>${lists.food.foodPrice }</td>
-					<td>${lists.olCount }</td>
-					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
-					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
-				</tr>
+	<div id="contents">
+		<div id="hak">
+			<div id="mainBox">
+				<span id="tableNum">${orderList[0].orders.ordTableNum }</span>번
+				<spring:message code="order.regist" />
+			</div>
+
+			<div id="listBox">
+				<table class="table con">
+					<tr>
+						<th><spring:message code="number" /></th>
+						<th><spring:message code="food.name" /></th>
+						<th><spring:message code="food.price" /></th>
+						<th><spring:message code="order.count" /></th>
+						<th><spring:message code="plus" /></th>
+						<th><spring:message code="minus" /></th>
+					</tr>
+					<c:forEach items="${orderList }" var="lists" varStatus="i">
+						<c:if test="${lists.olCount ne 0 }">
+							<tr>
+								<td>${i.count }</td>
+								<td>${lists.foodName }</td>
+								<td>${lists.food.foodPrice }</td>
+								<td>${lists.olCount }</td>
+								<td><input type="button"
+									class="btn btn-primary btn-sm btn-a"
+									value="<spring:message code="plus"/>"
+									onclick="plus(${i.count })"></td>
+								<td><input type="button"
+									class="btn btn-primary btn-sm btn-a"
+									value="<spring:message code="minus"/>"
+									onclick="minus(${i.count })"></td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</table>
+
+
+				<c:if test="${empty orderList[0].food.foodName }">
+					<div id="orderBox">
+						<spring:message code="order.nothing" />
+					</div>
 				</c:if>
-			</c:forEach>
-			</table>
+				<div id="amount">
+					<spring:message code="payment.money" />
+					: ${amount }
+				</div>
+				<input type="button" class="customBtn btn btn-outline-danger"
+					onclick="order()" value="<spring:message code="order.regist"/>">
+				<input type="button" class="btn btn-primary btn-md btn-a"
+					onclick="location.href='./table'"
+					value="전체<spring:message code="order.table"/>"> <input
+					type="button" class="btn btn-danger btn-a"
+					value="<spring:message code="payment" /> 하기"
+					onclick="location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
+				<input type="button" id="submitBtn3" onclick="history.back(-1)"
+					value="뒤로가기" class="customBtn btn btn-primary btn">
 			</div>
-			
-			<c:if test="${empty orderList[0].food.foodName }">
-				<div id = "orderBox"><spring:message code="order.nothing"/></div>
-			</c:if>
-			<div id = "amount">
-				<spring:message code="payment.money"/> : ${amount }
-			</div>
-			<input type = "button" class = "customBtn btn btn-outline-danger" onclick = "order()" value="<spring:message code="order.regist"/>">
-			<input type = "button" class = "btn btn-primary btn-md btn-a" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
-			<input type = "button" class="btn btn-danger btn-a" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
-			<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
-	
-			</div>
-		<div id = "foodBox">
-			<c:forEach	begin="1" end="7" var="i" step="1">
+		</div>
+		<div id="foodBox">
+			<c:forEach begin="1" end="7" var="i" step="1">
 				<c:if test="${kind eq i}">
-				<div id = "selectedBox" class = "foodKind" style = "background-color:skyblue;" onclick="kinds('<spring:message code="food.ki${i }"/>')"><spring:message code="food.ki${i }"/></div>
+					<div id="selectedBox" class="foodKind"
+						style="background-color: skyblue;"
+						onclick="kinds('<spring:message code="food.ki${i }"/>')">
+						<spring:message code="food.ki${i }" />
+					</div>
 				</c:if>
 				<c:if test="${kind ne i}">
-				<div class = "foodKind" onclick="kinds('<spring:message code="food.ki${i }"/>')"><spring:message code="food.ki${i }"/></div>
+					<div class="foodKind"
+						onclick="kinds('<spring:message code="food.ki${i }"/>')">
+						<spring:message code="food.ki${i }" />
+					</div>
 				</c:if>
 			</c:forEach>
 			<c:forEach items="${foodList }" var="food">
-				<div class = "foodList" onclick="orders(${food.foodNo })">
-					<div class="foodLabel"><spring:message code="food.name"/>:</div><div class="foodName foodMain"><span class = "spn">${food.foodName }</span></div>
-					<div class="foodImage"><img width="100%" height="150px" alt="${food.foodOriFileName}" src='<c:url value="/img/fb/food/${food.foodStoreFileName}" />'></div>
-					<div class="foodLabel"><spring:message code="food.price"/> : </div><div class="foodPrice foodMain"><span class = "spn"> ￦ ${food.foodPrice }</span></div>
+				<div class="foodList" onclick="orders(${food.foodNo })">
+					<div class="foodLabel">
+						<spring:message code="food.name" />
+						:
+					</div>
+					<div class="foodName foodMain">
+						<span class="spn">${food.foodName }</span>
+					</div>
+					<div class="foodImage">
+						<img width="100%" height="150px" alt="${food.foodOriFileName}"
+							src='<c:url value="/img/fb/food/${food.foodStoreFileName}" />'>
+					</div>
+					<div class="foodLabel">
+						<spring:message code="food.price" />
+						:
+					</div>
+					<div class="foodPrice foodMain">
+						<span class="spn"> ￦ ${food.foodPrice }</span>
+					</div>
 				</div>
 			</c:forEach>
-			
-		<div id = "paging">
-		<c:set var="page" value="${paging.page}"/>
-			<c:if test="${paging.prev}"><div onclick="prev(${paging.startPage-1})">◀</div></c:if>
-			<c:if test="${paging.next}"><div onclick="next(${paging.endPage+1})">▶</div></c:if>
 		</div>
+		<div id="paging">
+			<c:set var="page" value="${paging.page}" />
+			<c:if test="${paging.prev}">
+				<div onclick="prev(${paging.startPage-1})">◀</div>
+			</c:if>
+			<c:if test="${paging.next}">
+				<div onclick="next(${paging.endPage+1})">▶</div>
+			</c:if>
 		</div>
-		
-		
 	</div>
+
+
 	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>

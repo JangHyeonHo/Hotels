@@ -73,6 +73,9 @@ public class FoodController {
 		if(result==0) {
 			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패", "등록되지 않았습니다.", "../food");
 		}
+		if(result==99999) {
+			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패?", "음식은 등록이 되었지만 레시피는 등록이 되지 않았습니다!", "../food");
+		}
 		return AutoAlertProcess.alertAfterRedirect(model, "음식 등록 완료", "음식이 성공적으로 등록되었습니다.", "../food");
 	}
 	

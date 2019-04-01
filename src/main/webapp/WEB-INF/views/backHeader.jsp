@@ -10,17 +10,17 @@
 	  <c:if test="${loginfo eq null }"> <a href="/peregrine/comp/member/login" id="loginbox">로그인</a></c:if></div></div>
           <div id=leftcontent>
             <div class="ltep" id="fb"><a href="#"><span class="tepcolor">FB</span></a>
-            		<ul>
-            			<li class="fbmenu"><a href="/peregrine/comp/fb/restaurant/reservation">Restaurant</a></li> 
-            			<li class="fbmenu"><a href="/peregrine/comp/fb/banquet/list">Banquet</a></li>
-            			<li class="fbmenu"><a href="#">lounge</a></li>
+            		<ul id="fbnav">
+            			<li class="fbmenu navmenu"><a href="/peregrine/comp/fb/restaurant/order">Restaurant</a></li> 
+            			<li class="fbmenu navmenu"><a href="/peregrine/comp/fb/banquet/list">Banquet</a></li>
+            			<li class="fbmenu navmenu"><a href="#">lounge</a></li>
             		
             		</ul></div>
 						
             <div class="ltep" id="hr"><a href="#"><span class="tepcolor">HR</span></a>
-            		<ul>
-            			<li class="hrmenu"><a href="#">List</a></li>
-            			<li class="hrmenu"><a href="#">Schedule</a></li>
+            		<ul id="hrnav">
+            			<li class="hrmenu navmenu"><a href="#">List</a></li>
+            			<li class="hrmenu navmenu"><a href="#">Schedule</a></li>
             		</ul>
                    
             </div>
@@ -35,21 +35,24 @@
                 	</ul>
                 </div> -->
                    <div class="rtep" id="front"><a href="/peregrine/comp/front"><span class="tepcolor">FRONT</span></a>
+                    <div>
                     <ul>
-                    	<li class="frontmenu"><a href="#">Reservation</a></li>
-                    	<li class="frontmenu"><a href="#">Checkin</a></li>
-                    	<li class="frontmenu"><a href="#">Checkout</a></li>
-                    	<li class="frontmenu"><a href="#">Rooms</a></li>
-                    	<li class="frontmenu"><a href="#">History</a></li>
-                    	<li class="frontmenu"><a href="#">Lost</a></li>
+                    	<li class="frontmenu navmenu"><a href="#">Reservation</a></li>
+                    	<li class="frontmenu navmenu"><a href="/peregrine/comp/front/checkin">Checkin</a></li>
+                    	<li class="frontmenu navmenu"><a href="/peregrine/comp/front/checkout">Checkout</a></li>
+                    	<li class="frontmenu navmenu"><a href="/peregrine/comp/front/rooms">Rooms</a></li>
+                    	<li class="frontmenu navmenu"><a href="#">History</a></li>
+                    	<li class="frontmenu navmenu"><a href="/peregrine/comp/front/lost">Lost</a></li>
                     </ul>
-                  
+                    </div>
             </div>
                 <div class="rtep" id="logistics"><a href="/peregrine/comp/logistics"><span class="tepcolor">Logistics</span></a>
-                		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/contract">Constract</a></li>
-                		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/distributor">Distributor</a></li>
-                		<li class="logisticsmenu"><a href="/peregrine/comp/logistics/material">Material</a></li>
-                		<li class="logisticsmenu"><a href="#">Termination</a></li>
+                	<ul id="logisticsnav">
+                		<li class="logisticsmenu navmenu"><a href="/peregrine/comp/logistics/contract">Constract</a></li>
+                		<li class="logisticsmenu navmenu"><a href="/peregrine/comp/logistics/distributor">Distributor</a></li>
+                		<li class="logisticsmenu navmenu"><a href="/peregrine/comp/logistics/material">Material</a></li>
+                		<li class="logisticsmenu navmenu"><a href="#">Termination</a></li>
+                	</ul>
                 </div>
                
            </div>

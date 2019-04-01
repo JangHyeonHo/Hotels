@@ -79,7 +79,11 @@ public class FoodRepository {
 	//주문에 사용할 음식종류의 총 개수를 가져오기
 	public int allCountCall(String value) {
 		// TODO Auto-generated method stub
-		return template.selectOne(namespace + ".menuCounting", value);
+		try {
+			return template.selectOne(namespace + ".menuCounting", value);
+		}catch(NullPointerException e) {
+			return 0;
+		}
 	}
 	
 	

@@ -5,7 +5,7 @@
 	
 	<insert id="insert" parameterType="Lost">
 	insert into LOST(lost_no, LOST_NAME, LOST_DATE, LOST_LOC)
-	values(sq_lost_no.nextval, #{lostName}, #{lostDate}, ${lostLoc})
+	values(sq_lost_no.nextval, #{lostName}, #{lostDate}, #{lostLoc})
 	</insert>
 	
 	<select id="inquiry" resultMap="lostList">

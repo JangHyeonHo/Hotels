@@ -43,9 +43,9 @@ public class DistributorController {
 		int i = registService.listRegist(CSVFileUploader.csvFileReader(AutoFileClassfication.CSVFiling(file, request.getSession().getServletContext().getRealPath("/") + "/resources/img/csvBackUp/")));
 		System.out.println(i + "개의 유통회사 정보 업로드가 완료되었음.");
 		if(i == 0) { 
-			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패", "유통회사가 등록되지 않았습니다.", "../");
+			return AutoAlertProcess.alertAfterRedirect(model, "등록 실패", "유통회사가 등록되지 않았습니다.", "../logistics");
 		} else {
-			return AutoAlertProcess.alertAfterRedirect(model, "업로드 완료", i + "개의 유통회사가 성공적으로 등록되었습니다.", "../");
+			return AutoAlertProcess.alertAfterRedirect(model, "업로드 완료", i + "개의 유통회사가 성공적으로 등록되었습니다.", "../logistics");
 		}
 		
 	}

@@ -40,6 +40,6 @@ public class EmployeeRegisterController {
 		AutoTest.ModelBlackTest(dto);
 		service.action(dto);
 		
-		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "성공적으로 등록되었습니다\n회원번호는 : "+empNo+" 입니다.", "./login");
+		return AutoAlertProcess.alertAfterRedirect(model, "등록완료", "성공적으로 등록되었습니다\\n회원번호는 : "+empNo+" 입니다.", "./login");
 	}
 }
