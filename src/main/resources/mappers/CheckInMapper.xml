@@ -73,7 +73,7 @@ ON(bre.che_no = chdi.che_no)
 		SET
 			pay_no = #{payNo}
 		WHERE
-			che_no = #{cheNo}
+			che_no = #{cheNo} 
 	
 	</update>
 	
