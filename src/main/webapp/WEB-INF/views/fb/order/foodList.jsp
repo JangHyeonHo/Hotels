@@ -22,18 +22,18 @@
 <c:forEach items="${foodList }" var="food">
 	<div class="foodList" onclick="orders(${food.foodNo })">
 		<div class="foodLabel">
-			<spring:message code="food.name" />
+			<spring:message code="food.name" />:
 		</div>
-		<div class="foodName foodMain">${food.foodName }</div>
+		<div class="foodName foodMain"><span class = "spn">${food.foodName }</span></div>
 		<div class="foodImage">
 			<img width="100%" height="150px" alt="${food.foodOriFileName}"
 				src='<c:url value="/img/fb/food/${food.foodStoreFileName}" />'>
 		</div>
 		<div class="foodLabel">
 			<spring:message code="food.price" />
-			￦
+			: 
 		</div>
-		<div class="foodPrice foodMain">${food.foodPrice }</div>
+		<div class="foodPrice foodMain"><span class = "spn"> ￦ ${food.foodPrice }</span></div>
 	</div>
 </c:forEach>
 <div id="paging">

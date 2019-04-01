@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			<table>
+			<table class = "table con">
 				<tr>
 					<th><spring:message code="number"/></th>
 					<th><spring:message code="food.name"/></th>
@@ -19,8 +19,8 @@
 					<td>${lists.foodName }</td>
 					<td>${lists.food.foodPrice }</td>
 					<td>${lists.olCount }</td>
-					<td><input type = "button" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
-					<td><input type = "button" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
+					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
+					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
 				</tr>
 				</c:if>
 			</c:forEach>
@@ -31,6 +31,8 @@
 			<div id = "amount">
 				<spring:message code="payment.money"/> : ${amount }
 			</div>
-			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
-			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
-			<input type = "button" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
+			<input type = "button" class = "customBtn btn btn-outline-danger" onclick = "order()" value="<spring:message code="order.regist"/>">
+			<input type = "button" class = "btn btn-primary btn-md btn-a" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
+			<input type = "button" class="btn btn-danger btn-a" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
+			<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
+			

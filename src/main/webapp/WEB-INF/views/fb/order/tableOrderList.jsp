@@ -47,6 +47,7 @@
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
 	<div id = "con">
+	<div id = "title">
 		<c:if test="${!empty list[0].orders}">
 		<c:if test="${tableNum eq 0}">
 			전체
@@ -54,8 +55,10 @@
 		<c:if test="${tableNum ne 0}">
 			${tableNum}번
 		</c:if>
+		
 		<spring:message code="table"/> <spring:message code="order.list"/>
-		<table>
+		</div>
+		<table class = "table">
 			<tr>
 				<th><spring:message code="ol.no"/></th>
 				<th><spring:message code="table.no"/></th>

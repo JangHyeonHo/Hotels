@@ -15,7 +15,14 @@
 }
 #con{
 	margin-left: 22px;
+	width:60%;
 	min-height: 800px;
+}
+#title{
+	margin: 20px auto;
+	float: left;
+	font-size: 34px;
+	font-family: 'Jua', sans-serif;
 }
 h2{
 	margin: 20px auto;

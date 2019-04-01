@@ -29,44 +29,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
-<style>
-	#contents{
-		min-width : 1080px;
-	}
-	#listBox{
-		width : 30%;
-		height : 900px;
-		float : left;
-	}
-	#foodBox{
-		width : 70%;
-		height : 900px;
-		float : left;
-	}
-	.foodList{
-		width : 25%;
-		border : 1px solid black;
-		height : 200px;
-		background-color : #f0f0f0;
-		float : left;
-	}
-	.foodList:hover{
-		background-color : #dddddd;
-	}
-	.foodKind{
-		width : 14%;
-		height : 50px;
-		float : left;
-	}
-	.foodLabel{
-		display : inline-block;
-	}
-	.foodMain{
-		display : inline-block;
-	}
-	
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua|Song+Myung|Stylish" rel="stylesheet">
+<script src="<c:url value="/js/backHeader.js"></c:url>" ></script>
+<link href="<c:url value="/css/backHeader.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/backFooter.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/orderPage_content.css" />" rel="stylesheet" type="text/css">
 
-</style>
 
 
 
@@ -186,13 +157,14 @@
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->
-	<header></header>
+	<jsp:include page="../../backHeader.jsp" />
 	<!-- 실제 작성 구간 -->
 	<div id = "contents">
-		 
+		<div id = "hak">
 		<div id = "mainBox"><span id ="tableNum">${orderList[0].orders.ordTableNum }</span>번 <spring:message code="order.regist"/></div>
+	
 		<div id = "listBox">
-			<table>
+			<table class = "table con">
 				<tr>
 					<th><spring:message code="number"/></th>
 					<th><spring:message code="food.name"/></th>
@@ -208,22 +180,26 @@
 					<td>${lists.foodName }</td>
 					<td>${lists.food.foodPrice }</td>
 					<td>${lists.olCount }</td>
-					<td><input type = "button" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
-					<td><input type = "button" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
+					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="plus"/>" onclick="plus(${i.count })"></td>
+					<td><input type = "button" class = "btn btn-primary btn-sm btn-a" value ="<spring:message code="minus"/>" onclick="minus(${i.count })"></td>
 				</tr>
 				</c:if>
 			</c:forEach>
 			</table>
+			</div>
+			
 			<c:if test="${empty orderList[0].food.foodName }">
 				<div id = "orderBox"><spring:message code="order.nothing"/></div>
 			</c:if>
 			<div id = "amount">
 				<spring:message code="payment.money"/> : ${amount }
 			</div>
-			<input type = "button" onclick = "order()" value="<spring:message code="order.regist"/>">
-			<input type = "button" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
-			<input type = "button" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
-		</div>
+			<input type = "button" class = "customBtn btn btn-outline-danger" onclick = "order()" value="<spring:message code="order.regist"/>">
+			<input type = "button" class = "btn btn-primary btn-md btn-a" onclick = "location.href='./table'" value="전체<spring:message code="order.table"/>">
+			<input type = "button" class="btn btn-danger btn-a" value="<spring:message code="payment" /> 하기" onclick = "location.href='./table/payment?table=${orderList[0].orders.ordTableNum }'">
+			<input type = "button" id = "submitBtn3" onclick="history.back(-1)" value = "뒤로가기" class = "customBtn btn btn-primary btn">
+	
+			</div>
 		<div id = "foodBox">
 			<c:forEach	begin="1" end="7" var="i" step="1">
 				<c:if test="${kind eq i}">
@@ -235,18 +211,21 @@
 			</c:forEach>
 			<c:forEach items="${foodList }" var="food">
 				<div class = "foodList" onclick="orders(${food.foodNo })">
-					<div class="foodLabel"><spring:message code="food.name"/></div><div class="foodName foodMain">${food.foodName }</div>
+					<div class="foodLabel"><spring:message code="food.name"/>:</div><div class="foodName foodMain"><span class = "spn">${food.foodName }</span></div>
 					<div class="foodImage"><img width="100%" height="150px" alt="${food.foodOriFileName}" src='<c:url value="/img/fb/food/${food.foodStoreFileName}" />'></div>
-					<div class="foodLabel"><spring:message code="food.price"/> ￦</div><div class="foodPrice foodMain">${food.foodPrice }</div>
+					<div class="foodLabel"><spring:message code="food.price"/> : </div><div class="foodPrice foodMain"><span class = "spn"> ￦ ${food.foodPrice }</span></div>
 				</div>
 			</c:forEach>
+			
 		<div id = "paging">
 		<c:set var="page" value="${paging.page}"/>
 			<c:if test="${paging.prev}"><div onclick="prev(${paging.startPage-1})">◀</div></c:if>
 			<c:if test="${paging.next}"><div onclick="next(${paging.endPage+1})">▶</div></c:if>
 		</div>
 		</div>
+		
+		
 	</div>
-	<footer></footer>
+	<jsp:include page="../../backFooter.jsp" />
 </body>
 </html>
