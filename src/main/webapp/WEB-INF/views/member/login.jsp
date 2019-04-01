@@ -32,7 +32,6 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
 <!-- 사용자 임의 JS, CSS설정 위치는 알아서 조정 -->
 
-
 </head>
 <body>
 <!-- 헤더 푸터 건들지 말것(필수는 아님) -->

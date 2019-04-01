@@ -40,6 +40,15 @@ public class LoginController {
 		
 		return "redirect:../../comp";
 	}
+	@RequestMapping(value = "/comp/member/logout", method = RequestMethod.GET)
+	public String logoutSessionInvalidate(Model model, HttpSession session) {
+		if(session.getAttribute("loginfo")==null) {
+			return "redirect:./login";
+		} 
+		session.setAttribute("loginfo", null);
+		session.invalidate();
+		return AutoAlertProcess.alertAfterRedirect(model, "로그아웃", "성공적으로 로그아웃 되었습니다.", "../../comp");
+	}
 	
 	
 	
